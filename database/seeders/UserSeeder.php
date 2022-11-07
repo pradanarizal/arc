@@ -24,31 +24,20 @@ class UserSeeder extends Seeder
                 'name' => 'Admin',
                 'level' => 'admin',
                 'email' => 'admin' . '@gmail.com',
-                'password' => Hash::make('admin'),
+                'password' => Hash::make('123'),
             ],
             [
                 'name' => 'User',
                 'level' => 'user',
                 'email' => 'user' . '@gmail.com',
-                'password' => Hash::make('user'),
+                'password' => Hash::make('321'),
+            ],
+            [
+                'name' => 'Super Admin',
+                'level' => 'superadmin',
+                'email' => 'superadmin' . '@gmail.com',
+                'password' => Hash::make('111'),
             ],
         ]);
-        // User::Create(
-        //     [
-        //         [
-        //             'name' => 'Admin',
-        //             'level' => 'admin',
-        //             'email' => 'admin@gmail.com',
-        //             'password' => bcrypt('admin'),
-        //             'remember_token' => Str::random(60),
-
-        //             'name' => 'User',
-        //             'level' => 'user',
-        //             'email' => 'user@gmail.com',
-        //             'password' => bcrypt('user'),
-        //             'remember_token' => Str::random(60),
-        //         ]
-        //     ]
-        // );
     }
 }

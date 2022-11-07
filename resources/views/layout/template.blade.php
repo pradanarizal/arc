@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>C-Ad</title>
+    <title>Document Archive</title>
     @include('layout.head')
 </head>
 

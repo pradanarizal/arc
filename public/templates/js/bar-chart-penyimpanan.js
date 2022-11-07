@@ -28,17 +28,24 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx, {
+var ctx = document.getElementById("chart_penyimpanan");
+var chart_penyimpanan = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["January", "February", "March", "April", "May", "June"],
+        labels: ["", "", "", "", "", ""],
         datasets: [{
-            label: "Revenue",
-            backgroundColor: "#4e73df",
-            hoverBackgroundColor: "#2e59d9",
-            borderColor: "#4e73df",
-            data: [4215, 5312, 6251, 7841, 9821, 14984],
+            label: "Total",
+            backgroundColor: ['#0055FF', '#E40087', '#00DA0A', '#7A00BB', '#00B5DA', '#F78B00'],
+            hoverBackgroundColor: "#666666",
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            data: [20, 133, 36, 45, 77, 122],
         }],
     },
     options: {
@@ -63,17 +70,17 @@ var myBarChart = new Chart(ctx, {
                 ticks: {
                     maxTicksLimit: 6
                 },
-                maxBarThickness: 25,
+                maxBarThickness: 215,
             }],
             yAxes: [{
                 ticks: {
                     min: 0,
-                    max: 15000,
+                    max: 150,
                     maxTicksLimit: 5,
                     padding: 10,
                     // Include a dollar sign in the ticks
                     callback: function(value, index, values) {
-                        return '$' + number_format(value);
+                        return number_format(value);
                     }
                 },
                 gridLines: {
@@ -103,7 +110,7 @@ var myBarChart = new Chart(ctx, {
             callbacks: {
                 label: function(tooltipItem, chart) {
                     var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                    return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                    return datasetLabel + ' : ' + number_format(tooltipItem.yLabel);
                 }
             }
         },

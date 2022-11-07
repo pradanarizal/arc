@@ -5,7 +5,7 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Halaman Beranda</h1>
 </div>
-
+INI ADALAH HALAMAN ADMIN
 {{-- <div class="row">
     <!-- Card Jumlah Pengguna -->
     <div class="col-xl-4 col-md-6 mb-4">

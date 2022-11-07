@@ -47,3 +47,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
 Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
     Route::get('/dokumen', [UserController::class, 'dokumen'])->name('dokumen');
 });
+
+// Menu Super Admin
+Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
+    Route::get('/dokumen', [SuperadminController::class, 'dashboard_SA'])->name('dokumen');
+});
