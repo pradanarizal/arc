@@ -3,9 +3,9 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SadminController;
+use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Controller;
 use App\Http\Middleware\CekLevel;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -50,5 +50,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
 
 // Menu Super Admin
 Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
-    Route::get('/dokumen', [SuperadminController::class, 'dashboard_SA'])->name('dokumen');
+    Route::get('/dokumen', [SuperadminController::class, 'dashboard_admin'])->name('dokumen');
+    Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
 });
+

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class SuperadminController extends Controller
 {
-    public function dashboard_SA()
+    public function dashboard_admin()
     {
         return view('superadmin.dokumen');
     }

@@ -114,12 +114,12 @@
 
 
     <!-- Nav Item - Keluar -->
-    <li class="nav-item {{ request()->is('keluar') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('logout') }}">
+    {{-- <li class="nav-item {{ request()->is('keluar') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('logout') }}"> --}}
             {{-- <a class="nav-link" href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#modalkeluar"> --}}
-            <i class="fas fa-fw fa-cog"></i>
+            {{-- <i class="fas fa-fw fa-cog"></i>
             <span>Keluar</span></a>
-    </li>
+    </li> --}}
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
