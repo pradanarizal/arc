@@ -13,6 +13,7 @@ class LoginController extends Controller
     {
         return view('login.login');
     }
+    // aji
     public function postlogin(Request $request)
     {
         $request->validate([
