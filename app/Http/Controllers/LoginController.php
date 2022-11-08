@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\LoginModel;
 
 class LoginController extends Controller
 {
@@ -11,6 +13,7 @@ class LoginController extends Controller
     {
         return view('login.login');
     }
+    // aji
     public function postlogin(Request $request)
     {
         $request->validate([
