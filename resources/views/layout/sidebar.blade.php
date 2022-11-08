@@ -77,7 +77,7 @@
 
         {{-- SIDEBAR MENU 2 SUPER ADMIN --}}
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="dokumen">
                 <i class="fas fa-fw fa-home"></i>
                 <span>Dokumen</span></a>
         </li>

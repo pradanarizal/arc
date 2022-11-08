@@ -3,7 +3,7 @@
     <!-- Page Heading -->
 
     <div class="d-flex align-items-center">
-        <p class="h3 mb-0">Dashboard</p>
+        <p class="h3 text-gray-800 mb-0">Dashboard</p>
         <p class="mb-0 text-gray-800 text-small">Overview & Statistics</p>
         {{-- <p class="mb-0 bg-primary rounded text-white p-2"><i class="far fa-calendar"></i>{{ date(' j F Y') }}</p> --}}
     </div>

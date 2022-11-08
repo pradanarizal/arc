@@ -11689,3 +11689,11 @@ body.sidebar-toggled footer.sticky-footer {
 .r-06 {
     background-color: #F78B00;
 }
+
+
+/* Custom CSS */
+
+.tombol {
+    margin-right: 5px;
+    width: 128px;
+}
