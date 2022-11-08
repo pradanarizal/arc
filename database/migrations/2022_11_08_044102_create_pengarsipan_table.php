@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pengarsipan', function (Blueprint $table) {
             $table->id('id_pengarsipan');
             $table->string('no_dokumen');
-            $table->enum('status', ['Pending', 'Ya','Tidak']);
+            $table->enum('status_pengarsipan', ['Pending', 'Ya','Tidak']);
             $table->timestamps();
         });
     }
