@@ -21,22 +21,28 @@ class UserSeeder extends Seeder
         // User::truncate();
         DB::table('users')->insert([
             [
-                'name' => 'Admin',
-                'level' => 'admin',
-                'email' => 'admin' . '@gmail.com',
-                'password' => Hash::make('123'),
-            ],
-            [
-                'name' => 'User',
-                'level' => 'user',
+                'name' => 'Tri Aji',
                 'email' => 'user' . '@gmail.com',
-                'password' => Hash::make('321'),
+                'divisi' => 'IT Support',
+                'status' => '1',
+                'level' => 'user',
+                'password' => Hash::make('user'),
             ],
             [
-                'name' => 'Super Admin',
-                'level' => 'superadmin',
+                'name' => 'Zidan',
+                'email' => 'admin' . '@gmail.com',
+                'divisi' => 'IT Governance',
+                'status' => '1',
+                'level' => 'admin',
+                'password' => Hash::make('admin'),
+            ],
+            [
+                'name' => 'Rifky',
                 'email' => 'superadmin' . '@gmail.com',
-                'password' => Hash::make('111'),
+                'divisi' => 'IT',
+                'status' => '1',
+                'level' => 'admin',
+                'password' => Hash::make('superadmin'),
             ],
         ]);
     }
