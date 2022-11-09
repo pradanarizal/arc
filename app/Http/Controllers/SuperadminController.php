@@ -3,11 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DokumenModel;
 
 class SuperadminController extends Controller
 {
+    // public function dokumen()
+    // {
+    //     return view('superadmin.dokumen');
+    // }
+    public function __construct()
+    {
+        $this->DokumenModel = new DokumenModel();
+    }
+
     public function dokumen()
     {
-        return view('superadmin.dokumen');
+        $data = [
+            'dokumen' => $this->DokumenModel->allData()
+        ];
+        return view('superadmin.dokumen', $data);
     }
 }

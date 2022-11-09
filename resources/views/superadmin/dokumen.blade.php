@@ -1,11 +1,11 @@
 @extends('layout.template') @section('content')
-<div class="d-flex align-items-center">
-    <p class="h3 mb-0 text-gray-800">Dokumen</p>
-    <p class="mb-0 text-gray-800 text-small">Database Dokumen</p>
-</div>
+    <div class="d-flex align-items-center">
+        <p class="h3 mb-0 text-gray-800">Dokumen</p>
+        <p class="mb-0 text-gray-800 text-small">Database Dokumen</p>
+    </div>
 
-<!-- Begin Page Content -->
-{{--
+    <!-- Begin Page Content -->
+    {{--
 <div class="container-fluid"> --}}
 
     <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
@@ -29,27 +29,33 @@
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
-                    <!-- <tfoot>
-                        <tr>
-                            <th>No</th>
-                            <th>No. Dokumen</th>
-                            <th>Nama Dokumen</th>
-                            <th>Deskripsi</th>
-                            <th>Tanggal Upload</th>
-                            <th>Status</th>
-                        </tr>
-                    </tfoot> -->
+
                     <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>AKSI</td>
-                        </tr>
+                        <?php $no = 1; ?>
+                        {{-- Ambil data dari controller --}}
+                        @foreach ($dokumen as $item)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $item->no_dokumen }}</td>
+                                <td>{{ $item->nama_dokumen }}</td>
+                                <td>{{ $item->deskripsi }}</td>
+                                <td>{{ $item->tgl_upload }}</td>
+                                <td>{{ $item->status_dokumen }}</td>
+                                <td>
+                                    <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal"
+                                        data-bs-target="#modaledit">
+                                        <i class="fa fa-pen"></i>
+                                    </button>
+                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                        data-bs-target="#modalhapus">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -57,5 +63,5 @@
     </div>
     {{--
 </div> --}}
-<!-- /.container-fluid -->
+    <!-- /.container-fluid -->
 @endsection
