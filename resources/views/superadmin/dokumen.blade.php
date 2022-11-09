@@ -1,7 +1,7 @@
 @extends('layout.template') @section('content')
     <div class="d-flex align-items-center">
         <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Dokumen</p>
-        <p class="mb-0 text-gray-800 text-small">Database Dokumen</p>
+        <p class="mb-0 text-gray-800 text-small">Table Dokumen</p>
     </div>
 
     <!-- Begin Page Content -->
@@ -22,7 +22,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Table Dokumen</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
