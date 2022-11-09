@@ -1,6 +1,6 @@
 @extends('layout.template') @section('content')
     <div class="d-flex align-items-center">
-        <p class="h3 mb-0 text-gray-800">Dokumen</p>
+        <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Dokumen</p>
         <p class="mb-0 text-gray-800 text-small">Database Dokumen</p>
     </div>
 
@@ -9,8 +9,14 @@
 <div class="container-fluid"> --}}
 
     <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
-        <a href="#" type="button" class="btn btn-danger tombol">Add Retensi</a>
-        <a href="#" type="button" class="btn btn-primary tombol">Add Arsip</a>
+        <button class="d-none d-sm-inline-block btn btn-danger shadow-sm tombol" data-bs-toggle="modal" data-bs-target="#">
+            <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
+            Add Retensi
+        </button>
+        <button class="d-none d-sm-inline-block btn btn-success shadow-sm tombol" data-bs-toggle="modal" data-bs-target="#">
+            <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
+            Add Arsip
+        </button>
     </div>
 
     <!-- DataTales Example -->
@@ -32,7 +38,6 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         <?php $no = 1; ?>
                         {{-- Ambil data dari controller --}}

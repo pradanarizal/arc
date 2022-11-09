@@ -3,7 +3,7 @@
     <!-- Page Heading -->
 
     <div class="d-flex align-items-center">
-        <p class="h3 text-gray-800 mb-0">Dashboard</p>
+        <p class="h3 text-gray-800 mb-0 mr-1 font-weight-bold">Dashboard</p>
         <p class="mb-0 text-gray-800 text-small">Overview & Statistics</p>
         {{-- <p class="mb-0 bg-primary rounded text-white p-2"><i class="far fa-calendar"></i>{{ date(' j F Y') }}</p> --}}
     </div>
@@ -13,12 +13,11 @@
         <!-- Card  -->
         @if (auth()->user()->level == 'admin')
             <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card border-left-danger shadow h-100">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
-                                <div class="text-s font-weight-bold text-danger mb-2">
-                                    Punya Admin</div>
+                                <div class="text-s font-weight-bold text-danger mb-2">Punya Admin</div>
                                 <div class="h2 mb-0 font-weight-bold text-gray-800">10</div>
                             </div>
                             <div class="col-auto">
@@ -28,11 +27,14 @@
                     </div>
                 </div>
             </div>
-        @endif {{-- END OF TAMPILAN ADMIN --}} {{-- UNTUK TAMPILAN USER --}}
+        @endif
+        {{-- END OF TAMPILAN ADMIN --}}
+
+        {{-- UNTUK TAMPILAN USER --}}
         <!-- Card  -->
         @if (auth()->user()->level == 'user')
             <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card border-left-danger shadow h-100">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -47,12 +49,16 @@
                     </div>
                 </div>
             </div>
-        @endif {{-- END OF TAMPILAN USER --}} {{-- UNTUK TAMPILAN SUPER ADMIN --}}
+        @endif
+
+        {{-- END OF TAMPILAN USER --}}
+
+        {{-- UNTUK TAMPILAN SUPER ADMIN --}}
 
         <!-- Card -->
         @if (auth()->user()->level == 'superadmin')
-            <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 py-2">
+            <div class="col-xl-4  mb-3 mt-2">
+                <div class="card border-left-danger shadow h-100">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
@@ -70,8 +76,8 @@
                 </div>
             </div>
 
-            <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 py-2">
+            <div class="col-xl-4  mb-3 mt-2">
+                <div class="card border-left-danger shadow h-100">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
