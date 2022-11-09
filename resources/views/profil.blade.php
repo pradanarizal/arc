@@ -8,7 +8,7 @@
         <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-body text-center">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Avatar_Head.svg" alt="avatar"
                         class="rounded-circle img-fluid" style="width: 150px;">
                     <p class="text-muted mb-1 mt-2">
                         <?php
@@ -58,8 +58,6 @@
                             <p class="text-muted mb-0">{{ auth()->user()->divisi }}</p>
                         </div>
                     </div>
-
-                    <hr>
 
                 </div>
             </div>

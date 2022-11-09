@@ -52,5 +52,11 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
 Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
     Route::get('/dokumen', [SuperadminController::class, 'dokumen'])->name('dokumen');
+    // Route::get('/lokasipenyimpanan', [SuperadminController::class, 'lokasi_penyimpanan'])->name('lokasipenyimpanan');
+    Route::get('/ruang', [SuperadminController::class, 'ruang'])->name('ruang');
+    Route::get('/rak', [SuperadminController::class, 'rak'])->name('rak');
+    Route::get('/box', [SuperadminController::class, 'box'])->name('box');
+    Route::get('/map', [SuperadminController::class, 'map'])->name('map');
+    Route::get('/data_user', [SuperadminController::class, 'data_user'])->name('data_user');
+    Route::get('/kelengkapan_dokumen', [SuperadminController::class, 'kelengkapan_dokumen'])->name('kelengkapan_dokumen');
 });
-
