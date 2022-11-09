@@ -4,6 +4,7 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dokumen</h1>
+        <p class="mb-0 text-gray-800 text-small">Database Dokumen</p>
     </div>
 <!-- Begin Page Content -->
 {{--
@@ -30,6 +31,7 @@
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
 
@@ -44,6 +46,14 @@
                             <td>{{ $item->deskripsi }}</td>
                             <td>{{ $item->tgl_upload }}</td>
                             <td>{{ $item->status_dokumen }}</td>
+                            <td>
+                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#modaledit">
+                                        <i class="fa fa-pen"></i>
+                                </button>
+                                <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#modalhapus">
+                                        <i class="fa fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>

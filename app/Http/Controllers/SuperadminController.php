@@ -13,13 +13,13 @@ class SuperadminController extends Controller
     // }
     public function __construct()
     {
-        $this->Model = new DokumenModel();
+        $this->DokumenModel = new DokumenModel();
     }
 
     public function dokumen()
     {
         $data = [
-            'dokumen' => $this->Model->allData()
+            'dokumen' => $this->DokumenModel->allData()
         ];
         return view('superadmin.dokumen', $data);
     }
