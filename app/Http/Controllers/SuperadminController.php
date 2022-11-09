@@ -7,9 +7,6 @@ use App\Models\DokumenModel;
 
 class SuperadminController extends Controller
 {
-<<<<<<< Updated upstream
-    public function dashboard_admin()
-=======
     // public function dokumen()
     // {
     //     return view('superadmin.dokumen');
@@ -20,7 +17,6 @@ class SuperadminController extends Controller
     }
 
     public function dokumen()
->>>>>>> Stashed changes
     {
         $data = [
             'dokumen' => $this->Model->allData()
