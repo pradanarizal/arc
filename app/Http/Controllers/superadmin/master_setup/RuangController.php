@@ -45,7 +45,14 @@ class RuangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'nama_ruang' => $request->input('nama_ruang'),
+            
+        ];
+        if ($this->RuangModel->insert_ruang($data)) {
+            return redirect('/ruang')->with('toast_success', 'Berhasil Tambah Ruang');
+        }
+
     }
 
     /**

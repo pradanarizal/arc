@@ -11,7 +11,7 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
-                <form action="" method=" ">
+                <form action="/input_ruang" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nama_ruang">Nama Ruang</label>
                         <input type="text" class="form-control" id="nama_ruang" name="nama_ruang"

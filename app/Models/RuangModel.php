@@ -14,4 +14,13 @@ class RuangModel extends Model
         return DB::table('ruang')
             ->get();
     }
+
+    public function insert_ruang($data)
+    {
+        if (DB::table('ruang')->insert($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
