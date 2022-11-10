@@ -11698,8 +11698,7 @@ body.sidebar-toggled footer.sticky-footer {
 .card-body {
     flex: 1 1 auto;
     min-height: 1px;
-    /* padding: 1.25rem */
-    padding: 1rem
+    padding: 1.25rem
 }
 
 

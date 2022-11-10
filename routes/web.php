@@ -3,9 +3,15 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\SuperadminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\superadmin\DokumenController;
+use App\Http\Controllers\superadmin\master_setup\RuangController;
+use App\Http\Controllers\superadmin\master_setup\RakController;
+use App\Http\Controllers\superadmin\master_setup\BoxController;
+use App\Http\Controllers\superadmin\master_setup\KelengkapanController;
+use App\Http\Controllers\superadmin\master_setup\MapController;
+use App\Http\Controllers\superadmin\master_setup\DatauserController;
 use App\Http\Middleware\CekLevel;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
@@ -51,12 +57,11 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
 // Menu Super Admin
 Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
-    Route::get('/dokumen', [SuperadminController::class, 'dokumen'])->name('dokumen');
-    // Route::get('/lokasipenyimpanan', [SuperadminController::class, 'lokasi_penyimpanan'])->name('lokasipenyimpanan');
-    Route::get('/ruang', [SuperadminController::class, 'ruang'])->name('ruang');
-    Route::get('/rak', [SuperadminController::class, 'rak'])->name('rak');
-    Route::get('/box', [SuperadminController::class, 'box'])->name('box');
-    Route::get('/map', [SuperadminController::class, 'map'])->name('map');
-    Route::get('/data_user', [SuperadminController::class, 'data_user'])->name('data_user');
-    Route::get('/kelengkapan_dokumen', [SuperadminController::class, 'kelengkapan_dokumen'])->name('kelengkapan_dokumen');
+    Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
+    Route::get('/ruang', [RuangController::class, 'index'])->name('ruang');
+    Route::get('/rak', [RakController::class, 'index'])->name('rak');
+    Route::get('/box', [BoxController::class, 'index'])->name('box');
+    Route::get('/map', [MapController::class, 'index'])->name('map');
+    Route::get('/data_user', [DatauserController::class, 'index'])->name('data_user');
+    Route::get('/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
 });

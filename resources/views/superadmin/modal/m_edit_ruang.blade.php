@@ -1,9 +1,9 @@
-<div class="modal fade" id="tambah_ruang" tabindex="-1" aria-labelledby="tambah_ruang" aria-hidden="true">
+<div class="modal fade" id="edit_ruang" tabindex="-1" aria-labelledby="edit_ruang" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Ruang</h5>
+                <h5 class="modal-title">Edit Ruang</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -13,8 +13,8 @@
                 <!--FORM TAMBAH BARANG-->
                 <form action="" method=" ">
                     <div class="form-group">
-                        <label for="tambah_ruang">Nama Ruang</label>
-                        <input type="text" class="form-control" id="tambah_ruang" name="tambah_ruang"
+                        <label for="nama_ruang">Nama Ruang</label>
+                        <input type="text" class="form-control" id="nama_ruang" name="nama_ruang"
                             aria-describedby="emailHelp">
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>

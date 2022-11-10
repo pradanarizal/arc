@@ -7,7 +7,7 @@
     <!-- Begin Page Content -->
 
     <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
-        <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#">
+        <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#tambah_surat">
             <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
             Add Surat
         </button>
@@ -39,7 +39,7 @@
                             <td>{{ $item->id_kel_dokumen }}</td>
                             <td>{{ $item->nama_kel_dokumen }}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_surat">
                                     <i class="fa fa-pen"></i>
                                 </button>
                                 <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">
@@ -53,4 +53,8 @@
             </div>
         </div>
     </div>
+
+    @include('superadmin.modal.m_tambah_surat')
+    @include('superadmin.modal.m_edit_surat')
+
 @endsection

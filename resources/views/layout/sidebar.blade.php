@@ -77,7 +77,7 @@
                         <i class="fas fa-fw fa-angle-right"></i>
                         <span>User</span>
                     </a>
-                    <a class="collapse-item {{ request()->is('kelengkapan') ? 'active' : '' }}"
+                    <a class="collapse-item {{ request()->is('kelengkapan_dokumen') ? 'active' : '' }}"
                         href="kelengkapan_dokumen">
                         <i class="fas fa-fw fa-angle-right"></i>
                         <span>Kelengkapan</span>

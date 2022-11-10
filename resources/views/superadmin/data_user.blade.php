@@ -7,7 +7,7 @@
     <!-- Begin Page Content -->
 
     <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
-        <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#">
+        <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#tambah_user">
             <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
             Add User
         </button>
@@ -47,7 +47,7 @@
                             <td>{{ $item->status_user }}</td>
                             <td>{{ $item->level }}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_user">
                                     <i class="fa fa-pen"></i>
                                 </button>
                                 <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">
@@ -61,4 +61,7 @@
             </div>
         </div>
     </div>
+    @include('superadmin.modal.m_tambah_user')
+    @include('superadmin.modal.m_edit_user')
+
 @endsection
