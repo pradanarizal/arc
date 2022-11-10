@@ -13,7 +13,11 @@ use App\Models\User;
 
 class SuperadminController extends Controller
 {
-
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function __construct()
     {
         $this->DokumenModel = new DokumenModel();
@@ -62,7 +66,7 @@ class SuperadminController extends Controller
         $data5 = [
             'map' => $this->MapModel->mapData()
         ];
-        return view('superadmin.map',$data5);
+        return view('superadmin.map', $data5);
     }
 
     public function data_user()
@@ -70,7 +74,7 @@ class SuperadminController extends Controller
         $data6 = [
             'users' => $this->User->userData()
         ];
-        return view('superadmin.data_user',$data6);
+        return view('superadmin.data_user', $data6);
     }
 
     public function kelengkapan_dokumen()
@@ -78,6 +82,78 @@ class SuperadminController extends Controller
         $data7 = [
             'kelengkapan_dokumen' => $this->KelengkapanDokumenModel->keldokData()
         ];
-        return view('superadmin.kelengkapan',$data7);
+        return view('superadmin.kelengkapan', $data7);
+    }
+
+
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
