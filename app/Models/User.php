@@ -7,9 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
+    public function userData()
+    {
+        return DB::table('users')
+            ->get();
+    }
+    
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

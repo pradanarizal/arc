@@ -35,14 +35,17 @@
                     </thead>
 
                     <tbody>
+                        <?php $no = 1; ?>
+                        {{-- Ambil data dari controller --}}
+                        @foreach ($users as $item)
                         <tr>
-                            <td>1</td>
-                            <td>222</td>
-                            <td>Rizaldi</td>
-                            <td>rizaldi@gmail.com</td>
-                            <td>CTIO</td>
-                            <td>Aktif</td>
-                            <td>Super Admin</td>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->name }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->divisi }}</td>
+                            <td>{{ $item->status_user }}</td>
+                            <td>{{ $item->level }}</td>
                             <td class="text-center">
                                 <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#">
                                     <i class="fa fa-pen"></i>
@@ -52,6 +55,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

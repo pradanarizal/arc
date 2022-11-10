@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class DokumenModel extends Model
+class RakModel extends Model
 {
-    //use HasFactory;
-    public function allData()
+    // use HasFactory;
+    public function rakData()
     {
-        return DB::table('dokumen')
+        return DB::table('rak')
             ->get();
     }
-
 }

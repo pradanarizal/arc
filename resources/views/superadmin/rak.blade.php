@@ -31,10 +31,13 @@
                     </thead>
 
                     <tbody>
+                        <?php $no = 1; ?>
+                        {{-- Ambil data dari controller --}}
+                        @foreach ($rak as $item)
                         <tr>
-                            <td>1</td>
-                            <td>22</td>
-                            <td>Rak 22</td>
+                            <td>{{ $no++ }}</td>
+                            <td>{{ $item->id_rak }}</td>
+                            <td>{{ $item->nama_rak }}</td>
                             <td class="text-center">
                                 <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#">
                                     <i class="fa fa-pen"></i>
@@ -44,6 +47,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

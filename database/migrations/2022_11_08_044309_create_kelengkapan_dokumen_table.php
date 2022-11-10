@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('kelengkapan_dokumen', function (Blueprint $table) {
             $table->id('id_kel_dokumen');
-            $table->string('no_dokumen');
             $table->string('nama_kel_dokumen');
             $table->timestamps();
         });
