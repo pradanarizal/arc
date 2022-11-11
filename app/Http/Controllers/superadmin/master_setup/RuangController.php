@@ -86,28 +86,13 @@ class RuangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = [];
-        if($request->input('nama_user') != $request->input('old_username_edit'))
-        {
-            $data = [
-                'name' => $request->input('nama_admin_edit'),
-                'username' => $request->input('nama_user'),
-                'aktif'     => $request->input('status_edit'),
-                'updated_at' => \Carbon\Carbon::now()
-            ];
-        }
-        else
-        {
-            $data = [
-                'name' => $request->input('nama_admin_edit'),
-                'aktif'     => $request->input('status_edit'),
-                'updated_at' => \Carbon\Carbon::now()
-            ];
-        }
-        if ($this->Model->update_admin($id, $data)) {
-            return redirect('/admin')->with('toast_success', 'Berhasil Edit Admin');
+        $data = [
+            'nama_ruang' => $request->input('nama_ruang')
+        ];
+        if ($this->RuangModel->update_ruang($data, $id)) {
+            return redirect('ruang')->with('toast_success', 'Berhasil Edit Ruang');
         } else {
-            return redirect('/admin');
+            return redirect('ruang');
         }
     }
 
@@ -119,6 +104,7 @@ class RuangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->RuangModel->delete_ruang($id);
+        return redirect('ruang')->with('toast_success', 'Berhasil Hapus Ruang');
     }
 }

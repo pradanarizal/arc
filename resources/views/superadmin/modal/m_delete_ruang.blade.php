@@ -1,6 +1,6 @@
 <!-- Modal Hapus -->
 @foreach ($ruang as $item)
-    <div class="modal fade" id="delete_ruang" tabindex="-1" role="dialog"
+    <div class="modal fade" id="delete_ruang{{ $item->id_ruang }}" tabindex="-1" role="dialog"
         aria-labelledby="delete_ruang" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -10,9 +10,9 @@
                         aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    Yakin Ingin Menghapus Ruang ?
+                    Yakin Ingin Menghapus Ruang {{ $item->nama_ruang}}?
                 </div>
-                <form action="" method="POST">
+                <form action="/ruang/{{ $item->id_ruang }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-footer">
