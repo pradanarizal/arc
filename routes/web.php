@@ -67,7 +67,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::get('/map', [MapController::class, 'index'])->name('map');
     Route::resource('/map', MapController::class);
     Route::get('/data_user', [DatauserController::class, 'index'])->name('data_user');
-    Route::resource('/input_data_user', DatauserController::class);
+    Route::resource('/data_user', DatauserController::class);
     Route::get('/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
     Route::resource('/input_kelengkapan', KelengkapanController::class);
 });

@@ -27,6 +27,15 @@ class User extends Authenticatable
         }
     }
 
+    //Delete Data User
+    public function delete_datauser($id)
+    {
+        DB::table('users')->where('id', $id)->delete();
+    }
+
+
+
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

@@ -102,6 +102,7 @@ class DatauserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->User->delete_datauser($id);
+        return redirect('/data_user')->with('toast_success', 'Berhasil Hapus Pengguna');
     }
 }
