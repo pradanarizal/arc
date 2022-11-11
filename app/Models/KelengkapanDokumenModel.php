@@ -23,4 +23,13 @@ class KelengkapanDokumenModel extends Model
             return false;
         }
     }
+
+    public function update_surat($data, $id_kel_dokumen)
+    {
+        if (DB::table('kelengkapan_dokumen')->where('id_kel_dokumen',$id_kel_dokumen)->update($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

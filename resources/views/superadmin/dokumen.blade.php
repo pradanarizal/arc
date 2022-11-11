@@ -51,7 +51,7 @@
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td>
                                     <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal"
-                                        data-bs-target="#modaledit">
+                                        data-bs-target="#modaledit{{ $item->no_dokumen }}">
                                         <i class="fa fa-pen"></i>
                                     </button>
                                     <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"

@@ -87,7 +87,14 @@ class KelengkapanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nama_kel_dokumen' => $request->input('kelengkapan')
+        ];
+        if ($this->KelengkapanDokumenModel->update_surat($data, $id)) {
+            return redirect('kelengkapan')->with('toast_success', 'Berhasil Edit Kelengkapan Dokumen');
+        } else {
+            return redirect('kelengkapan');
+        }
     }
 
     /**

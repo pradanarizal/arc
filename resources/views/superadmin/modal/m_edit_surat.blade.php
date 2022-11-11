@@ -1,4 +1,5 @@
-<div class="modal fade" id="edit_surat" tabindex="-1" aria-labelledby="edit_surat" aria-hidden="true">
+@foreach ($kelengkapan_dokumen as $item)
+<div class="modal fade" id="edit_surat{{ $item->id_kel_dokumen }}" tabindex="-1" aria-labelledby="edit_surat" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -11,10 +12,12 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
-                <form action="" method=" ">
+                <form action="{{ '/kelengkapan/' . $item->id_kel_dokumen }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="kelengkapan">Nama Kelengkapan Dokumen</label>
-                        <input type="text" class="form-control" id="kelengkapan" name="kelengkapan"
+                        <input type="text" value="{{$item->nama_kel_dokumen}}" class="form-control" id="kelengkapan" name="kelengkapan"
                             aria-describedby="emailHelp">
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -25,3 +28,4 @@
         </div>
     </div>
 </div>
+@endforeach

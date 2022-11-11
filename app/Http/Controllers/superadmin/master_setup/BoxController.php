@@ -86,7 +86,14 @@ class BoxController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nama_box' => $request->input('nama_box')
+        ];
+        if ($this->BoxModel->update_box($data, $id)) {
+            return redirect('box')->with('toast_success', 'Berhasil Edit Box');
+        } else {
+            return redirect('box');
+        }
     }
 
     /**

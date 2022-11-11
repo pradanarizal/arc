@@ -1,4 +1,5 @@
-<div class="modal fade" id="edit_map" tabindex="-1" aria-labelledby="edit_map" aria-hidden="true">
+@foreach ($map as $item)
+<div class="modal fade" id="edit_map{{ $item->id_map }}" tabindex="-1" aria-labelledby="edit_map" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -11,10 +12,12 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
-                <form action="" method="">
+                <form action="{{ '/map/' . $item->id_map }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="nama_map">Nama Map</label>
-                        <input type="text" class="form-control" id="nama_map" name="nama_map"
+                        <input type="text" value="{{$item->nama_map}}" class="form-control" id="nama_map" name="nama_map"
                             aria-describedby="emailHelp">
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -25,3 +28,4 @@
         </div>
     </div>
 </div>
+@endforeach

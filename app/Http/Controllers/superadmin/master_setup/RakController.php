@@ -86,7 +86,14 @@ class RakController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nama_rak' => $request->input('nama_rak')
+        ];
+        if ($this->RakModel->update_rak($data, $id)) {
+            return redirect('rak')->with('toast_success', 'Berhasil Edit Rak');
+        } else {
+            return redirect('rak');
+        }
     }
 
     /**

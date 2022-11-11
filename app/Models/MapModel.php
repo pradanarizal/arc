@@ -30,4 +30,12 @@ class MapModel extends Model
     }
 
 
+    public function update_map($data, $id_map)
+    {
+        if (DB::table('map')->where('id_map',$id_map)->update($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

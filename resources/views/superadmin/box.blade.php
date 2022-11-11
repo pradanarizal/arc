@@ -39,7 +39,7 @@
                             <td>{{ $item->id_box }}</td>
                             <td>{{ $item->nama_box }}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_box">
+                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_box{{ $item->id_box }}">
                                     <i class="fa fa-pen"></i>
                                 </button>
                                 <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#delete_box{{ $item->id_box }}">

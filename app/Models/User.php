@@ -36,6 +36,15 @@ class User extends Authenticatable
 
 
 
+    public function update_user($data, $id)
+    {
+        if (DB::table('users')->where('id',$id)->update($data)){
+        return true;
+        }else{
+            return false;
+        }
+    }
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**

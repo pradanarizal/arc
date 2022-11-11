@@ -39,7 +39,7 @@
                             <td>{{ $item->id_map }}</td>
                             <td>{{ $item->nama_map }}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_map">
+                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_map{{ $item->id_map }}">
                                     <i class="fa fa-pen"></i>
                                 </button>
                                 <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#delete_map{{ $item->id_map }}">
