@@ -47,12 +47,11 @@ class RuangController extends Controller
     {
         $data = [
             'nama_ruang' => $request->input('nama_ruang'),
-
         ];
         if ($this->RuangModel->insert_ruang($data)) {
             return redirect('ruang')->with('toast_success', 'Berhasil Tambah Ruang');
         } else {
-            return redirect('ruang')->with('toast_error', 'Gagal Tambah Admin');
+            return redirect('ruang')->with('toast_error', 'Gagal Tambah Ruang');
         }
     }
 

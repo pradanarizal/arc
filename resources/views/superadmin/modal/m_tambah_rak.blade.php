@@ -11,7 +11,8 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH Rak-->
-                <form action="" method=" ">
+                <form action="/input_rak" method="post" enctype="multipart/form-data">
+                @csrf
                     <div class="form-group">
                         <label for="nama_rak">Nama Rak</label>
                         <input type="text" class="form-control" id="nama_rak" name="nama_rak"

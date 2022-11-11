@@ -46,7 +46,14 @@ class MapController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'nama_map' => $request->input('nama_map'),
+        ];
+        if ($this->MapModel->insert_map($data)) {
+            return redirect('map')->with('toast_success', 'Berhasil Tambah map');
+        } else {
+            return redirect('map')->with('toast_error', 'Gagal Tambah map');
+        }
     }
 
     /**

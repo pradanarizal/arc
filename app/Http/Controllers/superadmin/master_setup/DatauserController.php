@@ -45,7 +45,19 @@ class DatauserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'name' => $request->input('nama_user'),
+            'email' => $request->input('email_user'),
+            'password' => $request->input('password'),
+            'divisi' => $request->input('divisi'),
+            'status_user' => $request->input('status_user'),
+            'level' => $request->input('role'),
+        ];
+        if ($this->User->insert_datauser($data)) {
+            return redirect('data_user')->with('toast_success', 'Berhasil Tambah user');
+        } else {
+            return redirect('data_user')->with('toast_error', 'Gagal Tambah user');
+        }
     }
 
     /**

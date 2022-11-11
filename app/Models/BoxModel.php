@@ -14,4 +14,13 @@ class BoxModel extends Model
         return DB::table('box')
             ->get();
     }
+
+    public function insert_box($data)
+    {
+        if (DB::table('box')->insert($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

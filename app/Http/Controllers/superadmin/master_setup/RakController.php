@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RakModel;
+
 class RakController extends Controller
 {
     /**
@@ -44,7 +45,14 @@ class RakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'nama_rak' => $request->input('nama_rak'),
+        ];
+        if ($this->RakModel->insert_rak($data)) {
+            return redirect('rak')->with('toast_success', 'Berhasil Tambah rak');
+        } else {
+            return redirect('rak')->with('toast_error', 'Gagal Tambah rak');
+        }
     }
 
     /**

@@ -14,4 +14,13 @@ class KelengkapanDokumenModel extends Model
         return DB::table('kelengkapan_dokumen')
             ->get();
     }
+    //tambah opsi surat
+    public function insert_surat($data)
+    {
+        if (DB::table('kelengkapan_dokumen')->insert($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
