@@ -46,7 +46,14 @@ class KelengkapanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'nama_kel_dokumen' => $request->input('kelengkapan'),
+        ];
+        if ($this->KelengkapanDokumenModel->insert_surat($data)) {
+            return redirect('kelengkapan_dokumen')->with('toast_success', 'Berhasil Tambah Opsi Dokumen');
+        } else {
+            return redirect('kelengkapan_dokumen')->with('toast_error', 'Gagal Tambah Opsi Dokumen');
+        }
     }
 
     /**

@@ -14,4 +14,13 @@ class MapModel extends Model
         return DB::table('map')
             ->get();
     }
+
+    public function insert_map($data)
+    {
+        if (DB::table('map')->insert($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

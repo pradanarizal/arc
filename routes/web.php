@@ -60,9 +60,15 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
     Route::get('/ruang', [RuangController::class, 'index'])->name('ruang');
     Route::resource('/input_ruang', RuangController::class);
+    Route::resource('/update_ruang', RuangController::class);
     Route::get('/rak', [RakController::class, 'index'])->name('rak');
+    Route::resource('/input_rak', RakController::class);
     Route::get('/box', [BoxController::class, 'index'])->name('box');
+    Route::resource('/input_box', BoxController::class);
     Route::get('/map', [MapController::class, 'index'])->name('map');
+    Route::resource('/input_map', MapController::class);
     Route::get('/data_user', [DatauserController::class, 'index'])->name('data_user');
+    Route::resource('/input_data_user', DatauserController::class);
     Route::get('/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
+    Route::resource('/input_kelengkapan', KelengkapanController::class);
 });

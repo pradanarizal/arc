@@ -45,7 +45,14 @@ class BoxController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'nama_box' => $request->input('nama_box'),
+        ];
+        if ($this->BoxModel->insert_box($data)) {
+            return redirect('box')->with('toast_success', 'Berhasil Tambah box');
+        } else {
+            return redirect('box')->with('toast_error', 'Gagal Tambah box');
+        }
     }
 
     /**

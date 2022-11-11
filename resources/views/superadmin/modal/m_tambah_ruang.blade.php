@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
                 <form action="/input_ruang" method="post" enctype="multipart/form-data">
-                    @csrf
+                @csrf
                     <div class="form-group">
                         <label for="nama_ruang">Nama Ruang</label>
                         <input type="text" class="form-control" id="nama_ruang" name="nama_ruang"

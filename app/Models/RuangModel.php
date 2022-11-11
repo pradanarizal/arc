@@ -23,4 +23,13 @@ class RuangModel extends Model
             return false;
         }
     }
+
+    public function update_ruang($id, $data)
+    {
+        if (DB::table('users')->where('id', $id)->update($data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

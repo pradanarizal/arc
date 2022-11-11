@@ -11,7 +11,8 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
-                <form action="" method=" ">
+                <form action="/input_data_user" method="post" enctype="multipart/form-data">
+                @csrf
                     <div class="form-group">
                         <label for="nama_user">Nama User</label>
                         <input type="text" class="form-control" id="nama_user" name="nama_user"

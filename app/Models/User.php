@@ -17,7 +17,16 @@ class User extends Authenticatable
         return DB::table('users')
             ->get();
     }
-    
+    //Tambah Data User
+    public function insert_datauser($data)
+    {
+        if (DB::table('users')->insert($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
