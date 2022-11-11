@@ -25,7 +25,7 @@ class KelengkapanController extends Controller
         $data7 = [
             'kelengkapan_dokumen' => $this->KelengkapanDokumenModel->keldokData()
         ];
-        return view('superadmin.kelengkapan', $data7);
+        return view('superadmin.master_setup.kelengkapan', $data7);
     }
 
     /**

@@ -1,29 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\superadmin\master_setup;
+namespace App\Http\Controllers\superadmin\approval;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\RakModel;
-class RakController extends Controller
+
+class RetensiController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function __construct()
-    {
-        $this->RakModel = new RakModel();
-    }
-
     public function index()
     {
-        $data3 = [
-            'rak' => $this->RakModel->rakData()
-        ];
-        return view('superadmin.master_setup.rak', $data3);
+        return view('superadmin.approval.retensi');
     }
 
     /**

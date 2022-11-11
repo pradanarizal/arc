@@ -25,7 +25,7 @@ class MapController extends Controller
         $data5 = [
             'map' => $this->MapModel->mapData()
         ];
-        return view('superadmin.map', $data5);
+        return view('superadmin.master_setup.map', $data5);
     }
 
     /**

@@ -24,7 +24,7 @@ class DatauserController extends Controller
         $data6 = [
             'users' => $this->User->userData()
         ];
-        return view('superadmin.data_user', $data6);
+        return view('superadmin.master_setup.data_user', $data6);
     }
 
     /**

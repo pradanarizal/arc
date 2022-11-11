@@ -24,7 +24,7 @@ class RuangController extends Controller
         $data2 = [
             'ruang' => $this->RuangModel->ruangData()
         ];
-        return view('superadmin.ruang', $data2);
+        return view('superadmin.master_setup.ruang', $data2);
     }
 
     /**

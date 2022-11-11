@@ -12,9 +12,13 @@ use App\Http\Controllers\superadmin\master_setup\BoxController;
 use App\Http\Controllers\superadmin\master_setup\KelengkapanController;
 use App\Http\Controllers\superadmin\master_setup\MapController;
 use App\Http\Controllers\superadmin\master_setup\DatauserController;
+use App\Http\Controllers\superadmin\approval\PengarsipanController;
+use App\Http\Controllers\superadmin\approval\PeminjamanController;
+use App\Http\Controllers\superadmin\approval\PengembalianController;
+use App\Http\Controllers\superadmin\approval\RetensiController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CekLevel;
 use Illuminate\Routing\RouteGroup;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,11 +62,16 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
 Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
     Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
-    Route::get('/ruang', [RuangController::class, 'index'])->name('ruang');
+    Route::get('/master_setup/ruang', [RuangController::class, 'index'])->name('ruang');
     Route::resource('/input_ruang', RuangController::class);
-    Route::get('/rak', [RakController::class, 'index'])->name('rak');
-    Route::get('/box', [BoxController::class, 'index'])->name('box');
-    Route::get('/map', [MapController::class, 'index'])->name('map');
-    Route::get('/data_user', [DatauserController::class, 'index'])->name('data_user');
-    Route::get('/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
+    Route::get('/master_setup/rak', [RakController::class, 'index'])->name('rak');
+    Route::get('/master_setup/box', [BoxController::class, 'index'])->name('box');
+    Route::get('/master_setup/map', [MapController::class, 'index'])->name('map');
+    Route::get('/master_setup/data_user', [DatauserController::class, 'index'])->name('data_user');
+    Route::get('/master_setup/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
+
+    Route::get('/approval/pengarsipan', [PengarsipanController::class, 'index'])->name('pengarsipan');
+    Route::get('/approval/retensi', [RetensiController::class, 'index'])->name('retensi');
+    Route::get('/approval/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman');
+    Route::get('/approval/pengembalian', [PengembalianController::class, 'index'])->name('pengembalian');
 });

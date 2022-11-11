@@ -24,7 +24,7 @@ class BoxController extends Controller
         $data4 = [
             'box' => $this->BoxModel->boxData()
         ];
-        return view('superadmin.box', $data4);
+        return view('superadmin.master_setup.box', $data4);
     }
 
     /**
