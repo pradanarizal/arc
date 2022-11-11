@@ -87,7 +87,14 @@ class RuangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nama_ruang' => $request->input('nama_ruang')
+        ];
+        if ($this->RuangModel->update_ruang($data, $id)) {
+            return redirect('ruang')->with('toast_success', 'Berhasil Edit Ruang');
+        } else {
+            return redirect('ruang');
+        }
     }
 
     /**
@@ -98,6 +105,7 @@ class RuangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->RuangModel->delete_ruang($id);
+        return redirect('ruang')->with('toast_success', 'Berhasil Hapus Ruang');
     }
 }

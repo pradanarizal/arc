@@ -23,4 +23,18 @@ class RuangModel extends Model
             return false;
         }
     }
+
+    public function update_ruang($data, $id_ruang)
+    {
+        if (DB::table('ruang')->where('id_ruang',$id_ruang)->update($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function delete_ruang($id_ruang)
+    {
+        DB::table('ruang')->where('id_ruang', $id_ruang)->delete();
+    }
 }
