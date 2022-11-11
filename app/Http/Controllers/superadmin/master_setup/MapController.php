@@ -98,6 +98,7 @@ class MapController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->MapModel->delete_map($id);
+        return redirect('map')->with('toast_success', 'Berhasil Hapus Kereta'); 
     }
 }

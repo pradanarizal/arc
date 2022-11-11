@@ -23,4 +23,10 @@ class BoxModel extends Model
             return false;
         }
     }
+    
+
+    public function delete_box($id_box)
+    {
+        DB::table('box')->where('id_box', $id_box)->delete();
+    }
 }

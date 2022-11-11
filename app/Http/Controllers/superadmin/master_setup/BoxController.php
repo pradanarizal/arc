@@ -97,6 +97,7 @@ class BoxController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->BoxModel->delete_box($id);
+        return redirect('box')->with('toast_success', 'Berhasil Hapus Rak');
     }
 }

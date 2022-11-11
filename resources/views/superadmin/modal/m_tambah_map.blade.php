@@ -11,7 +11,7 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
-                <form action="/input_map" method="post" enctype="multipart/form-data">
+                <form action="/map" method="post" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group">
                         <label for="nama_map">Nama Map</label>

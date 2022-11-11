@@ -23,4 +23,10 @@ class RakModel extends Model
             return false;
         }
     }
+
+
+    public function delete_rak($id_rak)
+    {
+        DB::table('rak')->where('id_rak', $id_rak)->delete();
+    }
 }

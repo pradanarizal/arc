@@ -23,4 +23,11 @@ class MapModel extends Model
             return false;
         }
     }
+
+    public function delete_map($id_map)
+    {
+        DB::table('map')->where('id_map', $id_map)->delete();
+    }
+
+
 }

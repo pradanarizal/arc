@@ -97,6 +97,7 @@ class RakController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->RakModel->delete_rak($id);
+        return redirect('rak')->with('toast_success', 'Berhasil Hapus Rak');
     }
 }
