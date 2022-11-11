@@ -39,7 +39,7 @@
                             <td>{{ $item->id_rak }}</td>
                             <td>{{ $item->nama_rak }}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_rak">
+                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_rak{{ $item->id_rak }}">
                                     <i class="fa fa-pen"></i>
                                 </button>
                                 <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">

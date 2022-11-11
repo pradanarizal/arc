@@ -91,7 +91,19 @@ class DatauserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'name' => $request->input('nama_user'),
+            'email' => $request->input('email_user'),
+            'password' => $request->input('password'),
+            'divisi' => $request->input('divisi'),
+            'status_user' => $request->input('status_user'),
+            'level' => $request->input('role'),
+        ];
+        if ($this->User->update_user($data, $id)) {
+            return redirect('data_user')->with('toast_success', 'Berhasil Edit User');
+        } else {
+            return redirect('data_user');
+        }
     }
 
     /**

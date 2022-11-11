@@ -1,4 +1,5 @@
-<div class="modal fade" id="edit_user" tabindex="-1" aria-labelledby="edit_user" aria-hidden="true">
+@foreach ($users as $item)
+<div class="modal fade" id="edit_user{{ $item->id }}" tabindex="-1" aria-labelledby="edit_user" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -11,25 +12,27 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
-                <form action="" method=" ">
+                <form action="{{ '/data_user/' . $item->id }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="nama_user">Nama User</label>
-                        <input type="text" class="form-control" id="nama_user" name="nama_user"
+                        <input type="text" value="{{$item->name}}" class="form-control" id="nama_user" name="nama_user"
                             aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label for="email_user">Email</label>
-                        <input type="email" class="form-control" id="email_user" name="email_user"
+                        <input type="email" value="{{$item->email}}" class="form-control" id="email_user" name="email_user"
                             aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password"
+                        <input type="password" value="{{$item->password}}" class="form-control" id="password" name="password"
                             aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
                         <label for="divisi">Divisi</label>
-                        <input type="divisi" class="form-control" id="divisi" name="divisi"
+                        <input type="divisi" value="{{$item->divisi}}" class="form-control" id="divisi" name="divisi"
                             aria-describedby="emailHelp">
                     </div>
                     <div class="form-group">
@@ -56,3 +59,4 @@
         </div>
     </div>
 </div>
+@endforeach

@@ -87,7 +87,14 @@ class MapController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nama_map' => $request->input('nama_map')
+        ];
+        if ($this->MapModel->update_map($data, $id)) {
+            return redirect('map')->with('toast_success', 'Berhasil Edit Map');
+        } else {
+            return redirect('map');
+        }
     }
 
     /**

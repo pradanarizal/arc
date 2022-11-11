@@ -11,7 +11,7 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
-                <form action="/input_kelengkapan" method="post" enctype="multipart/form-data">
+                <form action="/kelengkapan" method="post" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group">
                         <label for="kelengkapan">Nama Kelengkapan Dokumen</label>

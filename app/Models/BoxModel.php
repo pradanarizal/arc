@@ -23,4 +23,13 @@ class BoxModel extends Model
             return false;
         }
     }
+
+    public function update_box($data, $id_box)
+    {
+        if (DB::table('box')->where('id_box',$id_box)->update($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

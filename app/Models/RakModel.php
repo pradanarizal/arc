@@ -23,4 +23,13 @@ class RakModel extends Model
             return false;
         }
     }
+
+    public function update_rak($data, $id_rak)
+    {
+        if (DB::table('rak')->where('id_rak',$id_rak)->update($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
