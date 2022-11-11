@@ -42,7 +42,7 @@
                                 <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_surat{{ $item->id_kel_dokumen }}">
                                     <i class="fa fa-pen"></i>
                                 </button>
-                                <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">
+                                <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#delete_surat{{ $item->id_kel_dokumen }}">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
@@ -56,5 +56,6 @@
 
     @include('superadmin.modal.m_tambah_surat')
     @include('superadmin.modal.m_edit_surat')
+    @include('superadmin.modal.m_delete_surat')
 
 @endsection

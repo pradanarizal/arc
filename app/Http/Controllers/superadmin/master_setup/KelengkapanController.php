@@ -105,6 +105,7 @@ class KelengkapanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->KelengkapanDokumenModel->delete_surat($id);
+        return redirect('/kelengkapan')->with('toast_success', 'Berhasil Hapus Kelengkapan');
     }
 }

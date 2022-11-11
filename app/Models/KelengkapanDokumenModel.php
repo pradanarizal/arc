@@ -32,4 +32,10 @@ class KelengkapanDokumenModel extends Model
             return false;
         }
     }
+
+    public function delete_surat($id_kel_dokumen)
+    {
+        DB::table('kelengkapan_dokumen')->where('id_kel_dokumen', $id_kel_dokumen)->delete();
+    }
+
 }
