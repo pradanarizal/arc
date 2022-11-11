@@ -28,6 +28,8 @@ class RakModel extends Model
     public function delete_rak($id_rak)
     {
         DB::table('rak')->where('id_rak', $id_rak)->delete();
+    }
+    
     public function update_rak($data, $id_rak)
     {
         if (DB::table('rak')->where('id_rak',$id_rak)->update($data)){
