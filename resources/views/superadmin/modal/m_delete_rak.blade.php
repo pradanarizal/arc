@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     Yakin Ingin Menghapus Rak {{ $item->nama_rak}}?
                 </div>
-                <form action="/ruang/{{ $item->id_rak }}" method="POST">
+                <form action="/rak/{{ $item->id_rak }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <div class="modal-footer">
