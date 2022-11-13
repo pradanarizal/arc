@@ -46,6 +46,18 @@ class MapController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'nama_map' => 'required|unique:map,nama_map|min:4'
+            ],
+            [
+                'nama_map.required' => 'Nama Map wajib diisi',
+                'nama_map.unique' => 'Nama Map sudah ada',
+                'nama_map.min' => 'Nama Map minimal 4 kata/digit'
+            ]
+        );
+
         $data = [
             'nama_map' => $request->input('nama_map'),
         ];
@@ -106,6 +118,6 @@ class MapController extends Controller
     public function destroy($id)
     {
         $this->MapModel->delete_map($id);
-        return redirect('map')->with('toast_success', 'Berhasil Hapus Kereta'); 
+        return redirect('map')->with('toast_success', 'Berhasil Hapus Kereta');
     }
 }

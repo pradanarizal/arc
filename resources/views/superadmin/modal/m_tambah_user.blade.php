@@ -17,22 +17,34 @@
                     <div class="form-group">
                         <label for="nama_user">Nama User</label>
                         <input type="text" class="form-control" id="nama_user" name="nama_user"
-                            aria-describedby="emailHelp">
+                            aria-describedby="emailHelp" value="{{ old('name') }}">
+                            @error('nama_user')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="form-group">
                         <label for="email_user">Email</label>
                         <input type="email" class="form-control" id="email_user" name="email_user"
-                            aria-describedby="emailHelp">
+                            aria-describedby="emailHelp" value="{{ old('email') }}">
+                            @error('email_user')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input type="password" class="form-control" id="password" name="password"
-                            aria-describedby="emailHelp">
+                            aria-describedby="emailHelp" value="{{ old('password') }}">
+                            @error('password')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="form-group">
                         <label for="divisi">Divisi</label>
                         <input type="divisi" class="form-control" id="divisi" name="divisi"
-                            aria-describedby="emailHelp">
+                            aria-describedby="emailHelp" value="{{ old('divisi') }}">
+                            @error('divisi')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <div class="form-group">
                         <label for="status_user">Status</label>
@@ -58,3 +70,15 @@
         </div>
     </div>
 </div>
+
+{{-- Perulangan untuk cek error --}}
+<?php $listError = ['nama_user', 'email_user','password','divisi']; ?>
+@foreach ($listError as $err)
+    @error($err)
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('tambah_user'), {});
+            myModal.toggle()
+        </script>
+    @break
+    @enderror
+@endforeach

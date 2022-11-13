@@ -45,6 +45,25 @@ class DatauserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'nama_user' => 'required',
+                'email_user' => 'required|unique:users,email',
+                'password' => 'required|min:8',
+                'divisi' => 'required',
+            ],
+            [
+                'nama_user.required' => 'Nama User wajib diisi',
+                'email_user.required' => 'Nama User wajib diisi',
+                'email_user.unique' => 'Nama Dokumen sudah ada',
+                'password.required' => 'Password wajib diisi',
+                'password.min' => 'Password minimal 8 huruf/angka',
+                'password.password' => 'Password lalalalalala',
+                'divisi.required' => 'Divisi wajib diisi',
+            ]
+        );
+
         $data = [
             'name' => $request->input('nama_user'),
             'email' => $request->input('email_user'),

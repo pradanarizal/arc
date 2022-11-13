@@ -16,7 +16,10 @@
                     <div class="form-group">
                         <label for="kelengkapan">Nama Kelengkapan Dokumen</label>
                         <input type="text" class="form-control" id="kelengkapan" name="kelengkapan"
-                            aria-describedby="emailHelp">
+                            aria-describedby="emailHelp" value="{{ old('nama_kel_dokumen') }}">
+                            @error('kelengkapan')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </form>
@@ -26,3 +29,15 @@
         </div>
     </div>
 </div>
+
+{{-- Perulangan untuk cek error --}}
+<?php $listError = ['kelengkapan']; ?>
+@foreach ($listError as $err)
+    @error($err)
+        <script type="text/javascript">
+            var myModal = new bootstrap.Modal(document.getElementById('tambah_surat'), {});
+            myModal.toggle()
+        </script>
+    @break
+    @enderror
+@endforeach

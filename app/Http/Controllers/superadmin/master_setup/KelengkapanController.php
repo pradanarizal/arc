@@ -46,6 +46,18 @@ class KelengkapanController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen|min:4'
+            ],
+            [
+                'kelengkapan.required' => 'Nama Dokumen wajib diisi',
+                'kelengkapan.unique' => 'Nama Dokumen sudah ada',
+                'kelengkapan.min' => 'Nama Dokumen minimal 4 Kata/Digit'
+            ]
+        );
+
         $data = [
             'nama_kel_dokumen' => $request->input('kelengkapan'),
         ];
