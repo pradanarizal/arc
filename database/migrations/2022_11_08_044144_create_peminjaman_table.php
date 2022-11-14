@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id('id_peminjaman');
-            $table->bigInteger('id_user');
+            $table->string('nama_dokumen');
             $table->string('no_dokumen');
             $table->enum('status_peminjaman', ['Pending', 'Ya','Tidak']);
             $table->date('tgl_ambil');
             $table->date('tgl_kembali');
+            $table->string('peminjam');
             $table->timestamps();
         });
     }

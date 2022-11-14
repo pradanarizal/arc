@@ -4,6 +4,7 @@ namespace App\Http\Controllers\superadmin\approval;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\approval\PeminjamanModel;
 
 class PeminjamanController extends Controller
 {
@@ -12,9 +13,18 @@ class PeminjamanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->PeminjamanModel = new PeminjamanModel();
+    }
+
     public function index()
     {
-        return view('superadmin.approval.peminjaman');
+        $data = [
+            'peminjaman' => $this->PeminjamanModel->allData()
+        ];
+        return view('superadmin.approval.peminjaman', $data);
     }
 
     /**
