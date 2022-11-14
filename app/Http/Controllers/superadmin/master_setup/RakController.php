@@ -51,9 +51,9 @@ class RakController extends Controller
                 'nama_rak' => 'required|unique:rak,nama_rak|min:4'
             ],
             [
-                'nama_rak.required' => 'Nama Rak wajib diisi',
-                'nama_rak.unique' => 'Nama Rak sudah ada',
-                'nama_rak.min' => 'Nama Rak minimal 4 kata/digit'
+                'nama_rak.required' => 'Nama Rak wajib diisi!',
+                'nama_rak.unique' => 'Nama Rak sudah ada!',
+                'nama_rak.min' => 'Nama Rak minimal 4 huruf!'
             ]
         );
 
@@ -98,6 +98,17 @@ class RakController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate(
+            $request,
+            [
+                'nama_rak' => 'required|unique:rak,nama_rak|min:4'
+            ],
+            [
+                'nama_rak.required' => 'Nama Rak wajib diisi!',
+                'nama_rak.unique' => 'Nama Rak sudah ada!',
+                'nama_rak.min' => 'Nama Rak minimal 4 huruf!'
+            ]
+        );
         $data = [
             'nama_rak' => $request->input('nama_rak')
         ];

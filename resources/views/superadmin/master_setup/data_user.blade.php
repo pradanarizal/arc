@@ -64,5 +64,5 @@
     @include('superadmin.modal.m_tambah_user')
     @include('superadmin.modal.m_edit_user')
     @include('superadmin.modal.m_delete_user')
-
+    @include('sweetalert::alert')
 @endsection

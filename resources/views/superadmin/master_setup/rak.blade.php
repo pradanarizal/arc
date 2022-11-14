@@ -56,4 +56,6 @@
     @include('superadmin.modal.m_tambah_rak')
     @include('superadmin.modal.m_edit_rak')
     @include('superadmin.modal.m_delete_rak')
+    @include('sweetalert::alert')
+
 @endsection

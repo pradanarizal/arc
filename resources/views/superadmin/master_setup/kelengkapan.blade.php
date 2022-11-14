@@ -57,5 +57,6 @@
     @include('superadmin.modal.m_tambah_surat')
     @include('superadmin.modal.m_edit_surat')
     @include('superadmin.modal.m_delete_surat')
+    @include('sweetalert::alert')
 
 @endsection

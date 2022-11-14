@@ -51,9 +51,9 @@ class BoxController extends Controller
                 'nama_box' => 'required|unique:box,nama_box|min:4'
             ],
             [
-                'nama_box.required' => 'Nama Box wajib diisi',
-                'nama_box.unique' => 'Nama Box sudah ada',
-                'nama_box.min' => 'Nama Box minimal 4 kata/digit'
+                'nama_box.required' => 'Nama Box wajib diisi!',
+                'nama_box.unique' => 'Nama Box sudah ada!',
+                'nama_box.min' => 'Nama Box minimal 4 huruf!'
             ]
         );
 
@@ -98,6 +98,18 @@ class BoxController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate(
+            $request,
+            [
+                'nama_box' => 'required|unique:box,nama_box|min:4'
+            ],
+            [
+                'nama_box.required' => 'Nama Box wajib diisi!',
+                'nama_box.unique' => 'Nama Box sudah ada!',
+                'nama_box.min' => 'Nama Box minimal 4 huruf!'
+            ]
+        );
+
         $data = [
             'nama_box' => $request->input('nama_box')
         ];

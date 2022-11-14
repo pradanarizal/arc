@@ -51,9 +51,9 @@ class RuangController extends Controller
                 'nama_ruang' => 'required|unique:ruang,nama_ruang|min:4'
             ],
             [
-                'nama_ruang.required' => 'Nama Ruang wajib diisi',
-                'nama_ruang.unique' => 'Nama Ruang sudah ada',
-                'nama_ruang.min' => 'Nama Ruang minimal 4 kata/digit'
+                'nama_ruang.required' => 'Nama Ruang wajib diisi!',
+                'nama_ruang.unique' => 'Nama Ruang sudah ada!',
+                'nama_ruang.min' => 'Nama Ruang minimal 4 huruf!'
             ]
         );
 
@@ -61,9 +61,7 @@ class RuangController extends Controller
             'nama_ruang' => $request->input('nama_ruang'),
         ];
         if ($this->RuangModel->insert_ruang($data)) {
-            return redirect('/master_setup/ruang')->with('toast_success', 'Berhasil Tambah Ruang');
-        } else {
-            return redirect('/master_setup/ruang')->with('toast_error', 'Gagal Tambah Ruang');
+            return redirect('/master_setup/ruang')->with('toast_success', 'Berhasil tambah ruang!');
         }
     }
 
@@ -98,9 +96,22 @@ class RuangController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate(
+            $request,
+            [
+                'nama_ruang' => 'required|unique:ruang,nama_ruang|min:4'
+            ],
+            [
+                'nama_ruang.required' => 'Nama Ruang wajib diisi!',
+                'nama_ruang.unique' => 'Nama Ruang sudah ada!',
+                'nama_ruang.min' => 'Nama Ruang minimal 4 huruf!'
+            ]
+        );
+
         $data = [
             'nama_ruang' => $request->input('nama_ruang')
         ];
+
         if ($this->RuangModel->update_ruang($data, $id)) {
             return redirect('/master_setup/ruang')->with('toast_success', 'Berhasil Edit Ruang');
         } else {
@@ -117,6 +128,6 @@ class RuangController extends Controller
     public function destroy($id)
     {
         $this->RuangModel->delete_ruang($id);
-        return redirect('/master_setup/ruang')->with('toast_success', 'Berhasil Hapus Ruang');
+        return redirect('/master_setup/ruang')->with('toast_success', 'Hapus data ruang berhasil!');
     }
 }

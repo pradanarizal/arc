@@ -3,7 +3,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Tambah Surat</h5>
+                <h5 class="modal-title">Tambah User</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -11,13 +11,12 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
-                <form action="data_user" method="post" enctype="multipart/form-data">
                 <form action="/data_user" method="post" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group">
                         <label for="nama_user">Nama User</label>
                         <input type="text" class="form-control" id="nama_user" name="nama_user"
-                            aria-describedby="emailHelp" value="{{ old('name') }}">
+                            aria-describedby="emailHelp" value="{{ old('nama_user') }}">
                             @error('nama_user')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -25,7 +24,7 @@
                     <div class="form-group">
                         <label for="email_user">Email</label>
                         <input type="email" class="form-control" id="email_user" name="email_user"
-                            aria-describedby="emailHelp" value="{{ old('email') }}">
+                            aria-describedby="emailHelp" value="{{ old('email_user') }}">
                             @error('email_user')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -56,9 +55,9 @@
                     <div class="form-group">
                         <label for="role">Roles</label>
                         <select class="form-control" name="role" id="role">
-                            <option value="User">User</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Super Admin">Super Admin</option>
+                            <option value="user">User</option>
+                            <option value="admin">Admin</option>
+                            <option value="super admin">Super Admin</option>
                         </select>
                     </div>
 
@@ -76,8 +75,13 @@
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">
-            var myModal = new bootstrap.Modal(document.getElementById('tambah_user'), {});
-            myModal.toggle()
+             window.onload = function() {
+                OpenBootstrapPopup();
+            };
+
+            function OpenBootstrapPopup() {
+                $("#tambah_user").modal('show');
+            }
         </script>
     @break
     @enderror

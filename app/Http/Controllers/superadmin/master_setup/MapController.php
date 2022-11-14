@@ -52,9 +52,9 @@ class MapController extends Controller
                 'nama_map' => 'required|unique:map,nama_map|min:4'
             ],
             [
-                'nama_map.required' => 'Nama Map wajib diisi',
-                'nama_map.unique' => 'Nama Map sudah ada',
-                'nama_map.min' => 'Nama Map minimal 4 kata/digit'
+                'nama_map.required' => 'Nama Map wajib diisi!',
+                'nama_map.unique' => 'Nama Map sudah ada!',
+                'nama_map.min' => 'Nama Map minimal 4 huruf!'
             ]
         );
 
@@ -99,6 +99,18 @@ class MapController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate(
+            $request,
+            [
+                'nama_map' => 'required|unique:map,nama_map|min:4'
+            ],
+            [
+                'nama_map.required' => 'Nama Map wajib diisi!',
+                'nama_map.unique' => 'Nama Map sudah ada!',
+                'nama_map.min' => 'Nama Map minimal 4 huruf!'
+            ]
+        );
+
         $data = [
             'nama_map' => $request->input('nama_map')
         ];
