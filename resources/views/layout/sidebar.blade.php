@@ -94,7 +94,7 @@
 
         {{-- SIDEBAR MENU 2 SUPER ADMIN --}}
         <li class="nav-item {{ request()->is('dokumen') ? 'active' : '' }}">
-            <a class="nav-link" href="dokumen">
+            <a class="nav-link" href="/dokumen">
                 <i class="fas fa-fw fa-file-alt"></i>
                 <span>Dokumen</span></a>
         </li>
