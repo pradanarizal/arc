@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('retensi', function (Blueprint $table) {
             $table->id('id_retensi');
             $table->string('no_dokumen');
-            $table->date('tgl_retensi');
+            $table->string('nama_dokumen');
+            $table->text('deskripsi');
+            $table->date('tgl_upload');
+            $table->string('pemohon');
             $table->enum('status_retensi', ['Pending', 'Ya', 'Tidak']);
             $table->timestamps();
         });

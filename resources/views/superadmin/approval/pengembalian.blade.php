@@ -40,20 +40,22 @@
                     <tbody>
                         <?php $no = 1; ?>
                         {{-- Ambil data dari controller --}}
-                        @foreach ($pengarsipan as $item)
+                        @foreach ($pengembalian as $item)
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
-                                <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->tgl_upload }}</td>
-                                <td>{{ $item->pemohon }}</td>
+                                <td>{{ $item->tgl_ambil }}</td>
+                                <td>{{ $item->tgl_kembali }}</td>
+                                <td>{{ $item->tgl_pengembalian }}</td>
+                                <td>{{ $item->peminjam }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
                                         data-bs-target="#">
                                         <i class="fa fa-check"></i>
                                     </button>
-                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">
+                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                        data-bs-target="#">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </td>

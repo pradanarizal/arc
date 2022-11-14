@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('pengembalian', function (Blueprint $table) {
             $table->id('id_pengembalian');
-            $table->bigInteger('id_peminjaman');
-            $table->string('tgl_pengembalian');
+            $table->string('no_dokumen');
+            $table->string('nama_dokumen');
+            $table->date('tgl_ambil');
+            $table->date('tgl_kembali');
+            $table->date('tgl_pengembalian');
+            $table->string('peminjam');
             $table->enum('status_pengembalian', ['Pending', 'Ya','Tidak']);
             $table->timestamps();
         });

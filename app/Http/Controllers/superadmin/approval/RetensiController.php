@@ -4,6 +4,7 @@ namespace App\Http\Controllers\superadmin\approval;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\approval\RetensiModel;
 
 class RetensiController extends Controller
 {
@@ -12,9 +13,17 @@ class RetensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->RetensiModel = new RetensiModel();
+    }
+
     public function index()
     {
-        return view('superadmin.approval.retensi');
+        $data = [
+            'retensi' => $this->RetensiModel->allData()
+        ];
+        return view('superadmin.approval.retensi', $data);
     }
 
     /**

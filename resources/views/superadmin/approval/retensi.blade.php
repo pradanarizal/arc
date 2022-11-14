@@ -4,7 +4,7 @@
 
     <div class="d-flex align-items-center">
         <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Transaksi</p>
-        <p class="mb-0 text-gray-800 text-small">Data Approval Pengembalian</p>
+        <p class="mb-0 text-gray-800 text-small">Data Approval Retensi</p>
     </div>
 
     <!-- Begin Page Content -->
@@ -19,7 +19,7 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Approval Pengembalian</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Data Approval Retensi</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -39,7 +39,7 @@
                     <tbody>
                         <?php $no = 1; ?>
                         {{-- Ambil data dari controller --}}
-                        @foreach ($pengarsipan as $item)
+                        @foreach ($retensi as $item)
                             <tr>
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
@@ -52,7 +52,8 @@
                                         data-bs-target="#">
                                         <i class="fa fa-check"></i>
                                     </button>
-                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">
+                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                        data-bs-target="#">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </td>

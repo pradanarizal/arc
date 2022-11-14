@@ -4,6 +4,7 @@ namespace App\Http\Controllers\superadmin\approval;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\approval\PengembalianModel;
 
 class PengembalianController extends Controller
 {
@@ -12,9 +13,18 @@ class PengembalianController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->PengembalianModel = new PengembalianModel();
+    }
+
+
     public function index()
     {
-        return view('superadmin.approval.pengembalian');
+        $data = [
+            'pengembalian' => $this->PengembalianModel->allData()
+        ];
+        return view('superadmin.approval.pengembalian', $data);
     }
 
     /**
