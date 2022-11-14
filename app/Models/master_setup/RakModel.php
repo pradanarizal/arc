@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\master_setup;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +29,7 @@ class RakModel extends Model
     {
         DB::table('rak')->where('id_rak', $id_rak)->delete();
     }
-    
+
     public function update_rak($data, $id_rak)
     {
         if (DB::table('rak')->where('id_rak',$id_rak)->update($data)){

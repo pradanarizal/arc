@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\master_setup;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,7 +23,7 @@ class BoxModel extends Model
             return false;
         }
     }
-    
+
 
     public function delete_box($id_box)
     {

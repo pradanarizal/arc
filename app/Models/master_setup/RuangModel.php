@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\master_setup;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,7 +32,7 @@ class RuangModel extends Model
             return false;
         }
     }
-    
+
     public function delete_ruang($id_ruang)
     {
         DB::table('ruang')->where('id_ruang', $id_ruang)->delete();

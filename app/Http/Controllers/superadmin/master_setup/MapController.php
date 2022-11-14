@@ -4,7 +4,7 @@ namespace App\Http\Controllers\superadmin\master_setup;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\mapModel;
+use App\Models\master_setup\mapModel;
 
 class MapController extends Controller
 {

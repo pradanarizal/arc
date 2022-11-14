@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\superadmin\master_setup;
 
 use App\Http\Controllers\Controller;
-use App\Models\RuangModel;
+use App\Models\master_setup\RuangModel;
 use Illuminate\Http\Request;
 
 class RuangController extends Controller

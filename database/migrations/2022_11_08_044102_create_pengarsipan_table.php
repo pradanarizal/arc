@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id('id_pengarsipan');
             $table->string('no_dokumen');
             $table->enum('status_pengarsipan', ['Pending', 'Ya','Tidak']);
+            $table->string('nama_dokumen');
+            $table->text('deskripsi');
+            $table->datetime('tgl_upload');
+            $table->string('pemohon');
             $table->timestamps();
         });
     }
