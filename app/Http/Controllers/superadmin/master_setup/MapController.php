@@ -25,7 +25,7 @@ class MapController extends Controller
         $data5 = [
             'map' => $this->MapModel->mapData()
         ];
-        return view('superadmin.map', $data5);
+        return view('superadmin.master_setup.map', $data5);
     }
 
     /**
@@ -62,9 +62,9 @@ class MapController extends Controller
             'nama_map' => $request->input('nama_map'),
         ];
         if ($this->MapModel->insert_map($data)) {
-            return redirect('map')->with('toast_success', 'Berhasil Tambah map');
+            return redirect('/master_setup/map')->with('toast_success', 'Berhasil Tambah map');
         } else {
-            return redirect('map')->with('toast_error', 'Gagal Tambah map');
+            return redirect('/master_setup/map')->with('toast_error', 'Gagal Tambah map');
         }
     }
 
@@ -103,9 +103,9 @@ class MapController extends Controller
             'nama_map' => $request->input('nama_map')
         ];
         if ($this->MapModel->update_map($data, $id)) {
-            return redirect('map')->with('toast_success', 'Berhasil Edit Map');
+            return redirect('/master_setup/map')->with('toast_success', 'Berhasil Edit Map');
         } else {
-            return redirect('map');
+            return redirect('/master_setup/map');
         }
     }
 
@@ -118,6 +118,6 @@ class MapController extends Controller
     public function destroy($id)
     {
         $this->MapModel->delete_map($id);
-        return redirect('map')->with('toast_success', 'Berhasil Hapus Kereta');
+        return redirect('/master_setup/map')->with('toast_success', 'Berhasil Hapus Kereta');
     }
 }

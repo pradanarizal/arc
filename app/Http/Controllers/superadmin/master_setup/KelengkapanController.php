@@ -25,7 +25,7 @@ class KelengkapanController extends Controller
         $data7 = [
             'kelengkapan_dokumen' => $this->KelengkapanDokumenModel->keldokData()
         ];
-        return view('superadmin.kelengkapan', $data7);
+        return view('superadmin.master_setup.kelengkapan', $data7);
     }
 
     /**
@@ -62,9 +62,9 @@ class KelengkapanController extends Controller
             'nama_kel_dokumen' => $request->input('kelengkapan'),
         ];
         if ($this->KelengkapanDokumenModel->insert_surat($data)) {
-            return redirect('kelengkapan_dokumen')->with('toast_success', 'Berhasil Tambah Opsi Dokumen');
+            return redirect('/master_setup/kelengkapan_dokumen')->with('toast_success', 'Berhasil Tambah Opsi Dokumen');
         } else {
-            return redirect('kelengkapan_dokumen')->with('toast_error', 'Gagal Tambah Opsi Dokumen');
+            return redirect('/master_setup/kelengkapan_dokumen')->with('toast_error', 'Gagal Tambah Opsi Dokumen');
         }
     }
 
@@ -103,9 +103,9 @@ class KelengkapanController extends Controller
             'nama_kel_dokumen' => $request->input('kelengkapan')
         ];
         if ($this->KelengkapanDokumenModel->update_surat($data, $id)) {
-            return redirect('kelengkapan')->with('toast_success', 'Berhasil Edit Kelengkapan Dokumen');
+            return redirect('/master_setup/kelengkapan_dokumen')->with('toast_success', 'Berhasil Edit Kelengkapan Dokumen');
         } else {
-            return redirect('kelengkapan');
+            return redirect('/master_setup/kelengkapan_dokumen');
         }
     }
 
@@ -118,6 +118,6 @@ class KelengkapanController extends Controller
     public function destroy($id)
     {
         $this->KelengkapanDokumenModel->delete_surat($id);
-        return redirect('/kelengkapan')->with('toast_success', 'Berhasil Hapus Kelengkapan');
+        return redirect('/master_setup/kelengkapan_dokumen')->with('toast_success', 'Berhasil Hapus Kelengkapan');
     }
 }

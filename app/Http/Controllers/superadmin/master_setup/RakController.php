@@ -24,7 +24,7 @@ class RakController extends Controller
         $data3 = [
             'rak' => $this->RakModel->rakData()
         ];
-        return view('superadmin.rak', $data3);
+        return view('superadmin.master_setup.rak', $data3);
     }
 
     /**
@@ -61,9 +61,9 @@ class RakController extends Controller
             'nama_rak' => $request->input('nama_rak'),
         ];
         if ($this->RakModel->insert_rak($data)) {
-            return redirect('rak')->with('toast_success', 'Berhasil Tambah rak');
+            return redirect('/master_setup/rak')->with('toast_success', 'Berhasil Tambah rak');
         } else {
-            return redirect('rak')->with('toast_error', 'Gagal Tambah rak');
+            return redirect('/master_setup/rak')->with('toast_error', 'Gagal Tambah rak');
         }
     }
 
@@ -102,9 +102,9 @@ class RakController extends Controller
             'nama_rak' => $request->input('nama_rak')
         ];
         if ($this->RakModel->update_rak($data, $id)) {
-            return redirect('rak')->with('toast_success', 'Berhasil Edit Rak');
+            return redirect('/master_setup/rak')->with('toast_success', 'Berhasil Edit Rak');
         } else {
-            return redirect('rak');
+            return redirect('/master_setup/rak');
         }
     }
 
@@ -117,6 +117,6 @@ class RakController extends Controller
     public function destroy($id)
     {
         $this->RakModel->delete_rak($id);
-        return redirect('rak')->with('toast_success', 'Berhasil Hapus Rak');
+        return redirect('/master_setup/rak')->with('toast_success', 'Berhasil Hapus Rak');
     }
 }

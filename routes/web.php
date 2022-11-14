@@ -12,9 +12,13 @@ use App\Http\Controllers\superadmin\master_setup\BoxController;
 use App\Http\Controllers\superadmin\master_setup\KelengkapanController;
 use App\Http\Controllers\superadmin\master_setup\MapController;
 use App\Http\Controllers\superadmin\master_setup\DatauserController;
+use App\Http\Controllers\superadmin\approval\PengarsipanController;
+use App\Http\Controllers\superadmin\approval\PeminjamanController;
+use App\Http\Controllers\superadmin\approval\PengembalianController;
+use App\Http\Controllers\superadmin\approval\RetensiController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CekLevel;
 use Illuminate\Routing\RouteGroup;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,34 +44,50 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
 // Menu Super Admin
-Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
-    Route::get('/dokumen', [SadminController::class, 'dokumen'])->name('dokumen');
-});
+// Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
+//     Route::get('/dokumen', [SadminController::class, 'dokumen'])->name('dokumen');
+// });
 
-// Menu Admin
+//// Untuk Admin ////
 Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
     Route::get('/dokumen', [AdminController::class, 'dokumen'])->name('dokumen');
 });
 
-// Menu User
+//// Untuk User ////
 Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
     Route::get('/dokumen', [UserController::class, 'dokumen'])->name('dokumen');
 });
 
-// Menu Super Admin
+//// Untuk Super Admin ////
 Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
+    //Menu Profil
     Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
+
+    //Menu Dokumen
     Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
-    Route::get('/ruang', [RuangController::class, 'index'])->name('ruang');
+
+    //Menu Master Setup
+    Route::get('/master_setup/ruang', [RuangController::class, 'index'])->name('ruang');
+    Route::get('/master_setup/rak', [RakController::class, 'index'])->name('rak');
+    Route::get('/master_setup/box', [BoxController::class, 'index'])->name('box');
+    Route::get('/master_setup/map', [MapController::class, 'index'])->name('map');
+    Route::get('/master_setup/data_user', [DatauserController::class, 'index'])->name('data_user');
+    Route::get('/master_setup/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
+
+    // Menu Approval
+    Route::get('/approval/pengarsipan', [PengarsipanController::class, 'index'])->name('pengarsipan');
+    Route::get('/approval/retensi', [RetensiController::class, 'index'])->name('retensi');
+    Route::get('/approval/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman');
+    Route::get('/approval/pengembalian', [PengembalianController::class, 'index'])->name('pengembalian');
+
+    //Untuk CRUD Master Setup
     Route::resource('/ruang', RuangController::class);
-    Route::get('/rak', [RakController::class, 'index'])->name('rak');
     Route::resource('/rak', RakController::class);
-    Route::get('/box', [BoxController::class, 'index'])->name('box');
     Route::resource('/box', BoxController::class);
-    Route::get('/map', [MapController::class, 'index'])->name('map');
     Route::resource('/map', MapController::class);
-    Route::get('/data_user', [DatauserController::class, 'index'])->name('data_user');
     Route::resource('/data_user', DatauserController::class);
-    Route::get('/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
     Route::resource('/kelengkapan', KelengkapanController::class);
+
+    // Untuk CRUD Dokumen
+
 });

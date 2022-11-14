@@ -8,7 +8,7 @@
         <div class="col-lg-4">
             <div class="card mb-4">
                 <div class="card-body text-center">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Avatar_Head.svg" alt="avatar"
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/User_icon_2.svg" alt="avatar"
                         class="rounded-circle img-fluid" style="width: 150px;">
                     <p class="text-muted mb-1 mt-2">
                         <?php
