@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\RakModel;
+
 class RakController extends Controller
 {
     /**
@@ -44,7 +45,26 @@ class RakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(
+            $request,
+            [
+                'nama_rak' => 'required|unique:rak,nama_rak|min:4'
+            ],
+            [
+                'nama_rak.required' => 'Nama Rak wajib diisi',
+                'nama_rak.unique' => 'Nama Rak sudah ada',
+                'nama_rak.min' => 'Nama Rak minimal 4 kata/digit'
+            ]
+        );
+
+        $data = [
+            'nama_rak' => $request->input('nama_rak'),
+        ];
+        if ($this->RakModel->insert_rak($data)) {
+            return redirect('rak')->with('toast_success', 'Berhasil Tambah rak');
+        } else {
+            return redirect('rak')->with('toast_error', 'Gagal Tambah rak');
+        }
     }
 
     /**
@@ -78,7 +98,14 @@ class RakController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nama_rak' => $request->input('nama_rak')
+        ];
+        if ($this->RakModel->update_rak($data, $id)) {
+            return redirect('rak')->with('toast_success', 'Berhasil Edit Rak');
+        } else {
+            return redirect('rak');
+        }
     }
 
     /**
@@ -89,6 +116,7 @@ class RakController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->RakModel->delete_rak($id);
+        return redirect('rak')->with('toast_success', 'Berhasil Hapus Rak');
     }
 }

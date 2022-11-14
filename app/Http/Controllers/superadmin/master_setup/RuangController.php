@@ -45,14 +45,25 @@ class RuangController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(
+            $request,
+            [
+                'nama_ruang' => 'required|unique:ruang,nama_ruang|min:4'
+            ],
+            [
+                'nama_ruang.required' => 'Nama Ruang wajib diisi',
+                'nama_ruang.unique' => 'Nama Ruang sudah ada',
+                'nama_ruang.min' => 'Nama Ruang minimal 4 kata/digit'
+            ]
+        );
+
         $data = [
             'nama_ruang' => $request->input('nama_ruang'),
-
         ];
         if ($this->RuangModel->insert_ruang($data)) {
             return redirect('ruang')->with('toast_success', 'Berhasil Tambah Ruang');
         } else {
-            return redirect('ruang')->with('toast_error', 'Gagal Tambah Admin');
+            return redirect('ruang')->with('toast_error', 'Gagal Tambah Ruang');
         }
     }
 
@@ -87,7 +98,14 @@ class RuangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nama_ruang' => $request->input('nama_ruang')
+        ];
+        if ($this->RuangModel->update_ruang($data, $id)) {
+            return redirect('ruang')->with('toast_success', 'Berhasil Edit Ruang');
+        } else {
+            return redirect('ruang');
+        }
     }
 
     /**
@@ -98,6 +116,7 @@ class RuangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->RuangModel->delete_ruang($id);
+        return redirect('ruang')->with('toast_success', 'Berhasil Hapus Ruang');
     }
 }

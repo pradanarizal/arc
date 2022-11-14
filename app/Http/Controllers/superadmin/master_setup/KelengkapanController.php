@@ -46,7 +46,26 @@ class KelengkapanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(
+            $request,
+            [
+                'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen|min:4'
+            ],
+            [
+                'kelengkapan.required' => 'Nama Dokumen wajib diisi',
+                'kelengkapan.unique' => 'Nama Dokumen sudah ada',
+                'kelengkapan.min' => 'Nama Dokumen minimal 4 Kata/Digit'
+            ]
+        );
+
+        $data = [
+            'nama_kel_dokumen' => $request->input('kelengkapan'),
+        ];
+        if ($this->KelengkapanDokumenModel->insert_surat($data)) {
+            return redirect('kelengkapan_dokumen')->with('toast_success', 'Berhasil Tambah Opsi Dokumen');
+        } else {
+            return redirect('kelengkapan_dokumen')->with('toast_error', 'Gagal Tambah Opsi Dokumen');
+        }
     }
 
     /**
@@ -80,7 +99,14 @@ class KelengkapanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = [
+            'nama_kel_dokumen' => $request->input('kelengkapan')
+        ];
+        if ($this->KelengkapanDokumenModel->update_surat($data, $id)) {
+            return redirect('kelengkapan')->with('toast_success', 'Berhasil Edit Kelengkapan Dokumen');
+        } else {
+            return redirect('kelengkapan');
+        }
     }
 
     /**
@@ -91,6 +117,7 @@ class KelengkapanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->KelengkapanDokumenModel->delete_surat($id);
+        return redirect('/kelengkapan')->with('toast_success', 'Berhasil Hapus Kelengkapan');
     }
 }

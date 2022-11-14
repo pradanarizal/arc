@@ -1,4 +1,5 @@
-<div class="modal fade" id="edit_rak" tabindex="-1" aria-labelledby="edit_rak" aria-hidden="true">
+@foreach ($rak as $item)
+<div class="modal fade" id="edit_rak{{ $item->id_rak }}" tabindex="-1" aria-labelledby="edit_rak" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -11,10 +12,12 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH Rak-->
-                <form action="" method=" ">
+                <form action="{{ '/rak/' . $item->id_rak }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="nama_rak">Nama Rak</label>
-                        <input type="text" class="form-control" id="nama_rak" name="nama_rak"
+                        <input type="text" value="{{$item->nama_rak}}" class="form-control" id="nama_rak" name="nama_rak"
                             aria-describedby="emailHelp">
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -25,3 +28,4 @@
         </div>
     </div>
 </div>
+@endforeach

@@ -14,4 +14,28 @@ class RakModel extends Model
         return DB::table('rak')
             ->get();
     }
+
+    public function insert_rak($data)
+    {
+        if (DB::table('rak')->insert($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public function delete_rak($id_rak)
+    {
+        DB::table('rak')->where('id_rak', $id_rak)->delete();
+    }
+    
+    public function update_rak($data, $id_rak)
+    {
+        if (DB::table('rak')->where('id_rak',$id_rak)->update($data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

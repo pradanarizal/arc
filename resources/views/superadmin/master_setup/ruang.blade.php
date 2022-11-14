@@ -44,11 +44,11 @@
                                 <td>{{ $item->nama_ruang }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal"
-                                        data-bs-target="#edit_ruang">
+                                        data-bs-target="#edit_ruang{{ $item->id_ruang }}">
                                         <i class="fa fa-pen"></i>
                                     </button>
                                     <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                        data-bs-target="#">
+                                        data-bs-target="#delete_ruang{{ $item->id_ruang }}">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </td>
@@ -61,5 +61,6 @@
     </div>
 
     @include('superadmin.modal.m_tambah_ruang')
+    @include('superadmin.modal.m_delete_ruang')
     @include('superadmin.modal.m_edit_ruang')
 @endsection
