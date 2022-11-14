@@ -73,9 +73,9 @@ class DatauserController extends Controller
             'level' => $request->input('role'),
         ];
         if ($this->User->insert_datauser($data)) {
-            return redirect('data_user')->with('toast_success', 'Berhasil Tambah user');
+            return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Tambah user');
         } else {
-            return redirect('data_user')->with('toast_error', 'Gagal Tambah user');
+            return redirect('/master_setup/data_user')->with('toast_error', 'Gagal Tambah user');
         }
     }
 
@@ -119,9 +119,9 @@ class DatauserController extends Controller
             'level' => $request->input('role'),
         ];
         if ($this->User->update_user($data, $id)) {
-            return redirect('data_user')->with('toast_success', 'Berhasil Edit User');
+            return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Edit User');
         } else {
-            return redirect('data_user');
+            return redirect('/master_setup/data_user');
         }
     }
 
@@ -134,6 +134,6 @@ class DatauserController extends Controller
     public function destroy($id)
     {
         $this->User->delete_datauser($id);
-        return redirect('/data_user')->with('toast_success', 'Berhasil Hapus Pengguna');
+        return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Hapus Pengguna');
     }
 }
