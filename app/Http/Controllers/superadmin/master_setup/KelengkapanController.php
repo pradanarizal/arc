@@ -52,9 +52,9 @@ class KelengkapanController extends Controller
                 'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen|min:4'
             ],
             [
-                'kelengkapan.required' => 'Nama Dokumen wajib diisi',
-                'kelengkapan.unique' => 'Nama Dokumen sudah ada',
-                'kelengkapan.min' => 'Nama Dokumen minimal 4 Kata/Digit'
+                'kelengkapan.required' => 'Nama Dokumen wajib diisi!',
+                'kelengkapan.unique' => 'Nama Dokumen sudah ada!',
+                'kelengkapan.min' => 'Nama Dokumen minimal 4 huruf!'
             ]
         );
 
@@ -64,7 +64,7 @@ class KelengkapanController extends Controller
         if ($this->KelengkapanDokumenModel->insert_surat($data)) {
             return redirect('/master_setup/kelengkapan_dokumen')->with('toast_success', 'Berhasil Tambah Opsi Dokumen');
         } else {
-            return redirect('/master_setup/kelengkapan_dokumen')->with('toast_error', 'Gagal Tambah Opsi Dokumen');
+            return redirect('/master_setup/kelengkapan_dokumen');
         }
     }
 
@@ -99,6 +99,18 @@ class KelengkapanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate(
+            $request,
+            [
+                'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen|min:4'
+            ],
+            [
+                'kelengkapan.required' => 'Nama Dokumen wajib diisi!',
+                'kelengkapan.unique' => 'Nama Dokumen sudah ada!',
+                'kelengkapan.min' => 'Nama Dokumen minimal 4 huruf!'
+            ]
+        );
+
         $data = [
             'nama_kel_dokumen' => $request->input('kelengkapan')
         ];

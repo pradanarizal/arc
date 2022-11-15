@@ -56,4 +56,5 @@
     @include('superadmin.modal.m_tambah_box')
     @include('superadmin.modal.m_edit_box')
     @include('superadmin.modal.m_delete_box')
+    @include('sweetalert::alert')
 @endsection

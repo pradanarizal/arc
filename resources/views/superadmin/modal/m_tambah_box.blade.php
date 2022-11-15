@@ -35,8 +35,23 @@
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">
-            var myModal = new bootstrap.Modal(document.getElementById('tambah_box'), {});
-            myModal.toggle()
+             Swal.fire({
+                toast: true,
+                icon: 'error',
+                title: 'Input Gagal!',
+                text: '{{ $message }}',
+
+                animation: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                showCloseButton: true,
+                timer: 6000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
         </script>
     @break
     @enderror
