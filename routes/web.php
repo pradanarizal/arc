@@ -5,7 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\superadmin\DokumenController;
+use App\Http\Controllers\superadmin\menu_dokumen\DokumenController;
 use App\Http\Controllers\superadmin\master_setup\RuangController;
 use App\Http\Controllers\superadmin\master_setup\RakController;
 use App\Http\Controllers\superadmin\master_setup\BoxController;

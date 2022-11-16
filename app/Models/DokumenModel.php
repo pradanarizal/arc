@@ -15,4 +15,11 @@ class DokumenModel extends Model
             ->get();
     }
 
+
+    public function allKelengkapanDokumen()
+    {
+        return DB::table('kelengkapan_dokumen')
+            ->get();
+    }
+
 }

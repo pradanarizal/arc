@@ -11692,6 +11692,11 @@ body.sidebar-toggled footer.sticky-footer {
     width: 9rem;
 }
 
+.tombol-aksi {
+    margin-right: 5px;
+    width: 7rem;
+}
+
 
 /* edited on 09112022 */
 
@@ -11699,6 +11704,21 @@ body.sidebar-toggled footer.sticky-footer {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1.25rem
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #084cdf;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+}
+
+input[type=file]::file-selector-button:hover {
+    background: #0d45a5;
 }
 
 

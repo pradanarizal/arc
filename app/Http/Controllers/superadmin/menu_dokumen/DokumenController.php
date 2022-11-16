@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\superadmin;
+namespace App\Http\Controllers\superadmin\menu_dokumen;
 
 use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
@@ -21,10 +21,24 @@ class DokumenController extends Controller
 
     public function index()
     {
-        $data1 = [
-            'dokumen' => $this->DokumenModel->allData()
+        // $data['component'] = array(
+		// 	"Hardisk",
+		// 	"Memory",
+		// 	"Monitor",
+		// 	"Keyboard",
+		// 	"Mouse",
+		// 	"Software",
+		// 	"Adaptor/Power Supply",
+		// 	"Processor",
+		// 	"Fan/Heatsink",
+		// 	"Lainnya"
+		// );
+
+        $data = [
+            'dokumen' => $this->DokumenModel->allData(),
+            'kelengkapan_dokumen' => $this->DokumenModel->allKelengkapanDokumen()
         ];
-        return view('superadmin.dokumen', $data1);
+        return view('superadmin.menu_dokumen.dokumen', $data);
     }
 
     /**

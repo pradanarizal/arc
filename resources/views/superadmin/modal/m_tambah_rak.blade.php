@@ -12,16 +12,17 @@
             <div class="modal-body">
                 <!--FORM TAMBAH Rak-->
                 <form action="/rak" method="post" enctype="multipart/form-data">
-                @csrf
+                    @csrf
                     <div class="form-group">
                         <label for="nama_rak">Nama Rak</label>
                         <input type="text" class="form-control" id="nama_rak" name="nama_rak"
                             aria-describedby="emailHelp" value="{{ old('nama_rak') }}">
-                            @error('nama_rak')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        @error('nama_rak')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
+                    <button class="btn btn-danger tombol-aksi float-right" type="button" data-bs-dismiss="modal">Batal</button>
                 </form>
                 <!--END FORM TAMBAH Rak-->
             </div>
@@ -35,7 +36,7 @@
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">
-             Swal.fire({
+            Swal.fire({
                 toast: true,
                 icon: 'error',
                 title: 'Input Gagal!',
@@ -54,5 +55,5 @@
             });
         </script>
     @break
-    @enderror
+@enderror
 @endforeach
