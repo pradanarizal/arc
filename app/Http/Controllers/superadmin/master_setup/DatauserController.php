@@ -61,9 +61,9 @@ class DatauserController extends Controller
                 'required',
                 Rules\Password::min(8)
                     ->mixedCase()
-                    ->letters()
+                    // ->letters()
                     ->numbers()
-                    ->symbols()
+                    // ->symbols()
                     ->uncompromised()
             ],
         ]);
@@ -71,7 +71,7 @@ class DatauserController extends Controller
         $data = [
             'name' => $request->input('nama_user'),
             'email' => $request->input('email_user'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             'divisi' => $request->input('divisi'),
             'status_user' => $request->input('status_user'),
             'level' => $request->input('role'),
@@ -119,7 +119,7 @@ class DatauserController extends Controller
         $data = [
             'name' => $request->input('nama_user'),
             'email' => $request->input('email_user'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             'divisi' => $request->input('divisi'),
             'status_user' => $request->input('status_user'),
             'level' => $request->input('role'),
