@@ -54,8 +54,9 @@
         </div>
     </div>
 
-    @include('superadmin.modal.m_tambah_surat')
-    @include('superadmin.modal.m_edit_surat')
-    @include('superadmin.modal.m_delete_surat')
+    @include('superadmin.modal.m_tambah_kelengkapan')
+    @include('superadmin.modal.m_edit_kelengkapan')
+    @include('superadmin.modal.m_delete_kelengkapan')
+    @include('sweetalert::alert')
 
 @endsection

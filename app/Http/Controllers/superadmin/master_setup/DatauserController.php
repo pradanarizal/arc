@@ -5,6 +5,12 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Validation\Rules;
+
 
 class DatauserController extends Controller
 {
@@ -45,37 +51,36 @@ class DatauserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate(
-            $request,
-            [
-                'nama_user' => 'required',
-                'email_user' => 'required|unique:users,email',
-                'password' => 'required|min:8',
-                'divisi' => 'required',
+        $request->validate([
+            'nama_user' => 'required',
+            'email_user' => 'required|unique:users,email',
+            'password' =>'required',
+            'divisi' => 'required',
+
+            'password' => [
+                'required',
+                Rules\Password::min(8)
+                    ->mixedCase()
+                    // ->letters()
+                    ->numbers()
+                    // ->symbols()
+                    ->uncompromised()
             ],
-            [
-                'nama_user.required' => 'Nama User wajib diisi',
-                'email_user.required' => 'Nama User wajib diisi',
-                'email_user.unique' => 'Nama Dokumen sudah ada',
-                'password.required' => 'Password wajib diisi',
-                'password.min' => 'Password minimal 8 huruf/angka',
-                'password.password' => 'Password lalalalalala',
-                'divisi.required' => 'Divisi wajib diisi',
-            ]
-        );
+        ]);
 
         $data = [
             'name' => $request->input('nama_user'),
             'email' => $request->input('email_user'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             'divisi' => $request->input('divisi'),
             'status_user' => $request->input('status_user'),
             'level' => $request->input('role'),
         ];
+
         if ($this->User->insert_datauser($data)) {
-            return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Tambah user');
+            return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Tambah User');
         } else {
-            return redirect('/master_setup/data_user')->with('toast_error', 'Gagal Tambah user');
+            return redirect('/master_setup/data_user');
         }
     }
 
@@ -110,10 +115,11 @@ class DatauserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $data = [
             'name' => $request->input('nama_user'),
             'email' => $request->input('email_user'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             'divisi' => $request->input('divisi'),
             'status_user' => $request->input('status_user'),
             'level' => $request->input('role'),

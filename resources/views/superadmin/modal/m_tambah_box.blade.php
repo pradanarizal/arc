@@ -21,7 +21,8 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
+                    <button class="btn btn-danger tombol-aksi float-right" type="button" data-bs-dismiss="modal">Batal</button>
                 </form>
                 <!--END FORM TAMBAH BARANG-->
             </div>
@@ -35,8 +36,23 @@
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">
-            var myModal = new bootstrap.Modal(document.getElementById('tambah_box'), {});
-            myModal.toggle()
+             Swal.fire({
+                toast: true,
+                icon: 'error',
+                title: 'Input Gagal!',
+                text: '{{ $message }}',
+
+                animation: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                showCloseButton: true,
+                timer: 6000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
         </script>
     @break
     @enderror

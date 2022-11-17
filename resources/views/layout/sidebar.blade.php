@@ -139,14 +139,17 @@
     {{-- END OF TAMPILAN SUPER ADMIN --}}
 
 
+    {{-- UNTUK TAMPILAN ADMIN --}}
+    @if (auth()->user()->level == 'admin')
+        <li class="nav-item {{ request()->is('dokumen') ? 'active' : '' }}">
+            <a class="nav-link" href="/dokumen">
+                <i class="fas fa-fw fa-file-alt"></i>
+                <span>Dokumen</span></a>
+        </li>
+    @endif
+    {{-- END OF SIDEBAR MENU 3 ADMIN --}}
+    {{-- END OF TAMPILAN ADMIN --}}
 
-    <!-- Nav Item - Keluar -->
-    {{-- <li class="nav-item {{ request()->is('keluar') ? 'active' : '' }}">
-        <a class="nav-link" href="{{ route('logout') }}"> --}}
-    {{-- <a class="nav-link" href="{{ route('logout') }}" data-bs-toggle="modal" data-bs-target="#modalkeluar"> --}}
-    {{-- <i class="fas fa-fw fa-cog"></i>
-            <span>Keluar</span></a>
-    </li> --}}
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

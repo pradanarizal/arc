@@ -56,4 +56,6 @@
     @include('superadmin.modal.m_tambah_map')
     @include('superadmin.modal.m_edit_map')
     @include('superadmin.modal.m_delete_map')
+    @include('sweetalert::alert')
+
 @endsection

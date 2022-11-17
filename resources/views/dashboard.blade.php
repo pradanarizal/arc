@@ -32,7 +32,7 @@
 
         {{-- UNTUK TAMPILAN USER --}}
         <!-- Card  -->
-        @if (auth()->user()->level == 'user')
+        {{-- @if (auth()->user()->level == 'user')
             <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card border-left-danger shadow h-100">
                     <div class="card-body">
@@ -49,14 +49,14 @@
                     </div>
                 </div>
             </div>
-        @endif
+        @endif --}}
 
         {{-- END OF TAMPILAN USER --}}
 
         {{-- UNTUK TAMPILAN SUPER ADMIN --}}
 
         <!-- Card -->
-        @if (auth()->user()->level == 'superadmin')
+        @if (auth()->user()->level == 'superadmin' | auth()->user()->level == 'admin' )
             <div class="col-xl-4  mb-3 mt-2">
                 <div class="card border-left-danger shadow h-100">
                     <div class="card-body">
