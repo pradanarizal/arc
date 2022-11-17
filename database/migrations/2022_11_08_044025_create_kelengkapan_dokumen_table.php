@@ -18,10 +18,6 @@ return new class extends Migration
             $table->string('nama_kel_dokumen');
             $table->timestamps();
         });
-        Schema::table('kelengkapan_dokumen', function (Blueprint $table) {
-            $table->unsignedBigInteger('no_dokumen');
-            $table->foreign('no_dokumen')->references('no_dokumen')->on('dokumen');
-        });
     }
 
     /**

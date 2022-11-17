@@ -12,7 +12,6 @@ class KelengkapanDokumenModel extends Model
     public function keldokData()
     {
         return DB::table('kelengkapan_dokumen')
-        ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'kelengkapan_dokumen.no_dokumen')
         ->get();
     }
     //tambah opsi surat
