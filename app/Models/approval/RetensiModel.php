@@ -11,6 +11,8 @@ class RetensiModel extends Model
     public function allData()
     {
         return DB::table('retensi')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'retensi.id')
             ->get();
     }
 }

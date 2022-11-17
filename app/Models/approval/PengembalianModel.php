@@ -11,6 +11,9 @@ class PengembalianModel extends Model
     public function allData()
     {
         return DB::table('pengembalian')
-            ->get();
+        ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengembalian.no_dokumen')
+        ->leftJoin('peminjaman', 'peminjaman.id_peminjaman', '=', 'pengembalian.id_peminjaman')
+        ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
+        ->get();
     }
 }

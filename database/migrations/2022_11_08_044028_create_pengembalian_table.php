@@ -15,14 +15,21 @@ return new class extends Migration
     {
         Schema::create('pengembalian', function (Blueprint $table) {
             $table->id('id_pengembalian');
-            $table->string('no_dokumen');
-            $table->string('nama_dokumen');
-            $table->date('tgl_ambil');
-            $table->date('tgl_kembali');
             $table->date('tgl_pengembalian');
-            $table->string('peminjam');
             $table->enum('status_pengembalian', ['Pending', 'Ya','Tidak']);
             $table->timestamps();
+        });
+        Schema::table('pengembalian', function (Blueprint $table) {
+            $table->unsignedBigInteger('no_dokumen');
+            $table->foreign('no_dokumen')->references('no_dokumen')->on('dokumen');
+        });
+        Schema::table('pengembalian', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_peminjaman');
+            $table->foreign('id_peminjaman')->references('id_peminjaman')->on('peminjaman');
+        });
+        Schema::table('pengembalian', function (Blueprint $table) {
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('users');
         });
     }
 

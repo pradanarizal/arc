@@ -18,13 +18,11 @@ class PengarsipanSeeder extends Seeder
         DB::table('pengarsipan')->insert([
             [
                 'id_pengarsipan' => '01',
-                'no_dokumen' => '123',
-                'nama_dokumen' => 'apa yaaa',
-                'deskripsi' => 'wawawawawawawa',
-                'tgl_upload' => '2050-12-25 12:10:09',
-                'pemohon' => 'antooo',
+                'no_dokumen' => '12345',
+                'status_pengarsipan' => 'Pending',
+                'id' => '1',
+
             ],
-        
         ]);
     }
 }

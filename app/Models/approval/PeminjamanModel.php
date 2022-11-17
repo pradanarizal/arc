@@ -11,6 +11,8 @@ class PeminjamanModel extends Model
     public function allData()
     {
         return DB::table('Peminjaman')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->get();
     }
 }

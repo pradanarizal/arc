@@ -47,7 +47,7 @@
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->tgl_upload }}</td>
+                                <td>{{ date('d-m-y', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td>
                                     <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal"

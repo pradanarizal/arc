@@ -18,12 +18,11 @@ class PeminjamanSeeder extends Seeder
         DB::table('peminjaman')->insert([
             [
                 'id_peminjaman' => '01',
-                'nama_dokumen' => 'testing',
-                'no_dokumen' => 'percobaan123',
+                'no_dokumen' => '12345',
                 'status_peminjaman'=> 'Ya',
-                'tgl_ambil'=> '2050-10-25 12:10:09',
-                'tgl_kembali' => '2030-12-29 12:10:09',
-                'peminjam' => 'Aguss',
+                'tgl_ambil'=> '2050-10-25 ',
+                'tgl_kembali' => '2030-12-29 ',
+                'id' => '1',
             ]]);
     }
 }

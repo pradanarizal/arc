@@ -45,8 +45,8 @@
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->tgl_upload }}</td>
-                                <td>{{ $item->pemohon }}</td>
+                                <td>{{ date('d-m-yy', strtotime($item->tgl_retensi)) }}</td>
+                                <td>{{ $item->name }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
                                         data-bs-target="#">
