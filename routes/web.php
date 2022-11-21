@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\superadmin\menu_dokumen\DokumenController;
@@ -16,6 +15,11 @@ use App\Http\Controllers\superadmin\approval\PengarsipanController;
 use App\Http\Controllers\superadmin\approval\PeminjamanController;
 use App\Http\Controllers\superadmin\approval\PengembalianController;
 use App\Http\Controllers\superadmin\approval\RetensiController;
+use App\Http\Controllers\admin\riwayat\RiwayatpengarsipanController;
+use App\Http\Controllers\admin\riwayat\RiwayatpeminjamanController;
+use App\Http\Controllers\admin\riwayat\RiwayatpengembalianController;
+use App\Http\Controllers\admin\riwayat\RiwayatretensiController;
+use App\Http\Controllers\admin\dokumen\DokumenadminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CekLevel;
 use Illuminate\Routing\RouteGroup;
@@ -50,7 +54,11 @@ Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashb
 
 //// Untuk Admin ////
 Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
-    Route::get('/dokumen', [AdminController::class, 'dokumen'])->name('dokumen');
+    Route::get('/dokumen_admin', [DokumenadminController::class, 'index'])->name('dokumen');
+    Route::get('/riwayat/riwayat_pengarsipan', [RiwayatpengarsipanController::class, 'index']);
+    Route::get('/riwayat/riwayat_retensi', [RiwayatretensiController::class, 'index']);
+    Route::get('/riwayat/riwayat_peminjaman', [RiwayatpeminjamanController::class, 'index']);
+    Route::get('/riwayat/riwayat_pengembalian', [RiwayatpengembalianController::class, 'index']);
 });
 
 //// Untuk User ////
@@ -60,9 +68,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
 
 //// Untuk Super Admin ////
 Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
-    //Menu Profil
-    Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
-
     //Menu Dokumen
     Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
 
@@ -89,5 +94,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::resource('/kelengkapan', KelengkapanController::class);
 
     // Untuk CRUD Dokumen
-
 });
+
+//Menu Profil
+Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
