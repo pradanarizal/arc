@@ -49,11 +49,14 @@
                             <td>c</td>
                             <td>d</td>
                             <td class="text-center">
-                                <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal" data-bs-target="#">
-                                    Pinjam
+                                <button title="Lihat Dokumen" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#">
+                                    <i class="fas fa-eye"></i>
                                 </button>
-                                <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">
-                                    Retensi
+                                <button title="Pinjam Dokumen" class="btn btn-sm bg-success text-white" data-bs-toggle="modal" data-bs-target="#">
+                                    <i class="fas fa-file-export"></i>
+                                </button>
+                                <button title="Retensi Dokumen" class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">
+                                    <i class="fas fa-trash"></i>
                                 </button>
                             </td>
                         </tr>
