@@ -22,22 +22,11 @@
     <!-- Nav Item - Pengguna -->
     @if (auth()->user()->level == 'user')
         <li
-            class="nav-item {{ request()->is('pengguna/admin') | request()->is('pengguna/verifikator') ? 'active' : '' }}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
-                aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Pengguna</span>
+            class="nav-item {{ request()->is('dokumen_user') ? 'active' : '' }}">
+            <a class="nav-link" href="/dokumen_user">
+                <i class="fas fa-fw fa-file-alt"></i>
+                <span>Dokumen</span>
             </a>
-            <div id="collapseOne"
-                class="collapse {{ request()->is('pengguna/admin') | request()->is('pengguna/verifikator') ? 'show' : '' }}"
-                aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item {{ request()->is('pengguna/admin') ? 'active' : '' }}"
-                        href="#">Admin</a>
-                    <a class="collapse-item {{ request()->is('pengguna/verifikator') ? 'active' : '' }}"
-                        href="#">Verifikator</a>
-                </div>
-            </div>
         </li>
     @endif
 
