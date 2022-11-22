@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RetensiSeeder extends Seeder
+class MasterSuratSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,15 +15,16 @@ class RetensiSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('retensi')->insert([
+        DB::table('master_surat')->insert([
             [
-                'id_retensi' => '01',
-                'no_dokumen' => '123456',
-                'tgl_retensi' => '2050-12-25',
-                'id' => '2',
-                'status_retensi' => 'Pending'
+                'nama_surat' => 'ITSR',
             ],
-
+            [
+                'nama_surat' => 'RAB',
+            ],
+            [
+                'nama_surat' => 'Proposal',
+            ],
         ]);
     }
 }

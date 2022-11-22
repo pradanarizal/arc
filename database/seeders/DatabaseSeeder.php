@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BoxSeeder::class);
         $this->call(MapSeeder::class);
         $this->call(DokumenSeeder::class);
+        $this->call(MasterSuratSeeder::class);
         $this->call(KelengkapanDokumenSeeder::class);
         $this->call(PeminjamanSeeder::class);
         $this->call(PengarsipanSeeder::class);

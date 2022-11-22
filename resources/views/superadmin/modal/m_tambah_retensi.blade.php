@@ -10,20 +10,21 @@
             </div>
 
             <div class="modal-body">
-                <!--FORM TAMBAH BARANG-->
-                <form action="/data_user" method="post" enctype="multipart/form-data">
+                <!--FORM TAMBAH RETENSI-->
+                <form action="/dokumen" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div class="form-group">
+                    <input name="jenis" type="text" value="Retensi" hidden>
+                    {{-- <div class="form-group">
                         <label for="nomor_dokumen">Nomor Dokumen</label>
                         <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
                             aria-describedby="emailHelp" value="{{ old('nomor_dokumen') }}">
                         @error('nomor_dokumen')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="form-group">
                         <label for="nama_dokumen">Nama Dokumen</label>
-                        <input type="email" class="form-control" id="nama_dokumen" name="nama_dokumen"
+                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
                             aria-describedby="emailHelp" value="{{ old('nama_dokumen') }}">
                         @error('nama_dokumen')
                             <div class="text-danger">{{ $message }}</div>
@@ -49,12 +50,12 @@
 
                     <div class="form-group">
                         <label for="kelengkapan_dokumen">Kelengkapan Dokumen</label>
-                        @foreach ($kelengkapan_dokumen as $item)
+                        @foreach ($master_surat as $item)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $item->nama_kel_dokumen }}"
-                                    id="kelengkapan_dokumen{{ $item->id_kel_dokumen }}">
-                                <label class="form-check-label" for="kelengkapan_dokumen{{ $item->id_kel_dokumen }}">
-                                    {{ $item->nama_kel_dokumen }}
+                                <input class="form-check-input" type="checkbox" value="{{ $item->nama_surat }}"
+                                    id="{{ $item->id_surat }}">
+                                <label class="form-check-label" for="{{ $item->id_surat }}">
+                                    {{ $item->nama_surat }}
                                 </label>
                             </div>
                         @endforeach
@@ -77,7 +78,7 @@
 </div>
 
 {{-- Perulangan untuk cek error --}}
-<?php $listError = ['nama_user', 'email_user', 'password', 'divisi']; ?>
+<?php $listError = ['no_dokumen', 'nama_dokumen', 'tahun_dokumen', 'deskripsi']; ?>
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">

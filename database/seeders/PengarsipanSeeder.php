@@ -17,11 +17,19 @@ class PengarsipanSeeder extends Seeder
     {
         DB::table('pengarsipan')->insert([
             [
-                'id_pengarsipan' => '01',
-                'no_dokumen' => '12345',
+                'no_dokumen' => '1',
                 'status_pengarsipan' => 'Pending',
                 'id' => '1',
-
+            ],
+            [
+                'no_dokumen' => '1234572',
+                'status_pengarsipan' => 'Ya',
+                'id' => '2',
+            ],
+            [
+                'no_dokumen' => '3',
+                'status_pengarsipan' => 'Tidak',
+                'id' => '3',
             ],
         ]);
     }

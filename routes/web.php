@@ -64,7 +64,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
 
     //Menu Dokumen
-    Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
+    // Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
+    Route::resource('/dokumen', DokumenController::class);
 
     //Menu Master Setup
     Route::get('/master_setup/ruang', [RuangController::class, 'index'])->name('ruang');

@@ -23,7 +23,7 @@ class KelengkapanController extends Controller
     public function index()
     {
         $data7 = [
-            'kelengkapan_dokumen' => $this->KelengkapanDokumenModel->keldokData()
+            'master_surat' => $this->KelengkapanDokumenModel->allMasterSurat()
         ];
         return view('superadmin.master_setup.kelengkapan', $data7);
     }
@@ -49,17 +49,17 @@ class KelengkapanController extends Controller
         $this->validate(
             $request,
             [
-                'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen|min:4'
+                'kelengkapan' => 'required|unique:master_surat,nama_surat|min:2'
             ],
             [
                 'kelengkapan.required' => 'Nama Dokumen wajib diisi!',
                 'kelengkapan.unique' => 'Nama Dokumen sudah ada!',
-                'kelengkapan.min' => 'Nama Dokumen minimal 4 huruf!'
+                'kelengkapan.min' => 'Nama Dokumen minimal 2 huruf!'
             ]
         );
 
         $data = [
-            'nama_kel_dokumen' => $request->input('kelengkapan'),
+            'nama_surat' => $request->input('kelengkapan'),
         ];
         if ($this->KelengkapanDokumenModel->insert_surat($data)) {
             return redirect('/master_setup/kelengkapan_dokumen')->with('toast_success', 'Berhasil Tambah Opsi Dokumen');
@@ -102,7 +102,7 @@ class KelengkapanController extends Controller
         $this->validate(
             $request,
             [
-                'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen|min:4'
+                'kelengkapan' => 'required|unique:master_surat,nama_surat|min:4'
             ],
             [
                 'kelengkapan.required' => 'Nama Dokumen wajib diisi!',
@@ -112,7 +112,7 @@ class KelengkapanController extends Controller
         );
 
         $data = [
-            'nama_kel_dokumen' => $request->input('kelengkapan')
+            'nama_surat' => $request->input('kelengkapan')
         ];
         if ($this->KelengkapanDokumenModel->update_surat($data, $id)) {
             return redirect('/master_setup/kelengkapan_dokumen')->with('toast_success', 'Berhasil Edit Kelengkapan Dokumen');

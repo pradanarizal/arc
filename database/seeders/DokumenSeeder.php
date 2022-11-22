@@ -18,7 +18,7 @@ class DokumenSeeder extends Seeder
         DB::table('dokumen')->insert([
             [
                 'no_dokumen' => '12345',
-                'status_dokumen' => 'Retensi',
+                'status_dokumen' => 'Tersedia',
                 'divisi' => 'IT Support',
                 'nama_dokumen'=>'ITSR',
                 'tahun_dokumen'=>'2019',
@@ -54,6 +54,19 @@ class DokumenSeeder extends Seeder
                 'id_rak' => '01',
                 'id_box' => '01',
                 'id_map' => '01',
+            ],
+            [
+                'no_dokumen' => '12',
+                'status_dokumen' => 'Pengarsipan',
+                'divisi' => 'IT Komersial',
+                'nama_dokumen'=>'ITSR Arsip',
+                'tahun_dokumen'=>'2019',
+                'deskripsi'=>'ini Dokumen Penting',
+                'tgl_upload'=>'2020-02-15',
+                'id_ruang' => '02',
+                'id_rak' => '02',
+                'id_box' => '02',
+                'id_map' => '02',
             ],
         ]);
     }

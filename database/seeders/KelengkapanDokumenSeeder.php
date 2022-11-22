@@ -17,16 +17,16 @@ class KelengkapanDokumenSeeder extends Seeder
     {
         DB::table('kelengkapan_dokumen')->insert([
             [
-                'id_kel_dokumen' => '01',
-                'nama_kel_dokumen' => 'ITSR',
+                'id_surat' => '1',
+                'no_dokumen' => '12',
             ],
             [
-                'id_kel_dokumen' => '02',
-                'nama_kel_dokumen' => 'RAB',
+                'id_surat' => '2',
+                'no_dokumen' => '12345',
             ],
             [
-                'id_kel_dokumen' => '03',
-                'nama_kel_dokumen' => 'File apalah gitu',
+                'id_surat' => '3',
+                'no_dokumen' => '123456',
             ],
         ]);
     }

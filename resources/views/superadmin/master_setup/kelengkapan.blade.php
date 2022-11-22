@@ -33,16 +33,16 @@
                     <tbody>
                         <?php $no = 1; ?>
                         {{-- Ambil data dari controller --}}
-                        @foreach ($kelengkapan_dokumen as $item)
+                        @foreach ($master_surat as $item)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $item->id_kel_dokumen }}</td>
-                            <td>{{ $item->nama_kel_dokumen }}</td>
+                            <td>{{ $item->id_surat }}</td>
+                            <td>{{ $item->nama_surat }}</td>
                             <td class="text-center">
-                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_surat{{ $item->id_kel_dokumen }}">
+                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_surat{{ $item->id_surat }}">
                                     <i class="fa fa-pen"></i>
                                 </button>
-                                <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#delete_surat{{ $item->id_kel_dokumen }}">
+                                <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#delete_surat{{ $item->id_surat }}">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
