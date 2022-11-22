@@ -18,11 +18,10 @@ class RetensiSeeder extends Seeder
         DB::table('retensi')->insert([
             [
                 'id_retensi' => '01',
-                'no_dokumen' => '123',
-                'nama_dokumen' => 'apa yaaa',
-                'deskripsi' => 'sultan urrrraaaa',
-                'tgl_upload' => '2050-12-25 12:10:09',
-                'pemohon' => 'akbarrrr'
+                'no_dokumen' => '123456',
+                'tgl_retensi' => '2050-12-25',
+                'id' => '2',
+                'status_retensi' => 'Pending'
             ],
 
         ]);

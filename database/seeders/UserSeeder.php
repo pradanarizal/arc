@@ -21,6 +21,7 @@ class UserSeeder extends Seeder
         // User::truncate();
         DB::table('users')->insert([
             [
+                'id' => '1',
                 'name' => 'Tri Aji',
                 'email' => 'user' . '@gmail.com',
                 'divisi' => 'IT Support',
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('user'),
             ],
             [
+                'id' => '2',
                 'name' => 'Zidan',
                 'email' => 'admin' . '@gmail.com',
                 'divisi' => 'IT Governance',
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('admin'),
             ],
             [
+                'id' => '3',
                 'name' => 'Rifky',
                 'email' => 'superadmin' . '@gmail.com',
                 'divisi' => 'IT',

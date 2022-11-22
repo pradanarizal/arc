@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\menu_dokumen;
 use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DokumenController extends Controller
 {
@@ -22,17 +23,17 @@ class DokumenController extends Controller
     public function index()
     {
         // $data['component'] = array(
-		// 	"Hardisk",
-		// 	"Memory",
-		// 	"Monitor",
-		// 	"Keyboard",
-		// 	"Mouse",
-		// 	"Software",
-		// 	"Adaptor/Power Supply",
-		// 	"Processor",
-		// 	"Fan/Heatsink",
-		// 	"Lainnya"
-		// );
+        // 	"Hardisk",
+        // 	"Memory",
+        // 	"Monitor",
+        // 	"Keyboard",
+        // 	"Mouse",
+        // 	"Software",
+        // 	"Adaptor/Power Supply",
+        // 	"Processor",
+        // 	"Fan/Heatsink",
+        // 	"Lainnya"
+        // );
 
         $data = [
             'dokumen' => $this->DokumenModel->allData(),
@@ -57,9 +58,47 @@ class DokumenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        if ($request->input('jenis') == 'Retensi') {
+            $data = [
+                'nama_dokumen' => $request->input('nama_dokumen'),
+                'tahun_dokumen' => $request->input('tahun_dokumen'),
+                'deskripsi' => $request->input('deskripsi_dokumen'),
+                'divisi' => Auth::user()->divisi,
+                'tgl_upload' => date('Y-m-d h:i:s'),
+                'status_dokumen' => 'Retensi',
+            ];
+            if ($this->DokumenModel->insert_retensi($data)) {
+                return redirect('/dokumen')->with('toast_success', 'Berhasil Tambah Opsi Dokumen');
+            } else {
+                return redirect('/dokumen');
+            }
+        } elseif ($request->input('jenis') == 'Pengarsipan') {
+            $data = [
+                'nama_dokumen' => $request->input('nama_dokumen'),
+                'tahun_dokumen' => $request->input('tahun_dokumen'),
+                'deskripsi' => $request->input('deskripsi_dokumen'),
+                'divisi' => Auth::user()->divisi,
+                'tgl_upload' => date('Y-m-d h:i:s'),
+                'status_dokumen' => 'Pengarsipan',
+            ];
+            $dataarsip = [
+                'status_pengarsipan' => 'Pending',
+                'no_dokumen' => $request->input('_dokumen'),
+                'deskripsi' => $request->input('deskripsi_dokumen'),
+                'divisi' => Auth::user()->divisi,
+                'tgl_upload' => date('Y-m-d h:i:s'),
+                'status_dokumen' => 'Pengarsipan',
+            ];
+
+            if ($this->DokumenModel->insert_dokumen($data)) {
+                return redirect('/dokumen')->with('toast_success', 'Berhasil Tambah Opsi Dokumen');
+            } else {
+                return redirect('/dokumen');
+            }
+        }
     }
 
     /**

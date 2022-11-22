@@ -13,19 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('retensi', function (Blueprint $table) {
-            $table->id('id_retensi');
-            $table->date('tgl_retensi');
-            $table->enum('status_retensi', ['Pending', 'Ya', 'Tidak']);
+        Schema::create('master_dokumen', function (Blueprint $table) {
+            $table->id('id_surat');
             $table->timestamps();
         });
-        Schema::table('retensi', function (Blueprint $table) {
+        Schema::table('master_dokumen', function (Blueprint $table) {
             $table->unsignedBigInteger('no_dokumen');
             $table->foreign('no_dokumen')->references('no_dokumen')->on('dokumen');
         });
-        Schema::table('retensi', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
-            $table->foreign('id')->references('id')->on('users');
+        Schema::table('master_dokumen', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_kel_dokumen');
+            $table->foreign('id_kel_dokumen')->references('id_kel_dokumen')->on('kelengkapan_dokumen');
         });
     }
 
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('retensi');
+        Schema::dropIfExists('master_dokumen');
     }
 };

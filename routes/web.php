@@ -45,7 +45,7 @@ Route::get('/refreshCapcha', [LoginController::class, 'refreshCapcha']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 // Menu Super Admin
 // Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {

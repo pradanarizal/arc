@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PengarsipanSeeder extends Seeder
+class MasterDokumenSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,16 +15,21 @@ class PengarsipanSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pengarsipan')->insert([
+        DB::table('master_dokumen')->insert([
             [
+                'id_surat' => '1',
                 'no_dokumen' => '12',
-                'status_pengarsipan' => 'Pending',
-                'id' => '1',
+                'id_kel_dokumen' => '1',
             ],
             [
+                'id_surat' => '2',
+                'no_dokumen' => '12345',
+                'id_kel_dokumen' => '2',
+            ],
+            [
+                'id_surat' => '3',
                 'no_dokumen' => '123456',
-                'status_pengarsipan' => 'Ya',
-                'id' => '2',
+                'id_kel_dokumen' => '3',
             ],
         ]);
     }
