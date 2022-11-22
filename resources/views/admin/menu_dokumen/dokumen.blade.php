@@ -36,18 +36,21 @@
                             <th>Nama Dokumen</th>
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <?php $no = 1; ?>
                         {{-- Ambil data dari controller --}}
-                        <tr>
-                            <td>1</td>
-                            <td>a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
+                        @foreach ($dokumen as $item)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $item->no_dokumen }}</td>
+                                <td>{{ $item->nama_dokumen }}</td>
+                                <td>{{ $item->deskripsi }}</td>
+                                <td>{{date('d-m-yy',strtotime($item->tgl_upload))}}</td>
+                                <td>{{ $item->status_dokumen }}</td>
                             <td class="text-center">
                                 <button title="Lihat Dokumen" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#">
                                     <i class="fas fa-eye"></i>
@@ -60,6 +63,7 @@
                                 </button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

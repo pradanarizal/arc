@@ -50,6 +50,9 @@
                                 <td>{{date('d-m-yy',strtotime($item->tgl_upload))}}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td>
+                                    <button title="Lihat Dokumen" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
                                     <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal"
                                         data-bs-target="#modaledit{{ $item->no_dokumen }}">
                                         <i class="fa fa-pen"></i>
