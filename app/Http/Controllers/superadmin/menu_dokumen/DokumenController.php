@@ -5,7 +5,7 @@ namespace App\Http\Controllers\superadmin\menu_dokumen;
 use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class DokumenController extends Controller
 {
@@ -23,17 +23,17 @@ class DokumenController extends Controller
     public function index()
     {
         // $data['component'] = array(
-		// 	"Hardisk",
-		// 	"Memory",
-		// 	"Monitor",
-		// 	"Keyboard",
-		// 	"Mouse",
-		// 	"Software",
-		// 	"Adaptor/Power Supply",
-		// 	"Processor",
-		// 	"Fan/Heatsink",
-		// 	"Lainnya"
-		// );
+        // 	"Hardisk",
+        // 	"Memory",
+        // 	"Monitor",
+        // 	"Keyboard",
+        // 	"Mouse",
+        // 	"Software",
+        // 	"Adaptor/Power Supply",
+        // 	"Processor",
+        // 	"Fan/Heatsink",
+        // 	"Lainnya"
+        // );
 
         $data = [
             'dokumen' => $this->DokumenModel->allData(),
@@ -59,6 +59,7 @@ class DokumenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         // $this->validate(
@@ -79,7 +80,7 @@ class DokumenController extends Controller
                 'deskripsi' => $request->input('deskripsi_dokumen'),
                 'divisi' => Auth::user()->divisi,
                 'tgl_upload' => date('Y-m-d h:i:s'),
-                'status_dokumen' => 'Retensi' ,
+                'status_dokumen' => 'Retensi',
             ];
             if ($this->DokumenModel->insert_retensi($data)) {
                 return redirect('/dokumen')->with('toast_success', 'Berhasil Tambah Opsi Dokumen');
@@ -111,7 +112,6 @@ class DokumenController extends Controller
                 return redirect('/dokumen');
             }
         }
-
     }
 
     /**

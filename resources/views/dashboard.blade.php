@@ -11,7 +11,7 @@
     <div class="row">
         {{-- UNTUK TAMPILAN ADMIN --}}
         <!-- Card  -->
-        @if (auth()->user()->level == 'admin')
+        {{-- @if (auth()->user()->level == 'admin')
             <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card border-left-danger shadow h-100">
                     <div class="card-body">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-        @endif
+        @endif --}}
         {{-- END OF TAMPILAN ADMIN --}}
 
         {{-- UNTUK TAMPILAN USER --}}
@@ -56,7 +56,7 @@
         {{-- UNTUK TAMPILAN SUPER ADMIN --}}
 
         <!-- Card -->
-        @if (auth()->user()->level == 'superadmin' | auth()->user()->level == 'admin' )
+        @if ((auth()->user()->level == 'superadmin') | (auth()->user()->level == 'admin'))
             <div class="col-xl-4  mb-3 mt-2">
                 <div class="card border-left-danger shadow h-100">
                     <div class="card-body">
@@ -64,7 +64,7 @@
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-danger mb-2">
                                     Storage</div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">12</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ $ruang }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-users fa-2x text-gray-300"></i>
@@ -83,7 +83,7 @@
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-danger mb-2">
                                     Dokumen</div>
-                                <div class="h2 mb-0 font-weight-bold text-gray-800">12</div>
+                                <div class="h2 mb-0 font-weight-bold text-gray-800">{{ $dokumen }}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-users fa-2x text-gray-300"></i>

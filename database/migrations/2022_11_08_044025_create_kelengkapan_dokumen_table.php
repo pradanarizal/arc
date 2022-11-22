@@ -13,17 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kelengkapan_dokumen', function (Blueprint $table) {
-            $table->id('id_kel_dokumen');
+        Schema::create('master_surat', function (Blueprint $table) {
+            $table->id('id_surat');
+            $table->string('nama_surat');
             $table->timestamps();
-        });
-        Schema::table('kelengkapan_dokumen', function (Blueprint $table) {
-            $table->unsignedBigInteger('no_dokumen');
-            $table->foreign('no_dokumen')->references('no_dokumen')->on('dokumen');
-        });
-        Schema::table('kelengkapan_dokumen', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_surat');
-            $table->foreign('id_surat')->references('id_surat')->on('master_surat');
         });
     }
 
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kelengkapan_dokumen');
+        Schema::dropIfExists('master_surat');
     }
 };

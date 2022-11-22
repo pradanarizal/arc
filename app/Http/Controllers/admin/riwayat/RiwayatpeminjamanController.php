@@ -1,30 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin\riwayat;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\DashboardModel;
-use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class RiwayatpeminjamanController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->model = new DashboardModel();
-    }
-
     public function index()
     {
-        $data = [
-            'ruang' => $this->model->getRuang(),
-            'dokumen' => $this->model->getDokumen()
-        ];
-        return view('dashboard', $data);
+        return view('admin.riwayat.riwayat-peminjaman');
     }
 
     /**

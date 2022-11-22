@@ -1,30 +1,31 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin\dokumen;
 
+use App\Http\Controllers\Controller;
+use App\Models\DokumenModel;
 use Illuminate\Http\Request;
-use App\Models\DashboardModel;
-use Illuminate\Support\Facades\DB;
 
-class DashboardController extends Controller
+class DokumenadminController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function __construct()
     {
-        $this->model = new DashboardModel();
+        $this->DokumenModel = new DokumenModel();
     }
 
     public function index()
     {
         $data = [
-            'ruang' => $this->model->getRuang(),
-            'dokumen' => $this->model->getDokumen()
+            'dokumen' => $this->DokumenModel->allData(),
+            'kelengkapan_dokumen' => $this->DokumenModel->allKelengkapanDokumen()
         ];
-        return view('dashboard', $data);
+        return view('admin.menu_dokumen.dokumen', $data);
     }
 
     /**
