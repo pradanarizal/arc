@@ -9,6 +9,15 @@ use Illuminate\Support\Facades\Auth;
 
 class DokumenController extends Controller
 {
+    //Halaman Detail Dokumen
+    public function detail_data($id)
+    {
+        $data = [
+            'dokumen' => $this->DokumenModel->getDokumenById($id)
+        ];
+        return view('superadmin.menu_dokumen.detail_dokumen', $data);
+    }
+
     /**
      * Display a listing of the resource.
      *

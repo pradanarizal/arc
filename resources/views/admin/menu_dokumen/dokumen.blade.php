@@ -52,10 +52,10 @@
                                 <td>{{ date('d-m-yy', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td class="text-center">
-                                    <button title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
-                                        data-bs-toggle="modal" data-bs-target="#">
+                                    <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
+                                        href="/detail_dokumen/{{ $item->no_dokumen }}">
                                         <i class="fas fa-eye"></i>
-                                    </button>
+                                    </a>
                                     <button title="Pinjam Dokumen" class="btn btn-sm bg-success text-white"
                                         data-bs-toggle="modal" data-bs-target="#pinjam_dokumen">
                                         <i class="fas fa-file-export"></i>

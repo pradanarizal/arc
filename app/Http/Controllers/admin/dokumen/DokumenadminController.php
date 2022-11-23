@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 
 class DokumenadminController extends Controller
 {
+    //Halaman Detail Dokumen
+    public function detail_data($id)
+    {
+
+        $data = [
+            'dokumen' => $this->DokumenModel->getDokumenById($id)
+        ];
+        return view('admin.menu_dokumen.detail_dokumen', $data);
+    }
+
     /**
      * Display a listing of the resource.
      *
