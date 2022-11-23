@@ -19,11 +19,17 @@ class DokumenModel extends Model
             ->get();
     }
 
-
     public function allKelengkapanDokumen()
     {
         return DB::table('kelengkapan_dokumen')
             ->get();
     }
 
+    public function getDokumenById($id)
+    {   
+        return DB::table('dokumen')
+                ->select('*')
+                ->where('no_dokumen', $id)
+                ->get();
+    }
 }

@@ -41,8 +41,8 @@
                                 <td>{{ date('d-m-yy', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td>
-                                    <a class="btn btn-sm bg-danger text-white" href="/detail_dokumen/{{ $item->no_dokumen }}">
-                                        Detail Dokumen
+                                    <a class="btn btn-sm bg-success text-white" href="/detail_dokumen/{{ $item->no_dokumen }}">
+                                        <i class="fa fa-eye"></i>
                                     </a>
                                 </td>
                             </tr>
