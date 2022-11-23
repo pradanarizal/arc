@@ -48,7 +48,7 @@
                                 <td>{{ date('d-m-yy', strtotime($item->tgl_kembali)) }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
+                                    <button title="Setuju" class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
                                         data-bs-target="#">
                                         <i class="fa fa-check"></i>
                                     </button>
