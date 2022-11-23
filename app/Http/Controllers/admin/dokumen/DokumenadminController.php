@@ -23,7 +23,7 @@ class DokumenadminController extends Controller
     {
         $data = [
             'dokumen' => $this->DokumenModel->allData(),
-            'kelengkapan_dokumen' => $this->DokumenModel->allKelengkapanDokumen()
+            'kelengkapan_dokumen' => $this->DokumenModel->kelData()
         ];
         return view('admin.menu_dokumen.dokumen', $data);
     }
