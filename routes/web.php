@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\superadmin\menu_dokumen\DokumenController;
 use App\Http\Controllers\superadmin\master_setup\RuangController;
@@ -63,7 +63,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
 
 //// Untuk User ////
 Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
-    Route::get('/dokumen', [UserController::class, 'dokumen'])->name('dokumen');
+    Route::get('/dokumen_user', [UserController::class, 'index'])->name('dokumen');
+    Route::get('/detail_dokumen/{id}', [UserController::class, 'detail_data'])->name('dokumen');
 });
 
 //// Untuk Super Admin ////

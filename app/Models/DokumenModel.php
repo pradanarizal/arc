@@ -46,4 +46,12 @@ class DokumenModel extends Model
             return false;
         }
     }
+    
+    public function getDokumenById($id)
+    {
+        return DB::table('dokumen')
+                ->select('*')
+                ->where('no_dokumen', $id)
+                ->get();
+    }
 }
