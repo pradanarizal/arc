@@ -37,8 +37,7 @@ class DokumenController extends Controller
 
         $data = [
             'dokumen' => $this->DokumenModel->allData(),
-            'master_surat' => $this->DokumenModel->allMasterSurat(),
-
+            'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
         ];
         return view('superadmin.menu_dokumen.dokumen', $data);
     }
@@ -94,15 +93,15 @@ class DokumenController extends Controller
                 'tahun_dokumen' => $request->input('tahun_dokumen'),
                 'deskripsi' => $request->input('deskripsi_dokumen'),
                 'divisi' => Auth::user()->divisi,
-                'tgl_upload' => date('Y-m-d h:i:s'),
+                'tgl_upload' => date('Y-m-d'),
                 'status_dokumen' => 'Pengarsipan' ,
             ];
             $dataarsip = [
                 'status_pengarsipan' => 'Pending',
-                'no_dokumen' => $request->input('_dokumen'),
+                'no_dokumen' => $request->input('no_dokumen'),
                 'deskripsi' => $request->input('deskripsi_dokumen'),
                 'divisi' => Auth::user()->divisi,
-                'tgl_upload' => date('Y-m-d h:i:s'),
+                'tgl_upload' => date('Y-m-d'),
                 'status_dokumen' => 'Pengarsipan' ,
             ];
 

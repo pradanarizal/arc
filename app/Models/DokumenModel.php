@@ -21,9 +21,9 @@ class DokumenModel extends Model
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             ->get();
     }
-    public function allMasterSurat()
+    public function kelData()
     {
-        return DB::table('master_surat')
+        return DB::table('kelengkapan_dokumen')
             ->get();
     }
 

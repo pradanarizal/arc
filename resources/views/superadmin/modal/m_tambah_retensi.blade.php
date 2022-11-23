@@ -50,12 +50,12 @@
 
                     <div class="form-group">
                         <label for="kelengkapan_dokumen">Kelengkapan Dokumen</label>
-                        @foreach ($master_surat as $item)
+                        @foreach ($kelengkapan_dokumen as $item)
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $item->nama_surat }}"
-                                    id="{{ $item->id_surat }}">
-                                <label class="form-check-label" for="{{ $item->id_surat }}">
-                                    {{ $item->nama_surat }}
+                                <input class="form-check-input" type="checkbox" value="{{ $item->nama_kel_dokumen }}"
+                                    id="{{ $item->id_kel_dokumen }}">
+                                <label class="form-check-label" for="{{ $item->id_kel_dokumen }}">
+                                    {{ $item->nama_kel_dokumen }}
                                 </label>
                             </div>
                         @endforeach
@@ -68,7 +68,8 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary tombol-aksi float-right">Ajukan</button>
-                    <button class="btn btn-danger tombol-aksi float-right" type="button" data-bs-dismiss="modal">Batal</button>
+                    <button class="btn btn-danger tombol-aksi float-right" type="button"
+                        data-bs-dismiss="modal">Batal</button>
                 </form>
                 <!--END FORM TAMBAH BARANG-->
             </div>

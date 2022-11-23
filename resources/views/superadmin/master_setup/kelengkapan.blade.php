@@ -7,7 +7,8 @@
     <!-- Begin Page Content -->
 
     <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
-        <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#tambah_surat">
+        <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal"
+            data-bs-target="#tambah_surat">
             <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
             Add Surat
         </button>
@@ -33,20 +34,22 @@
                     <tbody>
                         <?php $no = 1; ?>
                         {{-- Ambil data dari controller --}}
-                        @foreach ($master_surat as $item)
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>{{ $item->id_surat }}</td>
-                            <td>{{ $item->nama_surat }}</td>
-                            <td class="text-center">
-                                <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal" data-bs-target="#edit_surat{{ $item->id_surat }}">
-                                    <i class="fa fa-pen"></i>
-                                </button>
-                                <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#delete_surat{{ $item->id_surat }}">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @foreach ($kelengkapan_dokumen as $item)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $item->id_kel_dokumen }}</td>
+                                <td>{{ $item->nama_kel_dokumen }}</td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal"
+                                        data-bs-target="#edit_surat{{ $item->id_kel_dokumen }}">
+                                        <i class="fa fa-pen"></i>
+                                    </button>
+                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                        data-bs-target="#delete_surat{{ $item->id_kel_dokumen }}">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
@@ -58,5 +61,4 @@
     @include('superadmin.modal.m_edit_kelengkapan')
     @include('superadmin.modal.m_delete_kelengkapan')
     @include('sweetalert::alert')
-
 @endsection

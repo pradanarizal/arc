@@ -9,33 +9,33 @@ use Illuminate\Support\Facades\DB;
 class KelengkapanDokumenModel extends Model
 {
     // use HasFactory;
-    public function allMasterSurat()
+    public function allData()
     {
-        return DB::table('master_surat')
+        return DB::table('kelengkapan_dokumen')
         ->get();
     }
     //tambah opsi surat
     public function insert_surat($data)
     {
-        if (DB::table('master_surat')->insert($data)){
+        if (DB::table('kelengkapan_dokumen')->insert($data)){
             return true;
         }else{
             return false;
         }
     }
 
-    public function update_surat($data, $id_surat)
+    public function update_surat($data, $id_kel_dokumen)
     {
-        if (DB::table('master_surat')->where('id_surat',$id_surat)->update($data)){
+        if (DB::table('kelengkapan_dokumen')->where('id_kel_dokumen',$id_kel_dokumen)->update($data)){
             return true;
         }else{
             return false;
         }
     }
 
-    public function delete_surat($id_surat)
+    public function delete_surat($id_kel_dokumen)
     {
-        DB::table('master_surat')->where('id_surat', $id_surat)->delete();
+        DB::table('kelengkapan_dokumen')->where('id_kel_dokumen', $id_kel_dokumen)->delete();
     }
 
 }
