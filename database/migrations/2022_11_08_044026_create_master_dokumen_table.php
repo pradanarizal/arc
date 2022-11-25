@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreign('no_dokumen')->references('no_dokumen')->on('dokumen');
         });
         Schema::table('master_dokumen', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_kel_dokumen');
+            $table->string('id_kel_dokumen');
             $table->foreign('id_kel_dokumen')->references('id_kel_dokumen')->on('kelengkapan_dokumen');
         });
     }

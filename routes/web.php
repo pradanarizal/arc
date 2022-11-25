@@ -94,6 +94,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::resource('/kelengkapan', KelengkapanController::class);
 
     // Untuk CRUD Dokumen
+    Route::resource('/input_retensi', DokumenController::class);
+    Route::resource('/input_pengarsipan', DokumenController::class);
 });
 
 //Menu Profil

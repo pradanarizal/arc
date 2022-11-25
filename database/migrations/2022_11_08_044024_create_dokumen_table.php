@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Validation\Rules\Unique;
 
 return new class extends Migration
 {
@@ -14,13 +15,16 @@ return new class extends Migration
     public function up()
     {
         Schema::create('dokumen', function (Blueprint $table) {
+            // $table->id('id_dokumen');
             $table->id('no_dokumen');
-            $table->enum('status_dokumen', ['Dipinjam', 'Tersedia','Pengarsipan','Retensi','Rejected']);
+            $table->enum('status_dokumen', ['Dipinjam', 'Tersedia', 'Pengarsipan', 'Retensi', 'Rejected']);
             $table->string('divisi');
             $table->string('nama_dokumen');
             $table->string('tahun_dokumen');
             $table->text('deskripsi');
             $table->dateTime('tgl_upload');
+            $table->string('nama_kel_dokumen');
+            $table->string('file_dokumen');
             $table->timestamps();
         });
         Schema::table('dokumen', function (Blueprint $table) {
@@ -39,6 +43,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_map')->nullable();
             $table->foreign('id_map')->references('id_map')->on('map');
         });
+        // Schema::table('dokumen', function (Blueprint $table) {
+        //     $table->string('id_kel_dokumen')->nullable();
+        //     $table->foreign('id_kel_dokumen')->references('id_kel_dokumen')->on('kelengkapan_dokumen');
+        // });
     }
 
     /**

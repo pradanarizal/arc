@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kelengkapan_dokumen', function (Blueprint $table) {
-            $table->id('id_kel_dokumen');
+            $table->string('id_kel_dokumen', 5)->primary();
             $table->string('nama_kel_dokumen');
             $table->timestamps();
         });

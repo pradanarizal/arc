@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('retensi', function (Blueprint $table) {
             $table->id('id_retensi');
-            $table->date('tgl_retensi');
+            $table->date('tgl_retensi')->nullable();
             $table->enum('status_retensi', ['Pending', 'Ya', 'Tidak']);
             $table->timestamps();
         });
