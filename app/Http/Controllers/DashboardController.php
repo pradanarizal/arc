@@ -18,7 +18,16 @@ class DashboardController extends Controller
         $this->model = new DashboardModel();
     }
 
-    public function index()
+    public function beforelogin()
+    {
+        $data = [
+            'ruang' => $this->model->getRuang(),
+            'dokumen' => $this->model->getDokumen()
+        ];
+        return view('first', $data);
+    }
+
+    public function afterlogin()
     {
         $data = [
             'ruang' => $this->model->getRuang(),

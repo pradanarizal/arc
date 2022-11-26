@@ -2,7 +2,7 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
-        <img src="{{ asset('templates/img/logo.png') }}" width="100px">
+        <img src="{{ asset('templates/img/logo.webp') }}" width="100px">
     </a>
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -21,8 +21,7 @@
 
     <!-- Nav Item - Pengguna -->
     @if (auth()->user()->level == 'user')
-        <li
-            class="nav-item {{ request()->is('dokumen_user') ? 'active' : '' }}">
+        <li class="nav-item {{ request()->is('dokumen_user') ? 'active' : '' }}">
             <a class="nav-link" href="/dokumen_user">
                 <i class="fas fa-fw fa-file-alt"></i>
                 <span>Dokumen</span>
@@ -137,37 +136,37 @@
         </li>
 
         <li
-        class="nav-item {{ request()->is('riwayat/riwayat_pengarsipan') | request()->is('riwayat/riwayat_retensi') | request()->is('riwayat/riwayat_peminjaman') | request()->is('riwayat/riwayat_pengembalian') ? 'active' : '' }}">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-history"></i>
-            <span>Riwayat</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ request()->is('riwayat/riwayat_pengarsipan') ? 'active' : '' }}"
-                    href="/riwayat/riwayat_pengarsipan">
-                    <i class="fas fa-fw fa-square fa-xs"></i>
-                    <span>Pengarsipan</span>
-                </a>
-                <a class="collapse-item {{ request()->is('riwayat/riwayat_retensi') ? 'active' : '' }}"
-                    href="/riwayat/riwayat_retensi">
-                    <i class="fas fa-fw fa-square fa-xs"></i>
-                    <span>Retensi Arsip</span>
-                </a>
-                <a class="collapse-item {{ request()->is('riwayat/riwayat_peminjaman') ? 'active' : '' }}"
-                    href="/riwayat/riwayat_peminjaman">
-                    <i class="fas fa-fw fa-square fa-xs"></i>
-                    <span>Peminjaman</span>
-                </a>
-                <a class="collapse-item {{ request()->is('riwayat/riwayat_pengembalian') ? 'active' : '' }}"
-                    href="/riwayat/riwayat_pengembalian">
-                    <i class="fas fa-fw fa-square fa-xs"></i>
-                    <span>Pengembalian</span>
-                </a>
+            class="nav-item {{ request()->is('riwayat/riwayat_pengarsipan') | request()->is('riwayat/riwayat_retensi') | request()->is('riwayat/riwayat_peminjaman') | request()->is('riwayat/riwayat_pengembalian') ? 'active' : '' }}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-history"></i>
+                <span>Riwayat</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {{ request()->is('riwayat/riwayat_pengarsipan') ? 'active' : '' }}"
+                        href="/riwayat/riwayat_pengarsipan">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Pengarsipan</span>
+                    </a>
+                    <a class="collapse-item {{ request()->is('riwayat/riwayat_retensi') ? 'active' : '' }}"
+                        href="/riwayat/riwayat_retensi">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Retensi Arsip</span>
+                    </a>
+                    <a class="collapse-item {{ request()->is('riwayat/riwayat_peminjaman') ? 'active' : '' }}"
+                        href="/riwayat/riwayat_peminjaman">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Peminjaman</span>
+                    </a>
+                    <a class="collapse-item {{ request()->is('riwayat/riwayat_pengembalian') ? 'active' : '' }}"
+                        href="/riwayat/riwayat_pengembalian">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Pengembalian</span>
+                    </a>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
     @endif
     {{-- END OF SIDEBAR MENU 3 ADMIN --}}
     {{-- END OF TAMPILAN ADMIN --}}

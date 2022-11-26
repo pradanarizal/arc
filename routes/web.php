@@ -39,18 +39,17 @@ use Illuminate\Routing\RouteGroup;
 //     return view('welcome');
 // });
 
-Route::get('/', [LoginController::class, 'view_login'])->name('login');
+Route::get('/', [DashboardController::class, 'beforelogin'])->name('first');
+
+Route::get('/login', [LoginController::class, 'view_login'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/refreshCapcha', [LoginController::class, 'refreshCapcha']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-// Menu Super Admin
-// Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
-//     Route::get('/dokumen', [SadminController::class, 'dokumen'])->name('dokumen');
-// });
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'afterlogin'])->name('dashboard');
+});
 
 //// Untuk Admin ////
 Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
