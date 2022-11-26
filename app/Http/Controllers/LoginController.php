@@ -21,7 +21,7 @@ class LoginController extends Controller
             'password' => 'required',
             'captcha' => 'required|captcha',
         ]);
-        if (Auth::attempt($request->only('email', 'password'))) {
+        if (Auth::attempt($request->only('email', 'password',))) {
             return redirect('/dashboard');
         }
         return redirect('/');
