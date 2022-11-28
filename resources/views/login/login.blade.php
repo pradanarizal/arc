@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>C-Ad - Login</title>
+    <title>C-Archive - Login</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('templates/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
