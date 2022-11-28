@@ -75,7 +75,8 @@
     {{--
 </div> --}}
     <!-- /.container-fluid -->
-    @include('superadmin.modal.m_tambah_dokumen')
-    @include('superadmin.modal.m_tambah_retensi')
+    @include('admin.modal.m_tambah_dokumen')
+    @include('admin.modal.m_tambah_retensi')
     @include('admin.modal.m_pinjam_dokumen')
+    @include('sweetalert::alert')
 @endsection

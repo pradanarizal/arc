@@ -11,7 +11,7 @@
 
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
-                <form action="/input_retensi" method="post" enctype="multipart/form-data">
+                <form action="/input_retensi_admin" method="post" enctype="multipart/form-data">
                     @csrf
                     <input name="jenis" type="text" value="Retensi" hidden>
                     <div class="form-group">

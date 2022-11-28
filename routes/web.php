@@ -61,6 +61,9 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
     Route::get('/riwayat/riwayat_retensi', [RiwayatretensiController::class, 'index']);
     Route::get('/riwayat/riwayat_peminjaman', [RiwayatpeminjamanController::class, 'index']);
     Route::get('/riwayat/riwayat_pengembalian', [RiwayatpengembalianController::class, 'index']);
+    // Untuk CRUD Dokumen
+    Route::resource('/input_retensi_admin', DokumenadminController::class);
+    Route::resource('/input_pengarsipan_admin', DokumenadminController::class);
 });
 
 //// Untuk User ////

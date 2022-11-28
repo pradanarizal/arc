@@ -120,6 +120,7 @@ class DokumenController extends Controller
                 'status_dokumen' => 'Retensi',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
+                'created_at' => \Carbon\Carbon::now(),
             ];
             $data2 = [
                 // 'tgl_retensi' => \Carbon\Carbon::now(),
@@ -146,6 +147,7 @@ class DokumenController extends Controller
                 'status_dokumen' => 'Pengarsipan',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
+                'created_at' => \Carbon\Carbon::now(),
             ];
             $data2 = [
                 'status_pengarsipan' => 'Pending',

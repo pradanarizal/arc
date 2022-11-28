@@ -1,4 +1,4 @@
-<div class="modal fade" id="tambah_dokumen" tabindex="-1" aria-labelledby="tambah_user" aria-hidden="true">
+<div class="modal fade" id="tambah_dokumen" tabindex="-1" aria-labelledby="tambah_dokumen" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -21,7 +21,7 @@
                         @error('nomor_dokumen')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                    </div> --}}
+                    </div>
                     <div class="form-group">
                         <label for="nama_dokumen">Nama Dokumen</label>
                         <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
@@ -89,7 +89,7 @@
                     <button class="btn btn-danger tombol-aksi float-right" type="button"
                         data-bs-dismiss="modal">Batal</button>
                 </form>
-                <!--END FORM TAMBAH BARANG-->
+                <!--END FORM TAMBAH-->
             </div>
 
         </div>

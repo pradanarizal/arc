@@ -1,19 +1,19 @@
-<div class="modal fade" id="tambah_retensi" tabindex="-1" aria-labelledby="tambah_user" aria-hidden="true">
+<div class="modal fade" id="tambah_dokumen" tabindex="-1" aria-labelledby="tambah_dokumen" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Form Retensi Dokumen</h5>
+                <h5 class="modal-title">Form Pengarsipan Dokumen</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
             <div class="modal-body">
-                <!--FORM TAMBAH BARANG-->
-                <form action="/input_retensi" method="post" enctype="multipart/form-data">
+                <!--FORM TAMBAH-->
+                <form action="/input_pengarsipan_admin" method="post" enctype="multipart/form-data">
                     @csrf
-                    <input name="jenis" type="text" value="Retensi" hidden>
+                    <input name="jenis" type="text" value="Pengarsipan" hidden>
                     <div class="form-group">
                         <label for="nomor_dokumen">Nomor Dokumen</label>
                         <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
@@ -30,14 +30,6 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="tahun_dokumen">Tahun Dokumen</label>
-                        <input type="tahun_dokumen" class="form-control" id="tahun_dokumen" name="tahun_dokumen"
-                            aria-describedby="emailHelp" value="{{ old('tahun_dokumen') }}">
-                        @error('tahun_dokumen')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
                     <div class="form-group">
                         <label for="tahun_dokumen">Tahun Dokumen</label>
                         <select class="form-control custom-select" name="tahun_dokumen" id="tahun_dokumen">
@@ -50,12 +42,10 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
                     <div class="form-group">
                         <label for="deskripsi_dokumen">Deskripsi Dokumen</label>
-                        <input type="deskripsi_dokumen" class="form-control" id="deskripsi_dokumen"
-                            name="deskripsi_dokumen" aria-describedby="emailHelp"
-                            value="{{ old('deskripsi_dokumen') }}">
+                        <input type="text" class="form-control" id="deskripsi_dokumen" name="deskripsi_dokumen"
+                            aria-describedby="emailHelp" value="{{ old('deskripsi_dokumen') }}">
                         @error('deskripsi_dokumen')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -66,8 +56,8 @@
                         @foreach ($kelengkapan_dokumen as $item)
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="{{ $item->nama_kel_dokumen }}"
-                                    id="kelengkapan_dokumen{{ $item->nama_kel_dokumen }}" name="kelengkapan_dokumen[]">
-                                <label class="form-check-label" for="kelengkapan_dokumen{{ $item->nama_kel_dokumen }}">
+                                    id="kelengkapan_dokumen{{ $item->id_kel_dokumen }}" name="kelengkapan_dokumen[]">
+                                <label class="form-check-label" for="kelengkapan_dokumen{{ $item->id_kel_dokumen }}">
                                     {{ $item->nama_kel_dokumen }}
                                 </label>
                             </div>
@@ -90,7 +80,7 @@
                     <button class="btn btn-danger tombol-aksi float-right" type="button"
                         data-bs-dismiss="modal">Batal</button>
                 </form>
-                <!--END FORM TAMBAH BARANG-->
+                <!--END FORM TAMBAH-->
             </div>
 
         </div>
@@ -107,7 +97,7 @@
             };
 
             function OpenBootstrapPopup() {
-                $("#tambah_retensi").modal('show');
+                $("#tambah_dokumen").modal('show');
             }
         </script>
     @break
