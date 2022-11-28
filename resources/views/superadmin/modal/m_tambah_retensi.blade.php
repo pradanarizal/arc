@@ -10,11 +10,11 @@
             </div>
 
             <div class="modal-body">
-                <!--FORM TAMBAH RETENSI-->
-                <form action="/dokumen" method="POST" enctype="multipart/form-data">
+                <!--FORM TAMBAH BARANG-->
+                <form action="/input_retensi" method="post" enctype="multipart/form-data">
                     @csrf
                     <input name="jenis" type="text" value="Retensi" hidden>
-                    {{-- <div class="form-group">
+                    <div class="form-group">
                         <label for="nomor_dokumen">Nomor Dokumen</label>
                         <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
                             aria-describedby="emailHelp" value="{{ old('nomor_dokumen') }}">
@@ -30,14 +30,27 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="tahun_dokumen">Tahun Dokumen</label>
                         <input type="tahun_dokumen" class="form-control" id="tahun_dokumen" name="tahun_dokumen"
                             aria-describedby="emailHelp" value="{{ old('tahun_dokumen') }}">
                         @error('tahun_dokumen')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
+                    </div> --}}
+                    <div class="form-group">
+                        <label for="tahun_dokumen">Tahun Dokumen</label>
+                        <select class="form-control custom-select" name="tahun_dokumen" id="tahun_dokumen">
+                            <option selected disabled>--Pilih Tahun Dokumen--</option>
+                            @for ($i = date('Y'); $i >= 2000; $i--)
+                                <option value="{{ $i }}">{{ $i }}</option>'
+                            @endfor
+                        </select>
+                        @error('tahun_dokumen')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
                     <div class="form-group">
                         <label for="deskripsi_dokumen">Deskripsi Dokumen</label>
                         <input type="deskripsi_dokumen" class="form-control" id="deskripsi_dokumen"
@@ -53,18 +66,24 @@
                         @foreach ($kelengkapan_dokumen as $item)
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="{{ $item->nama_kel_dokumen }}"
-                                    id="{{ $item->id_kel_dokumen }}">
-                                <label class="form-check-label" for="{{ $item->id_kel_dokumen }}">
+                                    id="kelengkapan_dokumen{{ $item->nama_kel_dokumen }}" name="kelengkapan_dokumen[]">
+                                <label class="form-check-label" for="kelengkapan_dokumen{{ $item->nama_kel_dokumen }}">
                                     {{ $item->nama_kel_dokumen }}
                                 </label>
                             </div>
                         @endforeach
+                        @error('kelengkapan_dokumen')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
-                    <label for="file_dokumen">Upload File</label>
+                    <label for="file">Upload File</label>
                     <div class="form-group">
                         <div class="">
-                            <input type="file" name="file_dokumen" id="file_dokumen">
+                            <input type="file" name="file" id="file">
+                            @error('file')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary tombol-aksi float-right">Ajukan</button>
@@ -79,7 +98,7 @@
 </div>
 
 {{-- Perulangan untuk cek error --}}
-<?php $listError = ['no_dokumen', 'nama_dokumen', 'tahun_dokumen', 'deskripsi']; ?>
+<?php $listError = ['nomor_dokumen', 'nama_dokumen', 'tahun_dokumen', 'deskripsi_dokumen', 'kelengkapan_dokumen', 'file']; ?>
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">
@@ -88,7 +107,7 @@
             };
 
             function OpenBootstrapPopup() {
-                $("#tambah_user").modal('show');
+                $("#tambah_retensi").modal('show');
             }
         </script>
     @break

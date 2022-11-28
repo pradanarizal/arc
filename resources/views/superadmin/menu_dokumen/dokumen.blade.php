@@ -35,6 +35,7 @@
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
                             <th>Deskripsi</th>
+                            <th>Kelengkapan Dokumen</th>
                             <th>Tanggal Upload</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -49,7 +50,8 @@
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
-                                <td>{{ date('d-m-yy', strtotime($item->tgl_upload)) }}</td>
+                                <td>{{ $item->nama_kel_dokumen }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td>
                                     <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
@@ -77,4 +79,5 @@
     <!-- /.container-fluid -->
     @include('superadmin.modal.m_tambah_dokumen')
     @include('superadmin.modal.m_tambah_retensi')
+    @include('sweetalert::alert')
 @endsection

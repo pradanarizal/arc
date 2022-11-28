@@ -29,6 +29,7 @@
                             <th>No</th>
                             <th>No. Dok</th>
                             <th>Nama Dokumen</th>
+                            <th>Tahun Dokumen</th>
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Pemohon</th>
@@ -44,8 +45,9 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
+                                <td>{{ $item->tahun_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
-                                <td>{{ date('d-m-yy', strtotime($item->tgl_retensi)) }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"

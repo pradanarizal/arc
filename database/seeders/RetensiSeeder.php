@@ -19,9 +19,9 @@ class RetensiSeeder extends Seeder
             [
                 'id_retensi' => '01',
                 'no_dokumen' => '123456',
-                'tgl_retensi' => '2050-12-25',
                 'id' => '2',
-                'status_retensi' => 'Pending'
+                'status_retensi' => 'Pending',
+                'created_at' => \Carbon\Carbon::now(),
             ],
 
         ]);

@@ -20,11 +20,13 @@ class PengarsipanSeeder extends Seeder
                 'no_dokumen' => '12',
                 'status_pengarsipan' => 'Pending',
                 'id' => '1',
+                'created_at' => \Carbon\Carbon::now(),
             ],
             [
                 'no_dokumen' => '123456',
                 'status_pengarsipan' => 'Ya',
                 'id' => '2',
+                'created_at' => \Carbon\Carbon::now(),
             ],
         ]);
     }
