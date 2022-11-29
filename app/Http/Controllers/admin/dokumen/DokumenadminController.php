@@ -26,7 +26,7 @@ class DokumenadminController extends Controller
         $data = [
             'dokumen' => $this->DokumenModel->getDokumenById($id)
         ];
-        return view('admin.menu_dokumen.detail_dokumen', $data);
+        return view('admin.menu_dokumen.detail_dokumen_admin', $data);
     }
 
 

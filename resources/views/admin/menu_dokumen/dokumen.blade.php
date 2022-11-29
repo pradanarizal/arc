@@ -53,7 +53,7 @@
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td class="text-center">
                                     <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
-                                        href="/detail_dokumen/{{ $item->no_dokumen }}">
+                                        href="/detail_dokumen_admin/{{ $item->no_dokumen }}">
                                         <i class="fas fa-eye"></i>
                                     </a>
                                     <button title="Pinjam Dokumen" class="btn btn-sm bg-success text-white"

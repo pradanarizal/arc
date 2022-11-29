@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
     //Menu Dokumen
     Route::get('/dokumen_admin', [DokumenadminController::class, 'index'])->name('dokumen');
-    Route::get('/detail_dokumen/{id}', [DokumenadminController::class, 'detail_data'])->name('dokumen');
+    Route::get('/detail_dokumen_admin/{id}', [DokumenadminController::class, 'detail_data'])->name('dokumen');
     //Menu Riwayat
     Route::get('/riwayat/riwayat_pengarsipan', [RiwayatpengarsipanController::class, 'index']);
     Route::get('/riwayat/riwayat_retensi', [RiwayatretensiController::class, 'index']);
@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     //Menu Dokumen
     // Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
     Route::resource('/dokumen', DokumenController::class);
-    Route::get('/detail_dokumen/{id}', [DokumenController::class, 'detail_data'])->name('dokumen');
+    Route::get('/detail_dokumen_user/{id}', [DokumenController::class, 'detail_data'])->name('dokumen');
 
     //Menu Master Setup
     Route::get('/master_setup/ruang', [RuangController::class, 'index'])->name('ruang');
