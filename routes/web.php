@@ -69,7 +69,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
 //// Untuk User ////
 Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
     Route::get('/dokumen_user', [UserController::class, 'index'])->name('dokumen');
-    Route::get('/detail_dokumen/{id}', [UserController::class, 'detail_data'])->name('dokumen');
+    Route::get('/detail_dokumen_user/{id}', [UserController::class, 'detail_data'])->name('dokumen');
 });
 
 //// Untuk Super Admin ////
@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     //Menu Dokumen
     // Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
     Route::resource('/dokumen', DokumenController::class);
-    Route::get('/detail_dokumen_user/{id}', [DokumenController::class, 'detail_data'])->name('dokumen');
+    Route::get('/detail_dokumen/{id}', [DokumenController::class, 'detail_data'])->name('dokumen');
 
     //Menu Master Setup
     Route::get('/master_setup/ruang', [RuangController::class, 'index'])->name('ruang');

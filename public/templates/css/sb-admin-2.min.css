@@ -11722,13 +11722,5 @@ input[type=file]::file-selector-button {
 input[type=file]::file-selector-button:hover {
     background: #0d45a5;
 }
-/* 
-.form-control-plaintext {
-    width: 50%;
-} */
-
-.content-form{
-    width:50%;
-}
 
 /* end edited */
