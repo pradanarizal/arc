@@ -49,7 +49,7 @@
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
-                                <td>{{ date('d-m-yy', strtotime($item->tgl_upload)) }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td class="text-center">
                                     <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"

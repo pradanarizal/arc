@@ -26,6 +26,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+
                             <th>No</th>
                             <th>No. Dok</th>
                             <th>Nama Dokumen</th>
@@ -33,6 +34,7 @@
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Pemohon</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -50,14 +52,39 @@
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="fa fa-times"></i>
-                                    </button>
+                                    @if ($item->status_pengarsipan == 'Pending')
+                                        <span title="Menunggu Approval"
+                                            class="badge badge-warning p-2">{{ $item->status_pengarsipan }}</span>
+                                    @elseif ($item->status_pengarsipan == 'Ya')
+                                        <span title="Approved"
+                                            class="badge badge-success p-2">{{ $item->status_pengarsipan }}</span>
+                                    @else
+                                        <span title="Rejected"
+                                            class="badge badge-danger p-2">{{ $item->status_pengarsipan }}</span>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if ($item->status_pengarsipan == 'Pending')
+                                        <button title="View" class="btn btn-sm bg-warning text-white"
+                                            data-bs-toggle="modal" data-bs-target="#">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                        <button title="Approve" class="btn btn-sm bg-success text-white"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#approve_pengarsipan{{ $item->no_dokumen }}">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        <button title="Reject" class="btn btn-sm bg-danger text-white"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#tolak_pengarsipan{{ $item->no_dokumen }}">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    @else
+                                        <button title="View" class="btn btn-sm bg-warning text-white"
+                                            data-bs-toggle="modal" data-bs-target="#">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -67,6 +94,7 @@
         </div>
     </div>
 
-    {{-- @include('superadmin.modal.m_tambah_ruang')
-    @include('superadmin.modal.m_edit_ruang') --}}
+    @include('superadmin.modal.m_approve_arsip')
+    @include('superadmin.modal.m_approve_tolak-arsip')
+    @include('sweetalert::alert')
 @endsection

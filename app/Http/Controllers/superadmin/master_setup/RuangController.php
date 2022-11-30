@@ -48,12 +48,11 @@ class RuangController extends Controller
         $this->validate(
             $request,
             [
-                'nama_ruang' => 'required|unique:ruang,nama_ruang|min:4'
+                'nama_ruang' => 'required|unique:ruang,nama_ruang'
             ],
             [
                 'nama_ruang.required' => 'Nama Ruang wajib diisi!',
-                'nama_ruang.unique' => 'Nama Ruang sudah ada!',
-                'nama_ruang.min' => 'Nama Ruang minimal 4 huruf!'
+                'nama_ruang.unique' => 'Nama Ruang sudah ada!'
             ]
         );
 

@@ -27,7 +27,7 @@
             </div>
 
             <!-- Nav Item - Beranda -->
-            <li class="nav-item {{ request()->is('') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Dashboard</span></a>

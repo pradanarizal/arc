@@ -117,7 +117,7 @@ class DokumenController extends Controller
                 'deskripsi' => $request->input('deskripsi_dokumen'),
                 'divisi' => Auth::user()->divisi,
                 'tgl_upload' => \Carbon\Carbon::now(),
-                'status_dokumen' => 'Retensi',
+                'status_dokumen' => 'Pending',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),

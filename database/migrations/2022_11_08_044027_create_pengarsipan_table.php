@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pengarsipan', function (Blueprint $table) {
             $table->id('id_pengarsipan');
-            $table->date('tgl_pengarsipan')->nullable();
+            $table->dateTime('tgl_pengarsipan')->nullable();
             $table->enum('status_pengarsipan', ['Pending', 'Ya','Tidak']);
             $table->timestamps();
         });

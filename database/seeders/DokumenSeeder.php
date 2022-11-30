@@ -17,8 +17,8 @@ class DokumenSeeder extends Seeder
     {
         DB::table('dokumen')->insert([
             [
-                'no_dokumen' => '12345',
-                'status_dokumen' => 'Tersedia',
+                'no_dokumen' => '1',
+                'status_dokumen' => 'Pending',
                 'divisi' => 'IT Support',
                 'nama_dokumen' => 'ITSR',
                 'tahun_dokumen' => '2019',
@@ -33,10 +33,10 @@ class DokumenSeeder extends Seeder
                 'created_at' => \Carbon\Carbon::now(),
             ],
             [
-                'no_dokumen' => '123456',
-                'status_dokumen' => 'Retensi',
+                'no_dokumen' => '2',
+                'status_dokumen' => 'Pending',
                 'divisi' => 'IT Operation',
-                'nama_dokumen' => 'oke oke',
+                'nama_dokumen' => 'ITSR C-ad',
                 'tahun_dokumen' => '2019',
                 'deskripsi' => 'Retensi Dokumen Lama',
                 'tgl_upload' => \Carbon\Carbon::now(),
@@ -49,10 +49,10 @@ class DokumenSeeder extends Seeder
                 'created_at' => \Carbon\Carbon::now(),
             ],
             [
-                'no_dokumen' => '1234567',
-                'status_dokumen' => 'Dipinjam',
+                'no_dokumen' => '3',
+                'status_dokumen' => 'Pengarsipan',
                 'divisi' => 'IT Dokumen',
-                'nama_dokumen' => 'ITSR C-Ad',
+                'nama_dokumen' => 'Commuter',
                 'tahun_dokumen' => '2020',
                 'deskripsi' => 'Peminjaman Dokumen Penting',
                 'tgl_upload' => \Carbon\Carbon::now(),
@@ -65,7 +65,7 @@ class DokumenSeeder extends Seeder
                 'created_at' => \Carbon\Carbon::now(),
             ],
             [
-                'no_dokumen' => '12',
+                'no_dokumen' => '4',
                 'status_dokumen' => 'Pengarsipan',
                 'divisi' => 'IT Komersial',
                 'nama_dokumen' => 'ITSR Arsip',

@@ -45,9 +45,9 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
-                                <td>{{ date('d-m-yy', strtotime($item->tgl_ambil)) }}</td>
-                                <td>{{ date('d-m-yy', strtotime($item->tgl_kembali)) }}</td>
-                                <td>{{ date('d-m-yy', strtotime($item->tgl_pengembalian)) }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl_ambil)) }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl_kembali)) }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl_pengembalian)) }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
