@@ -76,9 +76,36 @@ class RetensiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $no_dokumen)
     {
-        //
+        $update_retensi = [
+            'tgl_retensi' => \Carbon\Carbon::now(),
+            'status_retensi' =>  $request->input('retensi'),
+            'updated_at' => \Carbon\Carbon::now()
+        ];
+
+        $update_dokumen = [
+            'status_dokumen' =>  $request->input('status_dok'),
+            'updated_at' => \Carbon\Carbon::now()
+        ];
+
+        if ($request->input('jenis') == 'approve') {
+            if ($this->RetensiModel->approval_retensi($update_retensi, $update_dokumen, $no_dokumen)) {
+                return redirect('/approval/retensi')->with('toast_success', 'Retensi di-Approve!');
+            } else {
+                return redirect('/approval/retensi');
+            }
+        } elseif ($request->input('jenis') == 'tolak') {
+            if ($this->RetensiModel->approval_retensi($update_retensi, $update_dokumen, $no_dokumen)) {
+                return redirect('/approval/retensi')->with('toast_success', 'Retensi di-Reject!');
+            } else {
+                return redirect('/approval/retensi');
+            }
+        }
+
+
+
+
     }
 
     /**

@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('dokumen', function (Blueprint $table) {
             // $table->id('id_dokumen');
             $table->id('no_dokumen');
-            $table->enum('status_dokumen', ['Dipinjam', 'Tersedia', 'Pengarsipan', 'Retensi', 'Rejected']);
+            $table->enum('status_dokumen', ['Dipinjam', 'Tersedia', 'Pengarsipan', 'Retensi', 'Rejected','Pending']);
             $table->string('divisi');
             $table->string('nama_dokumen');
             $table->string('tahun_dokumen');

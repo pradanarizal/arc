@@ -17,10 +17,10 @@ class PengembalianSeeder extends Seeder
     {
         DB::table('pengembalian')->insert([
             [
-                'id_pengembalian' => '01',
-                'no_dokumen' => '12345',
-                'id_peminjaman' => '01',
-                'tgl_pengembalian' => '2050-12-25',
+                'id_pengembalian' => '1',
+                'no_dokumen' => '1',
+                'id_peminjaman' => '1',
+                'tgl_pengembalian' => '2021-12-25',
                 'id' => '1'
             ],
 

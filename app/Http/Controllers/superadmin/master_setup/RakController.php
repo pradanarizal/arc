@@ -48,12 +48,11 @@ class RakController extends Controller
         $this->validate(
             $request,
             [
-                'nama_rak' => 'required|unique:rak,nama_rak|min:4'
+                'nama_rak' => 'required|unique:rak,nama_rak'
             ],
             [
                 'nama_rak.required' => 'Nama Rak wajib diisi!',
-                'nama_rak.unique' => 'Nama Rak sudah ada!',
-                'nama_rak.min' => 'Nama Rak minimal 4 huruf!'
+                'nama_rak.unique' => 'Nama Rak sudah ada!'
             ]
         );
 
