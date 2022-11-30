@@ -11,6 +11,19 @@ class PengarsipanModel extends Model
     public function allData()
     {
         return DB::table('pengarsipan')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+            // ->where('status_dokumen', '=', 'Pengarsipan')
             ->get();
     }
+
+    public function approval_arsip($update_dokumen, $update_pengarsipan, $no_dokumen)
+    {
+        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen) && DB::table('pengarsipan')->where('no_dokumen', $no_dokumen)->update($update_pengarsipan)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

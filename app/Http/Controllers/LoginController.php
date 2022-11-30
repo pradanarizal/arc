@@ -16,15 +16,27 @@ class LoginController extends Controller
     // aji
     public function postlogin(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-            'captcha' => 'required|captcha',
-        ]);
-        if (Auth::attempt($request->only('email', 'password',))) {
-            return redirect('/dashboard');
+        $request->validate(
+            [
+                'email' => 'required',
+                'password' => 'required',
+                'captcha' => 'required|captcha',
+            ],
+            [
+                'email.required' => 'Email wajib diisi',
+                'password.required' => 'Password wajib diisi',
+                'captcha.required' => 'Captcha wajib diisi',
+            ]
+        );
+        // captcha_check($value);
+
+        if (captcha_check($request->captcha) == true) {
+            if (Auth::attempt($request->only('email', 'password'))) {
+                return redirect('/dashboard');
+            }
+        } else {
+            return redirect('/login')->with('toast_error', 'Captcha yang Anda masukkan salah');
         }
-        return redirect('/');
     }
     public function refreshCapcha()
     {

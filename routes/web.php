@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\superadmin\menu_dokumen\DokumenController;
 use App\Http\Controllers\superadmin\master_setup\RuangController;
@@ -39,37 +39,45 @@ use Illuminate\Routing\RouteGroup;
 //     return view('welcome');
 // });
 
-Route::get('/', [LoginController::class, 'view_login'])->name('login');
+Route::get('/', [DashboardController::class, 'beforelogin'])->name('first');
+
+Route::get('/login', [LoginController::class, 'view_login'])->name('login');
 Route::post('/postlogin', [LoginController::class, 'postlogin'])->name('postlogin');
 Route::get('/refreshCapcha', [LoginController::class, 'refreshCapcha']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-
-// Menu Super Admin
-// Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
-//     Route::get('/dokumen', [SadminController::class, 'dokumen'])->name('dokumen');
-// });
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/dashboard', [DashboardController::class, 'afterlogin'])->name('dashboard');
+});
 
 //// Untuk Admin ////
 Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
+    //Menu Dokumen
     Route::get('/dokumen_admin', [DokumenadminController::class, 'index'])->name('dokumen');
+    Route::get('/detail_dokumen_admin/{id}', [DokumenadminController::class, 'detail_data'])->name('dokumen');
+    //Menu Riwayat
     Route::get('/riwayat/riwayat_pengarsipan', [RiwayatpengarsipanController::class, 'index']);
     Route::get('/riwayat/riwayat_retensi', [RiwayatretensiController::class, 'index']);
     Route::get('/riwayat/riwayat_peminjaman', [RiwayatpeminjamanController::class, 'index']);
     Route::get('/riwayat/riwayat_pengembalian', [RiwayatpengembalianController::class, 'index']);
+    // Untuk CRUD Dokumen
+    Route::resource('/input_retensi_admin', DokumenadminController::class);
+    Route::resource('/input_pengarsipan_admin', DokumenadminController::class);
 });
 
 //// Untuk User ////
 Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
-    Route::get('/dokumen', [UserController::class, 'dokumen'])->name('dokumen');
+    Route::get('/dokumen_user', [UserController::class, 'index'])->name('dokumen');
+    Route::get('/detail_dokumen_user/{id}', [UserController::class, 'detail_data'])->name('dokumen');
 });
 
 //// Untuk Super Admin ////
 Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     //Menu Dokumen
-    Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
+    // Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
+    Route::resource('/dokumen', DokumenController::class);
+    Route::get('/detail_dokumen/{id}', [DokumenController::class, 'detail_data'])->name('dokumen');
 
     //Menu Master Setup
     Route::get('/master_setup/ruang', [RuangController::class, 'index'])->name('ruang');
@@ -94,6 +102,14 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::resource('/kelengkapan', KelengkapanController::class);
 
     // Untuk CRUD Dokumen
+    Route::resource('/input_retensi', DokumenController::class);
+    Route::resource('/input_pengarsipan', DokumenController::class);
+
+    // Approval
+    Route::resource('/retensi', RetensiController::class);
+    Route::resource('/pengarsipan', PengarsipanController::class);
+
+
 });
 
 //Menu Profil

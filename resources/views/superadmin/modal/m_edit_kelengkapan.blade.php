@@ -1,5 +1,5 @@
 @foreach ($kelengkapan_dokumen as $item)
-<div class="modal fade" id="edit_surat{{ $item->id_kel_dokumen }}" tabindex="-1" aria-labelledby="edit_surat" aria-hidden="true">
+<div class="modal fade" id="edit_surat{{ $item->id_kel_dokumen }}" tabindex="-1" aria-labelledby="edit_kel_dokumen" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 

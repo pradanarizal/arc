@@ -15,13 +15,17 @@ return new class extends Migration
     {
         Schema::create('retensi', function (Blueprint $table) {
             $table->id('id_retensi');
-            $table->string('no_dokumen');
-            $table->string('nama_dokumen');
-            $table->text('deskripsi');
-            $table->date('tgl_upload');
-            $table->string('pemohon');
+            $table->dateTime('tgl_retensi')->nullable();
             $table->enum('status_retensi', ['Pending', 'Ya', 'Tidak']);
             $table->timestamps();
+        });
+        Schema::table('retensi', function (Blueprint $table) {
+            $table->unsignedBigInteger('no_dokumen');
+            $table->foreign('no_dokumen')->references('no_dokumen')->on('dokumen');
+        });
+        Schema::table('retensi', function (Blueprint $table) {
+            $table->unsignedBigInteger('id');
+            $table->foreign('id')->references('id')->on('users');
         });
     }
 

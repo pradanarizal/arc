@@ -29,9 +29,11 @@
                             <th>No</th>
                             <th>No. Dok</th>
                             <th>Nama Dokumen</th>
+                            <th>Tahun Dokumen</th>
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Pemohon</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -44,18 +46,43 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
+                                <td>{{ $item->tahun_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->tgl_upload }}</td>
-                                <td>{{ $item->pemohon }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
+                                <td>{{ $item->name }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="fa fa-times"></i>
-                                    </button>
+                                    @if ($item->status_retensi == 'Pending')
+                                        <span title="Menunggu Approval"
+                                            class="badge badge-warning p-2">{{ $item->status_retensi }}</span>
+                                    @elseif ($item->status_retensi == 'Ya')
+                                        <span title="Approved"
+                                            class="badge badge-success p-2">{{ $item->status_retensi }}</span>
+                                    @else
+                                        <span title="Rejected"
+                                            class="badge badge-danger p-2">{{ $item->status_retensi }}</span>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if ($item->status_retensi == 'Pending')
+                                        <button title="View" class="btn btn-sm bg-warning text-white"
+                                            data-bs-toggle="modal" data-bs-target="#">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                        <button title="Approve" class="btn btn-sm bg-success text-white"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#approve_retensi{{ $item->no_dokumen }}">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        <button title="Reject" class="btn btn-sm bg-danger text-white"
+                                            data-bs-toggle="modal" data-bs-target="#tolak_retensi{{ $item->no_dokumen }}">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    @else
+                                        <button title="View" class="btn btn-sm bg-warning text-white"
+                                            data-bs-toggle="modal" data-bs-target="#">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -65,6 +92,7 @@
         </div>
     </div>
 
-    {{-- @include('superadmin.modal.m_tambah_ruang')
-    @include('superadmin.modal.m_edit_ruang') --}}
+    @include('superadmin.modal.m_approve_retensi')
+    @include('superadmin.modal.m_approve_tolak-retensi')
+    @include('sweetalert::alert')
 @endsection

@@ -17,14 +17,19 @@ class PengarsipanSeeder extends Seeder
     {
         DB::table('pengarsipan')->insert([
             [
-                'id_pengarsipan' => '01',
-                'no_dokumen' => '123',
-                'nama_dokumen' => 'apa yaaa',
-                'deskripsi' => 'wawawawawawawa',
-                'tgl_upload' => '2050-12-25 12:10:09',
-                'pemohon' => 'antooo',
+                'id_pengarsipan' => '1',
+                'no_dokumen' => '3',
+                'status_pengarsipan' => 'Pending',
+                'id' => '1',
+                'created_at' => \Carbon\Carbon::now(),
             ],
-        
+            [
+                'id_pengarsipan' => '2',
+                'no_dokumen' => '4',
+                'status_pengarsipan' => 'Pending',
+                'id' => '2',
+                'created_at' => \Carbon\Carbon::now(),
+            ],
         ]);
     }
 }

@@ -36,27 +36,37 @@
                             <th>Nama Dokumen</th>
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <?php $no = 1; ?>
                         {{-- Ambil data dari controller --}}
-                        <tr>
-                            <td>1</td>
-                            <td>a</td>
-                            <td>b</td>
-                            <td>c</td>
-                            <td>d</td>
-                            <td class="text-center">
-                                <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal" data-bs-target="#">
-                                    Pinjam
-                                </button>
-                                <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">
-                                    Retensi
-                                </button>
-                            </td>
-                        </tr>
+                        @foreach ($dokumen as $item)
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $item->no_dokumen }}</td>
+                                <td>{{ $item->nama_dokumen }}</td>
+                                <td>{{ $item->deskripsi }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
+                                <td>{{ $item->status_dokumen }}</td>
+                                <td class="text-center">
+                                    <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
+                                        href="/detail_dokumen_admin/{{ $item->no_dokumen }}">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <button title="Pinjam Dokumen" class="btn btn-sm bg-success text-white"
+                                        data-bs-toggle="modal" data-bs-target="#pinjam_dokumen">
+                                        <i class="fas fa-file-export"></i>
+                                    </button>
+                                    <button title="Retensi Dokumen" class="btn btn-sm bg-danger text-white"
+                                        data-bs-toggle="modal" data-bs-target="#">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -65,6 +75,8 @@
     {{--
 </div> --}}
     <!-- /.container-fluid -->
-    @include('superadmin.modal.m_tambah_dokumen')
-    @include('superadmin.modal.m_tambah_retensi')
+    @include('admin.modal.m_tambah_dokumen')
+    @include('admin.modal.m_tambah_retensi')
+    @include('admin.modal.m_pinjam_dokumen')
+    @include('sweetalert::alert')
 @endsection

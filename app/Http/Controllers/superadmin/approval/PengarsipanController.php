@@ -77,9 +77,31 @@ class PengarsipanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $no_dokumen)
     {
-        //
+        $update_dokumen = [
+            'status_dokumen' => $request->input('status_dok'),
+            'updated_at' => \Carbon\Carbon::now(),
+        ];
+        $update_pengarsipan = [
+            'tgl_pengarsipan' => \Carbon\Carbon::now(),
+            'status_pengarsipan' =>  $request->input('pengarsipan'),
+            'updated_at' => \Carbon\Carbon::now(),
+        ];
+
+        if ($request->input('jenis') == 'approve') {
+            if ($this->PengarsipanModel->approval_arsip($update_dokumen, $update_pengarsipan, $no_dokumen)) {
+                return redirect('/approval/pengarsipan')->with('toast_success', 'Pengarsipan di-Approve!');
+            } else {
+                return redirect('/approval/pengarsipan');
+            }
+        } elseif ($request->input('jenis') == 'tolak') {
+            if ($this->PengarsipanModel->approval_arsip($update_dokumen, $update_pengarsipan, $no_dokumen)) {
+                return redirect('/approval/pengarsipan')->with('toast_success', 'Pengarsipan di-Reject!');
+            } else {
+                return redirect('/approval/pengarsipan');
+            }
+        }
     }
 
     /**

@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\DB;
 class KelengkapanDokumenModel extends Model
 {
     // use HasFactory;
-    public function keldokData()
+    public function allData()
     {
         return DB::table('kelengkapan_dokumen')
-            ->get();
+        ->get();
     }
     //tambah opsi surat
     public function insert_surat($data)

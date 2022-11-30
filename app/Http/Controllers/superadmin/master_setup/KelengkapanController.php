@@ -22,10 +22,10 @@ class KelengkapanController extends Controller
 
     public function index()
     {
-        $data7 = [
-            'kelengkapan_dokumen' => $this->KelengkapanDokumenModel->keldokData()
+        $data = [
+            'kelengkapan_dokumen' => $this->KelengkapanDokumenModel->allData()
         ];
-        return view('superadmin.master_setup.kelengkapan', $data7);
+        return view('superadmin.master_setup.kelengkapan', $data);
     }
 
     /**
@@ -49,12 +49,11 @@ class KelengkapanController extends Controller
         $this->validate(
             $request,
             [
-                'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen|min:4'
+                'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen'
             ],
             [
                 'kelengkapan.required' => 'Nama Dokumen wajib diisi!',
                 'kelengkapan.unique' => 'Nama Dokumen sudah ada!',
-                'kelengkapan.min' => 'Nama Dokumen minimal 4 huruf!'
             ]
         );
 
@@ -97,24 +96,23 @@ class KelengkapanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_kel_dokumen)
     {
         $this->validate(
             $request,
             [
-                'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen|min:4'
+                'kelengkapan' => 'required|unique:kelengkapan_dokumen,nama_kel_dokumen'
             ],
             [
                 'kelengkapan.required' => 'Nama Dokumen wajib diisi!',
-                'kelengkapan.unique' => 'Nama Dokumen sudah ada!',
-                'kelengkapan.min' => 'Nama Dokumen minimal 4 huruf!'
+                'kelengkapan.unique' => 'Nama Dokumen sudah ada!'
             ]
         );
 
         $data = [
             'nama_kel_dokumen' => $request->input('kelengkapan')
         ];
-        if ($this->KelengkapanDokumenModel->update_surat($data, $id)) {
+        if ($this->KelengkapanDokumenModel->update_surat($data, $id_kel_dokumen)) {
             return redirect('/master_setup/kelengkapan_dokumen')->with('toast_success', 'Berhasil Edit Kelengkapan Dokumen');
         } else {
             return redirect('/master_setup/kelengkapan_dokumen');

@@ -10,7 +10,7 @@
                         aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    Yakin Ingin Menghapus Ruang {{ $item->nama_kel_dokumen}}?
+                    Yakin Ingin Menghapus Surat {{ $item->nama_kel_dokumen}}?
                 </div>
                 <form action="/kelengkapan/{{ $item->id_kel_dokumen }}" method="POST">
                     @csrf
