@@ -2,7 +2,7 @@
 @section('content')
     <!-- Page Heading -->
 
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center mb-3">
         <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Transaksi</p>
         <p class="mb-0 text-gray-800 text-small">Data Approval Peminjaman</p>
     </div>
@@ -18,9 +18,6 @@
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Approval Peminjaman</h6>
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -52,7 +49,8 @@
                                         data-bs-target="#">
                                         <i class="fa fa-check"></i>
                                     </button>
-                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal" data-bs-target="#">
+                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                        data-bs-target="#">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </td>

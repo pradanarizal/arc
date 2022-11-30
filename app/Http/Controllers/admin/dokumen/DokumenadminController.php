@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Response;
 
 class DokumenadminController extends Controller
 {
@@ -20,6 +21,12 @@ class DokumenadminController extends Controller
         $this->DokumenModel = new DokumenModel();
     }
 
+    public function showPdfAdmin($nomorDokumen)
+    {
+        return Response::make(file_get_contents('data_file/pengarsipan/'.$nomorDokumen.'.pdf'), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+    }
     //Halaman Detail Dokumen
     public function detail_data($id)
     {
@@ -107,7 +114,7 @@ class DokumenadminController extends Controller
         }
 
         // upload file
-        $file_dokumen = $file->move($direktori_file, $file->hashName());
+        $file_dokumen = $file->move($direktori_file, $request->input('nomor_dokumen').".pdf");
 
         if ($request->input('jenis') == 'Retensi') {
             $data = [

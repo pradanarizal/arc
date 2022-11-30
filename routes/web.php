@@ -64,6 +64,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
     // Untuk CRUD Dokumen
     Route::resource('/input_retensi_admin', DokumenadminController::class);
     Route::resource('/input_pengarsipan_admin', DokumenadminController::class);
+    // showpdf
+    Route::get('/showPdfAdmin/{nomorDokumen}', [DokumenadminController::class, 'showPdfAdmin'])->name('dokumen');
 });
 
 //// Untuk User ////
@@ -109,7 +111,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::resource('/retensi', RetensiController::class);
     Route::resource('/pengarsipan', PengarsipanController::class);
 
-
+    // show pdf
+    Route::get('/showPdf/{nomorDokumen}', [DokumenController::class, 'showPdf'])->name('dokumen');
 });
 
 //Menu Profil

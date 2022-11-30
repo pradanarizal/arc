@@ -1,4 +1,4 @@
-<div class="modal fade" id="tambah_surat" tabindex="-1" aria-labelledby="tambah_surat" aria-hidden="true">
+<div class="modal fade" id="tambah_kelengkapan" tabindex="-1" aria-labelledby="tambah_surat" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -12,17 +12,18 @@
             <div class="modal-body">
                 <!--FORM TAMBAH BARANG-->
                 <form action="/kelengkapan" method="post" enctype="multipart/form-data">
-                @csrf
+                    @csrf
                     <div class="form-group">
                         <label for="kelengkapan">Nama Kelengkapan Dokumen</label>
                         <input type="text" class="form-control" id="kelengkapan" name="kelengkapan"
                             aria-describedby="emailHelp" value="{{ old('kelengkapan') }}">
-                            @error('kelengkapan')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        @error('kelengkapan')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
-                    <button class="btn btn-danger tombol-aksi float-right" type="button" data-bs-dismiss="modal">Batal</button>
+                    <button class="btn btn-danger tombol-aksi float-right" type="button"
+                        data-bs-dismiss="modal">Batal</button>
                 </form>
                 <!--END FORM TAMBAH BARANG-->
             </div>
@@ -55,5 +56,5 @@
             });
         </script>
     @break
-    @enderror
+@enderror
 @endforeach
