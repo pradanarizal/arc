@@ -4,17 +4,22 @@ namespace App\Http\Controllers\admin\riwayat;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\approval\PengembalianModel;
 
 class RiwayatpengembalianController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->Model = new PengembalianModel();
+    }
+
     public function index()
     {
-        return view('admin.riwayat.riwayat-pengembalian');
+        $data = [
+            'dokumen' => $this->Model->allData()
+        ];
+
+        return view('admin.riwayat.riwayat-pengembalian', $data);
     }
 
     /**

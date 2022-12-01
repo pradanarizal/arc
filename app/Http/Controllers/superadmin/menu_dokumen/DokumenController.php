@@ -7,9 +7,16 @@ use App\Models\DokumenModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Response;
 
 class DokumenController extends Controller
 {
+    public function showPdf($nomorDokumen)
+    {
+        return Response::make(file_get_contents('data_file/pengarsipan/'.$nomorDokumen.'.pdf'), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+    }
     //Halaman Detail Dokumen
     public function detail_data($id)
     {
@@ -59,7 +66,7 @@ class DokumenController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => 'required|unique:dokumen,file_dokumen',
+            'file' => 'required|unique:dokumen,file_dokumen|max:50000',
             'kelengkapan_dokumen' => 'required',
             'nama_dokumen' => 'required',
             'nomor_dokumen' => 'required',
@@ -107,7 +114,7 @@ class DokumenController extends Controller
         }
 
         // upload file
-        $file_dokumen = $file->move($direktori_file, $file->hashName());
+        $file_dokumen = $file->move($direktori_file, $request->input('nomor_dokumen').".pdf");
 
         if ($request->input('jenis') == 'Retensi') {
             $data = [

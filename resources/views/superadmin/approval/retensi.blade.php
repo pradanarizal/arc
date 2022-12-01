@@ -2,7 +2,7 @@
 @section('content')
     <!-- Page Heading -->
 
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center mb-3">
         <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Transaksi</p>
         <p class="mb-0 text-gray-800 text-small">Data Approval Retensi</p>
     </div>
@@ -18,9 +18,6 @@
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Approval Retensi</h6>
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

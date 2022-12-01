@@ -1,27 +1,33 @@
 @extends('layout.template')
 @section('content')
     <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-3">
+        <div class="d-flex align-items-center">
+            <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Master</p>
+            <p class="mb-0 text-gray-800 text-small">Ruang Penyimpanan</p>
+        </div>
 
-    <div class="d-flex align-items-center">
-        <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Master</p>
-        <p class="mb-0 text-gray-800 text-small">Ruang Penyimpanan</p>
+        <div class="d-none d-sm-inline-block justify-content-end p-2">
+            <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal"
+                data-bs-target="#tambah_ruang">
+                <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
+                Add Ruang
+            </button>
+        </div>
     </div>
 
     <!-- Begin Page Content -->
 
-    <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
+    {{-- <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
         <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal"
             data-bs-target="#tambah_ruang">
             <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
             Add Ruang
         </button>
-    </div>
+    </div> --}}
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Statistik Ruang Penyimpanan</h6>
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -64,5 +70,4 @@
     @include('superadmin.modal.m_delete_ruang')
     @include('superadmin.modal.m_edit_ruang')
     @include('sweetalert::alert')
-
 @endsection

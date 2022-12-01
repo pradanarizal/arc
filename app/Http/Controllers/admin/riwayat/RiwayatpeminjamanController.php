@@ -4,17 +4,21 @@ namespace App\Http\Controllers\admin\riwayat;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\approval\PeminjamanModel;
 
 class RiwayatpeminjamanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->Model = new PeminjamanModel();
+    }
+
     public function index()
     {
-        return view('admin.riwayat.riwayat-peminjaman');
+        $data = [
+            'dokumen' => $this->Model->allData()
+        ];
+        return view('admin.riwayat.riwayat-peminjaman', $data);
     }
 
     /**

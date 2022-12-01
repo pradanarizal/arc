@@ -7,55 +7,58 @@
         <p class="mb-0 text-gray-800 text-small">Detail Data</p>
     </div>
     @foreach ($dokumen as $item)
-    <div class="container row mt-3">
-        <div class="col-lg-5 bg-white p-4 mb-2 rounded">
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-5 col-form-label">No Dokumen</label>
-                <div class="col-sm-6">
-                    <input type="text" readonly class="form-control-plaintext" value="{{ $item->no_dokumen }}">
+        <div class="container row mt-3">
+            <div class="col-lg-6 bg-white p-4 mb-2 rounded">
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">No Dokumen</label>
+                    <div class="col-sm-6">
+                        <label class="col-form-label">{{ $item->no_dokumen }}</label>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-5 col-form-label">Nama Dokumen</label>
-                <div class="col-sm-6">
-                    <input type="text" readonly class="form-control-plaintext" value="{{ $item->nama_dokumen }}">
+                <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Nama Dokumen</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ $item->nama_dokumen }}</label>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-5 col-form-label">Deskripsi</label>
-                <div class="col-sm-6">
-                    <input type="text" readonly class="form-control-plaintext" value="{{ $item->deskripsi }}">
+                <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Tahun Dokumen</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ $item->tahun_dokumen }}</label>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-5 col-form-label">Tahun Dokumen</label>
-                <div class="col-sm-6">
-                    <input type="text" readonly class="form-control-plaintext" value="{{ $item->tahun_dokumen }}">
+                <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Deskripsi</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ $item->deskripsi }}</label>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-5 col-form-label">Nama Kelengkapan</label>
-                <div class="col-sm-6">
-                    <input type="text" readonly class="form-control-plaintext" value="{{ $item->nama_kel_dokumen }}">
+                <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Kelengkapan Dokumen</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ $item->nama_kel_dokumen }}</label>
+                    </div>
                 </div>
-            </div>
-            <hr>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Upload</label>
-                <div class="col-sm-6">
-                    <input type="text" readonly class="form-control-plaintext"
-                        value="{{ date('d-m-yy', strtotime($item->tgl_upload)) }}">
+                <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Upload</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ date('d-m-yy', strtotime($item->tgl_upload)) }}</label>
+                    </div>
                 </div>
+                <hr>
             </div>
-            <hr>
+            <div class="col-lg-6">
+                {{-- <iframe src="http://docs.google.com/gview?url={{ URL::to('/') }}/data_file/retensi/pIeUUMHjMNiLzoKz4PF25TKQqL0eq41SBluTv6zl.pdf&embedded=true"
+                style="width:600px; height:500px;" frameborder="0"></iframe>  --}}
+                <iframe src="{{ URL::to('/') }}/showPdfAdmin/{{ $item->no_dokumen }}" width="100%" height="500"
+                    frameborder="0">
+                </iframe>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <iframe src="public/data_file/retensi/pIeUUMHjMNiLzoKz4PF25TKQqL0eq41SBluTv6zl.pdf" height="auto" width="auto"></iframe>
-        </div>
-    </div>
     @endforeach
 @endsection
