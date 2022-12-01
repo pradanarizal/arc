@@ -66,7 +66,24 @@
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td>
-                                    <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item text-warning"
+                                                href="/detail_dokumen/{{ $item->no_dokumen }}"><i
+                                                    class="fas fa-eye fa-warning"></i> Lihat</a>
+                                        </li>
+                                        <li><a class="dropdown-item text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modaledit{{ $item->no_dokumen }}"><i
+                                                    class="fas fa-file-export fa-primary"></i>
+                                                Edit</a>
+                                        </li>
+                                        <li><a class="dropdown-item text-danger" href="#"><i
+                                                    class="fas fa-trash fa-danger"></i> Retensi</a>
+                                        </li>
+                                    </ul>
+                                    {{-- <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
                                         href="/detail_dokumen/{{ $item->no_dokumen }}">
                                         <i class="fas fa-eye"></i>
                                     </a>
@@ -77,7 +94,7 @@
                                     <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
                                         data-bs-target="#modalhapus">
                                         <i class="fa fa-trash"></i>
-                                    </button>
+                                    </button> --}}
                                 </td>
                             </tr>
                         @endforeach

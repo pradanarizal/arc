@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
 Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
     Route::get('/dokumen_user', [UserController::class, 'index'])->name('dokumen');
     Route::get('/detail_dokumen_user/{id}', [UserController::class, 'detail_data'])->name('dokumen');
+    Route::get('/showPdfUser/{nomorDokumen}', [UserController::class, 'showPdfUser'])->name('dokumen');
 });
 
 //// Untuk Super Admin ////

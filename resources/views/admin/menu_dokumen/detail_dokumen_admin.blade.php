@@ -24,13 +24,6 @@
                 </div>
                 <hr>
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-5 col-form-label">Deskripsi</label>
-                    <div class="col-sm-6">
-                        <label class=" col-form-label">{{ $item->deskripsi }}</label>
-                    </div>
-                </div>
-                <hr>
-                <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tahun Dokumen</label>
                     <div class="col-sm-6">
                         <label class=" col-form-label">{{ $item->tahun_dokumen }}</label>
@@ -38,7 +31,14 @@
                 </div>
                 <hr>
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-5 col-form-label">Nama Kelengkapan</label>
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Deskripsi</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ $item->deskripsi }}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Kelengkapan Dokumen</label>
                     <div class="col-sm-6">
                         <label class=" col-form-label">{{ $item->nama_kel_dokumen }}</label>
                     </div>
