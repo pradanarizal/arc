@@ -66,7 +66,7 @@ class DokumenController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'file' => 'required|unique:dokumen,file_dokumen|size:50000',
+            'file' => 'required|unique:dokumen,file_dokumen|max:50000',
             'kelengkapan_dokumen' => 'required',
             'nama_dokumen' => 'required',
             'nomor_dokumen' => 'required',
