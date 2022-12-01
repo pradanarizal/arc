@@ -11,20 +11,6 @@ use Response;
 
 class DokumenController extends Controller
 {
-    public function showPdf($nomorDokumen)
-    {
-        return Response::make(file_get_contents('data_file/pengarsipan/'.$nomorDokumen.'.pdf'), 200, [
-            'content-type'=>'application/pdf',
-        ]);
-    }
-    //Halaman Detail Dokumen
-    public function detail_data($id)
-    {
-        $data = [
-            'dokumen' => $this->DokumenModel->getDokumenById($id)
-        ];
-        return view('superadmin.menu_dokumen.detail_dokumen', $data);
-    }
 
     /**
      * Display a listing of the resource.
@@ -35,6 +21,21 @@ class DokumenController extends Controller
     public function __construct()
     {
         $this->DokumenModel = new DokumenModel();
+    }
+
+    public function showPdf($nomorDokumen)
+    {
+        return Response::make(file_get_contents('data_file/pengarsipan/' . $nomorDokumen . '.pdf'), 200, [
+            'content-type' => 'application/pdf',
+        ]);
+    }
+    //Halaman Detail Dokumen
+    public function detail_data($id)
+    {
+        $data = [
+            'dokumen' => $this->DokumenModel->getDokumenById($id)
+        ];
+        return view('superadmin.menu_dokumen.detail_dokumen', $data);
     }
 
     public function index()
@@ -65,23 +66,24 @@ class DokumenController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'file' => 'required|unique:dokumen,file_dokumen|max:50000',
-            'kelengkapan_dokumen' => 'required',
-            'nama_dokumen' => 'required',
-            'nomor_dokumen' => 'required',
-            'tahun_dokumen' => 'required',
-            'deskripsi_dokumen' => 'required',
-        ],
-        [
-            'file.required' => 'File dokumen wajib diupload!',
-            'kelengkapan_dokumen.required' => 'Pilih kelengkapan dokumen!',
-            'nama_dokumen.required' => 'Nama Dokumen wajib diisi!',
-            'nomor_dokumen.required' => 'Nomor Dokumen wajib diisi!',
-            'tahun_dokumen.required' => 'Pilih tahun dokumen!',
-            'deskripsi_dokumen.required' => 'Deskripsi wajib diisi!',
-        ]
-    );
+        $request->validate(
+            [
+                'file' => 'required|unique:dokumen,file_dokumen|max:50000',
+                'kelengkapan_dokumen' => 'required',
+                'nama_dokumen' => 'required',
+                'nomor_dokumen' => 'required',
+                'tahun_dokumen' => 'required',
+                'deskripsi_dokumen' => 'required',
+            ],
+            [
+                'file.required' => 'File dokumen wajib diupload!',
+                'kelengkapan_dokumen.required' => 'Pilih kelengkapan dokumen!',
+                'nama_dokumen.required' => 'Nama Dokumen wajib diisi!',
+                'nomor_dokumen.required' => 'Nomor Dokumen wajib diisi!',
+                'tahun_dokumen.required' => 'Pilih tahun dokumen!',
+                'deskripsi_dokumen.required' => 'Deskripsi wajib diisi!',
+            ]
+        );
 
         $kelengkapan_dokumen = implode(", ", $request->input('kelengkapan_dokumen'));
 
@@ -114,7 +116,7 @@ class DokumenController extends Controller
         }
 
         // upload file
-        $file_dokumen = $file->move($direktori_file, $request->input('nomor_dokumen').".pdf");
+        $file_dokumen = $file->move($direktori_file, $request->input('nomor_dokumen') . ".pdf");
 
         if ($request->input('jenis') == 'Retensi') {
             $data = [
@@ -138,12 +140,11 @@ class DokumenController extends Controller
             ];
 
             if ($this->DokumenModel->insert_retensi($data, $data2)) {
-                return redirect('/dokumen')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi!');
+                return redirect('/dokumen')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
             } else {
                 return redirect('/dokumen');
             }
-        }
-        elseif ($request->input('jenis')=='Pengarsipan') {
+        } elseif ($request->input('jenis') == 'Pengarsipan') {
             $data = [
                 'no_dokumen' => $request->input('nomor_dokumen'),
                 'nama_dokumen' => $request->input('nama_dokumen'),
@@ -200,9 +201,23 @@ class DokumenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $no_dokumen)
     {
-        //
+        //untuk pengajuan retensi dokumen, ubah status_dokumen - table dokumen
+        $update_dokumen = [
+            'status_dokumen' => $request->input('status_dok'),
+            'updated_at' => \Carbon\Carbon::now(),
+        ];
+        $update_retensi = [
+            'status_retensi' =>  $request->input('retensi'),
+            'updated_at' => \Carbon\Carbon::now(),
+        ];
+
+        if ($this->DokumenModel->pengajuan_retensi($update_dokumen, $update_retensi, $no_dokumen)) {
+            return redirect('/dokumen')->with('toast_success', 'Dokumen telah diteruskan ke menu Approval Retensi Arsip!');
+        } else {
+            return redirect('/dokumen');
+        }
     }
 
     /**

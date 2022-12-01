@@ -107,6 +107,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     // Untuk CRUD Dokumen
     Route::resource('/input_retensi', DokumenController::class);
     Route::resource('/input_pengarsipan', DokumenController::class);
+    Route::resource('/retensi_dokumen', DokumenController::class);
 
     // Approval
     Route::resource('/retensi', RetensiController::class);

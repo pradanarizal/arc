@@ -64,23 +64,34 @@
                                 <td>{{ $item->deskripsi }}</td>
                                 <td>{{ $item->nama_kel_dokumen }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
-                                <td>{{ $item->status_dokumen }}</td>
+                                <td>
+                                    @if ($item->status_dokumen == 'Tersedia')
+                                        <span title="Dokumen Tersedia"
+                                            class="badge badge-success p-2">{{ $item->status_dokumen }}</span>
+                                    @else
+                                        <span title="Dokumen sedang Dipinjam"
+                                            class="badge badge-warning p-2">{{ $item->status_dokumen }}</span>
+                                    @endif
+
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
                                         <i class="fas fa-cog"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item text-warning"
+                                        <li><button class="dropdown-item text-warning"
                                                 href="/detail_dokumen/{{ $item->no_dokumen }}"><i
-                                                    class="fas fa-eye fa-warning"></i> Lihat</a>
+                                                    class="fas fa-eye fa-warning"></i> Lihat</button>
                                         </li>
-                                        <li><a class="dropdown-item text-primary" data-bs-toggle="modal"
-                                                data-bs-target="#modaledit{{ $item->no_dokumen }}"><i
-                                                    class="fas fa-file-export fa-primary"></i>
-                                                Edit</a>
+                                        <li><button class="dropdown-item text-primary" data-bs-toggle="modal"
+                                                data-bs-target="#modaledit{{ $item->no_dokumen }}">
+                                                <i class="fas fa-file-export fa-primary"></i> Edit</button>
                                         </li>
-                                        <li><a class="dropdown-item text-danger" href="#"><i
-                                                    class="fas fa-trash fa-danger"></i> Retensi</a>
+                                        <li>
+                                            <button class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                data-bs-target="#retensi_dokumen{{ $item->no_dokumen }}">
+                                                <i class="fas fa-trash fa-danger"></i> Retensi
+                                            </button>
                                         </li>
                                     </ul>
                                     {{-- <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
@@ -108,5 +119,6 @@
     <!-- /.container-fluid -->
     @include('superadmin.modal.m_tambah_dokumen')
     @include('superadmin.modal.m_tambah_retensi')
+    @include('superadmin.modal.m_retensi_dokumen')
     @include('sweetalert::alert')
 @endsection
