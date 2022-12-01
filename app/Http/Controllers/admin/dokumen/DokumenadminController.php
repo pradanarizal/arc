@@ -66,7 +66,7 @@ class DokumenadminController extends Controller
     {
         $request->validate(
             [
-                'file' => 'required|unique:dokumen,file_dokumen',
+                'file' => 'required|unique:dokumen,file_dokumen|size:50000',
                 'kelengkapan_dokumen' => 'required',
                 'nama_dokumen' => 'required',
                 'nomor_dokumen' => 'required',
