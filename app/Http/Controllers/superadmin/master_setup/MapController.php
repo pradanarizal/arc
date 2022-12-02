@@ -49,12 +49,11 @@ class MapController extends Controller
         $this->validate(
             $request,
             [
-                'nama_map' => 'required|unique:map,nama_map|min:4'
+                'nama_map' => 'required|unique:map,nama_map'
             ],
             [
                 'nama_map.required' => 'Nama Map wajib diisi!',
                 'nama_map.unique' => 'Nama Map sudah ada!',
-                'nama_map.min' => 'Nama Map minimal 4 huruf!'
             ]
         );
 
