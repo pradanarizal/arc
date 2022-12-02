@@ -57,6 +57,10 @@ class DokumenModel extends Model
     {
         return DB::table('dokumen')
             ->select('*')
+            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
+            ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
+            ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
+            ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             ->where('no_dokumen', $id)
             ->get();
     }
