@@ -1,8 +1,8 @@
 @extends('layout.template')
 
 @section('content')
-<!-- Page Heading -->
-<div class="d-flex align-items-center">
+    <!-- Page Heading -->
+    <div class="d-flex align-items-center">
         <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Dokumen</p>
         <p class="mb-0 text-gray-800 text-small">Table Dokumen</p>
     </div>
@@ -41,7 +41,8 @@
                                 <td>{{ date('d-m-yy', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td>
-                                    <a class="btn btn-sm bg-success text-white" href="/detail_dokumen_user/{{ $item->no_dokumen }}">
+                                    <a class="btn btn-sm bg-success text-white"
+                                        href="/detail_dokumen_user/{{ $item->no_dokumen }}">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 </td>
@@ -54,5 +55,4 @@
     </div>
     {{--
 </div> --}}
-
 @endsection

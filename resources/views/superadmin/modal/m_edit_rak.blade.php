@@ -18,7 +18,7 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for=""><b>Ruang*</b></label>
-                            <select class="select2searchEdit{{ $item->id_rak }} form-control" name="edit_ruang">
+                            <select class="select2searchEdit{{ $item->id_rak }} form-control" name="edit_id_ruang">
                                 <option disabled>-Pilih Ruang-</option>
                                 @foreach ($ruang as $item3)
                                     <option value="<?= $item3->id_ruang ?>" <?php if ($item->nama_ruang == $item3->nama_ruang) {
@@ -30,8 +30,10 @@
                         </div>
                         <div class="form-group">
                             <label for="nama_rak">Nama Rak</label>
-                            <input type="text" value="{{ $item->nama_rak }}" class="form-control" id="nama_rak"
-                                name="nama_rak" aria-describedby="emailHelp">
+                            <input type="text" value="{{ $item->nama_rak }}" class="form-control" id="edit_nama_rak"
+                                name="edit_nama_rak">
+                            <input type="text" value="{{ $item->nama_rak }}" class="form-control"
+                                name="old_edit_nama_rak" hidden>
                         </div>
                         <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
                         <button class="btn btn-danger tombol-aksi float-right" type="button"
@@ -43,4 +45,29 @@
             </div>
         </div>
     </div>
+@endforeach
+<?php $listError = ['old_nama_rak', 'old_id_ruang']; ?>
+@foreach ($listError as $err)
+    @error($err)
+        <script type="text/javascript">
+            Swal.fire({
+                toast: true,
+                icon: 'error',
+                title: 'Input Gagal!',
+                text: '{{ $message }}',
+
+                animation: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                showCloseButton: true,
+                timer: 6000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+        </script>
+    @break
+@enderror
 @endforeach

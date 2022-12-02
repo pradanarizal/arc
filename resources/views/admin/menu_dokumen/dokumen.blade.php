@@ -68,10 +68,12 @@
                                         <i class="fas fa-cog"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <li><button class="dropdown-item text-warning"
-                                                href="/detail_dokumen_admin/{{ $item->no_dokumen }}"><i
-                                                    class="fas fa-eye fa-warning"></i> Lihat</button>
-                                        </li>
+                                        <a href="/detail_dokumen_admin/{{ $item->no_dokumen }}"
+                                            style="text-decoration: none;">
+                                            <li><button class="dropdown-item text-warning"><i
+                                                        class="fas fa-eye fa-warning"></i> Lihat</button>
+                                            </li>
+                                        </a>
                                         <li><button class="dropdown-item text-primary" data-bs-toggle="modal"
                                                 data-bs-target="#pinjam_dokumen{{ $item->no_dokumen }}"><i
                                                     class="fas fa-file-export fa-primary"></i>
