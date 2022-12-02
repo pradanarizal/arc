@@ -25,7 +25,7 @@ class DokumenController extends Controller
 
     public function showPdf($nomorDokumen)
     {
-        return Response::make(file_get_contents('data_file/pengarsipan/' . $nomorDokumen . '.pdf'), 200, [
+        return Response::make(file_get_contents('data_file/' . $nomorDokumen . '.pdf'), 200, [
             'content-type' => 'application/pdf',
         ]);
     }
@@ -108,12 +108,7 @@ class DokumenController extends Controller
         echo '<br>';
         // tipe mime
         echo 'File Mime Type: ' . $file->getMimeType();
-
-        if ($request->input('jenis')  == 'Retensi') {
-            $direktori_file = 'data_file/retensi';
-        } elseif ($request->input('jenis') == 'Pengarsipan') {
-            $direktori_file = 'data_file/pengarsipan';
-        }
+        $direktori_file = 'data_file';
 
         // upload file
         $file_dokumen = $file->move($direktori_file, $request->input('nomor_dokumen') . ".pdf");
