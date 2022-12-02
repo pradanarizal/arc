@@ -26,4 +26,21 @@ class PengarsipanModel extends Model
         }
     }
 
+    public function getRuang()
+    {
+        return DB::table('ruang')->select('id_ruang', 'nama_ruang')->get();
+    }
+    public function getRak()
+    {
+        return DB::table('rak')->select('id_rak', 'nama_rak')->get();
+    }
+    public function getBox()
+    {
+        return DB::table('box')->select('id_box', 'nama_box')->get();
+    }
+    public function getMap()
+    {
+        return DB::table('map')->select('id_map', 'nama_map')->get();
+    }
+
 }

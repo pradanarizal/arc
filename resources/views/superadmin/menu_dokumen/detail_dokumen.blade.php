@@ -51,6 +51,27 @@
                     </div>
                 </div>
                 <hr>
+                <div class="form-group row">
+                    <div class="d-sm-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <label class="col-sm-6 col-form-label">Ruang:</label>
+                            <label class="col-sm-6 col-form-label">{{ $item->nama_ruang }}</label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <label class="col-sm-6 col-form-label">Rak:</label>
+                            <label class="col-sm-6 col-form-label">{{ $item->nama_rak }}</label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <label class="col-sm-6 col-form-label">Box:</label>
+                            <label class="col-sm-6 col-form-label">{{ $item->nama_box }}</label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <label class="col-sm-6 col-form-label">Map:</label>
+                            <label class="col-sm-6 col-form-label">{{ $item->nama_map }}</label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
             </div>
             <div class="col-lg-6">
                 {{-- <iframe src="http://docs.google.com/gview?url={{ URL::to('/') }}/data_file/retensi/pIeUUMHjMNiLzoKz4PF25TKQqL0eq41SBluTv6zl.pdf&embedded=true"

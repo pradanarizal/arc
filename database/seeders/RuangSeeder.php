@@ -17,15 +17,12 @@ class RuangSeeder extends Seeder
     {
         DB::table('ruang')->insert([
             [
-                'id_ruang' => '01',
                 'nama_ruang' => 'R.01',
             ],
             [
-                'id_ruang' => '02',
                 'nama_ruang' => 'R.02',
             ],
             [
-                'id_ruang' => '03',
                 'nama_ruang' => 'R.03',
             ],
         ]);

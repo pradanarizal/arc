@@ -62,7 +62,25 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($item->status_pengarsipan == 'Pending')
-                                        <button title="View" class="btn btn-sm bg-warning text-white"
+                                        <button type="button" class="btn btn-sm bg-primary text-white"
+                                            data-bs-toggle="dropdown">
+                                            <i class="fas fa-cog"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item text-warning"
+                                                    href="/detail_dokumen_admin/{{ $item->no_dokumen }}"><i
+                                                        class="fas fa-eye fa-warning"></i> View</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-success" data-bs-toggle="modal"
+                                                    data-bs-target="#approve_pengarsipan{{ $item->no_dokumen }}"><i
+                                                        class="fa fa-check"></i>
+                                                    Approve</a></li>
+                                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#tolak_pengarsipan{{ $item->no_dokumen }}"><i
+                                                        class="fa fa-times"></i> Reject</a>
+                                            </li>
+                                        </ul>
+                                        {{-- <button title="View" class="btn btn-sm bg-warning text-white"
                                             data-bs-toggle="modal" data-bs-target="#">
                                             <i class="fa fa-eye"></i>
                                         </button>
@@ -75,7 +93,7 @@
                                             data-bs-toggle="modal"
                                             data-bs-target="#tolak_pengarsipan{{ $item->no_dokumen }}">
                                             <i class="fa fa-times"></i>
-                                        </button>
+                                        </button> --}}
                                     @else
                                         <button title="View" class="btn btn-sm bg-warning text-white"
                                             data-bs-toggle="modal" data-bs-target="#">

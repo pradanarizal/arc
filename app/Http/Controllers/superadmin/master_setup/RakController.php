@@ -22,7 +22,8 @@ class RakController extends Controller
     public function index()
     {
         $data3 = [
-            'rak' => $this->RakModel->rakData()
+            'rak' => $this->RakModel->rakData(),
+            'ruang' => $this->RakModel->getRuang()
         ];
         return view('superadmin.master_setup.rak', $data3);
     }
@@ -48,15 +49,18 @@ class RakController extends Controller
         $this->validate(
             $request,
             [
+                'id_ruang' => 'required',
                 'nama_rak' => 'required|unique:rak,nama_rak'
             ],
             [
+                'id_ruang.required' => 'Ruang wajib dipilih!',
                 'nama_rak.required' => 'Nama Rak wajib diisi!',
                 'nama_rak.unique' => 'Nama Rak sudah ada!'
             ]
         );
 
         $data = [
+            'id_ruang' => $request->input('id_ruang'),
             'nama_rak' => $request->input('nama_rak'),
         ];
         if ($this->RakModel->insert_rak($data)) {

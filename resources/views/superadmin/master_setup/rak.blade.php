@@ -33,6 +33,7 @@
                             <th>No</th>
                             <th>ID</th>
                             <th>Nama Rak</th>
+                            <th>Ruang</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -45,12 +46,13 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->id_rak }}</td>
                                 <td>{{ $item->nama_rak }}</td>
+                                <td>{{ $item->nama_ruang }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal"
+                                    <button class="btn btn-sm bg-warning text-white pt-2 pb-2" data-bs-toggle="modal"
                                         data-bs-target="#edit_rak{{ $item->id_rak }}">
                                         <i class="fa fa-pen"></i>
                                     </button>
-                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                    <button class="btn btn-sm bg-danger text-white pt-2 pb-2" data-bs-toggle="modal"
                                         data-bs-target="#delete_rak{{ $item->id_rak }}">
                                         <i class="fa fa-trash"></i>
                                     </button>
@@ -67,3 +69,25 @@
     @include('superadmin.modal.m_delete_rak')
     @include('sweetalert::alert')
 @endsection
+<script>
+    window.onload = function() {
+        $('.select2search').select2({
+            theme: "bootstrap-5",
+            dropdownParent: $('#tambah_rak'),
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                'style'
+        });
+        @foreach ($rak as $item2)
+            $('.select2searchEdit' + {{ $item2->id_rak }}).select2({
+                theme: "bootstrap-5",
+                dropdownParent: $('#edit_rak' + {{ $item2->id_rak }}),
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ?
+                    '100%' : 'style'
+            });
+        @endforeach
+    };
+
+    function enableForm() {
+        document.getElementById("nama_rak").disabled = false;
+    }
+</script>
