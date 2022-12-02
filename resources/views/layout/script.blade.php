@@ -33,6 +33,7 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<?php if (isset($ruang)) { ?>
 <script type="text/javascript">
     Highcharts.chart('container', {
         chart: {
@@ -69,3 +70,4 @@
         }]
     });
 </script>
+<?php } ?>

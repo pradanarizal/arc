@@ -104,21 +104,36 @@ class RakController extends Controller
         $this->validate(
             $request,
             [
-                'nama_rak' => 'required|unique:rak,nama_rak'
+                'edit_id_ruang' => 'required',
+                'edit_nama_rak' => 'required|unique:rak,nama_rak'
             ],
             [
-                'nama_rak.required' => 'Nama Rak wajib diisi!',
-                'nama_rak.unique' => 'Nama Rak sudah ada!',
+                'edit_id_ruang.required' => 'Ruang wajib dipilih!',
+                'edit_nama_rak.required' => 'Nama Rak wajib diisi!',
+                'edit_nama_rak.unique' => 'Nama Rak sudah ada!'
             ]
         );
-        $data = [
-            'nama_rak' => $request->input('nama_rak')
-        ];
-        if ($this->RakModel->update_rak($data, $id)) {
-            return redirect('/master_setup/rak')->with('toast_success', 'Berhasil Edit Rak');
+        if ($request->input('old_edit_nama_rak') != $request->input('edit_nama_rak')) {
+            $data = [
+                'nama_rak' => $request->input('edit_nama_rak'),
+                'id_ruang' => $request->input('edit_id_ruang')
+            ];
+            if ($this->RakModel->update_rak($data, $id)) {
+                return redirect('/master_setup/rak')->with('toast_success', 'Berhasil Edit Rak');
+            } else {
+                return redirect('/master_setup/rak');
+            }
         } else {
-            return redirect('/master_setup/rak');
+            $data = [
+                'id_ruang' => $request->input('id_ruang')
+            ];
+            if ($this->RakModel->update_rak($data, $id)) {
+                return redirect('/master_setup/rak')->with('toast_success', 'Berhasil Edit Rak');
+            } else {
+                return redirect('/master_setup/rak');
+            }
         }
+
     }
 
     /**
