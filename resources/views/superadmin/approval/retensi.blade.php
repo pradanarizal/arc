@@ -52,7 +52,7 @@
                                         <span title="Menunggu Approval"
                                             class="badge badge-warning p-2">{{ $item->status_retensi }}</span>
                                     @elseif ($item->status_retensi == 'Ya')
-                                        <span title="Approved"
+                                        <span title="Dokumen telah diretensi!"
                                             class="badge badge-success p-2">{{ $item->status_retensi }}</span>
                                     @else
                                         <span title="Rejected"
@@ -74,6 +74,14 @@
                                             data-bs-toggle="modal" data-bs-target="#tolak_retensi{{ $item->no_dokumen }}">
                                             <i class="fa fa-times"></i>
                                         </button>
+                                    @elseif ($item->status_retensi == 'Tidak')
+                                        <button title="View" class="btn btn-sm bg-warning text-white"
+                                            data-bs-toggle="modal" data-bs-target="#">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                        <button title="Arsipkan Dokumen" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#arsipkan{{ $item->no_dokumen }}">
+                                            <i class="fa fa-file-export"></i>
+                                        </button>
                                     @else
                                         <button title="View" class="btn btn-sm bg-warning text-white"
                                             data-bs-toggle="modal" data-bs-target="#">
@@ -91,5 +99,6 @@
 
     @include('superadmin.modal.m_approve_retensi')
     @include('superadmin.modal.m_approve_tolak-retensi')
+    @include('superadmin.modal.m_approve_arsipkan-dokumen')
     @include('sweetalert::alert')
 @endsection

@@ -27,6 +27,15 @@ class DokumenModel extends Model
             ->where('status_dokumen', '=', 'Retensi')
             ->get();
     }
+
+    public function dataRetensi()
+    {
+        return DB::table('retensi')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'retensi.id')
+            ->get();
+    }
+
     public function kelData()
     {
         return DB::table('kelengkapan_dokumen')
@@ -59,5 +68,15 @@ class DokumenModel extends Model
             ->select('*')
             ->where('no_dokumen', $id)
             ->get();
+    }
+
+    //untuk mengirimkan dokumen ke menu approval retensi
+    public function pengajuan_retensi($update_dokumen, $update_retensi, $no_dokumen)
+    {
+        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen) && DB::table('retensi')->where('no_dokumen', $no_dokumen)->update($update_retensi)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

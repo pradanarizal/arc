@@ -101,11 +101,13 @@ class RetensiController extends Controller
             } else {
                 return redirect('/approval/retensi');
             }
+        } elseif ($request->input('jenis') == 'arsipkan') {
+            if ($this->RetensiModel->arsipkan_dokumen($update_dokumen, $no_dokumen)) {
+                return redirect('/approval/retensi')->with('toast_success', 'Dokumen diarsipkan dan Tersedia di Halaman Dokumen!');
+            } else {
+                return redirect('/approval/retensi');
+            }
         }
-
-
-
-
     }
 
     /**
