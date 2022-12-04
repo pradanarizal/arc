@@ -5,10 +5,11 @@ namespace App\Http\Controllers\superadmin\approval;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PengarsipanModel;
-use App\Models\GeneralModel;
+use App\Traits\notif_sidebar;
 
 class PengarsipanController extends Controller
 {
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -18,22 +19,18 @@ class PengarsipanController extends Controller
     public function __construct()
     {
         $this->PengarsipanModel = new PengarsipanModel();
-        $this->model2 = new GeneralModel();
     }
 
     public function index()
     {
         $data = [
-            'count_all_pending' => $this->model2->get_all_pending(),
-            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
-            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'pengarsipan' => $this->PengarsipanModel->allData(),
             'ruang' => $this->PengarsipanModel->getRuang(),
             'rak' => $this->PengarsipanModel->getRak(),
             'box' => $this->PengarsipanModel->getBox(),
             'map' => $this->PengarsipanModel->getMap()
         ];
-        return view('superadmin.approval.pengarsipan', $data);
+        return view('superadmin.approval.pengarsipan', $data, $this->approval_pending());
     }
 
     /**

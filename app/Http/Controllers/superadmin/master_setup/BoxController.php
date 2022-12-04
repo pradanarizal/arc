@@ -5,10 +5,12 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\BoxModel;
-use App\Models\GeneralModel;
+use App\Traits\notif_sidebar;
 
 class BoxController extends Controller
 {
+
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -17,19 +19,15 @@ class BoxController extends Controller
     public function __construct()
     {
         $this->BoxModel = new BoxModel();
-        $this->model2 = new GeneralModel();
     }
 
 
     public function index()
     {
-        $data4 = [
-            'count_all_pending' => $this->model2->get_all_pending(),
-            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
-            'count_retensi_pending' => $this->model2->get_retensi_pending(),
+        $data = [
             'box' => $this->BoxModel->boxData()
         ];
-        return view('superadmin.master_setup.box', $data4);
+        return view('superadmin.master_setup.box', $data, $this->approval_pending());
     }
 
     /**

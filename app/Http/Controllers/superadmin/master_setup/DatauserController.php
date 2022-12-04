@@ -5,15 +5,14 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use App\Models\GeneralModel;
 use Illuminate\Validation\Rules;
-
+use App\Traits\notif_sidebar;
 
 class DatauserController extends Controller
 {
+
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -23,18 +22,14 @@ class DatauserController extends Controller
     public function __construct()
     {
         $this->User = new User();
-        $this->model2 = new GeneralModel();
     }
 
     public function index()
     {
-        $data6 = [
-            'count_all_pending' => $this->model2->get_all_pending(),
-            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
-            'count_retensi_pending' => $this->model2->get_retensi_pending(),
+        $data = [
             'users' => $this->User->userData()
         ];
-        return view('superadmin.master_setup.data_user', $data6);
+        return view('superadmin.master_setup.data_user', $data, $this->approval_pending());
     }
 
     /**

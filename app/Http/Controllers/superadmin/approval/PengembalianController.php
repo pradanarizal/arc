@@ -5,10 +5,11 @@ namespace App\Http\Controllers\superadmin\approval;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PengembalianModel;
-use App\Models\GeneralModel;
+use App\Traits\notif_sidebar;
 
 class PengembalianController extends Controller
 {
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -17,19 +18,14 @@ class PengembalianController extends Controller
     public function __construct()
     {
         $this->PengembalianModel = new PengembalianModel();
-        $this->model2 = new GeneralModel();
     }
-
 
     public function index()
     {
         $data = [
-              'count_all_pending' => $this->model2->get_all_pending(),
-            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
-            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'pengembalian' => $this->PengembalianModel->allData()
         ];
-        return view('superadmin.approval.pengembalian', $data);
+        return view('superadmin.approval.pengembalian', $data, $this->approval_pending());
     }
 
     /**

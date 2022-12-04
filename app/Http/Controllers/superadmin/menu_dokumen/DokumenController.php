@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\superadmin\menu_dokumen;
 
 use App\Http\Controllers\Controller;
-use App\Models\GeneralModel;
 use App\Models\DokumenModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Response;
+use App\Traits\notif_sidebar;
 
 class DokumenController extends Controller
 {
-
+    use notif_sidebar;
+    
     /**
      * Display a listing of the resource.
      *
@@ -22,8 +22,7 @@ class DokumenController extends Controller
     public function __construct()
     {
         $this->DokumenModel = new DokumenModel();
-
-        $this->model2 = new GeneralModel();
+        $this->notif = $this->approval_pending();
     }
 
     public function showPdf($nomorDokumen)
@@ -35,22 +34,20 @@ class DokumenController extends Controller
     //Halaman Detail Dokumen
     public function detail_data($id)
     {
+
         $data = [
             'dokumen' => $this->DokumenModel->getDokumenById($id)
         ];
-        return view('superadmin.menu_dokumen.detail_dokumen', $data);
+        return view('superadmin.menu_dokumen.detail_dokumen', $data, $this->notif);
     }
 
     public function index()
     {
         $data = [
-            'count_all_pending' => $this->model2->get_all_pending(),
-            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
-            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'dokumen' => $this->DokumenModel->allData(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
         ];
-        return view('superadmin.menu_dokumen.dokumen', $data);
+        return view('superadmin.menu_dokumen.dokumen', $data, $this->notif);
     }
 
     /**

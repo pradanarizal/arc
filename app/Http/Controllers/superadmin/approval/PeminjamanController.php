@@ -4,11 +4,12 @@ namespace App\Http\Controllers\superadmin\approval;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\GeneralModel;
 use App\Models\approval\PeminjamanModel;
+use App\Traits\notif_sidebar;
 
 class PeminjamanController extends Controller
 {
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -18,18 +19,14 @@ class PeminjamanController extends Controller
     public function __construct()
     {
         $this->PeminjamanModel = new PeminjamanModel();
-        $this->model2 = new GeneralModel();
     }
 
     public function index()
     {
         $data = [
-            'count_all_pending' => $this->model2->get_all_pending(),
-            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
-            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'peminjaman' => $this->PeminjamanModel->allData()
         ];
-        return view('superadmin.approval.peminjaman', $data);
+        return view('superadmin.approval.peminjaman', $data, $this->approval_pending());
     }
 
     /**

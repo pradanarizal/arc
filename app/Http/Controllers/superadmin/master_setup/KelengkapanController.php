@@ -5,10 +5,12 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\KelengkapanDokumenModel;
-use App\Models\GeneralModel;
+use App\Traits\notif_sidebar;
 
 class KelengkapanController extends Controller
 {
+
+use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -18,19 +20,15 @@ class KelengkapanController extends Controller
     public function __construct()
     {
         $this->KelengkapanDokumenModel = new KelengkapanDokumenModel();
-        $this->model2 = new GeneralModel();
     }
 
 
     public function index()
     {
         $data = [
-            'count_all_pending' => $this->model2->get_all_pending(),
-            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
-            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'kelengkapan_dokumen' => $this->KelengkapanDokumenModel->allData()
         ];
-        return view('superadmin.master_setup.kelengkapan', $data);
+        return view('superadmin.master_setup.kelengkapan', $data, $this->approval_pending());
     }
 
     /**

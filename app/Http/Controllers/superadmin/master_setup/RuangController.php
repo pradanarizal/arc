@@ -5,10 +5,12 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use App\Models\master_setup\RuangModel;
 use Illuminate\Http\Request;
-use App\Models\GeneralModel;
+use App\Traits\notif_sidebar;
 
 class RuangController extends Controller
 {
+
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -18,18 +20,14 @@ class RuangController extends Controller
     public function __construct()
     {
         $this->RuangModel = new RuangModel();
-        $this->model2 = new GeneralModel();
     }
 
     public function index()
     {
-        $data2 = [
-            'count_all_pending' => $this->model2->get_all_pending(),
-            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
-            'count_retensi_pending' => $this->model2->get_retensi_pending(),
+        $data = [
             'ruang' => $this->RuangModel->ruangData()
         ];
-        return view('superadmin.master_setup.ruang', $data2);
+        return view('superadmin.master_setup.ruang', $data, $this->approval_pending());
     }
 
     /**

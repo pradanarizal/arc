@@ -5,10 +5,11 @@ namespace App\Http\Controllers\superadmin\approval;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\RetensiModel;
-use App\Models\GeneralModel;
+use App\Traits\notif_sidebar;
 
 class RetensiController extends Controller
 {
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -17,19 +18,14 @@ class RetensiController extends Controller
     public function __construct()
     {
         $this->RetensiModel = new RetensiModel();
-
-        $this->model2 = new GeneralModel();
     }
 
     public function index()
     {
         $data = [
-            'count_all_pending' => $this->model2->get_all_pending(),
-            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
-            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'retensi' => $this->RetensiModel->allData()
         ];
-        return view('superadmin.approval.retensi', $data);
+        return view('superadmin.approval.retensi', $data, $this->approval_pending());
     }
 
     /**
