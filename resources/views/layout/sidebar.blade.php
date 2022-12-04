@@ -90,33 +90,33 @@
 
         {{-- SIDEBAR MENU 3 SUPER ADMIN --}}
         <li
-            class="nav-item {{ request()->is('approval/pengarsipan') | request()->is('approval/retensi') | request()->is('approval/peminjaman') | request()->is('approval/pengembalian') ? 'active' : '' }}">
+            class="nav-item {{ request()->is('approval/pengarsipan') | request()->is('approval/retensi') | request()->is('approval/peminjaman')| request()->is('approval/pengembalian') ? 'active' : '' }} ">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-signature"></i>
-                <span>Approval</span>
+                <i class="fas fa-fw fa-signature "></i>
+                <span class="mr-5">Approval </span> <i class="float-center badge badge-danger ">{{ $count_all_pending }}</i>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item {{ request()->is('approval/pengarsipan') ? 'active' : '' }}"
                         href="/approval/pengarsipan">
                         <i class="fas fa-fw fa-square fa-xs"></i>
-                        <span>Pengarsipan</span>
+                        <span>Pengarsipan <i class="badge badge-danger float-right"> {{ $count_pengarsipan_pending }}</i></span>
                     </a>
                     <a class="collapse-item {{ request()->is('approval/retensi') ? 'active' : '' }}"
                         href="/approval/retensi">
                         <i class="fas fa-fw fa-square fa-xs"></i>
-                        <span>Retensi Arsip</span>
+                        <span>Retensi Arsip <i class="badge badge-danger float-right"> {{ $count_retensi_pending }}</i></span>
                     </a>
                     <a class="collapse-item {{ request()->is('approval/peminjaman') ? 'active' : '' }}"
                         href="/approval/peminjaman">
                         <i class="fas fa-fw fa-square fa-xs"></i>
-                        <span>Peminjaman</span>
+                        <span>Peminjaman <i class="badge badge-danger float-right"> {{ $count_all_pending }}</i></span>
                     </a>
                     <a class="collapse-item {{ request()->is('approval/pengembalian') ? 'active' : '' }}"
                         href="/approval/pengembalian">
                         <i class="fas fa-fw fa-square fa-xs"></i>
-                        <span>Pengembalian</span>
+                        <span>Pengembalian</span> <i class="badge badge-danger float-right"> {{ $count_all_pending }}</i>
                     </a>
                 </div>
             </div>

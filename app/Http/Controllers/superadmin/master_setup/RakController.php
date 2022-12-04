@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\RakModel;
+use App\Models\GeneralModel;
 
 class RakController extends Controller
 {
@@ -17,11 +18,15 @@ class RakController extends Controller
     public function __construct()
     {
         $this->RakModel = new RakModel();
+        $this->model2 = new GeneralModel();
     }
 
     public function index()
     {
         $data3 = [
+            'count_all_pending' => $this->model2->get_all_pending(),
+            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
+            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'rak' => $this->RakModel->rakData(),
             'ruang' => $this->RakModel->getRuang()
         ];

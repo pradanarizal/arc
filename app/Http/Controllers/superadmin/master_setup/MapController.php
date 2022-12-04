@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\mapModel;
+use App\Models\GeneralModel;
 
 class MapController extends Controller
 {
@@ -17,12 +18,16 @@ class MapController extends Controller
     public function __construct()
     {
         $this->MapModel = new MapModel();
+        $this->model2 = new GeneralModel();
     }
 
 
     public function index()
     {
         $data5 = [
+            'count_all_pending' => $this->model2->get_all_pending(),
+            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
+            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'map' => $this->MapModel->mapData()
         ];
         return view('superadmin.master_setup.map', $data5);

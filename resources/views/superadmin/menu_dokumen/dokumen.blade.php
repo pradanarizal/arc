@@ -72,7 +72,6 @@
                                         <span title="Dokumen sedang Dipinjam"
                                             class="badge badge-warning p-2">{{ $item->status_dokumen }}</span>
                                     @endif
-
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
@@ -92,8 +91,8 @@
                                         </li>
                                         <li>
                                             <button class="dropdown-item text-danger" data-bs-toggle="modal"
-                                                data-bs-target="#retensi_dokumen{{ $item->no_dokumen }}">
-                                                <i class="fas fa-trash fa-danger"></i> Retensi
+                                                data-bs-target="#softdelete_dokumen{{ $item->no_dokumen }}">
+                                                <i class="fas fa-trash fa-danger"></i> Hapus
                                             </button>
                                         </li>
                                     </ul>
@@ -122,6 +121,6 @@
     <!-- /.container-fluid -->
     @include('superadmin.modal.m_tambah_dokumen')
     @include('superadmin.modal.m_tambah_retensi')
-    @include('superadmin.modal.m_retensi_dokumen')
+    @include('superadmin.modal.m_delete_dokumen')
     @include('sweetalert::alert')
 @endsection

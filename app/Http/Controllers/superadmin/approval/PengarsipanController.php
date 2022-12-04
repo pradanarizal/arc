@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\approval;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PengarsipanModel;
+use App\Models\GeneralModel;
 
 class PengarsipanController extends Controller
 {
@@ -17,11 +18,15 @@ class PengarsipanController extends Controller
     public function __construct()
     {
         $this->PengarsipanModel = new PengarsipanModel();
+        $this->model2 = new GeneralModel();
     }
 
     public function index()
     {
         $data = [
+            'count_all_pending' => $this->model2->get_all_pending(),
+            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
+            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'pengarsipan' => $this->PengarsipanModel->allData(),
             'ruang' => $this->PengarsipanModel->getRuang(),
             'rak' => $this->PengarsipanModel->getRak(),
@@ -83,19 +88,6 @@ class PengarsipanController extends Controller
      */
     public function update(Request $request, $no_dokumen)
     {
-        $request->validate([
-            'arsipRuang' => 'required',
-            'arsipRak' => 'required',
-            'arsipBox' => 'required',
-            'arsipMap' => 'required'
-        ],[
-            'arsipRuang.required' => 'Ruang Harus Dipilih!',
-            'arsipRak.required' => 'Rak Harus Dipilih!',
-            'arsipBox.required' => 'Box Harus Dipilih!',
-            'arsipMap.required' => 'Map Harus Dipilih!'
-        ]);
-
-
         $update_pengarsipan = [
             'tgl_pengarsipan' => \Carbon\Carbon::now(),
             'status_pengarsipan' =>  $request->input('pengarsipan'),
@@ -103,6 +95,17 @@ class PengarsipanController extends Controller
         ];
 
         if ($request->input('jenis') == 'approve') {
+            $request->validate([
+                'arsipRuang' => 'required',
+                'arsipRak' => 'required',
+                'arsipBox' => 'required',
+                'arsipMap' => 'required'
+            ], [
+                'arsipRuang.required' => 'Ruang Harus Dipilih!',
+                'arsipRak.required' => 'Rak Harus Dipilih!',
+                'arsipBox.required' => 'Box Harus Dipilih!',
+                'arsipMap.required' => 'Map Harus Dipilih!'
+            ]);
             $update_dokumen = [
                 'status_dokumen' => $request->input('status_dok'),
                 'updated_at' => \Carbon\Carbon::now(),

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DashboardModel;
+use App\Models\GeneralModel;
 use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
@@ -16,6 +17,8 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->model = new DashboardModel();
+        $this->model2 = new GeneralModel();
+
     }
 
     public function beforelogin()
@@ -46,6 +49,11 @@ class DashboardController extends Controller
         $data = [
             'count_ruang' => $this->model->getRuang(),
             'count_dokumen' => $this->model->getDokumen(),
+
+            'count_all_pending' => $this->model2->get_all_pending(),
+            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
+            'count_retensi_pending' => $this->model2->get_retensi_pending(),
+
             'ruang' => $dataChart,
             // 'dokumen' => $this->model->getDokumen()
         ];

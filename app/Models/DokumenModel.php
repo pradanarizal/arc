@@ -75,9 +75,9 @@ class DokumenModel extends Model
     }
 
     //untuk mengirimkan dokumen ke menu approval retensi
-    public function pengajuan_retensi($update_dokumen, $update_retensi, $no_dokumen)
+    public function softdelete_dokumen($update_dokumen, $no_dokumen)
     {
-        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen) && DB::table('retensi')->where('no_dokumen', $no_dokumen)->update($update_retensi)) {
+        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen)) {
             return true;
         } else {
             return false;

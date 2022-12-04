@@ -19,10 +19,11 @@ class Controller extends BaseController
 
     public function profil_pengguna()
     {
-        // $data = [
-        //     'data_profil' => $this->model->get_profil()
-        // ];
-        //    return view('profil',$data);
-        return view('profil');
+        $data = [
+            'count_all_pending' => $this->model->get_all_pending(),
+            'count_pengarsipan_pending' => $this->model->get_pengarsipan_pending(),
+            'count_retensi_pending' => $this->model->get_retensi_pending(),
+        ];
+        return view('profil',$data);
     }
 }

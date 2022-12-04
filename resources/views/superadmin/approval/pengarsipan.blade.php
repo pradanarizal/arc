@@ -67,38 +67,23 @@
                                             <i class="fas fa-cog"></i>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item text-warning"
-                                                    href="/detail_dokumen_admin/{{ $item->no_dokumen }}"><i
+                                            <li><a type="button" class="dropdown-item text-warning"
+                                                    href="/detail_dokumen/{{ $item->no_dokumen }}"><i
                                                         class="fas fa-eye fa-warning"></i> View</a>
                                             </li>
-                                            <li><a class="dropdown-item text-success" data-bs-toggle="modal"
+                                            <li><a type="button" class="dropdown-item text-success" data-bs-toggle="modal"
                                                     data-bs-target="#approve_pengarsipan{{ $item->no_dokumen }}"><i
                                                         class="fa fa-check"></i>
                                                     Approve</a></li>
-                                            <li><a class="dropdown-item text-danger" data-bs-toggle="modal"
+                                            <li><a type="button" class="dropdown-item text-danger" data-bs-toggle="modal"
                                                     data-bs-target="#tolak_pengarsipan{{ $item->no_dokumen }}"><i
                                                         class="fa fa-times"></i> Reject</a>
                                             </li>
                                         </ul>
-                                        {{-- <button title="View" class="btn btn-sm bg-warning text-white"
-                                            data-bs-toggle="modal" data-bs-target="#">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <button title="Approve" class="btn btn-sm bg-success text-white"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#approve_pengarsipan{{ $item->no_dokumen }}">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-                                        <button title="Reject" class="btn btn-sm bg-danger text-white"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#tolak_pengarsipan{{ $item->no_dokumen }}">
-                                            <i class="fa fa-times"></i>
-                                        </button> --}}
                                     @else
-                                        <button title="View" class="btn btn-sm bg-warning text-white"
-                                            data-bs-toggle="modal" data-bs-target="#">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
+                                        <a title="View" href="/detail_dokumen/{{ $item->no_dokumen }}"
+                                            class="btn btn-warning "> <i class=" fas fa-eye fa-warning"></i>
+                                        </a>
                                     @endif
                                 </td>
                             </tr>

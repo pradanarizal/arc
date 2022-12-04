@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\superadmin\menu_dokumen;
 
 use App\Http\Controllers\Controller;
+use App\Models\GeneralModel;
 use App\Models\DokumenModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,8 @@ class DokumenController extends Controller
     public function __construct()
     {
         $this->DokumenModel = new DokumenModel();
+
+        $this->model2 = new GeneralModel();
     }
 
     public function showPdf($nomorDokumen)
@@ -41,6 +44,9 @@ class DokumenController extends Controller
     public function index()
     {
         $data = [
+            'count_all_pending' => $this->model2->get_all_pending(),
+            'count_pengarsipan_pending' => $this->model2->get_pengarsipan_pending(),
+            'count_retensi_pending' => $this->model2->get_retensi_pending(),
             'dokumen' => $this->DokumenModel->allData(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
         ];
@@ -198,20 +204,32 @@ class DokumenController extends Controller
      */
     public function update(Request $request, $no_dokumen)
     {
-        //untuk pengajuan retensi dokumen, ubah status_dokumen - table dokumen
-        $update_dokumen = [
-            'status_dokumen' => $request->input('status_dok'),
-            'updated_at' => \Carbon\Carbon::now(),
-        ];
-        $update_retensi = [
-            'status_retensi' =>  $request->input('retensi'),
-            'updated_at' => \Carbon\Carbon::now(),
-        ];
-
-        if ($this->DokumenModel->pengajuan_retensi($update_dokumen, $update_retensi, $no_dokumen)) {
-            return redirect('/dokumen')->with('toast_success', 'Dokumen telah diteruskan ke menu Approval Retensi Arsip!');
+        if ($request->input('jenis') == 'softdelete') {
+            //untuk pengajuan retensi dokumen, ubah status_dokumen - table dokumen
+            $update_dokumen = [
+                'status_dokumen' => $request->input('status_dok'),
+                'updated_at' => \Carbon\Carbon::now(),
+            ];
+            if ($this->DokumenModel->softdelete_dokumen($update_dokumen, $no_dokumen)) {
+                return redirect('/dokumen')->with('toast_success', 'Dokumen telah dihapus!');
+            } else {
+                return redirect('/dokumen');
+            }
         } else {
-            return redirect('/dokumen');
+            //untuk pengajuan retensi dokumen, ubah status_dokumen - table dokumen
+            $update_dokumen = [
+                'status_dokumen' => $request->input('status_dok'),
+                'updated_at' => \Carbon\Carbon::now(),
+            ];
+            $update_retensi = [
+                'status_retensi' =>  $request->input('retensi'),
+                'updated_at' => \Carbon\Carbon::now(),
+            ];
+            if ($this->DokumenModel->pengajuan_retensi($update_dokumen, $update_retensi, $no_dokumen)) {
+                return redirect('/dokumen')->with('toast_success', 'Dokumen telah diteruskan ke menu Approval Retensi Arsip!');
+            } else {
+                return redirect('/dokumen');
+            }
         }
     }
 
