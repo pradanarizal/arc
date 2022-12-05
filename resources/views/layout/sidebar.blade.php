@@ -117,9 +117,9 @@
                         href="/approval/retensi">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Retensi Arsip</span>
-                        @if ($count_all_pending == 0)
+                        @if ($count_retensi_pending == 0)
                         @else
-                            <i class="float-right badge badge-danger ">{{ $count_all_pending }}</i>
+                            <i class="float-right badge badge-danger ">{{ $count_retensi_pending }}</i>
                         @endif
                     </a>
                     <a class="collapse-item {{ request()->is('approval/peminjaman') ? 'active' : '' }}"

@@ -79,9 +79,6 @@
                                             data-bs-toggle="modal" data-bs-target="#">
                                             <i class="fa fa-eye"></i>
                                         </button>
-                                        <button title="Arsipkan Dokumen" class="btn btn-sm bg-primary text-white" data-bs-toggle="modal" data-bs-target="#arsipkan{{ $item->no_dokumen }}">
-                                            <i class="fa fa-file-export"></i>
-                                        </button>
                                     @else
                                         <button title="View" class="btn btn-sm bg-warning text-white"
                                             data-bs-toggle="modal" data-bs-target="#">
@@ -99,6 +96,5 @@
 
     @include('superadmin.modal.m_approve_retensi')
     @include('superadmin.modal.m_approve_tolak-retensi')
-    @include('superadmin.modal.m_approve_arsipkan-dokumen')
     @include('sweetalert::alert')
 @endsection
