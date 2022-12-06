@@ -46,22 +46,6 @@ class DokumenadminController extends Controller
         return view('admin.menu_dokumen.dokumen', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate(
@@ -170,48 +154,22 @@ class DokumenadminController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function pinjam_dokumenById(Request $request, $id)
     {
-        //
-    }
+        $data = [
+            'nama_dokumen'  => $request->input('nama_dokumen'),
+            'deskripsi'     => $request->input('deskripsi_dokumen'),
+        ];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        $data2 = [
+            'tgl_ambil'     => $request->input('tgl_ambil'),
+            'tgl_kembali'   => $request->input('tgl_kembali'),
+        ];
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        if ($this->DokumenModel->insert_peminjaman($id, $data, $data2)) {
+            return redirect('/dokumen_admin')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+        } else {
+            return redirect('/dokumen_admin');
+        }
     }
 }

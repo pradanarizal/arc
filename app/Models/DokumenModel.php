@@ -60,4 +60,15 @@ class DokumenModel extends Model
             ->where('no_dokumen', $id)
             ->get();
     }
+
+    public function insert_peminjaman($data, $data2, $id)
+    {
+        if (DB::table('dokumen')
+            ->where('no_dokumen', $id)
+            ->update($data) && DB::table('peminjaman')->insert($data2)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
