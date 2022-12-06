@@ -86,26 +86,15 @@ class RetensiController extends Controller
             'updated_at' => \Carbon\Carbon::now()
         ];
 
-        $update_dokumen = [
-            'status_dokumen' =>  $request->input('status_dok'),
-            'updated_at' => \Carbon\Carbon::now()
-        ];
-
         if ($request->input('jenis') == 'approve') {
-            if ($this->RetensiModel->approval_retensi($update_retensi, $update_dokumen, $no_dokumen)) {
+            if ($this->RetensiModel->approval_retensi($update_retensi,  $no_dokumen)) {
                 return redirect('/approval/retensi')->with('toast_success', 'Retensi di-Approve!');
             } else {
                 return redirect('/approval/retensi');
             }
         } elseif ($request->input('jenis') == 'tolak') {
-            if ($this->RetensiModel->approval_retensi($update_retensi, $update_dokumen, $no_dokumen)) {
+            if ($this->RetensiModel->approval_retensi($update_retensi,  $no_dokumen)) {
                 return redirect('/approval/retensi')->with('toast_success', 'Retensi di-Reject!');
-            } else {
-                return redirect('/approval/retensi');
-            }
-        } elseif ($request->input('jenis') == 'arsipkan') {
-            if ($this->RetensiModel->arsipkan_dokumen($update_dokumen, $no_dokumen)) {
-                return redirect('/approval/retensi')->with('toast_success', 'Dokumen diarsipkan dan Tersedia di Halaman Dokumen!');
             } else {
                 return redirect('/approval/retensi');
             }

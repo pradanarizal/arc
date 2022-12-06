@@ -18,20 +18,24 @@ class GeneralModel extends Model
     public function get_all_pending()
     {
         return DB::table('dokumen')
-            ->where('status_dokumen', '=', 'Pending')
-            ->orWhere('status_dokumen', '=', 'Pengarsipan')
+            ->leftJoin('pengarsipan', 'pengarsipan.no_dokumen', '=', 'dokumen.no_dokumen')
+            ->leftJoin('retensi', 'retensi.no_dokumen', '=', 'dokumen.no_dokumen')
+            ->where('status_pengarsipan', '=', 'Pending')
+            ->orWhere('status_retensi', '=', 'Pending')
             ->count();
     }
 
-    public function get_pengarsipan_pending() {
-        return DB::table('dokumen')
-            ->where('status_dokumen', '=', 'Pengarsipan')
+    public function get_pengarsipan_pending()
+    {
+        return DB::table('pengarsipan')
+            ->where('status_pengarsipan', '=', 'Pending')
             ->count();
     }
 
-    public function get_retensi_pending() {
-        return DB::table('dokumen')
-            ->where('status_dokumen', '=', 'Pending')
+    public function get_retensi_pending()
+    {
+        return DB::table('retensi')
+            ->where('status_retensi', '=', 'Pending')
             ->count();
     }
 }

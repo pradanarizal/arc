@@ -53,11 +53,13 @@
                 <hr>
             </div>
             <div class="col-lg-6">
-                {{-- <iframe src="http://docs.google.com/gview?url={{ URL::to('/') }}/data_file/retensi/pIeUUMHjMNiLzoKz4PF25TKQqL0eq41SBluTv6zl.pdf&embedded=true"
-                style="width:600px; height:500px;" frameborder="0"></iframe>  --}}
-                <iframe src="{{ URL::to('/') }}/showPdfAdmin/{{ $item->no_dokumen }}" width="100%" height="500"
-                    frameborder="0">
-                </iframe>
+                @if ($item->file_dokumen == '')
+                    <div class="row justify-content-md-center w-100">- File Dokumen Tidak Ada -</div>
+                @else
+                    <iframe src="{{ URL::to('/') }}/showPdfAdmin/{{ $item->no_dokumen }}" width="100%" height="500"
+                        frameborder="0">
+                    </iframe>
+                @endif
             </div>
         </div>
     @endforeach

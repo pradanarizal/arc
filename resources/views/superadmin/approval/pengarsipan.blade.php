@@ -62,7 +62,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($item->status_pengarsipan == 'Pending')
-                                        <button type="button" class="btn btn-sm bg-primary text-white"
+                                        <button type="button" class="btn bg-primary text-white"
                                             data-bs-toggle="dropdown">
                                             <i class="fas fa-cog"></i>
                                         </button>

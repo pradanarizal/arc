@@ -34,36 +34,37 @@
 
                     <tbody>
 
-                        <?php $no = 1 ?>
+                        <?php $no = 1; ?>
 
                         @foreach ($dokumen as $item)
-                        <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>{{ $item->no_dokumen }}</td>
-                            <td>{{ $item->nama_dokumen }}</td>
-                            <td>{{ $item->deskripsi }}</td>
-                            <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
-                            <td class="text-center">
-                                @if ($item->status_retensi == 'Pending')
-                                    <span class="badge badge-warning p-2" title="menunggu_approval">
-                                        {{ $item->status_retensi }}
-                                    </span>
-                                @elseif ($item->status_retensi == 'Ya')
-                                    <span class="badge badge-success p-2" title="Approval">
-                                        {{ $item->status_retensi }}
-                                    </span>
-                                @else
-                                    <span class="badge badge-danger p-2" title="Rejected">
-                                        {{ $item->status_retensi }}
-                                    </span>
-                                @endif
-                            </td>
-                            <td class="text-center">
-                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#" title="view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>{{ $no++ }}</td>
+                                <td>{{ $item->no_dokumen }}</td>
+                                <td>{{ $item->nama_dokumen }}</td>
+                                <td>{{ $item->deskripsi }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
+                                <td class="text-center">
+                                    @if ($item->status_retensi == 'Pending')
+                                        <span class="badge badge-warning p-2" title="menunggu_approval">
+                                            {{ $item->status_retensi }}
+                                        </span>
+                                    @elseif ($item->status_retensi == 'Ya')
+                                        <span class="badge badge-success p-2" title="Approval">
+                                            {{ $item->status_retensi }}
+                                        </span>
+                                    @else
+                                        <span class="badge badge-danger p-2" title="Rejected">
+                                            {{ $item->status_retensi }}
+                                        </span>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    <a href="/detail_dokumen_admin/{{ $item->no_dokumen }}" style="text-decoration: none;">
+                                        <button class="btn btn-warning"><i class="fas fa-eye"></i></button>
+
+                                    </a>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>

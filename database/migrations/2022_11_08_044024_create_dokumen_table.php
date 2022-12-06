@@ -17,16 +17,16 @@ return new class extends Migration
         Schema::create('dokumen', function (Blueprint $table) {
             // $table->id('id_dokumen');
             $table->id('no_dokumen');
-            $table->enum('status_dokumen', ['Dipinjam', 'Tersedia', 'Pengarsipan', 'Retensi', 'Rejected', 'Pending', 'Ditolak','softdelete']);
+            $table->enum('status_dokumen', ['Dipinjam', 'Tersedia', 'Pengarsipan', 'Retensi', 'Rejected','softdelete']);
             //Fungsi value ::
-            //Pending = Dokumen sedang diajukan retensi dan menunggu aksi super admin approve/reject
-            //Ditolak = Retensi yang ditolak / di-reject
             //Pengarsipan = Dokumen sedang diajukan pengarsipan dan menunggu di approve
             //Rejected = Pengarsipan yang ditolak
             //Dipinjam = Dokumen sedang dipinjam
             //Tersedia = Dokumen tersedia
             //Softdelete = Untuk softdelete dokumen
-
+            //Tidak digunakan::
+            //Pending = Dokumen sedang diajukan retensi dan menunggu aksi super admin approve/reject
+            //Ditolak = Retensi yang ditolak / di-reject
             $table->string('divisi');
             $table->string('nama_dokumen');
             $table->string('tahun_dokumen');

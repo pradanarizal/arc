@@ -61,29 +61,27 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($item->status_retensi == 'Pending')
-                                        <button title="View" class="btn btn-sm bg-warning text-white"
-                                            data-bs-toggle="modal" data-bs-target="#">
-                                            <i class="fa fa-eye"></i>
+                                        <button type="button" class="btn bg-primary text-white"
+                                            data-bs-toggle="dropdown">
+                                            <i class="fas fa-cog"></i>
                                         </button>
-                                        <button title="Approve" class="btn btn-sm bg-success text-white"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#approve_retensi{{ $item->no_dokumen }}">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-                                        <button title="Reject" class="btn btn-sm bg-danger text-white"
-                                            data-bs-toggle="modal" data-bs-target="#tolak_retensi{{ $item->no_dokumen }}">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    @elseif ($item->status_retensi == 'Tidak')
-                                        <button title="View" class="btn btn-sm bg-warning text-white"
-                                            data-bs-toggle="modal" data-bs-target="#">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a type="button" class="dropdown-item text-warning"
+                                                    href="/detail_dokumen/{{ $item->no_dokumen }}"><i
+                                                        class="fas fa-eye fa-warning"></i> View</a>
+                                            </li>
+                                            <li><a type="button" class="dropdown-item text-success" data-bs-toggle="modal"
+                                                    data-bs-target="#approve_retensi{{ $item->no_dokumen }}"><i
+                                                        class="fa fa-check"></i>
+                                                    Approve</a></li>
+                                            <li><a type="button" class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#tolak_retensi{{ $item->no_dokumen }}"><i
+                                                        class="fa fa-times"></i> Reject</a>
+                                            </li>
+                                        </ul>
                                     @else
-                                        <button title="View" class="btn btn-sm bg-warning text-white"
-                                            data-bs-toggle="modal" data-bs-target="#">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
+                                        <a type="button" class="btn btn-warning"
+                                            href="/detail_dokumen/{{ $item->no_dokumen }}"><i class="fas fa-eye"></i></a>
                                     @endif
                                 </td>
                             </tr>

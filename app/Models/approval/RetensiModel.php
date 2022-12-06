@@ -19,21 +19,13 @@ class RetensiModel extends Model
             ->get();
     }
 
-    public function approval_retensi($update_retensi, $update_dokumen, $no_dokumen)
+    public function approval_retensi($update_retensi, $no_dokumen)
     {
-        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen) && DB::table('retensi')->where('no_dokumen', $no_dokumen)->update($update_retensi)) {
+        if (DB::table('retensi')->where('no_dokumen', $no_dokumen)->update($update_retensi)) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function arsipkan_dokumen($update_dokumen, $no_dokumen)
-    {
-        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

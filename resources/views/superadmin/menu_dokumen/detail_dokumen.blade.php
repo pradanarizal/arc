@@ -9,6 +9,7 @@
     @foreach ($dokumen as $item)
         <div class="container row mt-3">
             <div class="col-lg-6 bg-white p-4 mb-2 rounded">
+                <h4 class="bg-light p-2">Informasi Dokumen</h4>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">No Dokumen</label>
                     <div class="col-sm-6">
@@ -47,38 +48,65 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Upload</label>
                     <div class="col-sm-6">
-                        <label class=" col-form-label">{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</label>
+                        <label class="col-form-label">{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</label>
+                    </div>
+                </div>
+                <hr>
+
+                <h4 class="bg-light p-2">Lokasi Dokumen</h4>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Ruang</label>
+                    <div class="col-sm-6">
+                        @if ($item->nama_ruang == '')
+                            <label class="col-form-label">-</label>
+                        @else
+                            <label class="col-form-label">{{ $item->nama_ruang }}</label>
+                        @endif
                     </div>
                 </div>
                 <hr>
                 <div class="form-group row">
-                    <div class="d-sm-flex align-items-center justify-content-between">
-                        <div class="d-flex align-items-center">
-                            <label class="col-sm-6 col-form-label">Ruang:</label>
-                            <label class="col-sm-6 col-form-label">{{ $item->nama_ruang }}</label>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <label class="col-sm-6 col-form-label">Rak:</label>
-                            <label class="col-sm-6 col-form-label">{{ $item->nama_rak }}</label>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <label class="col-sm-6 col-form-label">Box:</label>
-                            <label class="col-sm-6 col-form-label">{{ $item->nama_box }}</label>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <label class="col-sm-6 col-form-label">Map:</label>
-                            <label class="col-sm-6 col-form-label">{{ $item->nama_map }}</label>
-                        </div>
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Rak</label>
+                    <div class="col-sm-6">
+                        @if ($item->nama_rak == '')
+                            <label class="col-form-label">-</label>
+                        @else
+                            <label class="col-form-label">{{ $item->nama_rak }}</label>
+                        @endif
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Box</label>
+                    <div class="col-sm-6">
+                        @if ($item->nama_box == '')
+                            <label class="col-form-label">-</label>
+                        @else
+                            <label class="col-form-label">{{ $item->nama_box }}</label>
+                        @endif
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Map</label>
+                    <div class="col-sm-6">
+                        @if ($item->nama_map == '')
+                            <label class="col-form-label">-</label>
+                        @else
+                            <label class="col-form-label">{{ $item->nama_map }}</label>
+                        @endif
                     </div>
                 </div>
                 <hr>
             </div>
             <div class="col-lg-6">
-                {{-- <iframe src="http://docs.google.com/gview?url={{ URL::to('/') }}/data_file/retensi/pIeUUMHjMNiLzoKz4PF25TKQqL0eq41SBluTv6zl.pdf&embedded=true"
-                    style="width:600px; height:500px;" frameborder="0"></iframe>  --}}
-                <iframe src="{{ URL::to('/') }}/showPdf/{{ $item->no_dokumen }}" width="100%" height="500"
-                    frameborder="0">
-                </iframe>
+                @if ($item->file_dokumen == '')
+                    <div class="row justify-content-md-center w-100">- File Dokumen Tidak Ada -</div>
+                @else
+                    <iframe src="{{ URL::to('/') }}/showPdf/{{ $item->no_dokumen }}" width="100%" height="500"
+                        frameborder="0">
+                    </iframe>
+                @endif
             </div>
         </div>
     @endforeach
