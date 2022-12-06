@@ -15,6 +15,7 @@ class RetensiModel extends Model
             ->leftJoin('users', 'users.id', '=', 'retensi.id')
             ->where('status_dokumen', '=', 'Pending')
             ->orWhere('status_dokumen', '=', 'Retensi')
+            ->orWhere('status_dokumen', '=', 'Ditolak')
             ->get();
     }
 
@@ -34,5 +35,13 @@ class RetensiModel extends Model
             ->leftJoin('users', 'users.id', '=', 'retensi.id')
             ->where('dokumen.divisi', '=', $divisi)
             ->get();
+    }
+    public function arsipkan_dokumen($update_dokumen, $no_dokumen)
+    {
+        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

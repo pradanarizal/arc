@@ -47,7 +47,7 @@
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Upload</label>
                 <div class="col-sm-6">
-                    <label class=" col-form-label">{{ date('d-m-yy', strtotime($item->tgl_upload)) }}</label>
+                    <label class=" col-form-label">{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</label>
                 </div>
             </div>
             <hr>

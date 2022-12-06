@@ -34,6 +34,7 @@ class LoginController extends Controller
             if (Auth::attempt($request->only('email', 'password'))) {
                 return redirect('/dashboard');
             }
+            return redirect('/login')->with('toast_error', 'Password yang Anda masukkan salah');
         } else {
             return redirect('/login')->with('toast_error', 'Captcha yang Anda masukkan salah');
         }

@@ -27,6 +27,15 @@ class DokumenModel extends Model
             ->where('status_dokumen', '=', 'Retensi')
             ->get();
     }
+
+    public function dataRetensi()
+    {
+        return DB::table('retensi')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'retensi.id')
+            ->get();
+    }
+
     public function kelData()
     {
         return DB::table('kelengkapan_dokumen')
@@ -57,6 +66,10 @@ class DokumenModel extends Model
     {
         return DB::table('dokumen')
             ->select('*')
+            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
+            ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
+            ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
+            ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             ->where('no_dokumen', $id)
             ->get();
     }
@@ -66,6 +79,13 @@ class DokumenModel extends Model
         if (DB::table('dokumen')
             ->where('no_dokumen', $id)
             ->update($data) && DB::table('peminjaman')->insert($data2)) {
+                return true;
+        }
+    }
+    //untuk mengirimkan dokumen ke menu approval retensi
+    public function softdelete_dokumen($update_dokumen, $no_dokumen)
+    {
+        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen)) {
             return true;
         } else {
             return false;

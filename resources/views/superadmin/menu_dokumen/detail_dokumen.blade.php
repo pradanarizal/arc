@@ -47,7 +47,28 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Upload</label>
                     <div class="col-sm-6">
-                        <label class=" col-form-label">{{ date('d-m-yy', strtotime($item->tgl_upload)) }}</label>
+                        <label class=" col-form-label">{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
+                    <div class="d-sm-flex align-items-center justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <label class="col-sm-6 col-form-label">Ruang:</label>
+                            <label class="col-sm-6 col-form-label">{{ $item->nama_ruang }}</label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <label class="col-sm-6 col-form-label">Rak:</label>
+                            <label class="col-sm-6 col-form-label">{{ $item->nama_rak }}</label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <label class="col-sm-6 col-form-label">Box:</label>
+                            <label class="col-sm-6 col-form-label">{{ $item->nama_box }}</label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <label class="col-sm-6 col-form-label">Map:</label>
+                            <label class="col-sm-6 col-form-label">{{ $item->nama_map }}</label>
+                        </div>
                     </div>
                 </div>
                 <hr>

@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class RakSeeder extends Seeder
+class DepartemenSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,19 +15,16 @@ class RakSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('rak')->insert([
+        DB::table('departemen')->insert([
             [
-                'nama_rak' => '001',
-                'id_ruang' => '1'
+                'kode_departemen' => 'CTI',
+                'nama_departemen' => 'Information Technology'
             ],
             [
-                'nama_rak' => '002',
-                'id_ruang' => '2'
-            ],
-            [
-                'nama_rak' => '003',
-                'id_ruang' => '3'
+                'kode_departemen' => 'COC',
+                'nama_departemen' => 'Commercial'
             ],
         ]);
+
     }
 }

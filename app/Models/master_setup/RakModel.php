@@ -12,7 +12,13 @@ class RakModel extends Model
     public function rakData()
     {
         return DB::table('rak')
+            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'rak.id_ruang')
             ->get();
+    }
+
+    public function getRuang()
+    {
+        return DB::table('ruang')->get();
     }
 
     public function insert_rak($data)

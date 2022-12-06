@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->allData(),
+            'dokumen' => $this->Model->allData(), 
         ];
         return view('user.dokumen', $data);
     }
@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function showPdfUser($nomorDokumen)
     {
-        return Response::make(file_get_contents('data_file/pengarsipan/'.$nomorDokumen.'.pdf'), 200, [
+        return Response::make(file_get_contents('data_file/'.$nomorDokumen.'.pdf'), 200, [
             'content-type'=>'application/pdf',
         ]);
     }

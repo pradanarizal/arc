@@ -5,9 +5,12 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\KelengkapanDokumenModel;
+use App\Traits\notif_sidebar;
 
 class KelengkapanController extends Controller
 {
+
+use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +28,7 @@ class KelengkapanController extends Controller
         $data = [
             'kelengkapan_dokumen' => $this->KelengkapanDokumenModel->allData()
         ];
-        return view('superadmin.master_setup.kelengkapan', $data);
+        return view('superadmin.master_setup.kelengkapan', $data, $this->approval_pending());
     }
 
     /**

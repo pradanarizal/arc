@@ -5,9 +5,11 @@ namespace App\Http\Controllers\superadmin\approval;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\RetensiModel;
+use App\Traits\notif_sidebar;
 
 class RetensiController extends Controller
 {
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +25,7 @@ class RetensiController extends Controller
         $data = [
             'retensi' => $this->RetensiModel->allData()
         ];
-        return view('superadmin.approval.retensi', $data);
+        return view('superadmin.approval.retensi', $data, $this->approval_pending());
     }
 
     /**
@@ -101,11 +103,13 @@ class RetensiController extends Controller
             } else {
                 return redirect('/approval/retensi');
             }
+        } elseif ($request->input('jenis') == 'arsipkan') {
+            if ($this->RetensiModel->arsipkan_dokumen($update_dokumen, $no_dokumen)) {
+                return redirect('/approval/retensi')->with('toast_success', 'Dokumen diarsipkan dan Tersedia di Halaman Dokumen!');
+            } else {
+                return redirect('/approval/retensi');
+            }
         }
-
-
-
-
     }
 
     /**

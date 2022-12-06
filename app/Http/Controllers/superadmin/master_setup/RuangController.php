@@ -5,9 +5,12 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use App\Models\master_setup\RuangModel;
 use Illuminate\Http\Request;
+use App\Traits\notif_sidebar;
 
 class RuangController extends Controller
 {
+
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -21,10 +24,10 @@ class RuangController extends Controller
 
     public function index()
     {
-        $data2 = [
+        $data = [
             'ruang' => $this->RuangModel->ruangData()
         ];
-        return view('superadmin.master_setup.ruang', $data2);
+        return view('superadmin.master_setup.ruang', $data, $this->approval_pending());
     }
 
     /**
@@ -98,12 +101,11 @@ class RuangController extends Controller
         $this->validate(
             $request,
             [
-                'nama_ruang' => 'required|unique:ruang,nama_ruang|min:4'
+                'nama_ruang' => 'required|unique:ruang,nama_ruang'
             ],
             [
                 'nama_ruang.required' => 'Nama Ruang wajib diisi!',
                 'nama_ruang.unique' => 'Nama Ruang sudah ada!',
-                'nama_ruang.min' => 'Nama Ruang minimal 4 huruf!'
             ]
         );
 

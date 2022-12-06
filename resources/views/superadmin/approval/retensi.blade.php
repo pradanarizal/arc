@@ -52,7 +52,7 @@
                                         <span title="Menunggu Approval"
                                             class="badge badge-warning p-2">{{ $item->status_retensi }}</span>
                                     @elseif ($item->status_retensi == 'Ya')
-                                        <span title="Approved"
+                                        <span title="Dokumen telah diretensi!"
                                             class="badge badge-success p-2">{{ $item->status_retensi }}</span>
                                     @else
                                         <span title="Rejected"
@@ -73,6 +73,11 @@
                                         <button title="Reject" class="btn btn-sm bg-danger text-white"
                                             data-bs-toggle="modal" data-bs-target="#tolak_retensi{{ $item->no_dokumen }}">
                                             <i class="fa fa-times"></i>
+                                        </button>
+                                    @elseif ($item->status_retensi == 'Tidak')
+                                        <button title="View" class="btn btn-sm bg-warning text-white"
+                                            data-bs-toggle="modal" data-bs-target="#">
+                                            <i class="fa fa-eye"></i>
                                         </button>
                                     @else
                                         <button title="View" class="btn btn-sm bg-warning text-white"

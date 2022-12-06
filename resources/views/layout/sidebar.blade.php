@@ -65,6 +65,12 @@
                         <span>Map</span>
                     </a>
 
+                    <a class="collapse-item {{ request()->is('master_setup/data_departemen') ? 'active' : '' }}"
+                        href="/master_setup/data_departemen">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Departemen</span>
+                    </a>
+
                     <a class="collapse-item {{ request()->is('master_setup/data_user') ? 'active' : '' }}"
                         href="/master_setup/data_user">
                         <i class="fas fa-fw fa-square fa-xs"></i>
@@ -90,11 +96,15 @@
 
         {{-- SIDEBAR MENU 3 SUPER ADMIN --}}
         <li
-            class="nav-item {{ request()->is('approval/pengarsipan') | request()->is('approval/retensi') | request()->is('approval/peminjaman') | request()->is('approval/pengembalian') ? 'active' : '' }}">
+            class="nav-item {{ request()->is('approval/pengarsipan') | request()->is('approval/retensi') | request()->is('approval/peminjaman') | request()->is('approval/pengembalian') ? 'active' : '' }} ">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-signature"></i>
-                <span>Approval</span>
+                <i class="fas fa-fw fa-signature "></i>
+                <span class="mr-5">Approval</span>
+                @if ($count_all_pending == 0)
+                @else
+                    <i class="float-center badge badge-danger ">{{ $count_all_pending }}</i>
+                @endif
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -102,21 +112,39 @@
                         href="/approval/pengarsipan">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Pengarsipan</span>
+                            @if ($count_pengarsipan_pending == 0)
+                            @else
+                                <i class="badge badge-danger float-right">
+                                    {{ $count_pengarsipan_pending }}
+                                </i>
+                            @endif
                     </a>
                     <a class="collapse-item {{ request()->is('approval/retensi') ? 'active' : '' }}"
                         href="/approval/retensi">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Retensi Arsip</span>
+                        @if ($count_retensi_pending == 0)
+                        @else
+                            <i class="float-right badge badge-danger ">{{ $count_retensi_pending }}</i>
+                        @endif
                     </a>
                     <a class="collapse-item {{ request()->is('approval/peminjaman') ? 'active' : '' }}"
                         href="/approval/peminjaman">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Peminjaman</span>
+                        @if ($count_all_pending == 0)
+                        @else
+                            <i class="float-right badge badge-danger ">{{ $count_all_pending }}</i>
+                        @endif
                     </a>
                     <a class="collapse-item {{ request()->is('approval/pengembalian') ? 'active' : '' }}"
                         href="/approval/pengembalian">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Pengembalian</span>
+                        @if ($count_all_pending == 0)
+                        @else
+                            <i class="float-right badge badge-danger ">{{ $count_all_pending }}</i>
+                        @endif
                     </a>
                 </div>
             </div>
