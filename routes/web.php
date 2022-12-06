@@ -10,6 +10,7 @@ use App\Http\Controllers\superadmin\master_setup\RakController;
 use App\Http\Controllers\superadmin\master_setup\BoxController;
 use App\Http\Controllers\superadmin\master_setup\KelengkapanController;
 use App\Http\Controllers\superadmin\master_setup\MapController;
+use App\Http\Controllers\superadmin\master_setup\DepartemenController;
 use App\Http\Controllers\superadmin\master_setup\DatauserController;
 use App\Http\Controllers\superadmin\approval\PengarsipanController;
 use App\Http\Controllers\superadmin\approval\PeminjamanController;
@@ -87,6 +88,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::get('/master_setup/rak', [RakController::class, 'index'])->name('rak');
     Route::get('/master_setup/box', [BoxController::class, 'index'])->name('box');
     Route::get('/master_setup/map', [MapController::class, 'index'])->name('map');
+    Route::get('/master_setup/data_departemen', [DepartemenController::class, 'index'])->name('data_departemen');
     Route::get('/master_setup/data_user', [DatauserController::class, 'index'])->name('data_user');
     Route::get('/master_setup/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
 
@@ -101,6 +103,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::resource('/rak', RakController::class);
     Route::resource('/box', BoxController::class);
     Route::resource('/map', MapController::class);
+    Route::resource('/data_departemen', DepartemenController::class);
     Route::resource('/data_user', DatauserController::class);
     Route::resource('/kelengkapan', KelengkapanController::class);
 
