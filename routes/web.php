@@ -64,12 +64,15 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
     // Untuk CRUD Dokumen
     Route::resource('/input_retensi_admin', DokumenadminController::class);
     Route::resource('/input_pengarsipan_admin', DokumenadminController::class);
+    // showpdf
+    Route::get('/showPdfAdmin/{nomorDokumen}', [DokumenadminController::class, 'showPdfAdmin'])->name('dokumen');
 });
 
 //// Untuk User ////
 Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
     Route::get('/dokumen_user', [UserController::class, 'index'])->name('dokumen');
     Route::get('/detail_dokumen_user/{id}', [UserController::class, 'detail_data'])->name('dokumen');
+    Route::get('/showPdfUser/{nomorDokumen}', [UserController::class, 'showPdfUser'])->name('dokumen');
 });
 
 //// Untuk Super Admin ////
@@ -104,12 +107,14 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     // Untuk CRUD Dokumen
     Route::resource('/input_retensi', DokumenController::class);
     Route::resource('/input_pengarsipan', DokumenController::class);
+    Route::resource('/softdelete', DokumenController::class);
 
     // Approval
     Route::resource('/retensi', RetensiController::class);
     Route::resource('/pengarsipan', PengarsipanController::class);
 
-
+    // show pdf
+    Route::get('/showPdf/{nomorDokumen}', [DokumenController::class, 'showPdf'])->name('dokumen');
 });
 
 //Menu Profil

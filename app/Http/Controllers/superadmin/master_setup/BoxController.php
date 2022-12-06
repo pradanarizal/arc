@@ -5,9 +5,12 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\BoxModel;
+use App\Traits\notif_sidebar;
 
 class BoxController extends Controller
 {
+
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -21,10 +24,10 @@ class BoxController extends Controller
 
     public function index()
     {
-        $data4 = [
+        $data = [
             'box' => $this->BoxModel->boxData()
         ];
-        return view('superadmin.master_setup.box', $data4);
+        return view('superadmin.master_setup.box', $data, $this->approval_pending());
     }
 
     /**
@@ -100,12 +103,11 @@ class BoxController extends Controller
         $this->validate(
             $request,
             [
-                'nama_box' => 'required|unique:box,nama_box|min:4'
+                'nama_box' => 'required|unique:box,nama_box'
             ],
             [
                 'nama_box.required' => 'Nama Box wajib diisi!',
                 'nama_box.unique' => 'Nama Box sudah ada!',
-                'nama_box.min' => 'Nama Box minimal 4 huruf!'
             ]
         );
 

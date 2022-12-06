@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Response;
 
 class DokumenadminController extends Controller
 {
@@ -20,6 +21,12 @@ class DokumenadminController extends Controller
         $this->DokumenModel = new DokumenModel();
     }
 
+    public function showPdfAdmin($nomorDokumen)
+    {
+        return Response::make(file_get_contents('data_file/'.$nomorDokumen.'.pdf'), 200, [
+            'content-type'=>'application/pdf',
+        ]);
+    }
     //Halaman Detail Dokumen
     public function detail_data($id)
     {
@@ -59,7 +66,7 @@ class DokumenadminController extends Controller
     {
         $request->validate(
             [
-                'file' => 'required|unique:dokumen,file_dokumen',
+                'file' => 'required|unique:dokumen,file_dokumen|max:50000',
                 'kelengkapan_dokumen' => 'required',
                 'nama_dokumen' => 'required',
                 'nomor_dokumen' => 'required',
@@ -99,15 +106,16 @@ class DokumenadminController extends Controller
         echo '<br>';
         // tipe mime
         echo 'File Mime Type: ' . $file->getMimeType();
+        $direktori_file = 'data_file';
 
-        if ($request->input('jenis')  == 'Retensi') {
-            $direktori_file = 'data_file/retensi';
-        } elseif ($request->input('jenis') == 'Pengarsipan') {
-            $direktori_file = 'data_file/pengarsipan';
-        }
+        // if ($request->input('jenis')  == 'Retensi') {
+        //     $direktori_file = 'data_file/retensi';
+        // } elseif ($request->input('jenis') == 'Pengarsipan') {
+        //     $direktori_file = 'data_file/pengarsipan';
+        // }
 
         // upload file
-        $file_dokumen = $file->move($direktori_file, $file->hashName());
+        $file_dokumen = $file->move($direktori_file, $request->input('nomor_dokumen').".pdf");
 
         if ($request->input('jenis') == 'Retensi') {
             $data = [

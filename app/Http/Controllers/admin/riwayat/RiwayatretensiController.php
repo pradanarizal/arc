@@ -4,17 +4,22 @@ namespace App\Http\Controllers\admin\riwayat;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\approval\RetensiModel;
 
 class RiwayatretensiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
+    public function __construct()
+    {
+        $this->Model = new RetensiModel;
+    }
+
     public function index()
     {
-        return view('admin.riwayat.riwayat-retensi');
+        $data = [
+            'dokumen' => $this->Model->allData()
+        ];
+        return view('admin.riwayat.riwayat-retensi', $data);
     }
 
     /**

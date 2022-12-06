@@ -5,9 +5,11 @@ namespace App\Http\Controllers\superadmin\approval;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PeminjamanModel;
+use App\Traits\notif_sidebar;
 
 class PeminjamanController extends Controller
 {
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +26,7 @@ class PeminjamanController extends Controller
         $data = [
             'peminjaman' => $this->PeminjamanModel->allData()
         ];
-        return view('superadmin.approval.peminjaman', $data);
+        return view('superadmin.approval.peminjaman', $data, $this->approval_pending());
     }
 
     /**

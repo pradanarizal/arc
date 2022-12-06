@@ -14,4 +14,24 @@ class GeneralModel extends Model
     {
         return DB::table('users')->select('id', 'nama_trainset')->get();
     }
+
+    public function get_all_pending()
+    {
+        return DB::table('dokumen')
+            ->where('status_dokumen', '=', 'Pending')
+            ->orWhere('status_dokumen', '=', 'Pengarsipan')
+            ->count();
+    }
+
+    public function get_pengarsipan_pending() {
+        return DB::table('dokumen')
+            ->where('status_dokumen', '=', 'Pengarsipan')
+            ->count();
+    }
+
+    public function get_retensi_pending() {
+        return DB::table('dokumen')
+            ->where('status_dokumen', '=', 'Pending')
+            ->count();
+    }
 }

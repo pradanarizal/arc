@@ -20,7 +20,7 @@
                     {{-- value untuk tolak retensi. - Update ke table retensi --}}
                     <input name="retensi" type="text" value="Tidak" hidden>
                     {{-- value untuk ubah status dokumen. update ke table dokumen --}}
-                    <input name="status_dok" type="text" value="Tersedia" hidden>
+                    <input name="status_dok" type="text" value="Ditolak" hidden>
 
                     <div class="modal-footer">
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Batal</button>

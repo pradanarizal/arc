@@ -5,9 +5,11 @@ namespace App\Http\Controllers\superadmin\approval;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PengarsipanModel;
+use App\Traits\notif_sidebar;
 
 class PengarsipanController extends Controller
 {
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +24,13 @@ class PengarsipanController extends Controller
     public function index()
     {
         $data = [
-            'pengarsipan' => $this->PengarsipanModel->allData()
+            'pengarsipan' => $this->PengarsipanModel->allData(),
+            'ruang' => $this->PengarsipanModel->getRuang(),
+            'rak' => $this->PengarsipanModel->getRak(),
+            'box' => $this->PengarsipanModel->getBox(),
+            'map' => $this->PengarsipanModel->getMap()
         ];
-        return view('superadmin.approval.pengarsipan', $data);
+        return view('superadmin.approval.pengarsipan', $data, $this->approval_pending());
     }
 
     /**
@@ -79,10 +85,6 @@ class PengarsipanController extends Controller
      */
     public function update(Request $request, $no_dokumen)
     {
-        $update_dokumen = [
-            'status_dokumen' => $request->input('status_dok'),
-            'updated_at' => \Carbon\Carbon::now(),
-        ];
         $update_pengarsipan = [
             'tgl_pengarsipan' => \Carbon\Carbon::now(),
             'status_pengarsipan' =>  $request->input('pengarsipan'),
@@ -90,12 +92,35 @@ class PengarsipanController extends Controller
         ];
 
         if ($request->input('jenis') == 'approve') {
+            $request->validate([
+                'arsipRuang' => 'required',
+                'arsipRak' => 'required',
+                'arsipBox' => 'required',
+                'arsipMap' => 'required'
+            ], [
+                'arsipRuang.required' => 'Ruang Harus Dipilih!',
+                'arsipRak.required' => 'Rak Harus Dipilih!',
+                'arsipBox.required' => 'Box Harus Dipilih!',
+                'arsipMap.required' => 'Map Harus Dipilih!'
+            ]);
+            $update_dokumen = [
+                'status_dokumen' => $request->input('status_dok'),
+                'updated_at' => \Carbon\Carbon::now(),
+                'id_ruang' => $request->input('arsipRuang'),
+                'id_rak' => $request->input('arsipRak'),
+                'id_box' => $request->input('arsipBox'),
+                'id_map' => $request->input('arsipMap'),
+            ];
             if ($this->PengarsipanModel->approval_arsip($update_dokumen, $update_pengarsipan, $no_dokumen)) {
                 return redirect('/approval/pengarsipan')->with('toast_success', 'Pengarsipan di-Approve!');
             } else {
                 return redirect('/approval/pengarsipan');
             }
         } elseif ($request->input('jenis') == 'tolak') {
+            $update_dokumen = [
+                'status_dokumen' => $request->input('status_dok'),
+                'updated_at' => \Carbon\Carbon::now()
+            ];
             if ($this->PengarsipanModel->approval_arsip($update_dokumen, $update_pengarsipan, $no_dokumen)) {
                 return redirect('/approval/pengarsipan')->with('toast_success', 'Pengarsipan di-Reject!');
             } else {

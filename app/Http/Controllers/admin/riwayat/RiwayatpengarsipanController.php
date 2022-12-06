@@ -4,27 +4,21 @@ namespace App\Http\Controllers\admin\riwayat;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\approval\PengarsipanModel;
 
 class RiwayatpengarsipanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        return view('admin.riwayat.riwayat-pengarsipan');
+        $this->Model = new PengarsipanModel();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index()
     {
-        //
+        $data = [
+            'dokumen' => $this->Model->allData(),
+        ];
+        return view('admin.riwayat.riwayat-pengarsipan', $data);
     }
 
     /**
@@ -46,7 +40,7 @@ class RiwayatpengarsipanController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

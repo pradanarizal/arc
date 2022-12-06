@@ -2,7 +2,7 @@
 @section('content')
     <!-- Page Heading -->
 
-    <div class="d-flex align-items-center">
+    <div class="d-flex align-items-center mb-3">
         <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Transaksi</p>
         <p class="mb-0 text-gray-800 text-small">Data Approval Pengarsipan</p>
     </div>
@@ -18,9 +18,6 @@
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Approval Pengarsipan</h6>
-        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -65,25 +62,28 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($item->status_pengarsipan == 'Pending')
-                                        <button title="View" class="btn btn-sm bg-warning text-white"
-                                            data-bs-toggle="modal" data-bs-target="#">
-                                            <i class="fa fa-eye"></i>
+                                        <button type="button" class="btn btn-sm bg-primary text-white"
+                                            data-bs-toggle="dropdown">
+                                            <i class="fas fa-cog"></i>
                                         </button>
-                                        <button title="Approve" class="btn btn-sm bg-success text-white"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#approve_pengarsipan{{ $item->no_dokumen }}">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-                                        <button title="Reject" class="btn btn-sm bg-danger text-white"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#tolak_pengarsipan{{ $item->no_dokumen }}">
-                                            <i class="fa fa-times"></i>
-                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a type="button" class="dropdown-item text-warning"
+                                                    href="/detail_dokumen/{{ $item->no_dokumen }}"><i
+                                                        class="fas fa-eye fa-warning"></i> View</a>
+                                            </li>
+                                            <li><a type="button" class="dropdown-item text-success" data-bs-toggle="modal"
+                                                    data-bs-target="#approve_pengarsipan{{ $item->no_dokumen }}"><i
+                                                        class="fa fa-check"></i>
+                                                    Approve</a></li>
+                                            <li><a type="button" class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#tolak_pengarsipan{{ $item->no_dokumen }}"><i
+                                                        class="fa fa-times"></i> Reject</a>
+                                            </li>
+                                        </ul>
                                     @else
-                                        <button title="View" class="btn btn-sm bg-warning text-white"
-                                            data-bs-toggle="modal" data-bs-target="#">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
+                                        <a title="View" href="/detail_dokumen/{{ $item->no_dokumen }}"
+                                            class="btn btn-warning "> <i class=" fas fa-eye fa-warning"></i>
+                                        </a>
                                     @endif
                                 </td>
                             </tr>

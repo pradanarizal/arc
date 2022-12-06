@@ -6,8 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\mapModel;
 
+use App\Traits\notif_sidebar;
+
 class MapController extends Controller
 {
+
+use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -22,10 +26,10 @@ class MapController extends Controller
 
     public function index()
     {
-        $data5 = [
+        $data = [
             'map' => $this->MapModel->mapData()
         ];
-        return view('superadmin.master_setup.map', $data5);
+        return view('superadmin.master_setup.map', $data, $this->approval_pending());
     }
 
     /**
@@ -49,12 +53,11 @@ class MapController extends Controller
         $this->validate(
             $request,
             [
-                'nama_map' => 'required|unique:map,nama_map|min:4'
+                'nama_map' => 'required|unique:map,nama_map'
             ],
             [
                 'nama_map.required' => 'Nama Map wajib diisi!',
                 'nama_map.unique' => 'Nama Map sudah ada!',
-                'nama_map.min' => 'Nama Map minimal 4 huruf!'
             ]
         );
 

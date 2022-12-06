@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DashboardModel;
-use Illuminate\Support\Facades\DB;
+use App\Traits\notif_sidebar;
 
 class DashboardController extends Controller
 {
+    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -20,20 +21,36 @@ class DashboardController extends Controller
 
     public function beforelogin()
     {
+        $dataModel = $this->model->getDataChart();
+        $dataChart = array();
+        // $dataYear = array();
+        foreach ($dataModel as $value) {
+            array_push($dataChart, array("$value->nama_ruang", $value->total));
+        }
         $data = [
-            'ruang' => $this->model->getRuang(),
-            'dokumen' => $this->model->getDokumen()
+            'count_ruang' => $this->model->getRuang(),
+            'count_dokumen' => $this->model->getDokumen(),
+            'ruang' => $dataChart,
+            // 'dokumen' => $this->model->getDokumen()
         ];
         return view('first', $data);
     }
 
     public function afterlogin()
     {
+        $dataModel = $this->model->getDataChart();
+        $dataChart = array();
+        // $dataYear = array();
+        foreach ($dataModel as $value) {
+            array_push($dataChart, array("$value->nama_ruang", $value->total));
+        }
         $data = [
-            'ruang' => $this->model->getRuang(),
-            'dokumen' => $this->model->getDokumen()
+            'count_ruang' => $this->model->getRuang(),
+            'count_dokumen' => $this->model->getDokumen(),
+            'ruang' => $dataChart,
+            // 'dokumen' => $this->model->getDokumen()
         ];
-        return view('dashboard', $data);
+        return view('dashboard', $data, $this->approval_pending());
     }
 
     /**

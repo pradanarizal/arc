@@ -104,14 +104,15 @@
                                         <div class="col mr-2">
                                             <div class="text-s font-weight-bold text-danger mb-2">
                                                 Storage</div>
-                                            <div class="h2 mb-0 font-weight-bold text-gray-800">32</div>
+                                            <div class="h2 mb-0 font-weight-bold text-gray-800">{{ $count_ruang }}
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-archive fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                     <hr class="divider">
-                                    <div class="text-sm text-gray-800">Total Ruang Penyimpanan</div>
+                                    <div class="text-sm text-gray-800">Total Ruang Penyimpanan Terpakai</div>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +124,8 @@
                                         <div class="col mr-2">
                                             <div class="text-s font-weight-bold text-success mb-2">
                                                 Dokumen</div>
-                                            <div class="h2 mb-0 font-weight-bold text-gray-800">90</div>
+                                            <div class="h2 mb-0 font-weight-bold text-gray-800">{{ $count_dokumen }}
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-file fa-2x text-gray-300"></i>
@@ -137,36 +139,10 @@
                     </div>
                     <div class="row">
                         <!-- Bar Chart -->
-                        <div class="col">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Statistik Ruang Penyimpanan</h6>
-                                </div>
+                        <div class="col-xl-12 col-md-12 mb-4">
+                            <div class="card shadow h-100 py-2">
                                 <div class="card-body">
-                                    <div class="text-gray-800 text-sm-center">
-                                        Statistik Penyimpanan
-                                    </div>
-                                    <div class="chart-bar">
-                                        <canvas id="chart_penyimpanan"></canvas>
-                                    </div>
-                                    <hr>
-                                    <div class="d-flex justify-content-center text-gray-800">
-                                        <div class="d-flex border rounded">
-                                            <div class="p-1"><button class="d-inline-flex p-2 border-0 r-01"
-                                                    disabled="disabled"></button> R.01</div>
-                                            <div class="p-1"><button class="d-inline-flex p-2 border-0 r-02"
-                                                    disabled="disabled"></button> R.02</div>
-                                            <div class="p-1"><button class="d-inline-flex p-2 border-0 r-03"
-                                                    disabled="disabled"></button> R.03</div>
-                                            <div class="p-1"><button class="d-inline-flex p-2 border-0 r-04"
-                                                    disabled="disabled"></button> R.04</div>
-                                            <div class="p-1"><button class="d-inline-flex p-2 border-0 r-05"
-                                                    disabled="disabled"></button> R.05</div>
-                                            <div class="p-1"><button class="d-inline-flex p-2 border-0 r-06"
-                                                    disabled="disabled"></button> R.06</div>
-                                        </div>
-
-                                    </div>
+                                    <div id="container" style="padding: 30px;"></div>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +177,46 @@
     {{-- Script --}}
     @include('layout.script')
     {{-- End Script --}}
-
+    {{-- <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script type="text/javascript">
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Statistik Penyimpanan'
+            },
+            xAxis: {
+                type: 'category',
+                labels: {
+                    rotation: -45,
+                    style: {
+                        fontSize: '13px',
+                        fontFamily: 'Verdana, sans-serif'
+                    },
+                }
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Jumlah'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '<b>{point.y} Ruang</b>'
+            },
+            series: [{
+                name: 'Iklan',
+                data: <?php echo json_encode($ruang); ?>
+            }]
+        });
+    </script> --}}
 </body>
 
 </html>

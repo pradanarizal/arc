@@ -17,7 +17,12 @@ class DashboardModel extends Model
         return DB::table('ruang')->count();
     }
 
-    public function getDokumen() {
+    public function getDokumen()
+    {
         return DB::table('dokumen')->count();
+    }
+    public function getDataChart()
+    {
+        return DB::select("SELECT nama_ruang, COUNT(nama_ruang) AS total FROM dokumen JOIN ruang ON dokumen.id_ruang = ruang.id_ruang GROUP BY nama_ruang");
     }
 }
