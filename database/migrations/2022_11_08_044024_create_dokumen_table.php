@@ -24,10 +24,11 @@ return new class extends Migration
             //Dipinjam = Dokumen sedang dipinjam
             //Tersedia = Dokumen tersedia
             //Softdelete = Untuk softdelete dokumen
+
             //Tidak digunakan::
             //Pending = Dokumen sedang diajukan retensi dan menunggu aksi super admin approve/reject
             //Ditolak = Retensi yang ditolak / di-reject
-            $table->string('divisi');
+
             $table->string('nama_dokumen');
             $table->string('tahun_dokumen');
             $table->text('deskripsi');
@@ -36,6 +37,12 @@ return new class extends Migration
             $table->string('file_dokumen');
             $table->timestamps();
         });
+        
+        Schema::table('dokumen', function (Blueprint $table) {
+            $table->unsignedBigInteger('id_departemen')->nullable();
+            $table->foreign('id_departemen')->references('id_departemen')->on('departemen');
+        });
+
         Schema::table('dokumen', function (Blueprint $table) {
             $table->unsignedBigInteger('id_ruang')->nullable();
             $table->foreign('id_ruang')->references('id_ruang')->on('ruang');

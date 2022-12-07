@@ -18,8 +18,8 @@ class DokumenSeeder extends Seeder
         DB::table('dokumen')->insert([
             [
                 'no_dokumen' => '1',
-                'status_dokumen' => 'Retensi',
-                'divisi' => 'IT Support',
+                'status_dokumen' => 'Pending',
+                'id_departemen' => '1',
                 'nama_dokumen' => 'ITSR',
                 'tahun_dokumen' => '2019',
                 'deskripsi' => 'ITSR Website BAST',
@@ -34,8 +34,8 @@ class DokumenSeeder extends Seeder
             ],
             [
                 'no_dokumen' => '2',
-                'status_dokumen' => 'Retensi',
-                'divisi' => 'IT Operation',
+                'status_dokumen' => 'Pending',
+                'id_departemen' => '2',
                 'nama_dokumen' => 'ITSR C-ad',
                 'tahun_dokumen' => '2019',
                 'deskripsi' => 'Retensi Dokumen Lama',
@@ -47,39 +47,7 @@ class DokumenSeeder extends Seeder
                 'nama_kel_dokumen' => 'ITSR',
                 'file_dokumen' => '',
                 'created_at' => \Carbon\Carbon::now(),
-            ],
-            [
-                'no_dokumen' => '3',
-                'status_dokumen' => 'Pengarsipan',
-                'divisi' => 'IT Dokumen',
-                'nama_dokumen' => 'Commuter',
-                'tahun_dokumen' => '2020',
-                'deskripsi' => 'Peminjaman Dokumen Penting',
-                'tgl_upload' => \Carbon\Carbon::now(),
-                'id_ruang' => '01',
-                'id_rak' => '01',
-                'id_box' => '01',
-                'id_map' => '01',
-                'nama_kel_dokumen' => 'RAB',
-                'file_dokumen' => '',
-                'created_at' => \Carbon\Carbon::now(),
-            ],
-            [
-                'no_dokumen' => '4',
-                'status_dokumen' => 'Pengarsipan',
-                'divisi' => 'IT Komersial',
-                'nama_dokumen' => 'ITSR Arsip',
-                'tahun_dokumen' => '2017',
-                'deskripsi' => 'ini Dokumen Penting',
-                'tgl_upload' => \Carbon\Carbon::now(),
-                'id_ruang' => '02',
-                'id_rak' => '02',
-                'id_box' => '02',
-                'id_map' => '02',
-                'nama_kel_dokumen' => 'RAB, ITSR',
-                'file_dokumen' => '',
-                'created_at' => \Carbon\Carbon::now(),
-            ],
+            ]
         ]);
     }
 }

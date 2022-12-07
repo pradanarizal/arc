@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->allData(),
+            'dokumen' => $this->Model->allData(), 
         ];
         return view('user.dokumen', $data);
     }
