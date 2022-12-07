@@ -57,10 +57,12 @@
                                 @endif
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#" title="view">
-                                    <i class="fas fa-eye"></i>
+                                <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->no_dokumen }}">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <button class="btn btn-sm btn-primary" title="Kembali">
+                                    <i class="fa fa-undo"></i>
                                 </button>
-                                <button class="btn btn-primary" title="Kembali">Kembali</button>
                             </td>
                         </tr>
                         @endforeach

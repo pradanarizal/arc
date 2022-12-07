@@ -13,17 +13,17 @@
 
                 <div class="modal-body">
                     <!--FORM PEMINJAMAN DOKUMEN-->
-                    <form action="/dokumen" method="post" enctype="multipart/form-data">
+                    <form action="/input_peminjaman_dokumen" method="post" enctype="multipart/form-data">
                         @csrf
                         <input name="jenis" type="text" value="Peminjaman" hidden>
                         {{-- <div class="form-group">
-                    <label for="nomor_dokumen">Nomor Dokumen</label>
-                        <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
-                            aria-describedby="emailHelp" value="{{ old('nomor_dokumen') }}">
-                        @error('nomor_dokumen')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
+                        <label for="nomor_dokumen">Nomor Dokumen</label>
+                            <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
+                                aria-describedby="emailHelp" value="{{ old('nomor_dokumen') }}">
+                            @error('nomor_dokumen')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div> --}}
                         <div class="form-group">
                             <label for="nama_dokumen">Nama Dokumen</label>
                             <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"

@@ -65,8 +65,13 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
     // Untuk CRUD Dokumen
     Route::resource('/input_retensi_admin', DokumenadminController::class);
     Route::resource('/input_pengarsipan_admin', DokumenadminController::class);
+    Route::post('/input_peminjaman_dokumen', [DokumenadminController::class, 'pinjam_dokumenById']);
     // showpdf
     Route::get('/showPdfAdmin/{nomorDokumen}', [DokumenadminController::class, 'showPdfAdmin'])->name('dokumen');
+    //detail riwayat
+    Route::get('/d_riwayat_pengarsipan/{id}', [RiwayatpengarsipanController::class, 'show_detail']);
+    Route::get('/d_riwayat_retensi/{id}', [RiwayatretensiController::class, 'show_detail']);
+    Route::get('/d_riwayat_peminjaman/{id}', [RiwayatpeminjamanController::class, 'show_detail']);
 });
 
 //// Untuk User ////

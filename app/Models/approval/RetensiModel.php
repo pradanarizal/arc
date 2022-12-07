@@ -28,4 +28,12 @@ class RetensiModel extends Model
         }
     }
 
+    public function getRetensiByDivisi($divisi)
+    {
+        return DB::table('retensi')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'retensi.id')
+            ->where('dokumen.divisi', '=', $divisi)
+            ->get();
+    }
 }

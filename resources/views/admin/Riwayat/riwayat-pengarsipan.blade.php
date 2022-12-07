@@ -8,13 +8,6 @@
 
     <!-- Begin Page Content -->
 
-    {{-- <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
-        <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#">
-            <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
-            Add Ruang
-        </button>
-    </div> --}}
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -58,9 +51,9 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <a href="/detail_dokumen_admin/{{ $item->no_dokumen }}" style="text-decoration: none;">
-                                        <button class="btn btn-warning"><i class="fas fa-eye"></i></button>
-
+                                    <a class="btn btn-sm bg-warning text-white"
+                                        href="/d_riwayat_pengarsipan/{{ $item->id_pengarsipan }}">
+                                        <i class="fa fa-eye"></i>
                                     </a>
                                 </td>
                             </tr>

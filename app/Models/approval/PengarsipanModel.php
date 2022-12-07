@@ -42,5 +42,23 @@ class PengarsipanModel extends Model
     {
         return DB::table('map')->select('id_map', 'nama_map')->get();
     }
+    
+    public function getDataById($id)
+    {
+        return DB::table('pengarsipan')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+            ->where('id_pengarsipan', '=', $id)
+            ->get();
+    }
+
+    public function getDataByDivisi($divisi)
+    {
+        return DB::table('pengarsipan')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+            ->where('dokumen.divisi', '=', $divisi)
+            ->get();
+    }
 
 }
