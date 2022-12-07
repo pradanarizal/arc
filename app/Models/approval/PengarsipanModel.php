@@ -35,12 +35,12 @@ class PengarsipanModel extends Model
             ->get();
     }
 
-    public function getDataByDivisi($divisi)
+    public function getPengarsipanByDivisi($divisi)
     {
         return DB::table('pengarsipan')
             ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
-            ->where('dokumen.divisi', '=', $divisi)
+            ->where('dokumen.id_departemen', '=', $divisi)
             ->get();
     }
     public function getRuang()

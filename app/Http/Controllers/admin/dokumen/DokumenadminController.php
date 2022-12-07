@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\dokumen;
 
 use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
+use App\Models\approval\PeminjamanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Response;
@@ -19,6 +20,7 @@ class DokumenadminController extends Controller
     public function __construct()
     {
         $this->DokumenModel = new DokumenModel();
+        $this->PeminjamanModel = new PeminjamanModel();
     }
 
     public function showPdfAdmin($nomorDokumen)
@@ -107,7 +109,7 @@ class DokumenadminController extends Controller
                 'nama_dokumen' => $request->input('nama_dokumen'),
                 'tahun_dokumen' => $request->input('tahun_dokumen'),
                 'deskripsi' => $request->input('deskripsi_dokumen'),
-                'divisi' => Auth::user()->divisi,
+                'id_departemen' => Auth::user()->id_departemen,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Retensi',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
@@ -133,7 +135,7 @@ class DokumenadminController extends Controller
                 'nama_dokumen' => $request->input('nama_dokumen'),
                 'tahun_dokumen' => $request->input('tahun_dokumen'),
                 'deskripsi' => $request->input('deskripsi_dokumen'),
-                'divisi' => Auth::user()->divisi,
+                'id_departemen' => Auth::user()->id_departemen,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Pengarsipan',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
@@ -155,20 +157,21 @@ class DokumenadminController extends Controller
         }
     }
 
-    public function pinjam_dokumenById(Request $request, $id)
+    public function peminjaman_dokumen(Request $request, $no_dokumen)
     {
-        $data = [
+        $update_dokumen = [
             'nama_dokumen'  => $request->input('nama_dokumen'),
             'deskripsi'     => $request->input('deskripsi_dokumen'),
         ];
 
-        $data2 = [
+        $insert_peminjaman = [
             'tgl_ambil'     => $request->input('tgl_ambil'),
             'tgl_kembali'   => $request->input('tgl_kembali'),
+            'status_pengarsipan' =>  $request->input('peminjaman'),
         ];
 
-        if ($this->DokumenModel->insert_peminjaman($id, $data, $data2)) {
-            return redirect('/dokumen_admin')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+        if ($this->PeminjamanModel->add_peminjaman( $update_dokumen, $insert_peminjaman, $no_dokumen)) {
+            return redirect('/dokumen_admin')->with('toast_success', 'Pengajuan peminjaman diteruskan ke Super Admin!');
         } else {
             return redirect('/dokumen_admin');
         }

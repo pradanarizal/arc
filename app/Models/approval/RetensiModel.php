@@ -33,7 +33,7 @@ class RetensiModel extends Model
         return DB::table('retensi')
             ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
             ->leftJoin('users', 'users.id', '=', 'retensi.id')
-            ->where('dokumen.divisi', '=', $divisi)
+            ->where('dokumen.id_departemen', '=', $divisi)
             ->get();
     }
     public function arsipkan_dokumen($update_dokumen, $no_dokumen)
