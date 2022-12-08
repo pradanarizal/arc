@@ -15,6 +15,7 @@ class User extends Authenticatable
     public function userData()
     {
         return DB::table('users')
+            ->leftJoin('departemen', 'departemen.id_departemen', '=', 'users.id_departemen')
             ->get();
     }
     //Tambah Data User
@@ -25,6 +26,10 @@ class User extends Authenticatable
         }else{
             return false;
         }
+
+        // if(DB::table('users')
+        //     ->leftJoin('departemen', 'departemen.id_departemen', '=', 'users.id_departemen')
+        //     ->insert($data))
     }
 
     public function getDepartemen()

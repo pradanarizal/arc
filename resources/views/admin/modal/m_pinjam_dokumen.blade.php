@@ -13,7 +13,7 @@
 
                 <div class="modal-body">
                     <!--FORM PEMINJAMAN DOKUMEN-->
-                    <form action="/input_peminjaman_dokumen" method="post" enctype="multipart/form-data">
+                    <form action="/input_peminjaman_dokumen/{{ $item->no_dokumen }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input name="jenis" type="text" value="Peminjaman" hidden>
                         {{-- <div class="form-group">
@@ -50,6 +50,7 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <input name="peminjaman" type="text" value="Ya" hidden>
 
                         <button type="submit" class="btn btn-primary tombol-aksi float-right mt-3">Ajukan</button>
                         <button class="btn btn-danger tombol-aksi float-right mt-3" type="button"

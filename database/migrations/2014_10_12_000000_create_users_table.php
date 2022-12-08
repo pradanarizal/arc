@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('id_departemen');
-            $table->enum('status_user', ['Aktif', 'Tidak Aktif']);
+            $table->enum('status_user', ['aktif', 'nonaktif']);
             $table->string('level');
 
             $table->timestamp('email_verified_at')->nullable();
