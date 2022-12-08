@@ -20,12 +20,14 @@ class DokumenModel extends Model
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             // ->leftJoin('kelengkapan_dokumen', 'kelengkapan_dokumen.nama_kel_dokumen', '=', 'dokumen.nama_kel_dokumen')
+            
             ->get();
 
         return DB::table('dokumen')
 
             ->where('status_dokumen', '=', 'Retensi')
             ->get();
+
     }
 
     public function dataRetensi()
