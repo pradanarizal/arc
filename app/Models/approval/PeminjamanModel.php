@@ -25,18 +25,9 @@ class PeminjamanModel extends Model
             ->get();
     }
 
-    // public function getPeminjamanByDivisi($divisi)
-    // {
-    //     return DB::table('Peminjaman')
-    //         ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
-    //         ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
-    //         ->where('dokumen.id_departemen', '=', $divisi)
-    //         ->get();
-    // }
-
-    public function add_peminjaman($update_dokumen, $update_peminjaman, $no_dokumen)
+    public function add_peminjaman($update_dokumen, $insert_peminjaman, $no_dokumen)
     {
-        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen) && DB::table('peminjaman')->where('no_dokumen', $no_dokumen)->insert($update_peminjaman)) {
+        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen) && DB::table('peminjaman')->where('no_dokumen', $no_dokumen)->insert($insert_peminjaman)) {
             return true;
         } else {
             return false;
