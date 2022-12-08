@@ -40,9 +40,7 @@
                     <div class="form-group">
                         <label for="id_departemen">Divisi</label>
 
-                        <select class="form-control select2search" name="id_departemen"
-                            id="id_departemen">
-
+                        <select class="form-control select2search" name="id_departemen" id="id_departemen">
                             <option selected disabled>-Pilih Departemen-</option>
                             @foreach ($departemen as $item)
                                 <option value="{{ $item->id_departemen }}" 
