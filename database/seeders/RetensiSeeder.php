@@ -23,14 +23,6 @@ class RetensiSeeder extends Seeder
                 'status_retensi' => 'Pending',
                 'created_at' => \Carbon\Carbon::now(),
             ],
-            [
-                'id_retensi' => '2',
-                'no_dokumen' => '2',
-                'id' => '2',
-                'status_retensi' => 'Pending',
-                'created_at' => \Carbon\Carbon::now(),
-            ],
-
         ]);
     }
 }

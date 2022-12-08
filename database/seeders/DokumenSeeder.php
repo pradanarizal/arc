@@ -18,7 +18,7 @@ class DokumenSeeder extends Seeder
         DB::table('dokumen')->insert([
             [
                 'no_dokumen' => '1',
-                'status_dokumen' => 'Pending',
+                'status_dokumen' => 'Retensi',
                 'id_departemen' => '1',
                 'nama_dokumen' => 'ITSR',
                 'tahun_dokumen' => '2019',
@@ -34,7 +34,7 @@ class DokumenSeeder extends Seeder
             ],
             [
                 'no_dokumen' => '2',
-                'status_dokumen' => 'Pending',
+                'status_dokumen' => 'Pengarsipan',
                 'id_departemen' => '2',
                 'nama_dokumen' => 'ITSR C-ad',
                 'tahun_dokumen' => '2019',
