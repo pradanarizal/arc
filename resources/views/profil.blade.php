@@ -55,7 +55,7 @@
                             <p class="mb-0">Divisi</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">{{ auth()->user()->id_departemen }}</p>
+                            <p class="text-muted mb-0">{{ auth()->user()->divisi }}</p>
                         </div>
                     </div>
 

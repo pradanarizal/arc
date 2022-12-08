@@ -45,7 +45,7 @@
 
                             <option selected disabled>-Pilih Departemen-</option>
                             @foreach ($departemen as $item)
-                                <option value="{{ $item->id_departemen }}" 
+                                <option value="{{ $item->kode_departemen }}" 
                                 @error('departemen')
                                     <?php 
                                         if(old('departemen') == $item->id_departemen ) {echo "selected" ; } ?> 

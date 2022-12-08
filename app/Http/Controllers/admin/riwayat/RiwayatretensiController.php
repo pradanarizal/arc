@@ -18,7 +18,7 @@ class RiwayatretensiController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->getRetensiByDivisi(Auth::user()->id_departemen)
+            'dokumen' => $this->Model->getRetensiByDivisi(Auth::user()->divisi)
         ];
         return view('admin.riwayat.riwayat-retensi', $data);
     }

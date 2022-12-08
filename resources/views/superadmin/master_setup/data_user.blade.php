@@ -50,22 +50,13 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->email }}</td>
-                                <td>{{ $item->kode_departemen }}</td>
-                                <td><?php if ($item->status_user == 'aktif') {
-                                    echo '<span class="badge badge-success">Aktif</span>';
-                                } else {
-                                    echo '<span class="badge badge-danger">Tidak Aktif</span>';
-                                }
-                                ?></td>
+                                <td>{{ $item->id_departemen }}</td>
+                                <td>{{ $item->status_user }}</td>
                                 <td>{{ $item->level }}</td>
                                 <td class="text-center">
                                     <button class="btn btn-sm bg-warning text-white" data-bs-toggle="modal"
                                         data-bs-target="#edit_user{{ $item->id }}">
                                         <i class="fa fa-pen"></i>
-                                    </button>
-                                    <button class="btn btn-sm bg-primary text-white" data-bs-toggle="modal"
-                                        data-bs-target="#modaleditPassword_user{{ $item->id }}">
-                                        <i class="fa fa-key"></i>
                                     </button>
                                     <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
                                         data-bs-target="#delete_user{{ $item->id }}">
@@ -81,7 +72,6 @@
     </div>
     @include('superadmin.modal.m_tambah_user')
     @include('superadmin.modal.m_edit_user')
-    @include('superadmin.modal.m_edit_password_user')
     @include('superadmin.modal.m_delete_user')
     @include('sweetalert::alert')
 @endsection

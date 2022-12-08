@@ -17,7 +17,7 @@ class RiwayatpengarsipanController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->getPengarsipanByDivisi(Auth::user()->id_departemen),
+            'dokumen' => $this->Model->getDataByDivisi(Auth::user()->divisi),
         ];
 
         return view('admin.riwayat.riwayat-pengarsipan', $data);

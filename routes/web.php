@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
     // Untuk CRUD Dokumen
     Route::resource('/input_retensi_admin', DokumenadminController::class);
     Route::resource('/input_pengarsipan_admin', DokumenadminController::class);
-    Route::post('/input_peminjaman_dokumen/{no_dokumen}', [DokumenadminController::class, 'peminjaman_dokumen']);
+    Route::post('/input_peminjaman_dokumen', [DokumenadminController::class, 'pinjam_dokumenById']);
     // showpdf
     Route::get('/showPdfAdmin/{nomorDokumen}', [DokumenadminController::class, 'showPdfAdmin'])->name('dokumen');
     //detail riwayat
@@ -95,7 +95,6 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::get('/master_setup/map', [MapController::class, 'index'])->name('map');
     Route::get('/master_setup/data_departemen', [DepartemenController::class, 'index'])->name('data_departemen');
     Route::get('/master_setup/data_user', [DatauserController::class, 'index'])->name('data_user');
-    Route::post('/master_setup/data_user/{id}', [DatauserController::class, 'update_password'])->name('data_user');
     Route::get('/master_setup/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
 
     // Menu Approval

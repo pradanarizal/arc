@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin\riwayat;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PengembalianModel;
-use Auth;
+
 class RiwayatpengembalianController extends Controller
 {
     public function __construct()
@@ -16,7 +16,7 @@ class RiwayatpengembalianController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->getPengembalianByDivisi(Auth::user()->divisi)
+            'dokumen' => $this->Model->allData()
         ];
 
         return view('admin.riwayat.riwayat-pengembalian', $data);
