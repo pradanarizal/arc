@@ -31,7 +31,7 @@
                                 id="id_departemen">
                                 <option selected disabled>-Pilih Departemen-</option>
                                 @foreach ($departemen as $data)
-                                    <option value="{{ $data->id_departemen }}" <?php if ($item->id_departemen == $data->id_departemen) {
+                                    <option value="{{ $data->kode_departemen }}" <?php if ($item->id_departemen == $data->id_departemen) {
                                         echo "selected";
                                     } ?> > 
                                          {{ $data->kode_departemen }}

@@ -160,13 +160,14 @@ class DokumenadminController extends Controller
     public function peminjaman_dokumen(Request $request, $no_dokumen)
     {
         $update_dokumen = [
-            'status_dokumen' =>  $request->input('status_dokumen'),
+            'nama_dokumen'  => $request->input('nama_dokumen'),
+            'deskripsi'     => $request->input('deskripsi_dokumen'),
         ];
 
         $insert_peminjaman = [
             'tgl_ambil'     => $request->input('tgl_ambil'),
             'tgl_kembali'   => $request->input('tgl_kembali'),
-            'status_peminjaman' =>  $request->input('peminjaman'),
+            'status_pengarsipan' =>  $request->input('peminjaman'),
         ];
 
         if ($this->PeminjamanModel->add_peminjaman( $update_dokumen, $insert_peminjaman, $no_dokumen)) {
