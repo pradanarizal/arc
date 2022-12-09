@@ -17,15 +17,15 @@ class RakSeeder extends Seeder
     {
         DB::table('rak')->insert([
             [
-                'nama_rak' => '001',
+                'nama_rak' => 'Rak 001',
                 'id_ruang' => '1'
             ],
             [
-                'nama_rak' => '002',
+                'nama_rak' => 'Rak 002',
                 'id_ruang' => '2'
             ],
             [
-                'nama_rak' => '003',
+                'nama_rak' => 'Rak 003',
                 'id_ruang' => '3'
             ],
         ]);

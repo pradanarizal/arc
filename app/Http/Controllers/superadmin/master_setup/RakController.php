@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\RakModel;
 use App\Traits\notif_sidebar;
+use Illuminate\Validation\Rule;
 
 class RakController extends Controller
 {
@@ -20,6 +21,12 @@ class RakController extends Controller
     public function __construct()
     {
         $this->RakModel = new RakModel();
+    }
+
+    public function detail_rak($id_ruang)
+    {
+        $rak = $this->RakModel->get_rak_by_ruang($id_ruang);
+        return response()->json($rak);
     }
 
     public function index()
@@ -53,12 +60,14 @@ class RakController extends Controller
             $request,
             [
                 'id_ruang' => 'required',
-                'nama_rak' => 'required|unique:rak,nama_rak'
+                // 'nama_rak' => 'required|unique:rak,nama_rak'
+                'nama_rak' => ['required', Rule::unique('rak')
+                    ->where('id_ruang', $request->id_ruang)],
             ],
             [
                 'id_ruang.required' => 'Ruang wajib dipilih!',
                 'nama_rak.required' => 'Nama Rak wajib diisi!',
-                'nama_rak.unique' => 'Nama Rak sudah ada!'
+                'nama_rak.unique' => ['Nama rak pada ruang ini sudah ada!'],
             ]
         );
 
@@ -136,7 +145,6 @@ class RakController extends Controller
                 return redirect('/master_setup/rak');
             }
         }
-
     }
 
     /**

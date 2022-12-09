@@ -2,17 +2,34 @@
 
 namespace App\Models\master_setup;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 class BoxModel extends Model
 {
     // use HasFactory;
+
     public function boxData()
     {
         return DB::table('box')
-            ->get();
+        ->leftJoin('rak', 'rak.id_rak', '=', 'box.id_rak')
+        ->leftJoin('ruang', 'ruang.id_ruang', '=', 'rak.id_ruang')
+        ->get();
+    }
+    public function getRuang()
+    {
+        return DB::table('ruang')->get();
+    }
+
+    public function getRak()
+    {
+        return DB::table('rak')->get();
+    }
+
+    public function get_box_by_rak($id_rak){
+        return DB::table('box')
+        ->where('id_rak', $id_rak)
+        ->get();
     }
 
     public function insert_box($data)

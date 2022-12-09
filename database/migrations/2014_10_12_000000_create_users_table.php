@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('divisi');
+            $table->string('id_departemen');
             $table->enum('status_user', ['Aktif', 'Tidak Aktif']);
             $table->string('level');
 

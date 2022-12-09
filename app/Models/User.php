@@ -27,19 +27,21 @@ class User extends Authenticatable
         }
     }
 
+    public function getDepartemen()
+    {
+        return DB::table('departemen')->get();
+    }
+    
     //Delete Data User
     public function delete_datauser($id)
     {
         DB::table('users')->where('id', $id)->delete();
     }
 
-
-
-
     public function update_user($data, $id)
     {
         if (DB::table('users')->where('id',$id)->update($data)){
-        return true;
+            return true;
         }else{
             return false;
         }

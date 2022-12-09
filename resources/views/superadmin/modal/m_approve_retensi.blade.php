@@ -21,9 +21,6 @@
                     {{-- value untuk ubah status retensi. update ke table retensi --}}
                     <input name="retensi" type="text" value="Ya" hidden>
 
-                    {{-- value untuk ubah status dokumen. update ke table dokumen --}}
-                    <input name="status_dok" type="text" value="Retensi" hidden>
-
                     <div class="modal-footer">
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Batal</button>
                         <button class="btn btn-primary" type="submit">Approve</button>

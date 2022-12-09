@@ -31,9 +31,18 @@
                                 name="password" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
-                            <label for="divisi">Divisi</label>
-                            <input type="divisi" value="{{ $item->divisi }}" class="form-control" id="divisi"
-                                name="divisi" aria-describedby="emailHelp">
+                            <label for="id_departemen">Departemen</label>
+                            <select class="form-control" name="id_departemen"
+                                id="id_departemen">
+                                <option selected disabled>-Pilih Departemen-</option>
+                                @foreach ($departemen as $data)
+                                    <option value="{{ $data->kode_departemen }}" <?php if ($item->id_departemen == $data->id_departemen) {
+                                        echo "selected";
+                                    } ?> > 
+                                         {{ $data->kode_departemen }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="status_user">Status</label>

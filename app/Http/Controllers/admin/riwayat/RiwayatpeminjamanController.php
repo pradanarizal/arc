@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\riwayat;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PeminjamanModel;
+use Auth;
 
 class RiwayatpeminjamanController extends Controller
 {
@@ -16,41 +17,17 @@ class RiwayatpeminjamanController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->allData()
+            'dokumen' => $this->Model->getPeminjamanByDivisi(Auth::user()->divisi),
         ];
         return view('admin.riwayat.riwayat-peminjaman', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function show_detail($id)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data = [
+            'peminjaman' => $this->Model->getPeminjamanById($id)
+        ];
+        return view('admin.riwayat.d_riwayat_peminjaman', $data);
     }
 
     /**

@@ -20,7 +20,7 @@
                         <input type="text" value="{{$item->nama_map}}" class="form-control" id="nama_map" name="nama_map"
                             aria-describedby="emailHelp">
                     </div>
-                    <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
+                    <button type="submit" id="btn-simpan" name="btn-simpan" class="btn btn-primary tombol-aksi float-right">Simpan</button>
                     <button class="btn btn-danger tombol-aksi float-right" type="button" data-bs-dismiss="modal">Batal</button>
                 </form>
                 <!--END FORM TAMBAH BARANG-->

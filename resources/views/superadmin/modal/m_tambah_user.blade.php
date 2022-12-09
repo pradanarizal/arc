@@ -38,12 +38,21 @@
                             @enderror
                     </div>
                     <div class="form-group">
-                        <label for="divisi">Divisi</label>
-                        <input type="divisi" class="form-control" id="divisi" name="divisi"
-                            aria-describedby="emailHelp" value="{{ old('divisi') }}">
-                            @error('divisi')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                        <label for="id_departemen">Divisi</label>
+
+                        <select class="form-control select2search" name="id_departemen"
+                            id="id_departemen">
+
+                            <option selected disabled>-Pilih Departemen-</option>
+                            @foreach ($departemen as $item)
+                                <option value="{{ $item->kode_departemen }}"
+                                @error('departemen')
+                                    <?php
+                                        if(old('departemen') == $item->id_departemen ) {echo "selected" ; } ?>
+                                @enderror > {{ $item->kode_departemen }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="status_user">Status</label>
@@ -72,7 +81,7 @@
 </div>
 
 {{-- Perulangan untuk cek error --}}
-<?php $listError = ['nama_user', 'email_user','password','divisi']; ?>
+<?php $listError = ['nama_user', 'email_user','password','id_departemen']; ?>
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">

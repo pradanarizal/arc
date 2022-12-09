@@ -21,6 +21,12 @@ class RakModel extends Model
         return DB::table('ruang')->get();
     }
 
+    public function get_rak_by_ruang($id_ruang){
+        return DB::table('rak')
+        ->where('id_ruang', $id_ruang)
+        ->get();
+    }
+
     public function insert_rak($data)
     {
         if (DB::table('rak')->insert($data)){

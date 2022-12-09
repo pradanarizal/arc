@@ -12,14 +12,22 @@ class MapModel extends Model
     public function mapData()
     {
         return DB::table('map')
+            ->leftJoin('box', 'box.id_box', '=', 'map.id_box') // relasi table map ke table box
+            ->leftJoin('rak', 'rak.id_rak', '=', 'box.id_rak') // relasi table box ke table rak
+            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'rak.id_ruang') // relasi table rak ke table ruang
             ->get();
+    }
+
+    public function getRuang()
+    {
+        return DB::table('ruang')->get();
     }
 
     public function insert_map($data)
     {
-        if (DB::table('map')->insert($data)){
+        if (DB::table('map')->insert($data)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -32,9 +40,9 @@ class MapModel extends Model
 
     public function update_map($data, $id_map)
     {
-        if (DB::table('map')->where('id_map',$id_map)->update($data)){
+        if (DB::table('map')->where('id_map', $id_map)->update($data)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

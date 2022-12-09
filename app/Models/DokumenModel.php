@@ -20,12 +20,14 @@ class DokumenModel extends Model
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             // ->leftJoin('kelengkapan_dokumen', 'kelengkapan_dokumen.nama_kel_dokumen', '=', 'dokumen.nama_kel_dokumen')
+            
             ->get();
 
         return DB::table('dokumen')
 
             ->where('status_dokumen', '=', 'Retensi')
             ->get();
+
     }
 
     public function dataRetensi()
@@ -78,6 +80,15 @@ class DokumenModel extends Model
     public function softdelete_dokumen($update_dokumen, $no_dokumen)
     {
         if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function insert_peminjaman($data, $data2, $id)
+    {
+        if (DB::table('dokumen')->where('no_dokumen', $id)->update($data) && DB::table('peminjaman')->insert($data2)) {
             return true;
         } else {
             return false;

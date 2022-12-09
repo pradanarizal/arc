@@ -14,16 +14,6 @@
         </div>
     </div>
 
-    <!-- Begin Page Content -->
-
-    {{-- <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
-        <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#tambah_user">
-            <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
-            Add User
-        </button>
-    </div> --}}
-
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
@@ -34,7 +24,7 @@
                             <th>ID</th>
                             <th>Nama User</th>
                             <th>Email</th>
-                            <th>Divisi</th>
+                            <th>Departemen</th>
                             <th>Status</th>
                             <th>Roles</th>
                             <th>Aksi</th>
@@ -50,7 +40,7 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->email }}</td>
-                                <td>{{ $item->divisi }}</td>
+                                <td>{{ $item->id_departemen }}</td>
                                 <td>{{ $item->status_user }}</td>
                                 <td>{{ $item->level }}</td>
                                 <td class="text-center">
@@ -75,3 +65,16 @@
     @include('superadmin.modal.m_delete_user')
     @include('sweetalert::alert')
 @endsection
+
+<script>
+    window.onload = function() {
+        $('.select2search').select2({
+            theme: "bootstrap-5",
+            dropdownParent: $('#tambah_user'),
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                'style'
+        });
+    };
+</script>
+
+

@@ -21,8 +21,9 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
-                    <button class="btn btn-danger tombol-aksi float-right" type="button" data-bs-dismiss="modal">Batal</button>
+                    <button disabled type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
+                    <button class="btn btn-danger tombol-aksi float-right" type="button"
+                        data-bs-dismiss="modal">Batal</button>
                 </form>
                 <!--END FORM TAMBAH BARANG-->
             </div>

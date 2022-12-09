@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('map', function (Blueprint $table) {
             $table->id('id_map');
             $table->string('nama_map');
+            
+            //Relasi table box
+            $table->unsignedBigInteger('id_box');
+            $table->foreign('id_box')->references('id_box')->on('box');
+
+            //timestamp
             $table->timestamps();
         });
     }

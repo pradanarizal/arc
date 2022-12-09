@@ -27,7 +27,8 @@ class DatauserController extends Controller
     public function index()
     {
         $data = [
-            'users' => $this->User->userData()
+            'users' => $this->User->userData(),
+            'departemen'    => $this->User->getDepartemen(),
         ];
         return view('superadmin.master_setup.data_user', $data, $this->approval_pending());
     }
@@ -54,7 +55,7 @@ class DatauserController extends Controller
             'nama_user' => 'required',
             'email_user' => 'required|unique:users,email',
             'password' =>'required',
-            'divisi' => 'required',
+            'id_departemen' => 'required',
 
             'password' => [
                 'required',
@@ -71,7 +72,7 @@ class DatauserController extends Controller
             'name' => $request->input('nama_user'),
             'email' => $request->input('email_user'),
             'password' => Hash::make($request->input('password')),
-            'divisi' => $request->input('divisi'),
+            'id_departemen' => $request->input('id_departemen'),
             'status_user' => $request->input('status_user'),
             'level' => $request->input('role'),
         ];
@@ -114,12 +115,11 @@ class DatauserController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $data = [
             'name' => $request->input('nama_user'),
             'email' => $request->input('email_user'),
             'password' => Hash::make($request->input('password')),
-            'divisi' => $request->input('divisi'),
+            'id_departemen' => $request->input('id_departemen'),
             'status_user' => $request->input('status_user'),
             'level' => $request->input('role'),
         ];

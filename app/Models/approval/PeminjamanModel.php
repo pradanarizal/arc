@@ -15,4 +15,22 @@ class PeminjamanModel extends Model
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->get();
     }
+
+    public function getPeminjamanById($id)
+    {
+        return DB::table('Peminjaman')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
+            ->where('id_peminjaman', '=', $id)
+            ->get();
+    }
+
+    public function getPeminjamanByDivisi($divisi)
+    {
+        return DB::table('Peminjaman')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
+            ->where('dokumen.divisi', '=', $divisi)
+            ->get();
+    }
 }

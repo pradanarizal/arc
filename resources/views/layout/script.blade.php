@@ -18,6 +18,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
 </script>
 <script src="{{ asset('templates/js/bar-chart-penyimpanan.js') }}"></script>
+<script src="{{ asset('templates/js/pilih_rak.js') }}"></script>
+<script src="{{ asset('templates/js/pilih_box.js') }}"></script>
+
+{{-- End Of Custom Script --}}
 
 {{-- CDN Sweet Alert --}}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

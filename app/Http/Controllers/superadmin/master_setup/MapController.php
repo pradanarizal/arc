@@ -27,7 +27,8 @@ use notif_sidebar;
     public function index()
     {
         $data = [
-            'map' => $this->MapModel->mapData()
+            'map' => $this->MapModel->mapData(),
+            'ruang' => $this->MapModel->getRuang()
         ];
         return view('superadmin.master_setup.map', $data, $this->approval_pending());
     }
@@ -53,7 +54,8 @@ use notif_sidebar;
         $this->validate(
             $request,
             [
-                'nama_map' => 'required|unique:map,nama_map'
+                'box_select' =>'required',
+                'map' => 'required|unique:map,nama_map',
             ],
             [
                 'nama_map.required' => 'Nama Map wajib diisi!',
@@ -62,7 +64,8 @@ use notif_sidebar;
         );
 
         $data = [
-            'nama_map' => $request->input('nama_map'),
+            'nama_map' => $request->input('map'),
+            'id_box' => $request->input('box_select'),
         ];
         if ($this->MapModel->insert_map($data)) {
             return redirect('/master_setup/map')->with('toast_success', 'Berhasil Tambah map');

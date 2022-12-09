@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rak', function (Blueprint $table) {
-            $table->id('id_rak');
-            $table->string('nama_rak');
-            $table->unsignedBigInteger('id_ruang');
-            $table->foreign('id_ruang')->references('id_ruang')->on('ruang');
+        Schema::create('departemen', function (Blueprint $table) {
+            $table->id('id_departemen');
+            $table->string('kode_departemen');
+            $table->string('nama_departemen');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rak');
+        Schema::dropIfExists('departemen');
     }
 };

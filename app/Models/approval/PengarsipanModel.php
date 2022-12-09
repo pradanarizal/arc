@@ -26,18 +26,39 @@ class PengarsipanModel extends Model
         }
     }
 
+    public function getDataById($id)
+    {
+        return DB::table('pengarsipan')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+            ->where('id_pengarsipan', '=', $id)
+            ->get();
+    }
+
+    public function getDataByDivisi($divisi)
+    {
+        return DB::table('pengarsipan')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+            ->where('dokumen.divisi', '=', $divisi)
+            ->get();
+    }
+
     public function getRuang()
     {
         return DB::table('ruang')->select('id_ruang', 'nama_ruang')->get();
     }
+
     public function getRak()
     {
         return DB::table('rak')->select('id_rak', 'nama_rak')->get();
     }
+
     public function getBox()
     {
         return DB::table('box')->select('id_box', 'nama_box')->get();
     }
+
     public function getMap()
     {
         return DB::table('map')->select('id_map', 'nama_map')->get();
