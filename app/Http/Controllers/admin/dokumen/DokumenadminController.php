@@ -164,6 +164,7 @@ class DokumenadminController extends Controller
         ];
 
         $insert_peminjaman = [
+            'no_dokumen'    => $request->input('nomor_dokumen'),
             'tgl_ambil'     => $request->input('tgl_ambil'),
             'tgl_kembali'   => $request->input('tgl_kembali'),
             'status_peminjaman' =>  $request->input('peminjaman'),
