@@ -28,6 +28,15 @@ class RetensiModel extends Model
         }
     }
 
+    public function getRetensiById($id)
+    {
+        return DB::table('retensi')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'retensi.id')
+            ->where('id_retensi', '=', $id)
+            ->get();
+    }
+
     public function getRetensiByDivisi($divisi)
     {
         return DB::table('retensi')
