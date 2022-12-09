@@ -40,10 +40,14 @@ class DokumenadminController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->DokumenModel->allData(),
+            'dokumen' => $this->DokumenModel->allData(Auth::user()->id_departemen),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData()
         ];
         return view('admin.menu_dokumen.dokumen', $data);
+
+        // $data = $this->DokumenModel->getDokumenAdminByDivisi(Auth::user()->id_departemen);
+        // $data2 = $this->DokumenModel->kelData();
+        // dd($data, $data2);
     }
 
     public function store(Request $request)
@@ -155,20 +159,21 @@ class DokumenadminController extends Controller
         }
     }
 
-    public function pinjam_dokumenById(Request $request, $id)
+    public function pinjam_dokumenById(Request $request, $no_dokumen)
     {
-        $data = [
-            'nama_dokumen'  => $request->input('nama_dokumen'),
-            'deskripsi'     => $request->input('deskripsi_dokumen'),
+        $update_dokumen = [
+            'status_dokumen'    => $request->input('status_dokumen')
         ];
 
         $insert_peminjaman = [
             'no_dokumen'    => $request->input('nomor_dokumen'),
             'tgl_ambil'     => $request->input('tgl_ambil'),
             'tgl_kembali'   => $request->input('tgl_kembali'),
+            'status_peminjaman' => $request->input('status_peminjaman'),
+            'id'                => Auth::user()->id,
         ];
 
-        if ($this->DokumenModel->insert_peminjaman($id, $data, $data2)) {
+        if ($this->DokumenModel->insert_peminjaman($update_dokumen, $insert_peminjaman, $no_dokumen)) {
             return redirect('/dokumen_admin')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
         } else {
             return redirect('/dokumen_admin');
