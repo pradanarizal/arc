@@ -17,7 +17,7 @@ class DokumenSeeder extends Seeder
     {
         DB::table('dokumen')->insert([
             [
-                'no_dokumen' => '1', // UBAH INI HARUS UBAH JUGA DI RetensiSeeder..!!
+                'no_dokumen' => '1',
                 'status_dokumen' => 'Retensi',
                 'id_departemen' => '1',
                 'nama_dokumen' => 'ITSR',
@@ -33,7 +33,7 @@ class DokumenSeeder extends Seeder
                 'created_at' => \Carbon\Carbon::now(),
             ],
             [
-                'no_dokumen' => '2', // UBAH INI HARUS UBAH JUGA DI PengarsipanSeeder..!!
+                'no_dokumen' => '2',
                 'status_dokumen' => 'Pengarsipan',
                 'id_departemen' => '2',
                 'nama_dokumen' => 'ITSR C-ad',
