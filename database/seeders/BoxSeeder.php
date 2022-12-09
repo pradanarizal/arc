@@ -17,16 +17,16 @@ class BoxSeeder extends Seeder
     {
         DB::table('box')->insert([
             [
-                'id_box' => '01',
-                'nama_box' => '001',
+                'nama_box' => 'Box 001',
+                'id_rak' => '1'
             ],
             [
-                'id_box' => '02',
-                'nama_box' => '002',
+                'nama_box' => 'Box 002',
+                'id_rak' => '2'
             ],
             [
-                'id_box' => '03',
-                'nama_box' => '003',
+                'nama_box' => 'Box 003',
+                'id_rak' => '3'
             ],
         ]);
     }

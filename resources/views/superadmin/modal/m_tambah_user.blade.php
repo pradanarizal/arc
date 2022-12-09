@@ -45,10 +45,10 @@
 
                             <option selected disabled>-Pilih Departemen-</option>
                             @foreach ($departemen as $item)
-                                <option value="{{ $item->kode_departemen }}" 
+                                <option value="{{ $item->kode_departemen }}"
                                 @error('departemen')
-                                    <?php 
-                                        if(old('departemen') == $item->id_departemen ) {echo "selected" ; } ?> 
+                                    <?php
+                                        if(old('departemen') == $item->id_departemen ) {echo "selected" ; } ?>
                                 @enderror > {{ $item->kode_departemen }}
                                 </option>
                             @endforeach

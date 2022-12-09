@@ -112,6 +112,11 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
     Route::resource('/data_user', DatauserController::class);
     Route::resource('/kelengkapan', KelengkapanController::class);
 
+    //get rak berdasarkan id ruang
+    Route::get('/getRak/{id_ruang}', [RakController::class, 'detail_rak'])->name('getRak');
+    //get box berdasarkan id rak
+    Route::get('/getBox/{id_rak}', [BoxController::class, 'detail_box'])->name('getBox');
+
     // Untuk CRUD Dokumen
     Route::resource('/input_retensi', DokumenController::class);
     Route::resource('/input_pengarsipan', DokumenController::class);

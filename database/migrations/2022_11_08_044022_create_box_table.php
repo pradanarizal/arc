@@ -16,6 +16,16 @@ return new class extends Migration
         Schema::create('box', function (Blueprint $table) {
             $table->id('id_box');
             $table->string('nama_box');
+
+            //Relasi table rak
+            $table->unsignedBigInteger('id_rak');
+            $table->foreign('id_rak')->references('id_rak')->on('rak');
+
+            //Relasi table ruang
+            // $table->unsignedBigInteger('id_ruang');
+            // $table->foreign('id_ruang')->references('id_ruang')->on('ruang');
+
+            //timestamp
             $table->timestamps();
         });
     }

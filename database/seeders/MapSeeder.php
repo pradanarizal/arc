@@ -16,17 +16,19 @@ class MapSeeder extends Seeder
     public function run()
     {
         DB::table('map')->insert([
-        [
-                'id_map' => '01',
-                'nama_map' => '0001',
+            [
+                'nama_map' => 'Map 1',
+                'id_box' => '1',
+
             ],
             [
-                'id_map' => '02',
-                'nama_map' => '0002',
+                'nama_map' => 'Map 2',
+                'id_box' => '2',
             ],
             [
-                'id_map' => '03',
-                'nama_map' => '0003',
+                'nama_map' => 'Map 3',
+                'id_box' => '3',
+
             ],
         ]);
     }

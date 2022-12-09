@@ -23,6 +23,12 @@ class RakController extends Controller
         $this->RakModel = new RakModel();
     }
 
+    public function detail_rak($id_ruang)
+    {
+        $rak = $this->RakModel->get_rak_by_ruang($id_ruang);
+        return response()->json($rak);
+    }
+
     public function index()
     {
         $data = [
