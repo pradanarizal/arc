@@ -10,7 +10,7 @@
             </div>
 
             <div class="modal-body">
-                <!--FORM TAMBAH BARANG-->
+                <!--FORM TAMBAH-->
                 <form action="/input_pengarsipan" method="post" enctype="multipart/form-data">
                     @csrf
                     <input name="jenis" type="text" value="Pengarsipan" hidden>
@@ -30,15 +30,6 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="tahun_dokumen">Tahun Dokumen</label>
-                        <input type="number" placeholder="YYYY" min="2000" max="2050" class="form-control"
-                            id="tahun_dokumen" name="tahun_dokumen" aria-describedby="emailHelp"
-                            value="{{ old('tahun_dokumen') }}">
-                        @error('tahun_dokumen')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
                     <div class="form-group">
                         <label for="tahun_dokumen">Tahun Dokumen</label>
                         <select class="form-control custom-select" name="tahun_dokumen" id="tahun_dokumen">

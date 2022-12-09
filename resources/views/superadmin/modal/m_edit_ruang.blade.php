@@ -1,5 +1,6 @@
 @foreach ($ruang as $item)
-    <div class="modal fade" id="edit_ruang{{ $item->id_ruang }}" tabindex="-1" aria-labelledby="edit_ruang" aria-hidden="true">
+    <div class="modal fade" id="edit_ruang{{ $item->id_ruang }}" tabindex="-1" aria-labelledby="edit_ruang"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -17,11 +18,15 @@
                         @method('PUT')
                         <div class="form-group">
                             <label for="nama_ruang">Nama Ruang</label>
-                            <input type="text" value="{{$item->nama_ruang}}" class="form-control" id="nama_ruang" name="nama_ruang"
-                                aria-describedby="emailHelp">
+                            <input type="text" value="{{ $item->nama_ruang }}" class="form-control" id="nama_ruang"
+                                name="nama_ruang" aria-describedby="emailHelp" value="{{ old('nama_ruang') }}">
+                            @error('nama_ruang')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
-                        <button class="btn btn-danger tombol-aksi float-right" type="button" data-bs-dismiss="modal">Batal</button>
+                        <button class="btn btn-danger tombol-aksi float-right" type="button"
+                            data-bs-dismiss="modal">Batal</button>
                     </form>
                     <!--END FORM TAMBAH BARANG-->
                 </div>
@@ -29,4 +34,32 @@
             </div>
         </div>
     </div>
+@endforeach
+
+{{-- Perulangan untuk cek error --}}
+<?php $listError = ['nama_ruang']; ?>
+@foreach ($listError as $err)
+    @error($err)
+        {{-- Script untuk alert --}}
+        <script>
+            Swal.fire({
+                toast: true,
+                icon: 'error',
+                title: 'Input Gagal!',
+                text: '{{ $message }}',
+
+                animation: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                showCloseButton: true,
+                timer: 6000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+        </script>
+    @break
+@enderror
 @endforeach
