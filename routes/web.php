@@ -48,12 +48,12 @@ Route::get('/refreshCapcha', [LoginController::class, 'refreshCapcha']);
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'cekaktif']], function () {
     Route::get('/dashboard', [DashboardController::class, 'afterlogin'])->name('dashboard');
 });
 
 //// Untuk Admin ////
-Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
+Route::group(['middleware' => ['auth', 'ceklevel:admin', 'cekaktif']], function () {
     //Menu Dokumen
     Route::get('/dokumen_admin', [DokumenadminController::class, 'index'])->name('dokumen');
     Route::get('/detail_dokumen_admin/{id}', [DokumenadminController::class, 'detail_data'])->name('dokumen');
@@ -75,14 +75,14 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin']], function () {
 });
 
 //// Untuk User ////
-Route::group(['middleware' => ['auth', 'ceklevel:user']], function () {
+Route::group(['middleware' => ['auth', 'ceklevel:user', 'cekaktif']], function () {
     Route::get('/dokumen_user', [UserController::class, 'index'])->name('dokumen');
     Route::get('/detail_dokumen_user/{id}', [UserController::class, 'detail_data'])->name('dokumen');
     Route::get('/showPdfUser/{nomorDokumen}', [UserController::class, 'showPdfUser'])->name('dokumen');
 });
 
 //// Untuk Super Admin ////
-Route::group(['middleware' => ['auth', 'ceklevel:superadmin']], function () {
+Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], function () {
     //Menu Dokumen
     // Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
     Route::resource('/dokumen', DokumenController::class);
