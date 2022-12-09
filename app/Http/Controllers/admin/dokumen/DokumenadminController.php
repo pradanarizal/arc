@@ -107,7 +107,7 @@ class DokumenadminController extends Controller
                 'nama_dokumen' => $request->input('nama_dokumen'),
                 'tahun_dokumen' => $request->input('tahun_dokumen'),
                 'deskripsi' => $request->input('deskripsi_dokumen'),
-                'divisi' => Auth::user()->divisi,
+                'id_departemen' => Auth::user()->id_departemen,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Retensi',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
@@ -133,7 +133,7 @@ class DokumenadminController extends Controller
                 'nama_dokumen' => $request->input('nama_dokumen'),
                 'tahun_dokumen' => $request->input('tahun_dokumen'),
                 'deskripsi' => $request->input('deskripsi_dokumen'),
-                'divisi' => Auth::user()->divisi,
+                'id_departemen' => Auth::user()->id_departemen,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Pengarsipan',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
@@ -162,7 +162,8 @@ class DokumenadminController extends Controller
             'deskripsi'     => $request->input('deskripsi_dokumen'),
         ];
 
-        $data2 = [
+        $insert_peminjaman = [
+            'no_dokumen'    => $request->input('nomor_dokumen'),
             'tgl_ambil'     => $request->input('tgl_ambil'),
             'tgl_kembali'   => $request->input('tgl_kembali'),
         ];

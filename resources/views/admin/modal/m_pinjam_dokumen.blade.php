@@ -25,6 +25,10 @@
                             @enderror
                         </div> --}}
                         <div class="form-group">
+                            <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
+                                aria-describedby="emailHelp" value="{{ $item->no_dokumen }}" hidden>
+                        </div>
+                        <div class="form-group">
                             <label for="nama_dokumen">Nama Dokumen</label>
                             <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
                                 aria-describedby="emailHelp" value="{{ $item->nama_dokumen }}" readonly>
