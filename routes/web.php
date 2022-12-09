@@ -95,6 +95,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
     Route::get('/master_setup/map', [MapController::class, 'index'])->name('map');
     Route::get('/master_setup/data_departemen', [DepartemenController::class, 'index'])->name('data_departemen');
     Route::get('/master_setup/data_user', [DatauserController::class, 'index'])->name('data_user');
+    Route::post('/master_setup/data_user/{id}', [DatauserController::class, 'update_password'])->name('data_user');
     Route::get('/master_setup/kelengkapan_dokumen', [KelengkapanController::class, 'index'])->name('kelengkapan_dokumen');
 
     // Menu Approval
@@ -127,3 +128,4 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
 
 //Menu Profil
 Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
+// Route::get('/profil', [Controller::class, 'profil_user'])->name('profil');

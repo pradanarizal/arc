@@ -43,7 +43,7 @@
                         <select class="form-control select2search" name="id_departemen"
                             id="id_departemen">
 
-                            <option selected disabled>-Pilih Departemen-</option>
+                            <option selected disabled>-Pilih Divisi-</option>
                             @foreach ($departemen as $item)
                                 <option value="{{ $item->kode_departemen }}" 
                                 @error('departemen')
@@ -57,8 +57,8 @@
                     <div class="form-group">
                         <label for="status_user">Status</label>
                         <select class="form-control" name="status_user" id="status_user">
-                            <option value="Aktif">Aktif</option>
-                            <option value="Tidak Aktif">Tidak Aktif</option>
+                            <option value="1">Aktif</option>
+                            <option value="0">Tidak Aktif</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -66,7 +66,7 @@
                         <select class="form-control" name="role" id="role">
                             <option value="user">User</option>
                             <option value="admin">Admin</option>
-                            <option value="super admin">Super Admin</option>
+                            <option value="superadmin">Super Admin</option>
                         </select>
                     </div>
 

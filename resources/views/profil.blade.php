@@ -27,7 +27,6 @@
         <div class="col-lg-8">
             <div class="card mb-4">
                 <div class="card-body">
-
                     <div class="row">
                         <div class="col-sm-3">
                             <p class="mb-0">Full Name</p>
@@ -55,10 +54,9 @@
                             <p class="mb-0">Divisi</p>
                         </div>
                         <div class="col-sm-9">
-                            <p class="text-muted mb-0">{{ auth()->user()->divisi }}</p>
+                            <p class="text-muted mb-0">{{ auth()->user()->id_departemen }}</p>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
