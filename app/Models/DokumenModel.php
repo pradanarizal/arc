@@ -27,8 +27,24 @@ class DokumenModel extends Model
 
             ->where('status_dokumen', '=', 'Retensi')
             ->get();
-
     }
+
+    // public function getDokumenAdminByDivisi($divisi)
+    // {
+    //     return DB::table('pengarsipan')
+    //         ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
+    //         ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+    //         ->where('dokumen.id_departemen', '=', $divisi)
+    //         ->orwhere('status_dokumen', '=', 'Tersedia')
+    //         ->orwhere('status_dokumen', '=', 'Dipinjam')
+    //         ->get();
+
+    //     return DB::table('dokumen')
+    //         ->where('dokumen.id_departemen', '=', $divisi)
+    //         ->orwhere('status_dokumen', '=', 'Retensi')
+    //         ->get();
+    // }
+
 
     public function dataRetensi()
     {
@@ -86,9 +102,9 @@ class DokumenModel extends Model
         }
     }
 
-    public function insert_peminjaman($data, $data2, $id)
+    public function insert_peminjaman($update_dokumen, $insert_peminjaman, $no_dokumen)
     {
-        if (DB::table('dokumen')->where('no_dokumen', $id)->update($data) && DB::table('peminjaman')->insert($data2)) {
+        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen) && DB::table('peminjaman')->insert($insert_peminjaman)) {
             return true;
         } else {
             return false;

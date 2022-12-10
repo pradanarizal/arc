@@ -30,7 +30,7 @@ class PeminjamanModel extends Model
         return DB::table('Peminjaman')
             ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
-            ->where('dokumen.divisi', '=', $divisi)
+            ->where('dokumen.id_departemen', '=', $divisi)
             ->get();
     }
 }

@@ -64,36 +64,22 @@
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
-                                        <i class="fas fa-cog"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <a href="/detail_dokumen_admin/{{ $item->no_dokumen }}"
-                                            style="text-decoration: none;">
-                                            <li><button class="dropdown-item text-warning"><i
-                                                        class="fas fa-eye fa-warning"></i> Lihat</button>
-                                            </li>
+                                    @if($item->status_dokumen == 'Dipinjam')
+                                        <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
+                                            href="/detail_dokumen_admin/{{ $item->no_dokumen }}">
+                                            <i class="fas fa-eye"></i>
                                         </a>
-                                        <li><button class="dropdown-item text-primary" data-bs-toggle="modal"
-                                                data-bs-target="#pinjam_dokumen{{ $item->no_dokumen }}"><i
-                                                    class="fas fa-file-export fa-primary"></i>
-                                                Pinjam</button></li>
-                                        <li><button class="dropdown-item text-danger" href="#"><i
-                                                    class="fas fa-trash fa-danger"></i> Retensi</button>
-                                        </li>
-                                    </ul>
-                                    {{-- <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
-                                        href="/detail_dokumen_admin/{{ $item->no_dokumen }}">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                    <button title="Pinjam Dokumen" class="btn btn-sm bg-success text-white"
-                                        data-bs-toggle="modal" data-bs-target="#pinjam_dokumen{{ $item->no_dokumen }}">
-                                        <i class="fas fa-file-export"></i>
-                                    </button>
-                                    <button title="Retensi Dokumen" class="btn btn-sm bg-danger text-white"
-                                        data-bs-toggle="modal" data-bs-target="#">
-                                        <i class="fas fa-trash"></i>
-                                    </button> --}}
+                                    
+                                    @else
+                                        <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
+                                            href="/detail_dokumen_admin/{{ $item->no_dokumen }}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <button title="Pinjam Dokumen" class="btn btn-sm bg-success text-white"
+                                            data-bs-toggle="modal" data-bs-target="#pinjam_dokumen{{ $item->no_dokumen }}">
+                                            <i class="fas fa-file-export"></i>
+                                        </button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

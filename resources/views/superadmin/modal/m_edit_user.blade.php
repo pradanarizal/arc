@@ -26,17 +26,12 @@
                                 name="email_user" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" value="{{ $item->password }}" class="form-control" id="password"
-                                name="password" aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group">
                             <label for="id_departemen">Departemen</label>
                             <select class="form-control" name="id_departemen"
                                 id="id_departemen">
                                 <option selected disabled>-Pilih Departemen-</option>
                                 @foreach ($departemen as $data)
-                                    <option value="{{ $data->kode_departemen }}" <?php if ($item->id_departemen == $data->id_departemen) {
+                                    <option value="{{ $data->id_departemen }}" <?php if ($item->id_departemen == $data->id_departemen) {
                                         echo "selected";
                                     } ?> > 
                                          {{ $data->kode_departemen }}
@@ -46,17 +41,27 @@
                         </div>
                         <div class="form-group">
                             <label for="status_user">Status</label>
-                            <select class="form-control" name="status_user" id="status_user">
-                                <option value="Aktif">Aktif</option>
-                                <option value="Tidak Aktif">Tidak Aktif</option>
+                            <select class="form-control" name="status_user" id="status_user" value="{{ $item->aktif }}">
+                                <option value="1" <?php if($item->aktif == 1 ) {
+                                    echo 'selected';
+                                } ?> > Aktif</option>
+                                <option value="0" <?php if($item->aktif == 0) {
+                                    echo 'selected';
+                                } ?> > Tidak Aktif</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="role">Roles</label>
-                            <select class="form-control" name="role" id="role">
-                                <option value="User">User</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Super Admin">Super Admin</option>
+                            <select class="form-control" name="role" id="role" value="{{ $item->level }}">
+                                <option value="user" <?php if($item->level == 'user') {
+                                    echo 'selected';
+                                } ?> >User</option>
+                                <option value="admin" <?php if($item->level == 'admin') {
+                                    echo 'selected';
+                                } ?> >Admin</option>
+                                <option value="superadmin" <?php if($item->level == 'superadmin') {
+                                    echo 'selected';
+                                } ?> >Super Admin</option>
                             </select>
                         </div>
 
