@@ -73,7 +73,7 @@ class DatauserController extends Controller
             'email' => $request->input('email_user'),
             'password' => Hash::make($request->input('password')),
             'id_departemen' => $request->input('id_departemen'),
-            'status_user' => $request->input('status_user'),
+            'aktif' => $request->input('status_user'),
             'level' => $request->input('role'),
         ];
 
@@ -118,9 +118,8 @@ class DatauserController extends Controller
         $data = [
             'name' => $request->input('nama_user'),
             'email' => $request->input('email_user'),
-            'password' => Hash::make($request->input('password')),
             'id_departemen' => $request->input('id_departemen'),
-            'status_user' => $request->input('status_user'),
+            'aktif' => $request->input('status_user'),
             'level' => $request->input('role'),
         ];
         if ($this->User->update_user($data, $id)) {
@@ -130,12 +129,34 @@ class DatauserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function update_password(Request $request, $id) 
+    {
+        $this->validate( $request, 
+            [
+                'new_password'        => 'required|confirmed',
+                'new_password' => [
+                    'required',
+                    Rules\Password::min(8)
+                        ->mixedCase()
+                        // ->letters()
+                        ->numbers()
+                        // ->symbols()
+                        ->uncompromised()
+                ],
+            ]
+        );
+
+        $data = [
+            'password'      => Hash::make($request->input('new_password')),
+        ];
+
+        if ($this->User->update_user($data, $id)) {
+            return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Edit User');
+        } else {
+            return redirect('/master_setup/data_user');
+        }
+    }
+
     public function destroy($id)
     {
         $this->User->delete_datauser($id);

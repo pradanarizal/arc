@@ -9,14 +9,24 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class User extends Authenticatable
 {
     public function userData()
     {
         return DB::table('users')
+            ->leftJoin('departemen', 'departemen.id_departemen', '=', 'users.id_departemen')
             ->get();
     }
+
+    public function profilUser()
+    {
+        return DB::table('departemen')
+            ->where('id_departemen', (Auth::user()->id_departemen))
+            ->get();
+    }
+
     //Tambah Data User
     public function insert_datauser($data)
     {
