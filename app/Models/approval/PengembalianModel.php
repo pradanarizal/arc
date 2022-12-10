@@ -16,4 +16,13 @@ class PengembalianModel extends Model
         ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
         ->get();
     }
+
+    public function getPengembalianByDivisi($divisi)
+    {
+        return DB::table('pengembalian')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengembalian.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
+            ->where('dokumen.id_departemen', '=', $divisi)
+            ->get();
+    }
 }

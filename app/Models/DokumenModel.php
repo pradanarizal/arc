@@ -110,4 +110,13 @@ class DokumenModel extends Model
             return false;
         }
     }
+
+    public function insert_pengembalian($insert_pengembalian, $no_dokumen)
+    {
+        if (DB::table('pengembalian')->insert($insert_pengembalian)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

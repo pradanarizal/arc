@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin', 'cekaktif']], function 
     Route::resource('/input_retensi_admin', DokumenadminController::class);
     Route::resource('/input_pengarsipan_admin', DokumenadminController::class);
     Route::post('/input_peminjaman_dokumen/{no_dokumen}', [DokumenadminController::class, 'pinjam_dokumenById']);
+    Route::post('/input_pengembalian_dokumen/{no_dokumen}', [DokumenadminController::class, 'pengembalian_dokumenById']);
     // showpdf
     Route::get('/showPdfAdmin/{nomorDokumen}', [DokumenadminController::class, 'showPdfAdmin'])->name('dokumen');
     //detail riwayat

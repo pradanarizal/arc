@@ -57,12 +57,19 @@
                                 @endif
                             </td>
                             <td class="text-center">
-                                <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->no_dokumen }}">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                                <button class="btn btn-sm btn-primary" title="Kembali">
-                                    <i class="fa fa-undo"></i>
-                                </button>
+                                @if ($item->status_peminjaman == 'Ya' )
+                                    <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->no_dokumen }}">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                    <button title="Kembali" class="btn btn-sm btn-primary text-white"
+                                        data-bs-toggle="modal" data-bs-target="#pengembalian_dokumen{{ $item ->no_dokumen }}">
+                                        <i class="fa fa-undo"></i>
+                                    </button>
+                                @else
+                                    <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->no_dokumen }}">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -72,6 +79,5 @@
         </div>
     </div>
 
-    {{-- @include('superadmin.modal.m_tambah_ruang')
-    @include('superadmin.modal.m_edit_ruang') --}}
+    @include('admin.modal.m_pengembalian_dokumen')
 @endsection
