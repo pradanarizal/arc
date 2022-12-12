@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\BoxModel;
 use App\Traits\notif_sidebar;
-use Illuminate\Validation\Rule;
 
 class BoxController extends Controller
 {
@@ -61,15 +60,13 @@ class BoxController extends Controller
             [
                 'ruang' => 'required',
                 'rak' => 'required',
-                'nama_box' => ['required', Rule::unique('box')
-                ->where('id_ruang', $request->id_ruang)],
-
+                'box' => 'required|unique:box,nama_box'
             ],
             [
                 'ruang.required' => 'Ruang wajib diisi!',
                 'rak.required' => 'Rak wajib diisi!',
-                'nama_box.required' => 'Nama Box wajib diisi!',
-                'nama_box.unique' => 'Nama Box sudah ada!'
+                'box.required' => 'Nama Box wajib diisi!',
+                'box.unique' => 'Nama Box sudah ada!'
             ]
         );
 

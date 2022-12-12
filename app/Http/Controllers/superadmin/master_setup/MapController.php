@@ -62,8 +62,7 @@ use notif_sidebar;
                 'ruang_2' =>'required',
                 'rak_2' =>'required',
                 'box_select' =>'required',
-                'nama_map' => ['required', Rule::unique('map')
-                ->where('id_ruang', $request->id_ruang)],
+                'map' => 'required|unique:map,nama_map',
             ],
             [
                 'ruang_2' => 'Map wajib diisi!',
