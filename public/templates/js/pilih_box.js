@@ -71,7 +71,7 @@ $(document).ready(function() {
     });
 });
 
-$('input[id="btn-simpan"]').on('keypress keyup keydown change', function() {
+$('input[type="text"]').on('keypress keyup keydown change', function() {
     if ($('input[type="text"]').val() == "") {
         $('button[id="btn-simpan"]').prop('disabled', true);
     } else {
