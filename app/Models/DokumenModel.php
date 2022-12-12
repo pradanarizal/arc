@@ -29,23 +29,28 @@ class DokumenModel extends Model
             ->get();
     }
 
-    // public function getDokumenAdminByDivisi($divisi)
-    // {
-    //     return DB::table('pengarsipan')
-    //         ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
-    //         ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
-    //         ->where('dokumen.id_departemen', '=', $divisi)
-    //         ->orwhere('status_dokumen', '=', 'Tersedia')
-    //         ->orwhere('status_dokumen', '=', 'Dipinjam')
-    //         ->get();
+    public function getDokumenByDivisi($divisi)
+    {
+        return DB::table('dokumen')
+            ->where('status_dokumen', '=', 'Tersedia')
+            ->orwhere('status_dokumen', '=', 'Dipinjam')
+            ->where('dokumen.id_departemen', '=', $divisi)
+            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
+            ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
+            ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
+            ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
+            ->leftJoin('pengarsipan', 'pengarsipan.no_dokumen', '=', 'dokumen.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+            // ->leftJoin('kelengkapan_dokumen', 'kelengkapan_dokumen.nama_kel_dokumen', '=', 'dokumen.nama_kel_dokumen')
+            
+            ->get();
 
-    //     return DB::table('dokumen')
-    //         ->where('dokumen.id_departemen', '=', $divisi)
-    //         ->orwhere('status_dokumen', '=', 'Retensi')
-    //         ->get();
-    // }
+        return DB::table('dokumen')
 
-
+            ->where('dokumen.id_departemen', '=', $divisi)
+            ->get();
+    }
+    
     public function dataRetensi()
     {
         return DB::table('retensi')

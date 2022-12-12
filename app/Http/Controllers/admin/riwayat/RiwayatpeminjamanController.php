@@ -18,15 +18,23 @@ class RiwayatpeminjamanController extends Controller
     {
         $data = [
             'dokumen' => $this->Model->getPeminjamanByDivisi(Auth::user()->id_departemen),
+            'pengembalian' => $this->Model->getPengembalian()
         ];
         return view('admin.riwayat.riwayat-peminjaman', $data);
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show_detail($id)
     {
         $data = [
-            'peminjaman' => $this->Model->getPeminjamanById($id)
+            'peminjaman' => $this->Model->getDataById($id)
         ];
+
         return view('admin.riwayat.d_riwayat_peminjaman', $data);
     }
 

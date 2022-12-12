@@ -73,6 +73,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin', 'cekaktif']], function 
     Route::get('/d_riwayat_pengarsipan/{id}', [RiwayatpengarsipanController::class, 'show_detail']);
     Route::get('/d_riwayat_retensi/{id}', [RiwayatretensiController::class, 'show_detail']);
     Route::get('/d_riwayat_peminjaman/{id}', [RiwayatpeminjamanController::class, 'show_detail']);
+    Route::get('/d_riwayat_pengembalian/{id}', [RiwayatpengembalianController::class, 'show']);
+    // Route::resource('/d_riwayat_pengembalian/{id}', RiwayatpengembalianController::class);
 });
 
 //// Untuk User ////
