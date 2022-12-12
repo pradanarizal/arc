@@ -71,10 +71,10 @@ $(document).ready(function() {
     });
 });
 
-$('input[type="text"]').on('keypress keyup keydown change', function() {
-    if ($('input[type="text"]').val() == "") {
-        $('button[id="btn-simpan"]').prop('disabled', true);
-    } else {
-        $('button[id="btn-simpan"]').prop('disabled', false);
-    }
-});
+// $('input[type="text"]').on('keypress keyup keydown change', function() {
+//     if ($('input[type="text"]').val() == "") {
+//         $('button[id="btn-simpan"]').prop('disabled', true);
+//     } else {
+//         $('button[id="btn-simpan"]').prop('disabled', false);
+//     }
+// });
