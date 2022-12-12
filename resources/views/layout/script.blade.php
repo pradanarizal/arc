@@ -67,7 +67,7 @@
             enabled: false
         },
         tooltip: {
-            pointFormat: '<b>{point.y} Ruang</b>'
+            pointFormat: '<b>{point.y} Dokumen</b>'
         },
         series: [{
             name: 'Iklan',
