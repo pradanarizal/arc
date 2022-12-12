@@ -56,8 +56,10 @@
                                     </span>
                                 @endif
                             </td>
+                            @foreach ($pengembalian as $item)
+
                             <td class="text-center">
-                                @if ($item->status_peminjaman == 'Ya' )
+                                @if ($item->status_peminjaman == 'Ya' && $item->status_pengembalian == '')
                                     <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
                                         <i class="fa fa-eye"></i>
                                     </a>
@@ -65,13 +67,19 @@
                                         data-bs-toggle="modal" data-bs-target="#pengembalian_dokumen{{ $item ->no_dokumen }}">
                                         <i class="fa fa-undo"></i>
                                     </button>
-                                @else
+                                @elseif ($item->status_pengembalian == 'Pending')
                                     <a class="btn btn-sm bg-warning text-white"
-                                        href="/d_riwayat_pengembalian/{{ $item->id_peminjaman }}">
+                                        href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                @else 
+                                    <a class="btn btn-sm bg-warning text-white"
+                                        href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 @endif
                             </td>
+                            @endforeach
                         </tr>
                         @endforeach
                     </tbody>

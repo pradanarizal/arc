@@ -38,6 +38,15 @@ class DokumenModel extends Model
             ->get();
     }
 
+    public function getPengembalian()
+    {       
+        return DB::table('dokumen')
+            ->leftJoin('pengembalian', 'pengembalian.no_dokumen', '=', 'pengarsipan.no_dokumen')
+            ->leftJoin('peminjaman', 'peminjaman.no_dokumen', '=', 'pengarsipan.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+            ->get();
+    }
+    
     public function dataRetensi()
     {
         return DB::table('retensi')

@@ -33,4 +33,13 @@ class PeminjamanModel extends Model
             ->where('dokumen.id_departemen', '=', $divisi)
             ->get();
     }
+
+    public function getPengembalian()
+    {       
+        return DB::table('dokumen')
+            ->leftJoin('pengembalian', 'pengembalian.no_dokumen', '=', 'dokumen.no_dokumen')
+            ->leftJoin('peminjaman', 'peminjaman.no_dokumen', '=', 'dokumen.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
+            ->get();
+    }
 }
