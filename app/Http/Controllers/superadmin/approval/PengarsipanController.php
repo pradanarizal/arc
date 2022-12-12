@@ -21,6 +21,12 @@ class PengarsipanController extends Controller
         $this->PengarsipanModel = new PengarsipanModel();
     }
 
+    public function lokasi_dokumen($id_ruang)
+    {
+        $lokasi = $this->PengarsipanModel->get_lokasi_dokumen($id_ruang);
+        return response()->json($lokasi);
+    }
+
     public function index()
     {
         $data = [
@@ -93,23 +99,23 @@ class PengarsipanController extends Controller
 
         if ($request->input('jenis') == 'approve') {
             $request->validate([
-                'arsipRuang' => 'required',
-                'arsipRak' => 'required',
-                'arsipBox' => 'required',
-                'arsipMap' => 'required'
+                'ruangapp' => 'required',
+                'rakApp' => 'required',
+                'box_3' => 'required',
+                'map_3' => 'required'
             ], [
-                'arsipRuang.required' => 'Ruang Harus Dipilih!',
-                'arsipRak.required' => 'Rak Harus Dipilih!',
-                'arsipBox.required' => 'Box Harus Dipilih!',
-                'arsipMap.required' => 'Map Harus Dipilih!'
+                'ruangapp.required' => 'Ruang Harus Dipilih!',
+                'rakApp.required' => 'Rak Harus Dipilih!',
+                'box_3.required' => 'Box Harus Dipilih!',
+                'map_3.required' => 'Map Harus Dipilih!'
             ]);
             $update_dokumen = [
                 'status_dokumen' => $request->input('status_dok'),
                 'updated_at' => \Carbon\Carbon::now(),
-                'id_ruang' => $request->input('arsipRuang'),
-                'id_rak' => $request->input('arsipRak'),
-                'id_box' => $request->input('arsipBox'),
-                'id_map' => $request->input('arsipMap'),
+                'id_ruang' => $request->input('ruangapp'),
+                'id_rak' => $request->input('rakApp'),
+                'id_box' => $request->input('box_3'),
+                'id_map' => $request->input('map_3'),
             ];
             if ($this->PengarsipanModel->approval_arsip($update_dokumen, $update_pengarsipan, $no_dokumen)) {
                 return redirect('/approval/pengarsipan')->with('toast_success', 'Pengarsipan di-Approve!');

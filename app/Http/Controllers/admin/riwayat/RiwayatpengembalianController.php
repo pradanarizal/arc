@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin\riwayat;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PengembalianModel;
+use Auth;
 
 class RiwayatpengembalianController extends Controller
 {
@@ -16,7 +17,7 @@ class RiwayatpengembalianController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->allData()
+            'dokumen' => $this->Model->getPengembalianByDivisi(Auth::user()->id_departemen)
         ];
 
         return view('admin.riwayat.riwayat-pengembalian', $data);
@@ -51,7 +52,11 @@ class RiwayatpengembalianController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = [
+            'pengembalian' => $this->Model->getDataById($id)
+        ];
+
+        return view('admin.riwayat.d_riwayat_pengembalian', $data);
     }
 
     /**

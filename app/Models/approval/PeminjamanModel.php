@@ -16,9 +16,9 @@ class PeminjamanModel extends Model
             ->get();
     }
 
-    public function getPeminjamanById($id)
+    public function getDataById($id)
     {
-        return DB::table('Peminjaman')
+        return DB::table('peminjaman')
             ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->where('id_peminjaman', '=', $id)
@@ -31,6 +31,15 @@ class PeminjamanModel extends Model
             ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->where('dokumen.id_departemen', '=', $divisi)
+            ->get();
+    }
+
+    public function getPengembalian()
+    {       
+        return DB::table('dokumen')
+            ->leftJoin('pengembalian', 'pengembalian.no_dokumen', '=', 'dokumen.no_dokumen')
+            ->leftJoin('peminjaman', 'peminjaman.no_dokumen', '=', 'dokumen.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->get();
     }
 }

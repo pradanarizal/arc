@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('file_dokumen');
             $table->timestamps();
         });
-        
+
         Schema::table('dokumen', function (Blueprint $table) {
             $table->unsignedBigInteger('id_departemen')->nullable();
             $table->foreign('id_departemen')->references('id_departemen')->on('departemen');
@@ -45,19 +45,23 @@ return new class extends Migration
 
         Schema::table('dokumen', function (Blueprint $table) {
             $table->unsignedBigInteger('id_ruang')->nullable();
-            $table->foreign('id_ruang')->references('id_ruang')->on('ruang');
+            $table->foreign('id_ruang')->references('id_ruang')->on('ruang') ->onUpdate('cascade')
+            ->nullOnDelete();
         });
         Schema::table('dokumen', function (Blueprint $table) {
             $table->unsignedBigInteger('id_rak')->nullable();
-            $table->foreign('id_rak')->references('id_rak')->on('rak');
+            $table->foreign('id_rak')->references('id_rak')->on('rak') ->onUpdate('cascade')
+            ->nullOnDelete();
         });
         Schema::table('dokumen', function (Blueprint $table) {
             $table->unsignedBigInteger('id_box')->nullable();
-            $table->foreign('id_box')->references('id_box')->on('box');
+            $table->foreign('id_box')->references('id_box')->on('box') ->onUpdate('cascade')
+            ->nullOnDelete();
         });
         Schema::table('dokumen', function (Blueprint $table) {
             $table->unsignedBigInteger('id_map')->nullable();
-            $table->foreign('id_map')->references('id_map')->on('map');
+            $table->foreign('id_map')->references('id_map')->on('map') ->onUpdate('cascade')
+            ->nullOnDelete();
         });
         // Schema::table('dokumen', function (Blueprint $table) {
         //     $table->string('id_kel_dokumen')->nullable();

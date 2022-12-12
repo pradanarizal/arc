@@ -84,7 +84,6 @@
             </div>
         </div>
     </div>
-
     @include('superadmin.modal.m_approve_arsip')
     @include('superadmin.modal.m_approve_tolak-arsip')
     @include('sweetalert::alert')

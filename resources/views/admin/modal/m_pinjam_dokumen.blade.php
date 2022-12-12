@@ -15,14 +15,6 @@
                     <!--FORM PEMINJAMAN DOKUMEN-->
                     <form action="/input_peminjaman_dokumen/{{ $item->no_dokumen }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        {{-- <div class="form-group">
-                        <label for="nomor_dokumen">Nomor Dokumen</label>
-                            <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
-                                aria-describedby="emailHelp" value="{{ old('nomor_dokumen') }}">
-                            @error('nomor_dokumen')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
                         <div class="form-group">
                             <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
                                 aria-describedby="emailHelp" value="{{ $item->no_dokumen }}" hidden>

@@ -22,7 +22,9 @@ return new class extends Migration
         });
         Schema::table('peminjaman', function (Blueprint $table) {
             $table->unsignedBigInteger('no_dokumen');
-            $table->foreign('no_dokumen')->references('no_dokumen')->on('dokumen');
+            $table->foreign('no_dokumen')->references('no_dokumen')->on('dokumen')
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
         });
         Schema::table('peminjaman', function (Blueprint $table) {
             $table->unsignedBigInteger('id');

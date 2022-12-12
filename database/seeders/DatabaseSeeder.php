@@ -21,12 +21,15 @@ class DatabaseSeeder extends Seeder
         $this->call(MapSeeder::class);
         $this->call(DepartemenSeeder::class);
         $this->call(KelengkapanDokumenSeeder::class);
-        $this->call(DokumenSeeder::class);
+        // $this->call(DokumenSeeder::class);
+
         // $this->call(MasterDokumenSeeder::class);
-        $this->call(PeminjamanSeeder::class);
-        $this->call(PengarsipanSeeder::class);
-        $this->call(PengembalianSeeder::class);
-        $this->call(RetensiSeeder::class);
+
+        // $this->call(PeminjamanSeeder::class);
+        // $this->call(PengarsipanSeeder::class);
+        // $this->call(PengembalianSeeder::class);
+        // $this->call(RetensiSeeder::class);
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

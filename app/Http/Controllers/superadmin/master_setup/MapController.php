@@ -5,7 +5,7 @@ namespace App\Http\Controllers\superadmin\master_setup;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\mapModel;
-
+use Illuminate\Validation\Rule;
 use App\Traits\notif_sidebar;
 
 class MapController extends Controller
@@ -23,6 +23,11 @@ use notif_sidebar;
         $this->MapModel = new MapModel();
     }
 
+    public function detail_map($id_box)
+    {
+        $box = $this->MapModel->get_map_by_box($id_box);
+        return response()->json($box);
+    }
 
     public function index()
     {
@@ -54,10 +59,15 @@ use notif_sidebar;
         $this->validate(
             $request,
             [
+                'ruang_2' =>'required',
+                'rak_2' =>'required',
                 'box_select' =>'required',
                 'map' => 'required|unique:map,nama_map',
             ],
             [
+                'ruang_2' => 'Map wajib diisi!',
+                'rak_2' => 'Rak wajib diisi!',
+                'box_select' => 'Box wajib diisi!',
                 'nama_map.required' => 'Nama Map wajib diisi!',
                 'nama_map.unique' => 'Nama Map sudah ada!',
             ]
@@ -66,11 +76,13 @@ use notif_sidebar;
         $data = [
             'nama_map' => $request->input('map'),
             'id_box' => $request->input('box_select'),
+            'id_rak' => $request->input('rak_2'),
+            'id_ruang' => $request->input('ruang_2')
         ];
         if ($this->MapModel->insert_map($data)) {
-            return redirect('/master_setup/map')->with('toast_success', 'Berhasil Tambah map');
+            return redirect('/master_setup/map')->with('toast_success', 'Berhasil Tambah map!');
         } else {
-            return redirect('/master_setup/map')->with('toast_error', 'Gagal Tambah map');
+            return redirect('/master_setup/map')->with('toast_error', 'Gagal Tambah map!');
         }
     }
 
@@ -120,7 +132,7 @@ use notif_sidebar;
             'nama_map' => $request->input('nama_map')
         ];
         if ($this->MapModel->update_map($data, $id)) {
-            return redirect('/master_setup/map')->with('toast_success', 'Berhasil Edit Map');
+            return redirect('/master_setup/map')->with('toast_success', 'Berhasil Edit Map!');
         } else {
             return redirect('/master_setup/map');
         }
@@ -135,6 +147,6 @@ use notif_sidebar;
     public function destroy($id)
     {
         $this->MapModel->delete_map($id);
-        return redirect('/master_setup/map')->with('toast_success', 'Berhasil Hapus Kereta');
+        return redirect('/master_setup/map')->with('toast_success', 'Berhasil Hapus Map!');
     }
 }

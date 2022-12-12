@@ -40,7 +40,7 @@ class DokumenadminController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->DokumenModel->allData(Auth::user()->id_departemen),
+            'dokumen' => $this->DokumenModel->getDokumenByDivisi(Auth::user()->id_departemen),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData()
         ];
         return view('admin.menu_dokumen.dokumen', $data);
@@ -177,6 +177,23 @@ class DokumenadminController extends Controller
             return redirect('/dokumen_admin')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
         } else {
             return redirect('/dokumen_admin');
+        }
+    }
+
+    public function pengembalian_dokumenById(Request $request, $no_dokumen)
+    {
+        $insert_pengembalian = [
+            'no_dokumen'        => $request->input('nomor_dokumen'),
+            'tgl_pengembalian'  => $request->input('tgl_kembali'),
+            'status_pengembalian' => $request->input('status_pengembalian'),
+            'id_peminjaman'       => $request->input('id_peminjaman'),
+            'id'                  => Auth::user()->id,
+        ];
+
+        if ($this->DokumenModel->insert_pengembalian($insert_pengembalian, $no_dokumen)) {
+            return redirect('/riwayat/riwayat_peminjaman')->with('toast_success', 'Pengembalian Dokumen diteruskan ke Super Admin!');
+        } else {
+            return redirect('/riwayat/riwayat_peminjaman');
         }
     }
 }

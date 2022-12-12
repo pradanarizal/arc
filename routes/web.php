@@ -66,12 +66,15 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin', 'cekaktif']], function 
     Route::resource('/input_retensi_admin', DokumenadminController::class);
     Route::resource('/input_pengarsipan_admin', DokumenadminController::class);
     Route::post('/input_peminjaman_dokumen/{no_dokumen}', [DokumenadminController::class, 'pinjam_dokumenById']);
+    Route::post('/input_pengembalian_dokumen/{no_dokumen}', [DokumenadminController::class, 'pengembalian_dokumenById']);
     // showpdf
     Route::get('/showPdfAdmin/{nomorDokumen}', [DokumenadminController::class, 'showPdfAdmin'])->name('dokumen');
     //detail riwayat
     Route::get('/d_riwayat_pengarsipan/{id}', [RiwayatpengarsipanController::class, 'show_detail']);
     Route::get('/d_riwayat_retensi/{id}', [RiwayatretensiController::class, 'show_detail']);
     Route::get('/d_riwayat_peminjaman/{id}', [RiwayatpeminjamanController::class, 'show_detail']);
+    Route::get('/d_riwayat_pengembalian/{id}', [RiwayatpengembalianController::class, 'show']);
+    // Route::resource('/d_riwayat_pengembalian/{id}', RiwayatpengembalianController::class);
 });
 
 //// Untuk User ////
@@ -117,6 +120,11 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
     Route::get('/getRak/{id_ruang}', [RakController::class, 'detail_rak'])->name('getRak');
     //get box berdasarkan id rak
     Route::get('/getBox/{id_rak}', [BoxController::class, 'detail_box'])->name('getBox');
+
+    Route::get('/getMap/{id_box}', [MapController::class, 'detail_map'])->name('getMap');
+
+    // Route::get('/get_rak_pengarsipan/{id_ruang}', [PengarsipanController::class, 'lokasi_dokumen'])->name('get_rak_pengarsipan');
+
 
     // Untuk CRUD Dokumen
     Route::resource('/input_retensi', DokumenController::class);

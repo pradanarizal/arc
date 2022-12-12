@@ -58,8 +58,8 @@ class BoxController extends Controller
         $this->validate(
             $request,
             [
-                'rak' => 'required',
                 'ruang' => 'required',
+                'rak' => 'required',
                 'box' => 'required|unique:box,nama_box'
             ],
             [
@@ -71,13 +71,14 @@ class BoxController extends Controller
         );
 
         $data = [
+            'id_ruang' => $request->input('ruang'),
             'id_rak' => $request->input('rak'),
             'nama_box' => $request->input('box'),
         ];
         if ($this->BoxModel->insert_box($data)) {
-            return redirect('/master_setup/box')->with('toast_success', 'Berhasil Tambah box');
+            return redirect('/master_setup/box')->with('toast_success', 'Berhasil Tambah box!');
         } else {
-            return redirect('/master_setup/box')->with('toast_error', 'Gagal Tambah box');
+            return redirect('/master_setup/box')->with('toast_error', 'Gagal Tambah box!');
         }
     }
 
@@ -127,7 +128,7 @@ class BoxController extends Controller
             'nama_box' => $request->input('nama_box')
         ];
         if ($this->BoxModel->update_box($data, $id)) {
-            return redirect('/master_setup/box')->with('toast_success', 'Berhasil Edit Box');
+            return redirect('/master_setup/box')->with('toast_success', 'Berhasil Edit Box!');
         } else {
             return redirect('/master_setup/box');
         }
@@ -142,6 +143,6 @@ class BoxController extends Controller
     public function destroy($id)
     {
         $this->BoxModel->delete_box($id);
-        return redirect('/master_setup/box')->with('toast_success', 'Berhasil Hapus Box');
+        return redirect('/master_setup/box')->with('toast_success', 'Berhasil Hapus Box!');
     }
 }

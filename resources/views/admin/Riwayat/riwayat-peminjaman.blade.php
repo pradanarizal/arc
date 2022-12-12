@@ -56,13 +56,32 @@
                                     </span>
                                 @endif
                             </td>
+
                             <td class="text-center">
-                                <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->no_dokumen }}">
-                                    <i class="fa fa-eye"></i>
-                                </a>
-                                <button class="btn btn-sm btn-primary" title="Kembali">
-                                    <i class="fa fa-undo"></i>
-                                </button>
+                            @foreach ($pengembalian as $data)
+
+                                @if ($item->no_dokumen == $data->no_dokumen)
+                                    @if ($item->status_peminjaman == 'Ya' && $data->status_pengembalian == '')
+                                        <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <button title="Kembali" class="btn btn-sm btn-primary text-white"
+                                            data-bs-toggle="modal" data-bs-target="#pengembalian_dokumen{{ $item ->no_dokumen }}">
+                                            <i class="fa fa-undo"></i>
+                                        </button>
+                                    @elseif ($data->status_pengembalian == 'Pending')
+                                        <a class="btn btn-sm bg-warning text-white"
+                                            href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    @else 
+                                        <a class="btn btn-sm bg-warning text-white"
+                                            href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    @endif
+                                @endif
+                            @endforeach
                             </td>
                         </tr>
                         @endforeach
@@ -72,6 +91,5 @@
         </div>
     </div>
 
-    {{-- @include('superadmin.modal.m_tambah_ruang')
-    @include('superadmin.modal.m_edit_ruang') --}}
+    @include('admin.modal.m_pengembalian_dokumen')
 @endsection
