@@ -6,6 +6,7 @@ use App\Models\DokumenModel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Response;
+use Auth;
 
 class UserController extends Controller
 {
@@ -17,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->allData(), 
+            'dokumen' => $this->Model->getDokumenByDivisi(Auth::user()->id_departemen), 
         ];
         return view('user.dokumen', $data);
     }

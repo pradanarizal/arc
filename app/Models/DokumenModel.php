@@ -29,22 +29,14 @@ class DokumenModel extends Model
             ->get();
     }
 
-    // public function getDokumenAdminByDivisi($divisi)
-    // {
-    //     return DB::table('pengarsipan')
-    //         ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
-    //         ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
-    //         ->where('dokumen.id_departemen', '=', $divisi)
-    //         ->orwhere('status_dokumen', '=', 'Tersedia')
-    //         ->orwhere('status_dokumen', '=', 'Dipinjam')
-    //         ->get();
-
-    //     return DB::table('dokumen')
-    //         ->where('dokumen.id_departemen', '=', $divisi)
-    //         ->orwhere('status_dokumen', '=', 'Retensi')
-    //         ->get();
-    // }
-
+    public function getDokumenByDivisi($divisi)
+    {
+        return DB::table('pengarsipan')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+            ->where('dokumen.id_departemen', '=', $divisi)
+            ->get();
+    }
 
     public function dataRetensi()
     {

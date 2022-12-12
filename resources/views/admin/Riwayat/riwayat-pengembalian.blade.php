@@ -50,9 +50,10 @@
                                 @endif
                             </td>
                             <td class="text-center">
-                                <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#" title="view">
-                                    <i class="fas fa-eye"></i>
-                                </button>
+                                <a class="btn btn-sm bg-warning text-white"
+                                    href="/d_riwayat_pengembalian/{{ $item->id_pengembalian }}">
+                                    <i class="fa fa-eye"></i>
+                                </a>
                             </td>
                         </tr>
                         @endforeach

@@ -40,7 +40,7 @@ class DokumenadminController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->DokumenModel->allData(Auth::user()->id_departemen),
+            'dokumen' => $this->DokumenModel->getDokumenByDivisi(Auth::user()->id_departemen),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData()
         ];
         return view('admin.menu_dokumen.dokumen', $data);

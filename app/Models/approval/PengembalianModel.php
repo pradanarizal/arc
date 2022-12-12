@@ -17,6 +17,15 @@ class PengembalianModel extends Model
         ->get();
     }
 
+    public function getDataById($id)
+    {
+        return DB::table('pengembalian')
+            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengembalian.no_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
+            ->where('id_pengembalian', '=', $id)
+            ->get();
+    }
+
     public function getPengembalianByDivisi($divisi)
     {
         return DB::table('pengembalian')

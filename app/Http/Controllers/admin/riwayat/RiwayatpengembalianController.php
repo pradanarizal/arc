@@ -52,7 +52,11 @@ class RiwayatpengembalianController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = [
+            'pengembalian' => $this->Model->getDataById($id)
+        ];
+
+        return view('admin.riwayat.d_riwayat_pengembalian', $data);
     }
 
     /**

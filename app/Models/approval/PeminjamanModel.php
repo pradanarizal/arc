@@ -16,9 +16,9 @@ class PeminjamanModel extends Model
             ->get();
     }
 
-    public function getPeminjamanById($id)
+    public function getDataById($id)
     {
-        return DB::table('Peminjaman')
+        return DB::table('peminjaman')
             ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->where('id_peminjaman', '=', $id)
