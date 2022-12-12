@@ -20,6 +20,7 @@
 <script src="{{ asset('templates/js/bar-chart-penyimpanan.js') }}"></script>
 <script src="{{ asset('templates/js/pilih_rak.js') }}"></script>
 <script src="{{ asset('templates/js/pilih_box.js') }}"></script>
+<script src="{{ asset('templates/js/lokasi_arsip.js') }}"></script>
 
 {{-- End Of Custom Script --}}
 

@@ -13,6 +13,7 @@
                     <form action="/pengarsipan/{{ $item->no_dokumen }}" method="POST">
                         @csrf
                         @method('PUT')
+
                         {{-- Jenis input untuk memisahkan jenis update berdasarkan jenis --}}
                         <input name="jenis" type="text" value="approve" hidden>
 
@@ -21,40 +22,48 @@
 
                         {{-- value untuk ubah status dokumen. update ke table dokumen --}}
                         <input name="status_dok" type="text" value="Tersedia" hidden>
-                        <label class="" for="arsipRuang">Ruang</label>
-                        <select class="form-control" name="arsipRuang" id="arsipRuang">
-                            <option selected disabled>-- Pilih Ruang --</option>
-                            @foreach ($ruang as $item1)
-                                <option value="{{ $item1->id_ruang }}">{{ $item1->nama_ruang }}</option>
-                            @endforeach
-                        </select>
 
-                        <label class="mt-3" for="arsipRak">Rak</label>
-                        <select class="form-control" name="arsipRak" id="arsipRak">
-                            <option selected disabled>-- Pilih Rak --</option>
-                            @foreach ($rak as $item2)
-                                <option value="{{ $item2->id_rak }}">{{ $item2->nama_rak }}</option>
-                            @endforeach
-                        </select>
+                        <div class="form-group">
+                            <label for="ruangapp"><b>Ruang*</b></label>
+                            <select class="form-control select2search" name="ruangapp"
+                                id="ruangapp{{ $item->no_dokumen }}">
+                                <option selected disabled>-Pilih Ruang-</option>
+                                @foreach ($ruang as $item1)
+                                    <option value="{{ $item1->id_ruang }}">{{ $item1->nama_ruang }}</option>
+                                @endforeach
+                            </select>
+                            @error('ruang_3')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                        <label class="mt-3" for="arsipBox">Box</label>
-                        <select class="form-control" name="arsipBox" id="arsipBox">
-                            <option selected disabled>-- Pilih Box --</option>
-                            @foreach ($box as $item3)
-                                <option value="{{ $item3->id_box }}">{{ $item3->nama_box }}</option>
-                            @endforeach
-                        </select>
+                        <div class="form-group d-none" id="fgRak{{ $item->no_dokumen }}">
+                            <label for="rakApp{{ $item->no_dokumen }}"><b>Rak*</b></label>
+                            <select class="form-control" name="rakApp" id="rakApp{{ $item->no_dokumen }}"></select>
 
-                        <label class="mt-3" for="arsipMap">Map</label>
-                        <select class="form-control" name="arsipMap" id="arsipMap">
-                            <option selected disabled>-- Pilih Map --</option>
-                            @foreach ($map as $item4)
-                                <option value="{{ $item4->id_map }}">{{ $item4->nama_map }}</option>
-                            @endforeach
-                        </select>
+                            @error('rakApp')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
 
+                        <div class="form-group d-none" id="fgBox{{ $item->no_dokumen }}">
+                            <label for="box_3{{ $item->no_dokumen }}"><b>Box*</b></label>
+                            <select class="form-control" name="box_3" id="box_3{{ $item->no_dokumen }}"></select>
+
+                            @error('box_3')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group  d-none" id="fgMap{{ $item->no_dokumen }}">
+                            <label for="map_3{{ $item->no_dokumen }}"><b>Map*</b></label>
+                            <select class="form-control" name="map_3" id="map_3{{ $item->no_dokumen }}"></select>
+
+                            @error('map_3')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
                         <p class="mt-3">Approve pengajuan pengarsipan dokumen {{ $item->nama_dokumen }} ?</p>
-
                         <div class="modal-footer">
                             <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Batal</button>
                             <button class="btn btn-primary" type="submit">Approve</button>
@@ -64,9 +73,109 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        window.onload = function() {
+
+            // Pilih Rak
+            $('#ruangapp{{ $item->no_dokumen }}').on('change', function() {
+                var ruangID = $(this).val();
+                if (ruangID) {
+                    $.ajax({
+                        url: '/getRak/' + ruangID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#fgRak{{ $item->no_dokumen }}').removeClass('d-none');
+                                $('#rakApp{{ $item->no_dokumen }}').empty();
+                                $('#rakApp{{ $item->no_dokumen }}').append(
+                                    '<option hidden>-Pilih Rak-</option>');
+                                $.each(data, function(key, value) {
+                                    $('select[name="rakApp"]').append('<option value="' +
+                                        value.id_rak + '">' + value.nama_rak +
+                                        '</option>');
+                                });
+                            } else {
+                                $('#rakApp').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#rakApp').empty();
+                }
+            });
+
+            // Pilih Box
+            $('#rakApp{{ $item->no_dokumen }}').on('change', function() {
+                var ruangID = $(this).val();
+                if (ruangID) {
+                    $.ajax({
+                        url: '/getBox/' + ruangID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#fgBox{{ $item->no_dokumen }}').removeClass('d-none');
+                                $('#box_3{{ $item->no_dokumen }}').empty();
+                                $('#box_3{{ $item->no_dokumen }}').append(
+                                    '<option hidden>-Pilih Box-</option>');
+                                $.each(data, function(key, value) {
+                                    $('select[name="box_3"]').append('<option value="' +
+                                        value.id_box + '">' + value.nama_box +
+                                        '</option>');
+                                });
+                            } else {
+                                $('#box_3').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#box_3').empty();
+                }
+            });
+
+            // Pilih Map
+            $('#box_3{{ $item->no_dokumen }}').on('change', function() {
+                var ruangID = $(this).val();
+                if (ruangID) {
+                    $.ajax({
+                        url: '/getMap/' + ruangID,
+                        type: "GET",
+                        data: {
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            if (data) {
+                                $('#fgMap{{ $item->no_dokumen }}').removeClass('d-none');
+                                $('#map_3{{ $item->no_dokumen }}').empty();
+                                $('#map_3{{ $item->no_dokumen }}').append(
+                                    '<option hidden>-Pilih Map-</option>');
+                                $.each(data, function(key, value) {
+                                    $('select[name="map_3"]').append('<option value="' +
+                                        value.id_map + '">' + value.nama_map +
+                                        '</option>');
+                                });
+                            } else {
+                                $('#map_3').empty();
+                            }
+                        }
+                    });
+                } else {
+                    $('#map_3').empty();
+                }
+            });
+        };
+    </script>
 @endforeach
 
-<?php $listError = ['arsipRuang', 'arsipRak', 'arsipBox', 'arsipMap']; ?>
+<?php $listError = ['ruangapp', 'rakapp', 'box_3', 'map_3']; ?>
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">

@@ -13,8 +13,15 @@ class MapModel extends Model
     {
         return DB::table('map')
             ->leftJoin('box', 'box.id_box', '=', 'map.id_box') // relasi table map ke table box
-            ->leftJoin('rak', 'rak.id_rak', '=', 'box.id_rak') // relasi table box ke table rak
-            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'rak.id_ruang') // relasi table rak ke table ruang
+            ->leftJoin('rak', 'rak.id_rak', '=', 'map.id_rak') // relasi table box ke table rak
+            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'map.id_ruang') // relasi table rak ke table ruang
+            ->get();
+    }
+
+    public function get_map_by_box($id_box)
+    {
+        return DB::table('map')
+            ->where('id_box', $id_box)
             ->get();
     }
 

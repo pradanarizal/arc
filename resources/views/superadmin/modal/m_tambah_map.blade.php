@@ -53,7 +53,7 @@
                         @enderror
                     </div>
 
-                    <button disabled id="btn-simpan" name="btn-simpan" type="submit"
+                    <button disabled id="btn-simpan" id="btn-simpan" name="btn-simpan" type="submit"
                         class="btn btn-primary tombol-aksi float-right">Simpan</button>
                     <button class="btn btn-danger tombol-aksi float-right" type="reset"
                         data-bs-dismiss="modal">Batal</button>

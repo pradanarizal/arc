@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\master_setup\BoxModel;
 use App\Traits\notif_sidebar;
+use Illuminate\Validation\Rule;
 
 class BoxController extends Controller
 {
@@ -58,26 +59,29 @@ class BoxController extends Controller
         $this->validate(
             $request,
             [
-                'rak' => 'required',
                 'ruang' => 'required',
-                'box' => 'required|unique:box,nama_box'
+                'rak' => 'required',
+                'nama_box' => ['required', Rule::unique('box')
+                ->where('id_ruang', $request->id_ruang)],
+
             ],
             [
                 'ruang.required' => 'Ruang wajib diisi!',
                 'rak.required' => 'Rak wajib diisi!',
-                'box.required' => 'Nama Box wajib diisi!',
-                'box.unique' => 'Nama Box sudah ada!'
+                'nama_box.required' => 'Nama Box wajib diisi!',
+                'nama_box.unique' => 'Nama Box sudah ada!'
             ]
         );
 
         $data = [
+            'id_ruang' => $request->input('ruang'),
             'id_rak' => $request->input('rak'),
             'nama_box' => $request->input('box'),
         ];
         if ($this->BoxModel->insert_box($data)) {
-            return redirect('/master_setup/box')->with('toast_success', 'Berhasil Tambah box');
+            return redirect('/master_setup/box')->with('toast_success', 'Berhasil Tambah box!');
         } else {
-            return redirect('/master_setup/box')->with('toast_error', 'Gagal Tambah box');
+            return redirect('/master_setup/box')->with('toast_error', 'Gagal Tambah box!');
         }
     }
 
@@ -127,7 +131,7 @@ class BoxController extends Controller
             'nama_box' => $request->input('nama_box')
         ];
         if ($this->BoxModel->update_box($data, $id)) {
-            return redirect('/master_setup/box')->with('toast_success', 'Berhasil Edit Box');
+            return redirect('/master_setup/box')->with('toast_success', 'Berhasil Edit Box!');
         } else {
             return redirect('/master_setup/box');
         }
@@ -142,6 +146,6 @@ class BoxController extends Controller
     public function destroy($id)
     {
         $this->BoxModel->delete_box($id);
-        return redirect('/master_setup/box')->with('toast_success', 'Berhasil Hapus Box');
+        return redirect('/master_setup/box')->with('toast_success', 'Berhasil Hapus Box!');
     }
 }

@@ -44,7 +44,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button disabled type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
+                    <button disabled id="btn-simpan" type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
                     <button class="btn btn-danger tombol-aksi float-right" type="button"
                         data-bs-dismiss="modal">Batal</button>
                 </form>
