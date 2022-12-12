@@ -31,19 +31,23 @@ class DokumenModel extends Model
 
     public function getDokumenByDivisi($divisi)
     {
-        return DB::table('pengarsipan')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengarsipan.no_dokumen')
-            ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
-            ->where('dokumen.id_departemen', '=', $divisi)
-            ->get();
-    }
-
-    public function getPengembalian()
-    {       
         return DB::table('dokumen')
-            ->leftJoin('pengembalian', 'pengembalian.no_dokumen', '=', 'pengarsipan.no_dokumen')
-            ->leftJoin('peminjaman', 'peminjaman.no_dokumen', '=', 'pengarsipan.no_dokumen')
+            ->where('status_dokumen', '=', 'Tersedia')
+            ->orwhere('status_dokumen', '=', 'Dipinjam')
+            ->where('dokumen.id_departemen', '=', $divisi)
+            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
+            ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
+            ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
+            ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
+            ->leftJoin('pengarsipan', 'pengarsipan.no_dokumen', '=', 'dokumen.no_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
+            // ->leftJoin('kelengkapan_dokumen', 'kelengkapan_dokumen.nama_kel_dokumen', '=', 'dokumen.nama_kel_dokumen')
+            
+            ->get();
+
+        return DB::table('dokumen')
+
+            ->where('dokumen.id_departemen', '=', $divisi)
             ->get();
     }
     

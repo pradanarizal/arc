@@ -56,30 +56,33 @@
                                     </span>
                                 @endif
                             </td>
-                            @foreach ($pengembalian as $item)
 
                             <td class="text-center">
-                                @if ($item->status_peminjaman == 'Ya' && $item->status_pengembalian == '')
-                                    <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                    <button title="Kembali" class="btn btn-sm btn-primary text-white"
-                                        data-bs-toggle="modal" data-bs-target="#pengembalian_dokumen{{ $item ->no_dokumen }}">
-                                        <i class="fa fa-undo"></i>
-                                    </button>
-                                @elseif ($item->status_pengembalian == 'Pending')
-                                    <a class="btn btn-sm bg-warning text-white"
-                                        href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
-                                @else 
-                                    <a class="btn btn-sm bg-warning text-white"
-                                        href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
-                                        <i class="fa fa-eye"></i>
-                                    </a>
+                            @foreach ($pengembalian as $data)
+
+                                @if ($item->no_dokumen == $data->no_dokumen)
+                                    @if ($item->status_peminjaman == 'Ya' && $data->status_pengembalian == '')
+                                        <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <button title="Kembali" class="btn btn-sm btn-primary text-white"
+                                            data-bs-toggle="modal" data-bs-target="#pengembalian_dokumen{{ $item ->no_dokumen }}">
+                                            <i class="fa fa-undo"></i>
+                                        </button>
+                                    @elseif ($data->status_pengembalian == 'Pending')
+                                        <a class="btn btn-sm bg-warning text-white"
+                                            href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    @else 
+                                        <a class="btn btn-sm bg-warning text-white"
+                                            href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                    @endif
                                 @endif
-                            </td>
                             @endforeach
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
