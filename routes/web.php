@@ -135,6 +135,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
     Route::resource('/retensi', RetensiController::class);
     Route::resource('/pengarsipan', PengarsipanController::class);
     Route::resource('/peminjaman', PeminjamanController::class);
+    Route::resource('/pengembalian', PengembalianController::class);
 
     // show pdf
     Route::get('/showPdf/{nomorDokumen}', [DokumenController::class, 'showPdf'])->name('dokumen');

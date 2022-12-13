@@ -57,15 +57,15 @@ class DatauserController extends Controller
             'password' =>'required',
             'id_departemen' => 'required',
 
-            'password' => [
-                'required',
-                Rules\Password::min(8)
-                    ->mixedCase()
-                    // ->letters()
-                    ->numbers()
-                    // ->symbols()
-                    ->uncompromised()
-            ],
+            // 'password' => [
+            //     'required',
+            //     Rules\Password::min(8)
+            //         ->mixedCase()
+            //         // ->letters()
+            //         ->numbers()
+            //         // ->symbols()
+            //         ->uncompromised()
+            // ],
         ]);
 
         $data = [
@@ -133,16 +133,11 @@ class DatauserController extends Controller
     {
         $this->validate( $request, 
             [
-                'new_password'        => 'required|confirmed',
-                'new_password' => [
-                    'required',
-                    Rules\Password::min(8)
-                        ->mixedCase()
-                        // ->letters()
-                        ->numbers()
-                        // ->symbols()
-                        ->uncompromised()
-                ],
+                'new_password'   => 'required|confirmed'
+            ],
+            [
+                'new_password.required'     => 'password tidak boleh kosong',
+                'new_password.confirmed'    => 'konfirmasi password harus sesuai dengan password baru'
             ]
         );
 
@@ -151,7 +146,7 @@ class DatauserController extends Controller
         ];
 
         if ($this->User->update_user($data, $id)) {
-            return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Edit User');
+            return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Password User');
         } else {
             return redirect('/master_setup/data_user');
         }

@@ -44,7 +44,7 @@
                         <label class=" col-form-label">{{ $item->nama_kel_dokumen }}</label>
                     </div>
                 </div>
-                <div class="form-group row">
+                {{--<div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
                     @if($item->status_peminjaman == 'Dipinjam')
                         <div class="col-sm-6">
@@ -55,7 +55,7 @@
                             <label class=" col-form-label"> - </label>
                         </div>
                     @endif
-                </div>
+                </div>--}}
                 <hr>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Upload</label>

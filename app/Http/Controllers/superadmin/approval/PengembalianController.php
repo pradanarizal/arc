@@ -78,9 +78,33 @@ class PengembalianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $no_dokumen)
     {
-        //
+        {
+            $update_dokumen = [
+                'status_dokumen'    => $request->input('status_dokumen')
+            ];
+
+            $update_pengembalian = [
+                'tgl_pengembalian' => $request->input('tgl_pengembalian'),
+                'status_pengembalian' =>  $request->input('pengembalian'),
+                'updated_at' => \Carbon\Carbon::now()
+            ];
+    
+            if ($request->input('jenis') == 'approve') {
+                if ($this->PengembalianModel->approval_pengembalian($update_dokumen, $update_pengembalian,  $no_dokumen)) {
+                    return redirect('/approval/pengembalian')->with('toast_success', 'pengembalian di-Approve!');
+                } else {
+                    return redirect('/approval/pengembalian');
+                }
+            } elseif ($request->input('jenis') == 'tolak') {
+                if ($this->PengembalianModel->approval_pengembalian($update_dokumen, $update_pengembalian,  $no_dokumen)) {
+                    return redirect('/approval/pengembalian')->with('toast_success', 'pengembalian di-Reject!');
+                } else {
+                    return redirect('/approval/pengembalian');
+                }
+            }
+        }
     }
 
     /**

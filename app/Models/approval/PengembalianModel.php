@@ -17,6 +17,14 @@ class PengembalianModel extends Model
         ->get();
     }
 
+    public function approval_pengembalian($update_peminjaman, $update_pengembalian, $no_dokumen)
+    {
+        if(DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_peminjaman) && DB::table('pengembalian')->where('no_dokumen', $no_dokumen)->update($update_pengembalian)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public function getDataById($id)
     {
         return DB::table('pengembalian')
