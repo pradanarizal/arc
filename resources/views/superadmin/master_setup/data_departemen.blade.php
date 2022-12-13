@@ -4,14 +4,14 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-3">
         <div class="d-flex align-items-center">
             <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Master</p>
-            <p class="mb-0 text-gray-800 text-small">Data Departemen</p>
+            <p class="mb-0 text-gray-800 text-small">Data Divisi</p>
         </div>
 
         <div class="d-none d-sm-inline-block justify-content-end p-2">
             <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal"
                 data-bs-target="#tambah_departemen">
                 <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
-                Add Departemen
+                Add Divisi
             </button>
         </div>
     </div>
@@ -35,8 +35,8 @@
                         <tr>
                             <th>No</th>
                             <th>ID</th>
-                            <th>Kode Departemen</th>
-                            <th>Nama Departemen</th>
+                            <th>Kode Divisi</th>
+                            <th>Nama Divisi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
