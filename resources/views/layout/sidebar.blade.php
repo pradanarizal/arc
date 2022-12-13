@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-sidebar sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
         <img src="{{ asset('templates/img/logo.webp') }}" width="100px">
     </a>
     <!-- Divider -->

@@ -49,7 +49,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
 Route::group(['middleware' => ['auth', 'cekaktif']], function () {
-    Route::get('/dashboard', [DashboardController::class, 'afterlogin'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'afterlogin'])->name('dashboard');
 });
 
 //// Untuk Admin ////
