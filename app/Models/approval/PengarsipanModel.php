@@ -17,6 +17,21 @@ class PengarsipanModel extends Model
             ->get();
     }
 
+    public function get_lokasi_dokumen($id_ruang)
+    {
+        $a = DB::table('rak')
+            ->where('id_ruang', $id_ruang)
+            ->get();
+            
+        $b = DB::table('box')
+            ->where('id_ruang', $id_ruang)
+            ->get();
+        $c = DB::table('map')
+            ->where('id_ruang', $id_ruang)
+            ->get();
+        return [$a, $b, $c];
+    }
+
     public function approval_arsip($update_dokumen, $update_pengarsipan, $no_dokumen)
     {
         if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen) && DB::table('pengarsipan')->where('no_dokumen', $no_dokumen)->update($update_pengarsipan)) {
@@ -46,7 +61,8 @@ class PengarsipanModel extends Model
 
     public function getRuang()
     {
-        return DB::table('ruang')->select('id_ruang', 'nama_ruang')->get();
+        return DB::table('ruang')
+            ->get();
     }
 
     public function getRak()
@@ -63,5 +79,4 @@ class PengarsipanModel extends Model
     {
         return DB::table('map')->select('id_map', 'nama_map')->get();
     }
-
 }

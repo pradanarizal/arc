@@ -126,9 +126,9 @@ class RuangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_ruang)
     {
-        $this->RuangModel->delete_ruang($id);
+        $this->RuangModel->delete_ruang($id_ruang);
         return redirect('/master_setup/ruang')->with('toast_success', 'Hapus data ruang berhasil!');
     }
 }

@@ -12,7 +12,7 @@ $(document).ready(function() {
                         $('#rak_2').empty();
                         $('#rak_2').append('<option hidden>-Pilih Rak-</option>');
                         $.each(data, function(key, value) {
-                            $('select[name="rak_2"]').append('<option value="' + key + '">' + value.nama_rak + '</option>');
+                            $('select[name="rak_2"]').append('<option value="' + value.id_rak + '">' + value.nama_rak + '</option>');
                             $('#rak_2').removeAttr('disabled'); // untuk enable field select rak
                             $('#form-select-rak').removeClass('d-none');
                         });
@@ -73,8 +73,8 @@ $(document).ready(function() {
 
 $('input[type="text"]').on('keypress keyup keydown change', function() {
     if ($('input[type="text"]').val() == "") {
-        $('button[type="submit"]').prop('disabled', true);
+        $('button[id="btn-simpan"]').prop('disabled', true);
     } else {
-        $('button[type="submit"]').prop('disabled', false);
+        $('button[id="btn-simpan"]').prop('disabled', false);
     }
 });

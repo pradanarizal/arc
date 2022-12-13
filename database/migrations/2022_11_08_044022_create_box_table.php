@@ -17,14 +17,19 @@ return new class extends Migration
             $table->id('id_box');
             $table->string('nama_box');
 
-            //Relasi table rak
+            //Relasi table box
             $table->unsignedBigInteger('id_rak');
-            $table->foreign('id_rak')->references('id_rak')->on('rak');
+            $table->foreign('id_rak')
+                ->references('id_rak')
+                ->on('rak')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
 
-            //Relasi table ruang
-            // $table->unsignedBigInteger('id_ruang');
-            // $table->foreign('id_ruang')->references('id_ruang')->on('ruang');
-
+            //Relasi table box
+            $table->unsignedBigInteger('id_ruang');
+            $table->foreign('id_ruang')->references('id_ruang')->on('ruang')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             //timestamp
             $table->timestamps();
         });

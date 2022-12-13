@@ -18,15 +18,18 @@ class BoxSeeder extends Seeder
         DB::table('box')->insert([
             [
                 'nama_box' => 'Box 001',
-                'id_rak' => '1'
+                'id_rak' => '1',
+                'id_ruang'=> '1'
             ],
             [
                 'nama_box' => 'Box 002',
-                'id_rak' => '2'
+                'id_rak' => '2',
+                'id_ruang'=> '2'
             ],
             [
                 'nama_box' => 'Box 003',
-                'id_rak' => '3'
+                'id_rak' => '3',
+                'id_ruang'=> '3'
             ],
         ]);
     }

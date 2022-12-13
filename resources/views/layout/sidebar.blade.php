@@ -101,9 +101,14 @@
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-signature "></i>
                 <span class="mr-5">Approval</span>
-                @if ($count_all_pending == 0)
+                {{-- Untuk count all pengajuan pending --}}
+                <p class="d-none">
+                    {{ $a = $count_pengarsipan_pending + $count_retensi_pending + $count_peminjaman_pending + $count_pengembalian_pending }}
+                </p>
+                {{-- end of count all --}}
+                @if ($a == 0)
                 @else
-                    <i class="float-center badge badge-danger ">{{ $count_all_pending }}</i>
+                    <i class="float-center badge badge-danger ">{{ $a }}</i>
                 @endif
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -112,12 +117,12 @@
                         href="/approval/pengarsipan">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Pengarsipan</span>
-                            @if ($count_pengarsipan_pending == 0)
-                            @else
-                                <i class="badge badge-danger float-right">
-                                    {{ $count_pengarsipan_pending }}
-                                </i>
-                            @endif
+                        @if ($count_pengarsipan_pending == 0)
+                        @else
+                            <i class="badge badge-danger float-right">
+                                {{ $count_pengarsipan_pending }}
+                            </i>
+                        @endif
                     </a>
                     <a class="collapse-item {{ request()->is('approval/retensi') ? 'active' : '' }}"
                         href="/approval/retensi">
@@ -132,18 +137,18 @@
                         href="/approval/peminjaman">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Peminjaman</span>
-                        @if ($count_all_pending == 0)
+                        @if ($count_peminjaman_pending == 0)
                         @else
-                            <i class="float-right badge badge-danger ">{{ $count_all_pending }}</i>
+                            <i class="float-right badge badge-danger ">{{ $count_peminjaman_pending }}</i>
                         @endif
                     </a>
                     <a class="collapse-item {{ request()->is('approval/pengembalian') ? 'active' : '' }}"
                         href="/approval/pengembalian">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Pengembalian</span>
-                        @if ($count_all_pending == 0)
+                        @if ($count_pengembalian_pending == 0)
                         @else
-                            <i class="float-right badge badge-danger ">{{ $count_all_pending }}</i>
+                            <i class="float-right badge badge-danger ">{{ $count_pengembalian_pending }}</i>
                         @endif
                     </a>
                 </div>

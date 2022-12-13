@@ -121,6 +121,11 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
     //get box berdasarkan id rak
     Route::get('/getBox/{id_rak}', [BoxController::class, 'detail_box'])->name('getBox');
 
+    Route::get('/getMap/{id_box}', [MapController::class, 'detail_map'])->name('getMap');
+
+    // Route::get('/get_rak_pengarsipan/{id_ruang}', [PengarsipanController::class, 'lokasi_dokumen'])->name('get_rak_pengarsipan');
+
+
     // Untuk CRUD Dokumen
     Route::resource('/input_retensi', DokumenController::class);
     Route::resource('/input_pengarsipan', DokumenController::class);

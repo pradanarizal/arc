@@ -29,7 +29,7 @@ class DokumenSeeder extends Seeder
                 'id_box' => '03',
                 'id_map' => '03',
                 'nama_kel_dokumen' => 'PENGANTAR',
-                'file_dokumen' => '',
+                'file_dokumen' => 'default_file',
                 'created_at' => \Carbon\Carbon::now(),
             ],
             [
@@ -45,7 +45,7 @@ class DokumenSeeder extends Seeder
                 'id_box' => '02',
                 'id_map' => '02',
                 'nama_kel_dokumen' => 'ITSR',
-                'file_dokumen' => '',
+                'file_dokumen' => 'default_file2',
                 'created_at' => \Carbon\Carbon::now(),
             ]
         ]);

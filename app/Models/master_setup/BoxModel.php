@@ -13,7 +13,7 @@ class BoxModel extends Model
     {
         return DB::table('box')
         ->leftJoin('rak', 'rak.id_rak', '=', 'box.id_rak')
-        ->leftJoin('ruang', 'ruang.id_ruang', '=', 'rak.id_ruang')
+        ->leftJoin('ruang', 'ruang.id_ruang', '=', 'box.id_ruang')
         ->get();
     }
     public function getRuang()
