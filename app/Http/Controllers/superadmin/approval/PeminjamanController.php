@@ -79,11 +79,30 @@ class PeminjamanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $no_dokumen)
     {
-        //
+        {
+            $update_peminjaman = [
+                'tgl_ambil' => $request->input('tgl_peminjaman'),
+                'status_peminjaman' =>  $request->input('peminjaman'),
+                'updated_at' => \Carbon\Carbon::now()
+            ];
+    
+            if ($request->input('jenis') == 'approve') {
+                if ($this->PeminjamanModel->approval_peminjaman($update_peminjaman,  $no_dokumen)) {
+                    return redirect('/approval/peminjaman')->with('toast_success', 'peminjaman di-Approve!');
+                } else {
+                    return redirect('/approval/peminjaman');
+                }
+            } elseif ($request->input('jenis') == 'tolak') {
+                if ($this->PeminjamanModel->approval_peminjaman($update_peminjaman,  $no_dokumen)) {
+                    return redirect('/approval/peminjaman')->with('toast_success', 'peminjaman di-Reject!');
+                } else {
+                    return redirect('/approval/peminjaman');
+                }
+            }
+        }
     }
-
     /**
      * Remove the specified resource from storage.
      *
