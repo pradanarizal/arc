@@ -19,8 +19,7 @@ class DokumenModel extends Model
             ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
-            // ->leftJoin('kelengkapan_dokumen', 'kelengkapan_dokumen.nama_kel_dokumen', '=', 'dokumen.nama_kel_dokumen')
-            
+            // ->orderBy('tgl_upload','DESC')
             ->get();
 
         return DB::table('dokumen')
@@ -42,7 +41,7 @@ class DokumenModel extends Model
             ->leftJoin('pengarsipan', 'pengarsipan.no_dokumen', '=', 'dokumen.no_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
             // ->leftJoin('kelengkapan_dokumen', 'kelengkapan_dokumen.nama_kel_dokumen', '=', 'dokumen.nama_kel_dokumen')
-            
+
             ->get();
 
         return DB::table('dokumen')
@@ -50,7 +49,7 @@ class DokumenModel extends Model
             ->where('dokumen.id_departemen', '=', $divisi)
             ->get();
     }
-    
+
     public function dataRetensi()
     {
         return DB::table('retensi')

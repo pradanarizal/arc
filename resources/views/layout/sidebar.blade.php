@@ -68,7 +68,7 @@
                     <a class="collapse-item {{ request()->is('master_setup/data_departemen') ? 'active' : '' }}"
                         href="/master_setup/data_departemen">
                         <i class="fas fa-fw fa-square fa-xs"></i>
-                        <span>Departemen</span>
+                        <span>Divisi</span>
                     </a>
 
                     <a class="collapse-item {{ request()->is('master_setup/data_user') ? 'active' : '' }}"
