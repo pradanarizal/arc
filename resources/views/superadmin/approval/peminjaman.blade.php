@@ -51,7 +51,7 @@
                                             <i class="fa fa-check"></i>
                                         </button>
                                         <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                            data-bs-target="#">
+                                            data-bs-target="#tolak_peminjaman{{$item->no_dokumen}}">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     @else
@@ -73,4 +73,5 @@
     @include('superadmin.modal.m_edit_ruang') --}}
 
     @include('superadmin.modal.m_approve_peminjaman')
+    @include('superadmin.modal.m_approve_tolak_peminjaman')
 @endsection

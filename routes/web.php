@@ -142,4 +142,3 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
 
 //Menu Profil
 Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
-// Route::get('/profil', [Controller::class, 'profil_user'])->name('profil');

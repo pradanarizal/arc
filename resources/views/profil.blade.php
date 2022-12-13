@@ -53,9 +53,11 @@
                         <div class="col-sm-3">
                             <p class="mb-0">Divisi</p>
                         </div>
-                        <div class="col-sm-9">
-                            <p class="text-muted mb-0">{{ auth()->user()->id_departemen }}</p>
-                        </div>
+                        @foreach ($profil as $item)
+                            <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{ $item->kode_departemen }} ( {{$item->nama_departemen}} )</p>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

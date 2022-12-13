@@ -22,15 +22,10 @@ class Controller extends BaseController
 
     public function profil_pengguna()
     {
-        return view('profil',$this->notif);
-    }
-
-    public function profil_user()
-    {
         $data = [
             'profil' => $this->ModelProfil->profilUser()
         ];
 
-        return view('profil', $data);
+        return view('profil', $data, $this->notif);
     }
 }
