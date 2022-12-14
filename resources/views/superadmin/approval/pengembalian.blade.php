@@ -49,7 +49,7 @@
                                 <td class="text-center">
                                     @if ($item->status_pengembalian == 'Pending')
                                         <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
-                                            data-bs-target="#approve_pengembalian{{ $item->no_dokumen }}">
+                                            data-bs-target="#approve_pengembalian{{ $item->id_dokumen }}">
                                             <i class="fa fa-check"></i>
                                         </button>
                                         <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
@@ -58,7 +58,7 @@
                                         </button>
                                     @else
                                     <span title="Dokumen Tersedia"
-                                            class="badge badge-success p-2">{{ $item->status_dokumen }}</span>
+                                            class="badge badge-success p-2">done</span>
                                     @endif
                                 </td>
                             </tr>

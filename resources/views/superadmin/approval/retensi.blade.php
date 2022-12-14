@@ -67,21 +67,21 @@
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a type="button" class="dropdown-item text-warning"
-                                                    href="/detail_dokumen/{{ $item->no_dokumen }}"><i
+                                                    href="/detail_dokumen/{{ $item->id_dokumen }}"><i
                                                         class="fas fa-eye fa-warning"></i> View</a>
                                             </li>
                                             <li><a type="button" class="dropdown-item text-success" data-bs-toggle="modal"
-                                                    data-bs-target="#approve_retensi{{ $item->no_dokumen }}"><i
+                                                    data-bs-target="#approve_retensi{{ $item->id_dokumen }}"><i
                                                         class="fa fa-check"></i>
                                                     Approve</a></li>
                                             <li><a type="button" class="dropdown-item text-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#tolak_retensi{{ $item->no_dokumen }}"><i
+                                                    data-bs-target="#tolak_retensi{{ $item->id_dokumen }}"><i
                                                         class="fa fa-times"></i> Reject</a>
                                             </li>
                                         </ul>
                                     @else
                                         <a type="button" class="btn btn-warning"
-                                            href="/detail_dokumen/{{ $item->no_dokumen }}"><i class="fas fa-eye"></i></a>
+                                            href="/detail_dokumen/{{ $item->id_dokumen }}"><i class="fas fa-eye"></i></a>
                                     @endif
                                 </td>
                             </tr>

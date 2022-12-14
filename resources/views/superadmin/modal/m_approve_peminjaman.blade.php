@@ -1,6 +1,6 @@
 <!-- Modal Hapus -->
 @foreach ($peminjaman as $item)
-    <div class="modal fade" id="approve_peminjaman{{ $item->no_dokumen }}" tabindex="-1" role="dialog"
+    <div class="modal fade" id="approve_peminjaman{{ $item->id_dokumen }}" tabindex="-1" role="dialog"
         aria-labelledby="delete_box" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     Approve pengajuan peminjaman dokumen {{ $item->nama_dokumen }} ?
                 </div>
-                <form action="/peminjaman/{{ $item->no_dokumen }}" method="POST">
+                <form action="/peminjaman/{{ $item->id_dokumen }}" method="POST">
                     @csrf
                     @method('PUT')
                      {{-- Jenis input untuk memisahkan jenis update berdasarkan jenis --}}

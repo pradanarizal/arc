@@ -11,14 +11,14 @@ class PeminjamanModel extends Model
     public function allData()
     {
         return DB::table('Peminjaman')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'peminjaman.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->get();
     }
 
     public function approval_peminjaman($update_peminjaman, $no_dokumen)
     {
-        if (DB::table('peminjaman')->where('no_dokumen', $no_dokumen)->update($update_peminjaman)) {
+        if (DB::table('peminjaman')->where('id_dokumen', $no_dokumen)->update($update_peminjaman)) {
             return true;
         } else {
             return false;
@@ -28,7 +28,7 @@ class PeminjamanModel extends Model
     public function getDataById($id)
     {
         return DB::table('peminjaman')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'peminjaman.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->where('id_peminjaman', '=', $id)
             ->get();
@@ -37,7 +37,7 @@ class PeminjamanModel extends Model
     public function getPeminjamanByDivisi($divisi)
     {
         return DB::table('Peminjaman')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'peminjaman.no_dokumen')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'peminjaman.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->where('dokumen.id_departemen', '=', $divisi)
             ->get();
@@ -46,8 +46,8 @@ class PeminjamanModel extends Model
     public function getPengembalian()
     {       
         return DB::table('dokumen')
-            ->leftJoin('pengembalian', 'pengembalian.no_dokumen', '=', 'dokumen.no_dokumen')
-            ->leftJoin('peminjaman', 'peminjaman.no_dokumen', '=', 'dokumen.no_dokumen')
+            ->leftJoin('pengembalian', 'pengembalian.id_dokumen', '=', 'dokumen.id_dokumen')
+            ->leftJoin('peminjaman', 'peminjaman.id_dokumen', '=', 'dokumen.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->get();
     }

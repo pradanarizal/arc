@@ -11,15 +11,15 @@ class PengembalianModel extends Model
     public function allData()
     {
         return DB::table('pengembalian')
-        ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengembalian.no_dokumen')
+        ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'pengembalian.id_dokumen')
         ->leftJoin('peminjaman', 'peminjaman.id_peminjaman', '=', 'pengembalian.id_peminjaman')
         ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
         ->get();
     }
 
-    public function approval_pengembalian($update_peminjaman, $update_pengembalian, $no_dokumen)
+    public function approval_pengembalian($update_pengembalian, $no_dokumen)
     {
-        if(DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_peminjaman) && DB::table('pengembalian')->where('no_dokumen', $no_dokumen)->update($update_pengembalian)) {
+        if(DB::table('pengembalian')->where('id_dokumen', $no_dokumen)->update($update_pengembalian)) {
             return true;
         } else {
             return false;
@@ -28,7 +28,7 @@ class PengembalianModel extends Model
     public function getDataById($id)
     {
         return DB::table('pengembalian')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengembalian.no_dokumen')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'pengembalian.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
             ->where('id_pengembalian', '=', $id)
             ->get();
@@ -37,7 +37,7 @@ class PengembalianModel extends Model
     public function getPengembalianByDivisi($divisi)
     {
         return DB::table('pengembalian')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'pengembalian.no_dokumen')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'pengembalian.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
             ->where('dokumen.id_departemen', '=', $divisi)
             ->get();

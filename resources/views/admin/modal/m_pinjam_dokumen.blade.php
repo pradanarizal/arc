@@ -1,5 +1,5 @@
 @foreach ($dokumen as $item)
-    <div class="modal fade" id="pinjam_dokumen{{ $item->no_dokumen }}" tabindex="-1" aria-labelledby="pinjam_dokumen"
+    <div class="modal fade" id="pinjam_dokumen{{ $item->id_dokumen }}" tabindex="-1" aria-labelledby="pinjam_dokumen"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -13,11 +13,11 @@
 
                 <div class="modal-body">
                     <!--FORM PEMINJAMAN DOKUMEN-->
-                    <form action="/input_peminjaman_dokumen/{{ $item->no_dokumen }}" method="post" enctype="multipart/form-data">
+                    <form action="/input_peminjaman_dokumen/{{ $item->id_dokumen }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
-                                aria-describedby="emailHelp" value="{{ $item->no_dokumen }}" hidden>
+                                aria-describedby="emailHelp" value="{{ $item->id_dokumen }}" hidden>
                         </div>
                         <div class="form-group">
                             <label for="nama_dokumen">Nama Dokumen</label>
@@ -45,9 +45,10 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
-                        <input name="status_dokumen" type="text" value="Dipinjam" hidden>
-                        <input name="status_peminjaman" type="text" value="Pending" hidden>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="nomor_dokumen" name="id_dokumen"
+                                aria-describedby="emailHelp" value="{{ $item->id_dokumen }}" hidden>
+                        </div>
 
                         <button type="submit" class="btn btn-primary tombol-aksi float-right mt-3">Ajukan</button>
                         <button class="btn btn-danger tombol-aksi float-right mt-3" type="button"

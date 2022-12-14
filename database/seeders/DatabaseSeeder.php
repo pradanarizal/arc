@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MapSeeder::class);
         $this->call(DepartemenSeeder::class);
         $this->call(KelengkapanDokumenSeeder::class);
+
         // $this->call(DokumenSeeder::class);
 
         // $this->call(MasterDokumenSeeder::class);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\superadmin\menu_dokumen;
 
 use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
+use App\Models\approval\RetensiModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Response;
@@ -22,6 +23,7 @@ class DokumenController extends Controller
     public function __construct()
     {
         $this->DokumenModel = new DokumenModel();
+        $this->RetensiModel = new RetensiModel();
         $this->notif = $this->approval_pending();
     }
 
@@ -129,19 +131,24 @@ class DokumenController extends Controller
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
             ];
-            $data2 = [
-                // 'tgl_retensi' => \Carbon\Carbon::now(),
-                'status_retensi' => 'Pending',
-                'created_at' => \Carbon\Carbon::now(),
-                'no_dokumen' => $request->input('nomor_dokumen'),
-                'id' => Auth::user()->id,
-            ];
 
-            if ($this->DokumenModel->insert_retensi($data, $data2)) {
+            if ($this->DokumenModel->addDokumen($data)) {
+                $last_id_dokumen = $this->DokumenModel->getLastIdDokumen();
+                if (count($last_id_dokumen) == 1) {
+                    $idDokumen = $last_id_dokumen[0]->id_dokumen;
+                    $data2 = [
+                        // 'tgl_retensi' => \Carbon\Carbon::now(),
+                        'status_retensi' => 'Pending',
+                        'created_at' => \Carbon\Carbon::now(),
+                        'id_dokumen' => $idDokumen,
+                        'id' => Auth::user()->id,
+                    ];
+                    $this->DokumenModel->insert_retensi($data2);
+                }
                 return redirect('/dokumen')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
-            } else {
+            }else {
                 return redirect('/dokumen');
-            }
+            }  
         } elseif ($request->input('jenis') == 'Pengarsipan') {
             $data = [
                 'no_dokumen' => $request->input('nomor_dokumen'),
@@ -155,18 +162,24 @@ class DokumenController extends Controller
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
             ];
-            $data2 = [
-                'status_pengarsipan' => 'Pending',
-                'created_at' => \Carbon\Carbon::now(),
-                'no_dokumen' => $request->input('nomor_dokumen'),
-                'id' => Auth::user()->id,
-            ];
 
-            if ($this->DokumenModel->insert_dokumen($data, $data2)) {
-                return redirect('/dokumen')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke menu Approval Pengarsipan!');
-            } else {
+            if ($this->DokumenModel->addDokumen($data)) {
+                $last_id_dokumen = $this->DokumenModel->getLastIdDokumen();
+                if (count($last_id_dokumen) == 1) {
+                    $idDokumen = $last_id_dokumen[0]->id_dokumen;
+                    $data2 = [
+                        'status_pengarsipan' => 'Pending',
+                        'created_at' => \Carbon\Carbon::now(),
+                        'id_dokumen' => $idDokumen,
+                        'id' => Auth::user()->id,
+                    ];
+                    $this->DokumenModel->insert_pengarsipan($data2);
+                }
+            
+                return redirect('/dokumen')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
+            }else {
                 return redirect('/dokumen');
-            }
+            } 
         }
     }
 

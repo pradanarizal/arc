@@ -18,7 +18,7 @@ class PeminjamanSeeder extends Seeder
         DB::table('peminjaman')->insert([
             [
                 'id_peminjaman' => '1',
-                'no_dokumen' => '1',
+                'id_dokumen' => '1',
                 'status_peminjaman'=> 'Tidak',
                 'tgl_ambil'=> '2020-10-25',
                 'tgl_kembali' => '2021-12-25 ',

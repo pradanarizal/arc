@@ -60,7 +60,7 @@
                                         <i class="fas fa-cog"></i>
                                     </button>
                                     <ul class="dropdown-menu">
-                                        <a href="/detail_dokumen/{{ $item->no_dokumen }}" style="text-decoration: none;">
+                                        <a href="/detail_dokumen/{{ $item->id_dokumen }}" style="text-decoration: none;">
                                             <li>
                                                 <button class="dropdown-item text-warning">
                                                     <i class="fas fa-eye fa-warning"></i> Lihat
@@ -68,12 +68,12 @@
                                             </li>
                                         </a>
                                         <li><button class="dropdown-item text-primary" data-bs-toggle="modal"
-                                                data-bs-target="#modaledit{{ $item->no_dokumen }}">
+                                                data-bs-target="#modaledit{{ $item->id_dokumen }}">
                                                 <i class="fas fa-file-export fa-primary"></i> Edit</button>
                                         </li>
                                         <li>
                                             <button class="dropdown-item text-danger" data-bs-toggle="modal"
-                                                data-bs-target="#softdelete_dokumen{{ $item->no_dokumen }}">
+                                                data-bs-target="#softdelete_dokumen{{ $item->id_dokumen }}">
                                                 <i class="fas fa-trash fa-danger"></i> Hapus
                                             </button>
                                         </li>

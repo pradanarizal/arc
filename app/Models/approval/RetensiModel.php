@@ -11,7 +11,7 @@ class RetensiModel extends Model
     public function allData()
     {
         return DB::table('retensi')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'retensi.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'retensi.id')
             ->where('status_dokumen', '=', 'Pending')
             ->orWhere('status_dokumen', '=', 'Retensi')
@@ -21,7 +21,7 @@ class RetensiModel extends Model
 
     public function approval_retensi($update_retensi, $no_dokumen)
     {
-        if (DB::table('retensi')->where('no_dokumen', $no_dokumen)->update($update_retensi)) {
+        if (DB::table('retensi')->where('id_dokumen', $no_dokumen)->update($update_retensi)) {
             return true;
         } else {
             return false;
@@ -31,7 +31,7 @@ class RetensiModel extends Model
     public function getRetensiById($id)
     {
         return DB::table('retensi')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'retensi.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'retensi.id')
             ->where('id_retensi', '=', $id)
             ->get();
@@ -40,7 +40,7 @@ class RetensiModel extends Model
     public function getRetensiByDivisi($divisi)
     {
         return DB::table('retensi')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'retensi.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'retensi.id')
             ->where('dokumen.id_departemen', '=', $divisi)
             ->get();

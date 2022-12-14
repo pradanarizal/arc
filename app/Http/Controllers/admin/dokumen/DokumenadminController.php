@@ -118,19 +118,25 @@ class DokumenadminController extends Controller
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
             ];
-            $data2 = [
-                // 'tgl_retensi' => \Carbon\Carbon::now(),
-                'status_retensi' => 'Pending',
-                'created_at' => \Carbon\Carbon::now(),
-                'no_dokumen' => $request->input('nomor_dokumen'),
-                'id' => Auth::user()->id,
-            ];
 
-            if ($this->DokumenModel->insert_retensi($data, $data2)) {
-                return redirect('/dokumen_admin')->with('toast_success', 'Pengajuan Retensi diteruskan ke Super Admin!');
-            } else {
-                return redirect('/dokumen_admin');
-            }
+            if ($this->DokumenModel->addDokumen($data)) {
+                $last_id_dokumen = $this->DokumenModel->getLastIdDokumen();
+                if (count($last_id_dokumen) == 1) {
+                    $idDokumen = $last_id_dokumen[0]->id_dokumen;
+                    $data2 = [
+                        // 'tgl_retensi' => \Carbon\Carbon::now(),
+                        'status_retensi' => 'Pending',
+                        'created_at' => \Carbon\Carbon::now(),
+                        'id_dokumen' => $idDokumen,
+                        'id' => Auth::user()->id,
+                    ];
+                    $this->DokumenModel->insert_retensi($data2);
+                }
+            
+                return redirect('/riwayat/riwayat_retensi')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
+            }else {
+                return redirect('/riwayat/riwayat_retensi');
+            }  
         } elseif ($request->input('jenis') == 'Pengarsipan') {
             $data = [
                 'no_dokumen' => $request->input('nomor_dokumen'),
@@ -144,36 +150,46 @@ class DokumenadminController extends Controller
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
             ];
-            $data2 = [
-                'status_pengarsipan' => 'Pending',
-                'created_at' => \Carbon\Carbon::now(),
-                'no_dokumen' => $request->input('nomor_dokumen'),
-                'id' => Auth::user()->id,
-            ];
 
-            if ($this->DokumenModel->insert_dokumen($data, $data2)) {
-                return redirect('/dokumen_admin')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
-            } else {
-                return redirect('/dokumen_admin');
-            }
+            if ($this->DokumenModel->addDokumen($data)) {
+                $last_id_dokumen = $this->DokumenModel->getLastIdDokumen();
+                if (count($last_id_dokumen) == 1) {
+                    $idDokumen = $last_id_dokumen[0]->id_dokumen;
+                    $data2 = [
+                        'status_pengarsipan' => 'Pending',
+                        'created_at' => \Carbon\Carbon::now(),
+                        'id_dokumen' => $idDokumen,
+                        'id' => Auth::user()->id,
+                    ];
+                    $this->DokumenModel->insert_pengarsipan($data2);
+                }
+            
+                return redirect('/riwayat/riwayat_pengarsipan')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
+            }else {
+                return redirect('/riwayat/riwayat_pengarsipan');
+            } 
         }
     }
 
     public function pinjam_dokumenById(Request $request, $no_dokumen)
     {
         $update_dokumen = [
-            'status_dokumen'    => $request->input('status_dokumen')
+            'status_dokumen'    => 'Dipinjam'
         ];
 
-        $insert_peminjaman = [
-            'no_dokumen'    => $request->input('nomor_dokumen'),
-            'tgl_ambil'     => $request->input('tgl_ambil'),
-            'tgl_kembali'   => $request->input('tgl_kembali'),
-            'status_peminjaman' => $request->input('status_peminjaman'),
-            'id'                => Auth::user()->id,
-        ];
-
-        if ($this->DokumenModel->insert_peminjaman($update_dokumen, $insert_peminjaman, $no_dokumen)) {
+        if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
+            $last_id_dokumen = $this->DokumenModel->getLastIdDokumen();
+            if(count($last_id_dokumen) == 1) {
+                $id_dokumen = $last_id_dokumen[0]->id_dokumen;
+                $insert_peminjaman = [
+                    'id_dokumen'    => $request->input('id_dokumen'),
+                    'tgl_ambil'     => $request->input('tgl_ambil'),
+                    'tgl_kembali'   => $request->input('tgl_kembali'),
+                    'status_peminjaman' => 'Pending',
+                    'id'                => Auth::user()->id,
+                ];
+                $this->DokumenModel->insert_peminjaman($insert_peminjaman);
+            }
             return redirect('/dokumen_admin')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
         } else {
             return redirect('/dokumen_admin');
@@ -183,9 +199,9 @@ class DokumenadminController extends Controller
     public function pengembalian_dokumenById(Request $request, $no_dokumen)
     {
         $insert_pengembalian = [
-            'no_dokumen'        => $request->input('nomor_dokumen'),
+            'id_dokumen'        => $request->input('id_dokumen'),
             'tgl_pengembalian'  => $request->input('tgl_kembali'),
-            'status_pengembalian' => $request->input('status_pengembalian'),
+            'status_pengembalian' => 'Pending',
             'id_peminjaman'       => $request->input('id_peminjaman'),
             'id'                  => Auth::user()->id,
         ];

@@ -47,11 +47,11 @@
                                 <td class="text-center">
                                     @if ($item->status_peminjaman == 'Pending')
                                         <button title="Setuju" class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
-                                            data-bs-target="#approve_peminjaman{{$item->no_dokumen}}">
+                                            data-bs-target="#approve_peminjaman{{$item->id_dokumen}}">
                                             <i class="fa fa-check"></i>
                                         </button>
                                         <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                            data-bs-target="#tolak_peminjaman{{$item->no_dokumen}}">
+                                            data-bs-target="#tolak_peminjaman{{$item->id_dokumen}}">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     @else

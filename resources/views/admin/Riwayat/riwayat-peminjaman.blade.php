@@ -66,7 +66,7 @@
                                             <i class="fa fa-eye"></i>
                                         </a>
                                         <button title="Kembali" class="btn btn-sm btn-primary text-white"
-                                            data-bs-toggle="modal" data-bs-target="#pengembalian_dokumen{{ $item ->no_dokumen }}">
+                                            data-bs-toggle="modal" data-bs-target="#pengembalian_dokumen{{ $item ->id_dokumen }}">
                                             <i class="fa fa-undo"></i>
                                         </button>
                                     @elseif ($data->status_pengembalian == 'Pending')

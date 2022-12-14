@@ -18,7 +18,7 @@ class PengarsipanSeeder extends Seeder
         DB::table('pengarsipan')->insert([
             [
                 'id_pengarsipan' => '1',
-                'no_dokumen' => '2',
+                'id_dokumen' => '2',
                 'status_pengarsipan' => 'Pending',
                 'id' => '1',
                 'created_at' => \Carbon\Carbon::now(),

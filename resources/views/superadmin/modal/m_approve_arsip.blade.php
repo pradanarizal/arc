@@ -1,6 +1,6 @@
 <!-- Modal Hapus -->
 @foreach ($pengarsipan as $item)
-    <div class="modal fade" id="approve_pengarsipan{{ $item->no_dokumen }}" tabindex="-1" role="dialog"
+    <div class="modal fade" id="approve_pengarsipan{{ $item->id_dokumen }}" tabindex="-1" role="dialog"
         aria-labelledby="delete_box" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -10,7 +10,7 @@
                         aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body ml-2 mr-2">
-                    <form action="/pengarsipan/{{ $item->no_dokumen }}" method="POST">
+                    <form action="/pengarsipan/{{ $item->id_dokumen }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="ruangapp"><b>Ruang*</b></label>
                             <select class="form-control select2search" name="ruangapp"
-                                id="ruangapp{{ $item->no_dokumen }}">
+                                id="ruangapp{{ $item->id_dokumen }}">
                                 <option selected disabled>-Pilih Ruang-</option>
                                 @foreach ($ruang as $item1)
                                     <option value="{{ $item1->id_ruang }}">{{ $item1->nama_ruang }}</option>
@@ -37,27 +37,27 @@
                             @enderror
                         </div>
 
-                        <div class="form-group d-none" id="fgRak{{ $item->no_dokumen }}">
-                            <label for="rakApp{{ $item->no_dokumen }}"><b>Rak*</b></label>
-                            <select class="form-control" name="rakApp" id="rakApp{{ $item->no_dokumen }}"></select>
+                        <div class="form-group d-none" id="fgRak{{ $item->id_dokumen }}">
+                            <label for="rakApp{{ $item->id_dokumen }}"><b>Rak*</b></label>
+                            <select class="form-control" name="rakApp" id="rakApp{{ $item->id_dokumen }}"></select>
 
                             @error('rakApp')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="form-group d-none" id="fgBox{{ $item->no_dokumen }}">
-                            <label for="box_3{{ $item->no_dokumen }}"><b>Box*</b></label>
-                            <select class="form-control" name="box_3" id="box_3{{ $item->no_dokumen }}"></select>
+                        <div class="form-group d-none" id="fgBox{{ $item->id_dokumen }}">
+                            <label for="box_3{{ $item->id_dokumen }}"><b>Box*</b></label>
+                            <select class="form-control" name="box_3" id="box_3{{ $item->id_dokumen }}"></select>
 
                             @error('box_3')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="form-group  d-none" id="fgMap{{ $item->no_dokumen }}">
-                            <label for="map_3{{ $item->no_dokumen }}"><b>Map*</b></label>
-                            <select class="form-control" name="map_3" id="map_3{{ $item->no_dokumen }}"></select>
+                        <div class="form-group  d-none" id="fgMap{{ $item->id_dokumen }}">
+                            <label for="map_3{{ $item->id_dokumen }}"><b>Map*</b></label>
+                            <select class="form-control" name="map_3" id="map_3{{ $item->id_dokumen }}"></select>
 
                             @error('map_3')
                                 <div class="text-danger">{{ $message }}</div>
@@ -77,7 +77,7 @@
         window.onload = function() {
 
             // Pilih Rak
-            $('#ruangapp{{ $item->no_dokumen }}').on('change', function() {
+            $('#ruangapp{{ $item->id_dokumen }}').on('change', function() {
                 var ruangID = $(this).val();
                 if (ruangID) {
                     $.ajax({
@@ -89,9 +89,9 @@
                         dataType: "json",
                         success: function(data) {
                             if (data) {
-                                $('#fgRak{{ $item->no_dokumen }}').removeClass('d-none');
-                                $('#rakApp{{ $item->no_dokumen }}').empty();
-                                $('#rakApp{{ $item->no_dokumen }}').append(
+                                $('#fgRak{{ $item->id_dokumen }}').removeClass('d-none');
+                                $('#rakApp{{ $item->id_dokumen }}').empty();
+                                $('#rakApp{{ $item->id_dokumen }}').append(
                                     '<option hidden>-Pilih Rak-</option>');
                                 $.each(data, function(key, value) {
                                     $('select[name="rakApp"]').append('<option value="' +
@@ -109,7 +109,7 @@
             });
 
             // Pilih Box
-            $('#rakApp{{ $item->no_dokumen }}').on('change', function() {
+            $('#rakApp{{ $item->id_dokumen }}').on('change', function() {
                 var ruangID = $(this).val();
                 if (ruangID) {
                     $.ajax({
@@ -121,9 +121,9 @@
                         dataType: "json",
                         success: function(data) {
                             if (data) {
-                                $('#fgBox{{ $item->no_dokumen }}').removeClass('d-none');
-                                $('#box_3{{ $item->no_dokumen }}').empty();
-                                $('#box_3{{ $item->no_dokumen }}').append(
+                                $('#fgBox{{ $item->id_dokumen }}').removeClass('d-none');
+                                $('#box_3{{ $item->id_dokumen }}').empty();
+                                $('#box_3{{ $item->id_dokumen }}').append(
                                     '<option hidden>-Pilih Box-</option>');
                                 $.each(data, function(key, value) {
                                     $('select[name="box_3"]').append('<option value="' +
@@ -141,7 +141,7 @@
             });
 
             // Pilih Map
-            $('#box_3{{ $item->no_dokumen }}').on('change', function() {
+            $('#box_3{{ $item->id_dokumen }}').on('change', function() {
                 var ruangID = $(this).val();
                 if (ruangID) {
                     $.ajax({
@@ -153,9 +153,9 @@
                         dataType: "json",
                         success: function(data) {
                             if (data) {
-                                $('#fgMap{{ $item->no_dokumen }}').removeClass('d-none');
-                                $('#map_3{{ $item->no_dokumen }}').empty();
-                                $('#map_3{{ $item->no_dokumen }}').append(
+                                $('#fgMap{{ $item->id_dokumen }}').removeClass('d-none');
+                                $('#map_3{{ $item->id_dokumen }}').empty();
+                                $('#map_3{{ $item->id_dokumen }}').append(
                                     '<option hidden>-Pilih Map-</option>');
                                 $.each(data, function(key, value) {
                                     $('select[name="map_3"]').append('<option value="' +

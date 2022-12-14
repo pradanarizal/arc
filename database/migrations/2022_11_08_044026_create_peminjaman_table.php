@@ -21,8 +21,8 @@ return new class extends Migration
             $table->timestamps();
         });
         Schema::table('peminjaman', function (Blueprint $table) {
-            $table->unsignedBigInteger('no_dokumen');
-            $table->foreign('no_dokumen')->references('no_dokumen')->on('dokumen')
+            $table->unsignedBigInteger('id_dokumen');
+            $table->foreign('id_dokumen')->references('id_dokumen')->on('dokumen')
             ->onUpdate('cascade')
             ->onDelete('cascade');
         });

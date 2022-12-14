@@ -16,7 +16,8 @@ return new class extends Migration
     {
         Schema::create('dokumen', function (Blueprint $table) {
             // $table->id('id_dokumen');
-            $table->id('no_dokumen');
+            $table->id('id_dokumen');
+            $table->string('no_dokumen');
             $table->enum('status_dokumen', ['Dipinjam', 'Tersedia', 'Pengarsipan', 'Retensi', 'Rejected','softdelete']);
             //Fungsi value ::
             //Pengarsipan = Dokumen sedang diajukan pengarsipan dan menunggu di approve

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\approval;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PengembalianModel;
+use App\Models\DokumenModel;
 use App\Traits\notif_sidebar;
 
 class PengembalianController extends Controller
@@ -17,6 +18,7 @@ class PengembalianController extends Controller
      */
     public function __construct()
     {
+        $this->DokumenModel = new DokumenModel();
         $this->PengembalianModel = new PengembalianModel();
     }
 
@@ -80,31 +82,40 @@ class PengembalianController extends Controller
      */
     public function update(Request $request, $no_dokumen)
     {
-        {
+        if($request->input('jenis') == 'approve'){
+            
             $update_dokumen = [
-                'status_dokumen'    => $request->input('status_dokumen')
+                'status_dokumen'    => 'Tersedia'
             ];
 
-            $update_pengembalian = [
-                'tgl_pengembalian' => $request->input('tgl_pengembalian'),
-                'status_pengembalian' =>  $request->input('pengembalian'),
-                'updated_at' => \Carbon\Carbon::now()
+            if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
+                $update_pengembalian = [
+                    'tgl_pengembalian' => $request->input('tgl_pengembalian'),
+                    'status_pengembalian' =>  $request->input('pengembalian'),
+                    'updated_at' => \Carbon\Carbon::now()
+                ];
+                $this->PengembalianModel->approval_pengembalian($update_pengembalian, $no_dokumen);
+                return redirect('/approval/pengembalian')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+            }else {
+                return redirect('/approval/pengembalian');
+            }    
+        } elseif ($request->input('jenis') == 'tolak') {
+            $update_dokumen = [
+                'status_dokumen'    => 'Tersedia'
             ];
-    
-            if ($request->input('jenis') == 'approve') {
-                if ($this->PengembalianModel->approval_pengembalian($update_dokumen, $update_pengembalian,  $no_dokumen)) {
-                    return redirect('/approval/pengembalian')->with('toast_success', 'pengembalian di-Approve!');
-                } else {
-                    return redirect('/approval/pengembalian');
-                }
-            } elseif ($request->input('jenis') == 'tolak') {
-                if ($this->PengembalianModel->approval_pengembalian($update_dokumen, $update_pengembalian,  $no_dokumen)) {
-                    return redirect('/approval/pengembalian')->with('toast_success', 'pengembalian di-Reject!');
-                } else {
-                    return redirect('/approval/pengembalian');
-                }
-            }
-        }
+
+            if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
+                $update_pengembalian = [
+                    'tgl_pengembalian' => $request->input('tgl_pengembalian'),
+                    'status_pengembalian' =>  $request->input('pengembalian'),
+                    'updated_at' => \Carbon\Carbon::now()
+                ];
+                $this->PengembalianModel->approval_pengembalian($update_pengembalian, $no_dokumen);
+                return redirect('/approval/pengembalian')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+            } else {
+                return redirect('/approval/pengembalian');
+            } 
+        } 
     }
 
     /**

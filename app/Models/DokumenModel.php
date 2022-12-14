@@ -28,6 +28,15 @@ class DokumenModel extends Model
             ->get();
     }
 
+    public function getLastIdDokumen()
+    {
+        return DB::table('dokumen')
+            ->select('id_dokumen')
+            ->orderBy('id_dokumen', 'DESC')
+            ->limit(1)
+            ->get();
+    }
+
     public function getDokumenByDivisi($divisi)
     {
         return DB::table('dokumen')
@@ -38,9 +47,8 @@ class DokumenModel extends Model
             ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
-            ->leftJoin('pengarsipan', 'pengarsipan.no_dokumen', '=', 'dokumen.no_dokumen')
+            ->leftJoin('pengarsipan', 'pengarsipan.id_dokumen', '=', 'dokumen.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
-            // ->leftJoin('kelengkapan_dokumen', 'kelengkapan_dokumen.nama_kel_dokumen', '=', 'dokumen.nama_kel_dokumen')
 
             ->get();
 
@@ -53,7 +61,7 @@ class DokumenModel extends Model
     public function dataRetensi()
     {
         return DB::table('retensi')
-            ->leftJoin('dokumen', 'dokumen.no_dokumen', '=', 'retensi.no_dokumen')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'retensi.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'retensi.id')
             ->get();
     }
@@ -65,9 +73,27 @@ class DokumenModel extends Model
     }
 
     //modal add retensi
-    public function insert_retensi($data, $data2)
+    public function insert_retensi($data2)
     {
-        if (DB::table('dokumen')->insert($data) && DB::table('retensi')->insert($data2)) {
+        if (DB::table('retensi')->insert($data2)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function addDokumen($data)
+    {
+        if (DB::table('dokumen')->insert($data)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function update_dokumen($update_dokumen, $no_dokumen)       
+    {
+        if (DB::table('dokumen')->where('id_dokumen', $no_dokumen)->update($update_dokumen)) {
             return true;
         } else {
             return false;
@@ -75,9 +101,9 @@ class DokumenModel extends Model
     }
 
     //modal add arsip
-    public function insert_dokumen($data, $data2)
+    public function insert_pengarsipan($data2)
     {
-        if (DB::table('dokumen')->insert($data) && DB::table('pengarsipan')->insert($data2)) {
+        if (DB::table('pengarsipan')->insert($data2)) {
             return true;
         } else {
             return false;
@@ -106,16 +132,16 @@ class DokumenModel extends Model
         }
     }
 
-    public function insert_peminjaman($update_dokumen, $insert_peminjaman, $no_dokumen)
+    public function insert_peminjaman($insert_peminjaman)
     {
-        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen) && DB::table('peminjaman')->insert($insert_peminjaman)) {
+        if (DB::table('peminjaman')->insert($insert_peminjaman)) {
             return true;
         } else {
             return false;
         }
     }
 
-    public function insert_pengembalian($insert_pengembalian, $no_dokumen)
+    public function insert_pengembalian($insert_pengembalian)
     {
         if (DB::table('pengembalian')->insert($insert_pengembalian)) {
             return true;
