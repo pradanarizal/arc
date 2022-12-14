@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Document Archive</title>
+    <title>Commuter Document Archive</title>
     @include('layout.head')
 </head>
 

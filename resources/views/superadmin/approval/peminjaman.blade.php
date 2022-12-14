@@ -45,14 +45,21 @@
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_kembali)) }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td class="text-center">
-                                    <button title="Setuju" class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="fa fa-times"></i>
-                                    </button>
+                                    @if ($item->status_peminjaman == 'Pending')
+                                        <button title="Setuju" class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
+                                            data-bs-target="#approve_peminjaman{{$item->no_dokumen}}">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                            data-bs-target="#tolak_peminjaman{{$item->no_dokumen}}">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    @else
+                                        <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                            data-bs-target="#">
+                                            <i class="fa fa-times"></i>
+                                        </button> 
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -64,4 +71,7 @@
 
     {{-- @include('superadmin.modal.m_tambah_ruang')
     @include('superadmin.modal.m_edit_ruang') --}}
+
+    @include('superadmin.modal.m_approve_peminjaman')
+    @include('superadmin.modal.m_approve_tolak_peminjaman')
 @endsection

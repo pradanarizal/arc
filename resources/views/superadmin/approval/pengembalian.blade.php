@@ -47,14 +47,19 @@
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_pengembalian)) }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td class="text-center">
-                                    <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                    <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                        data-bs-target="#">
-                                        <i class="fa fa-times"></i>
-                                    </button>
+                                    @if ($item->status_pengembalian == 'Pending')
+                                        <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
+                                            data-bs-target="#approve_pengembalian{{ $item->no_dokumen }}">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                            data-bs-target="#">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    @else
+                                    <span title="Dokumen Tersedia"
+                                            class="badge badge-success p-2">{{ $item->status_dokumen }}</span>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -66,4 +71,6 @@
 
     {{-- @include('superadmin.modal.m_tambah_ruang')
     @include('superadmin.modal.m_edit_ruang') --}}
+
+    @include('superadmin.modal.m_approve_pengembalian')
 @endsection

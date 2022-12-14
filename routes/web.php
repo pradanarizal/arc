@@ -49,7 +49,7 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route::get('/dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
 Route::group(['middleware' => ['auth', 'cekaktif']], function () {
-    Route::get('/dashboard', [DashboardController::class, 'afterlogin'])->name('dashboard');
+    Route::get('dashboard', [DashboardController::class, 'afterlogin'])->name('dashboard');
 });
 
 //// Untuk Admin ////
@@ -134,6 +134,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
     // Approval
     Route::resource('/retensi', RetensiController::class);
     Route::resource('/pengarsipan', PengarsipanController::class);
+    Route::resource('/peminjaman', PeminjamanController::class);
+    Route::resource('/pengembalian', PengembalianController::class);
 
     // show pdf
     Route::get('/showPdf/{nomorDokumen}', [DokumenController::class, 'showPdf'])->name('dokumen');
@@ -141,4 +143,3 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
 
 //Menu Profil
 Route::get('/profil', [Controller::class, 'profil_pengguna'])->name('profil');
-// Route::get('/profil', [Controller::class, 'profil_user'])->name('profil');
