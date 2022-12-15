@@ -24,6 +24,13 @@
                 </div>
                 <hr>
                 <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ auth()->user()->name }}</label>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tahun Dokumen</label>
                     <div class="col-sm-6">
                         <label class=" col-form-label">{{ $item->tahun_dokumen }}</label>
@@ -56,7 +63,7 @@
                 @if ($item->file_dokumen == '')
                     <div class="row justify-content-md-center w-100">- File Dokumen Tidak Ada -</div>
                 @else
-                    <iframe src="{{ URL::to('/') }}/showPdfAdmin/{{ $item->no_dokumen }}" width="100%" height="500"
+                    <iframe src="{{ URL::to('/') }}/showPdfAdmin/{{ $item->nama_dokumen }}" width="100%" height="500"
                         frameborder="0">
                     </iframe>
                 @endif

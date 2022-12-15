@@ -58,7 +58,7 @@
                                         </button>
                                     @else
                                     <span title="Dokumen Tersedia"
-                                            class="badge badge-success p-2">done</span>
+                                            class="badge badge-success p-2">Selesai</span>
                                     @endif
                                 </td>
                             </tr>

@@ -21,9 +21,9 @@ class DokumenadminController extends Controller
         $this->DokumenModel = new DokumenModel();
     }
 
-    public function showPdfAdmin($nomorDokumen)
+    public function showPdfAdmin($namaPDF)
     {
-        return Response::make(file_get_contents('data_file/'.$nomorDokumen.'.pdf'), 200, [
+        return Response::make(file_get_contents('data_file/'.$namaPDF.'.pdf'), 200, [
             'content-type'=>'application/pdf',
         ]);
     }
@@ -95,15 +95,9 @@ class DokumenadminController extends Controller
         // tipe mime
         echo 'File Mime Type: ' . $file->getMimeType();
         $direktori_file = 'data_file';
+        $dok = $request->input('nama_dokumen');
 
-        // if ($request->input('jenis')  == 'Retensi') {
-        //     $direktori_file = 'data_file/retensi';
-        // } elseif ($request->input('jenis') == 'Pengarsipan') {
-        //     $direktori_file = 'data_file/pengarsipan';
-        // }
-
-        // upload file
-        $file_dokumen = $file->move($direktori_file, $request->input('nomor_dokumen').".pdf");
+        $file_dokumen = $file->move($direktori_file, "$dok" . ".pdf");
 
         if ($request->input('jenis') == 'Retensi') {
             $data = [
@@ -174,7 +168,7 @@ class DokumenadminController extends Controller
     public function pinjam_dokumenById(Request $request, $no_dokumen)
     {
         $update_dokumen = [
-            'status_dokumen'    => 'Dipinjam'
+            'status_dokumen'    => 'Menunggu Approval'
         ];
 
         if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {

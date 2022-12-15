@@ -42,7 +42,7 @@
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td>
                                     <a class="btn btn-sm bg-success text-white"
-                                        href="/detail_dokumen_user/{{ $item->no_dokumen }}">
+                                        href="/detail_dokumen_user/{{ $item->id_dokumen }}">
                                         <i class="fa fa-eye"></i>
                                     </a>
                                 </td>

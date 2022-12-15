@@ -15,6 +15,7 @@ class DokumenModel extends Model
         return DB::table('dokumen')
             ->where('status_dokumen', '=', 'Tersedia')
             ->orwhere('status_dokumen', '=', 'Dipinjam')
+            ->orwhere('status_dokumen', '=', 'Menunggu Approval')
             ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
             ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
@@ -41,6 +42,7 @@ class DokumenModel extends Model
     {
         return DB::table('dokumen')
             ->where('status_dokumen', '=', 'Tersedia')
+            ->orwhere('status_dokumen', '=', 'Menunggu Approval')
             ->orwhere('status_dokumen', '=', 'Dipinjam')
             ->where('dokumen.id_departemen', '=', $divisi)
             ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
@@ -49,7 +51,6 @@ class DokumenModel extends Model
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             ->leftJoin('pengarsipan', 'pengarsipan.id_dokumen', '=', 'dokumen.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
-
             ->get();
 
         return DB::table('dokumen')
@@ -118,7 +119,7 @@ class DokumenModel extends Model
             ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
-            ->where('no_dokumen', $id)
+            ->where('id_dokumen', $id)
             ->get();
     }
 

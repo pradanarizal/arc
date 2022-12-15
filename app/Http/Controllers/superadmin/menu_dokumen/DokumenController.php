@@ -27,9 +27,9 @@ class DokumenController extends Controller
         $this->notif = $this->approval_pending();
     }
 
-    public function showPdf($nomorDokumen)
+    public function showPdf($namaPDF)
     {
-        return Response::make(file_get_contents('data_file/' . $nomorDokumen . '.pdf'), 200, [
+        return Response::make(file_get_contents('data_file/' . $namaPDF . '.pdf'), 200, [
             'content-type' => 'application/pdf',
         ]);
     }
@@ -114,9 +114,10 @@ class DokumenController extends Controller
         // tipe mime
         echo 'File Mime Type: ' . $file->getMimeType();
         $direktori_file = 'data_file';
+        $dok = $request->input('nama_dokumen');
 
         // upload file
-        $file_dokumen = $file->move($direktori_file, $request->input('nomor_dokumen') . ".pdf");
+        $file_dokumen = $file->move($direktori_file, "$dok" . ".pdf");
 
         if ($request->input('jenis') == 'Retensi') {
             $data = [

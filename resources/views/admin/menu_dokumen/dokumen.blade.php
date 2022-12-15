@@ -62,7 +62,18 @@
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
-                                <td>{{ $item->status_dokumen }}</td>
+                                <td>
+                                    @if ($item->status_dokumen == 'Tersedia')
+                                        <span title="Dokumen Tersedia"
+                                            class="badge badge-success p-2">{{ $item->status_dokumen }}</span>
+                                    @elseif ($item->status_dokumen == 'Menunggu Approval')
+                                    <span title="Menunggu Approval Superadmin"
+                                            class="badge badge-warning p-2">{{ $item->status_dokumen }}</span>
+                                    @else
+                                        <span title="Dokumen sedang Dipinjam"
+                                            class="badge badge-primary p-2">{{ $item->status_dokumen }}</span>
+                                    @endif
+                                </td>
                                 <td class="text-center">
                                     @if($item->status_dokumen == 'Dipinjam')
                                         <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
@@ -70,6 +81,12 @@
                                             <i class="fas fa-eye"></i>
                                         </a>
                                     
+                                    @elseif($item->status_dokumen == 'Menunggu Approval')
+                                        <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
+                                            href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+
                                     @else
                                         <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
                                             href="/detail_dokumen_admin/{{ $item->id_dokumen }}">

@@ -32,9 +32,9 @@ class UserController extends Controller
         return view('user.detail_dokumen_user', $data);
     }
 
-    public function showPdfUser($nomorDokumen)
+    public function showPdfUser($namePDF)
     {
-        return Response::make(file_get_contents('data_file/'.$nomorDokumen.'.pdf'), 200, [
+        return Response::make(file_get_contents('data_file/'.$namePDF.'.pdf'), 200, [
             'content-type'=>'application/pdf',
         ]);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\approval;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PeminjamanModel;
+use App\Models\DokumenModel;
 use App\Traits\notif_sidebar;
 
 class PeminjamanController extends Controller
@@ -19,6 +20,7 @@ class PeminjamanController extends Controller
     public function __construct()
     {
         $this->PeminjamanModel = new PeminjamanModel();
+        $this->DokumenModel = new DokumenModel();
     }
 
     public function index()
@@ -81,27 +83,40 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, $no_dokumen)
     {
-        {
-            $update_peminjaman = [
-                'tgl_ambil' => $request->input('tgl_peminjaman'),
-                'status_peminjaman' =>  $request->input('peminjaman'),
-                'updated_at' => \Carbon\Carbon::now()
+        if($request->input('jenis') == 'approve'){
+            
+            $update_dokumen = [
+                'status_dokumen'    => 'Dipinjam'
             ];
-    
-            if ($request->input('jenis') == 'approve') {
-                if ($this->PeminjamanModel->approval_peminjaman($update_peminjaman,  $no_dokumen)) {
-                    return redirect('/approval/peminjaman')->with('toast_success', 'peminjaman di-Approve!');
-                } else {
-                    return redirect('/approval/peminjaman');
-                }
-            } elseif ($request->input('jenis') == 'tolak') {
-                if ($this->PeminjamanModel->approval_peminjaman($update_peminjaman,  $no_dokumen)) {
-                    return redirect('/approval/peminjaman')->with('toast_success', 'peminjaman di-Reject!');
-                } else {
-                    return redirect('/approval/peminjaman');
-                }
-            }
-        }
+
+            if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
+                $update_peminjaman = [
+                    'tgl_ambil' => $request->input('tgl_peminjaman'),
+                    'status_peminjaman' =>  $request->input('peminjaman'),
+                    'updated_at' => \Carbon\Carbon::now()
+                ];
+                $this->PeminjamanModel->approval_peminjaman($update_peminjaman, $no_dokumen);
+                return redirect('/approval/peminjaman')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+            }else {
+                return redirect('/approval/peminjaman');
+            }    
+        } elseif ($request->input('jenis') == 'tolak') {
+            $update_dokumen = [
+                'status_dokumen'    => 'Tersedia'
+            ];
+
+            if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
+                $update_peminjaman = [
+                    'tgl_ambil' => $request->input('tgl_peminjaman'),
+                    'status_peminjaman' =>  $request->input('peminjaman'),
+                    'updated_at' => \Carbon\Carbon::now()
+                ];
+                $this->PeminjamanModel->approval_peminjaman($update_peminjaman, $no_dokumen);
+                return redirect('/approval/peminjaman')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+            } else {
+                return redirect('/approval/peminjaman');
+            } 
+        } 
     }
     /**
      * Remove the specified resource from storage.

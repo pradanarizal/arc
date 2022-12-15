@@ -115,7 +115,7 @@
                 @if ($item->file_dokumen == '')
                     <div class="row justify-content-md-center w-100">- File Dokumen Tidak Ada -</div>
                 @else
-                    <iframe src="{{ URL::to('/') }}/showPdf/{{ $item->no_dokumen }}" width="100%" height="500"
+                    <iframe src="{{ URL::to('/') }}/showPdf/{{ $item->nama_dokumen }}" width="100%" height="500"
                         frameborder="0">
                     </iframe>
                 @endif

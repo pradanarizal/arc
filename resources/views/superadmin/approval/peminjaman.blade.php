@@ -55,10 +55,8 @@
                                             <i class="fa fa-times"></i>
                                         </button>
                                     @else
-                                        <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                            data-bs-target="#">
-                                            <i class="fa fa-times"></i>
-                                        </button> 
+                                    <span title="Dokumen Tersedia"
+                                            class="badge badge-success p-2">Selesai</span>
                                     @endif
                                 </td>
                             </tr>

@@ -1,5 +1,5 @@
 <div class="modal fade" id="tambah_dokumen" tabindex="-1" aria-labelledby="tambah_dokumen" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -68,7 +68,7 @@
                     </div>
 
                     <label for="file">Upload File</label>
-                    <span class="text-danger" style="font-size: 12px">*Max file 50MB</span>
+                    <span class="text-danger" style="font-size: 12px">*Max file 50MB & Format dokumen harus berformat PDF</span>
                     <div class="form-group">
                         <div class="">
                             <input type="file" name="file" id="file">

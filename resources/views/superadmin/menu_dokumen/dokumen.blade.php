@@ -50,9 +50,12 @@
                                     @if ($item->status_dokumen == 'Tersedia')
                                         <span title="Dokumen Tersedia"
                                             class="badge badge-success p-2">{{ $item->status_dokumen }}</span>
+                                    @elseif ($item->status_dokumen == 'Menunggu Approval')
+                                        <span title="Menunggu Approval"
+                                            class="badge badge-warning p-2">{{ $item->status_dokumen }}</span>
                                     @else
                                         <span title="Dokumen sedang Dipinjam"
-                                            class="badge badge-warning p-2">{{ $item->status_dokumen }}</span>
+                                                class="badge badge-primary p-2">{{ $item->status_dokumen }}</span>
                                     @endif
                                 </td>
                                 <td>

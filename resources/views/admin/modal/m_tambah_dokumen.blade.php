@@ -68,7 +68,7 @@
                     </div>
 
                     <label for="file">Upload File</label>
-                    <span class="text-danger" style="font-size: 12px">*Max file 50MB</span>
+                    <span class="text-danger" style="font-size: 12px">*Max file 50MB & Format dokumen harus berformat PDF</span>
                     <div class="form-group">
                         <div class="">
                             <input type="file" name="file" id="file">

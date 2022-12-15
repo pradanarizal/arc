@@ -46,7 +46,7 @@
                 <hr>
             </div>
             <div class="col-lg-6">
-                <iframe src="{{ URL::to('/') }}/showPdfAdmin/{{ $item->no_dokumen }}" width="100%" height="500"
+                <iframe src="{{ URL::to('/') }}/showPdfAdmin/{{ $item->nama_dokumen }}" width="100%" height="500"
                     frameborder="0">
                 </iframe>
             </div>

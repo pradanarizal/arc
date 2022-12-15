@@ -56,16 +56,6 @@ class DatauserController extends Controller
             'email_user' => 'required|unique:users,email',
             'password' =>'required',
             'id_departemen' => 'required',
-
-            // 'password' => [
-            //     'required',
-            //     Rules\Password::min(8)
-            //         ->mixedCase()
-            //         // ->letters()
-            //         ->numbers()
-            //         // ->symbols()
-            //         ->uncompromised()
-            // ],
         ]);
 
         $data = [

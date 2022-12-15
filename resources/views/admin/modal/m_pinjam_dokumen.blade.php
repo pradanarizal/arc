@@ -20,14 +20,14 @@
                                 aria-describedby="emailHelp" value="{{ $item->id_dokumen }}" hidden>
                         </div>
                         <div class="form-group">
+                            <label for="deskripsi_dokumen">Nomor Dokumen</label>
+                            <input type="deskripsi_dokumen" class="form-control" id="deskripsi_dokumen"
+                                name="no_dokumen" value="{{ $item->no_dokumen }}" readonly>
+                        </div>
+                        <div class="form-group">
                             <label for="nama_dokumen">Nama Dokumen</label>
                             <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
                                 aria-describedby="emailHelp" value="{{ $item->nama_dokumen }}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="deskripsi_dokumen">Deskripsi Dokumen</label>
-                            <input type="deskripsi_dokumen" class="form-control" id="deskripsi_dokumen"
-                                name="deskripsi_dokumen" value="{{ $item->deskripsi }}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="tgl_ambil">Tanggal Ambil</label>
