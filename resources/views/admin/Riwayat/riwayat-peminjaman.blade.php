@@ -61,7 +61,7 @@
                             @foreach ($pengembalian as $data)
 
                                 @if ($item->id_dokumen == $data->id_dokumen)
-                                    @if ($item->status_peminjaman == 'Ya' || $data->status_pengembalian == '')
+                                    @if ($item->status_peminjaman == 'Ya' && $data->status_pengembalian == '')
                                         <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
                                             <i class="fa fa-eye"></i>
                                         </a>

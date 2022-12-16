@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin\dokumen;
 
 use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
+use App\Models\approval\PeminjamanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Response;
@@ -19,6 +20,7 @@ class DokumenadminController extends Controller
     public function __construct()
     {
         $this->DokumenModel = new DokumenModel();
+        $this->PeminjamanModel = new PeminjamanModel();
     }
 
     public function showPdfAdmin($namaPDF)
@@ -31,7 +33,8 @@ class DokumenadminController extends Controller
     public function detail_data($id)
     {
         $data = [
-            'dokumen' => $this->DokumenModel->getDokumenById($id)
+            'dokumen' => $this->DokumenModel->getDokumenById($id),
+            'peminjaman'    => $this->DokumenModel->getNamaPeminjam($id)
         ];
         return view('admin.menu_dokumen.detail_dokumen_admin', $data);
     }
@@ -158,7 +161,7 @@ class DokumenadminController extends Controller
                     $this->DokumenModel->insert_pengarsipan($data2);
                 }
             
-                return redirect('/riwayat/riwayat_pengarsipan')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
+                return redirect('/riwayat/riwayat_pengarsipan')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Approval Arsip superadmin!');
             }else {
                 return redirect('/riwayat/riwayat_pengarsipan');
             } 

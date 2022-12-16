@@ -59,6 +59,17 @@ class DokumenModel extends Model
             ->get();
     }
 
+    public function getNamaPeminjam($id)
+    {
+        return DB::table('dokumen')
+            ->where('status_dokumen', '=', 'Dipinjam')
+            ->orwhere('status_dokumen', '=', 'Tersedia')
+            ->orwhere('dokumen.id_departemen', '=', $id)
+            ->leftJoin('peminjaman', 'peminjaman.id_dokumen', '=', 'dokumen.id_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
+            ->get();
+    }
+
     public function dataRetensi()
     {
         return DB::table('retensi')

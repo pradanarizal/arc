@@ -38,7 +38,8 @@ class DokumenController extends Controller
     {
 
         $data = [
-            'dokumen' => $this->DokumenModel->getDokumenById($id)
+            'dokumen' => $this->DokumenModel->getDokumenById($id),
+            'peminjaman'    => $this->DokumenModel->getNamaPeminjam($id)
         ];
         return view('superadmin.menu_dokumen.detail_dokumen', $data, $this->notif);
     }

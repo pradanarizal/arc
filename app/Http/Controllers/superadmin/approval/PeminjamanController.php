@@ -96,7 +96,7 @@ class PeminjamanController extends Controller
                     'updated_at' => \Carbon\Carbon::now()
                 ];
                 $this->PeminjamanModel->approval_peminjaman($update_peminjaman, $no_dokumen);
-                return redirect('/approval/peminjaman')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+                return redirect('/approval/peminjaman')->with('toast_success', 'Peminjaman berhasil di Approval!');
             }else {
                 return redirect('/approval/peminjaman');
             }    
@@ -112,7 +112,7 @@ class PeminjamanController extends Controller
                     'updated_at' => \Carbon\Carbon::now()
                 ];
                 $this->PeminjamanModel->approval_peminjaman($update_peminjaman, $no_dokumen);
-                return redirect('/approval/peminjaman')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+                return redirect('/approval/peminjaman')->with('toast_success', 'Peminjaman gagal di approve!');
             } else {
                 return redirect('/approval/peminjaman');
             } 
