@@ -163,9 +163,24 @@
     {{-- UNTUK TAMPILAN ADMIN --}}
     @if (auth()->user()->level == 'admin')
         <li class="nav-item {{ request()->is('dokumen_admin') ? 'active' : '' }}">
-            <a class="nav-link" href="/dokumen_admin">
+            <a class="nav-link collapsed" hhref="#" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-file-alt"></i>
-                <span>Dokumen</span></a>
+                <span>Dokumen</span>
+            </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {{ request()->is('dokumen_terbuka') ? 'active' : '' }}"
+                        href="/dokumen_terbuka">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Terbuka</span>
+                    </a>
+                    <a class="collapse-item {{ request()->is('dokumen_admin') ? 'active' : '' }}"
+                        href="/dokumen_admin">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Terbatas</span>
+                    </a>
+                </div>
+            </div>
         </li>
 
         <li

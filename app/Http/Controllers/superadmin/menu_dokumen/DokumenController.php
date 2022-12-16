@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\menu_dokumen;
 use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
 use App\Models\approval\RetensiModel;
+use App\Models\approval\PengarsipanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Response;
@@ -24,6 +25,7 @@ class DokumenController extends Controller
     {
         $this->DokumenModel = new DokumenModel();
         $this->RetensiModel = new RetensiModel();
+        $this->PengarsipanModel = new PengarsipanModel();
         $this->notif = $this->approval_pending();
     }
 
@@ -39,7 +41,7 @@ class DokumenController extends Controller
 
         $data = [
             'dokumen' => $this->DokumenModel->getDokumenById($id),
-            'peminjaman'    => $this->DokumenModel->getNamaPeminjam($id)
+            'peminjaman'    => $this->DokumenModel->getNamaPeminjam($id),
         ];
         return view('superadmin.menu_dokumen.detail_dokumen', $data, $this->notif);
     }
@@ -49,6 +51,11 @@ class DokumenController extends Controller
         $data = [
             'dokumen' => $this->DokumenModel->allData(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
+            'pengarsipan' => $this->PengarsipanModel->allData(),
+            'ruang' => $this->PengarsipanModel->getRuang(),
+            'rak' => $this->PengarsipanModel->getRak(),
+            'box' => $this->PengarsipanModel->getBox(),
+            'map' => $this->PengarsipanModel->getMap()
         ];
         return view('superadmin.menu_dokumen.dokumen', $data, $this->notif);
     }
