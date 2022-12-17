@@ -37,6 +37,12 @@ class DokumenModel extends Model
             ->limit(1)
             ->get();
     }
+    public function getDepartemen()
+    {
+        return DB::table('departemen')
+            ->select('id_departemen', 'kode_departemen')
+            ->get();
+    }
 
     public function getDokumenByDivisi($divisi)
     {
@@ -103,7 +109,7 @@ class DokumenModel extends Model
         }
     }
 
-    public function update_dokumen($update_dokumen, $no_dokumen)       
+    public function update_dokumen($update_dokumen, $no_dokumen)
     {
         if (DB::table('dokumen')->where('id_dokumen', $no_dokumen)->update($update_dokumen)) {
             return true;

@@ -35,10 +35,22 @@
                         <select class="form-control custom-select" name="tahun_dokumen" id="tahun_dokumen">
                             <option selected disabled>--Pilih Tahun Dokumen--</option>
                             @for ($i = date('Y'); $i >= 2000; $i--)
-                                <option value="{{ $i }}">{{ $i }}</option>'
+                                <option value="{{ $i }}">{{ $i }}</option>
                             @endfor
                         </select>
                         @error('tahun_dokumen')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="divisi"><b>Divisi</b></label>
+                        <select class="form-control custom-select" name="divisi" id="divisi">
+                            <option selected disabled>--Pilih Divisi--</option>
+                            @foreach ($divisi as $div)
+                                <option value="{{ $div->id_departemen }}">{{ $div->kode_departemen }}</option>
+                            @endforeach
+                        </select>
+                        @error('divisi')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -57,9 +69,12 @@
                                 <label for="kelengkapan_dokumen"><b>Kelengkapan Dokumen</b></label>
                                 @foreach ($kelengkapan_dokumen as $item)
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="{{ $item->nama_kel_dokumen }}"
-                                            id="kelengkapan_dokumen{{ $item->id_kel_dokumen }}" name="kelengkapan_dokumen[]">
-                                        <label class="form-check-label" for="kelengkapan_dokumen{{ $item->id_kel_dokumen }}">
+                                        <input class="form-check-input" type="checkbox"
+                                            value="{{ $item->nama_kel_dokumen }}"
+                                            id="kelengkapan_dokumen{{ $item->id_kel_dokumen }}"
+                                            name="kelengkapan_dokumen[]">
+                                        <label class="form-check-label"
+                                            for="kelengkapan_dokumen{{ $item->id_kel_dokumen }}">
                                             {{ $item->nama_kel_dokumen }}
                                         </label>
                                     </div>
@@ -73,40 +88,41 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="ruangapp"><b>Ruang*</b></label>
-                                <select class="form-control select2search" name="ruangapp" >
-                                <option selected disabled>-Pilih Ruang-</option>
-                                @foreach ($ruang as $item1)
-                                    <option value="{{ $item1->id_ruang }}">{{ $item1->nama_ruang }}</option>
-                                @endforeach
+                                <select class="form-control select2search" name="ruangTambahDokumen"
+                                    id="ruangTambahDokumen">
+                                    <option selected disabled>-Pilih Ruang-</option>
+                                    @foreach ($ruang as $item1)
+                                        <option value="{{ $item1->id_ruang }}">{{ $item1->nama_ruang }}</option>
+                                    @endforeach
                                 </select>
-                                @error('ruang_3')
+                                @error('ruangTambahDokumen')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="form-group ">
                                 <label><b>Rak*</b></label>
-                                <select class="form-control" name="rakApp" ></select>
+                                <select class="form-control" name="rakTambahDokumen" id="rakTambahDokumen"></select>
 
-                                @error('rakApp')
+                                @error('rakTambahDokumen')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="form-group ">
                                 <label><b>Box*</b></label>
-                                <select class="form-control" name="rakApp" ></select>
+                                <select class="form-control" name="boxTambahDokumen" id="boxTambahDokumen"></select>
 
-                                @error('rakApp')
+                                @error('boxTambahDokumen')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="form-group ">
                                 <label><b>Map*</b></label>
-                                <select class="form-control" name="rakApp" ></select>
+                                <select class="form-control" name="mapTambahDokumen" id="mapTambahDokumen"></select>
 
-                                @error('rakApp')
+                                @error('mapTambahDokumen')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -116,7 +132,8 @@
 
                     <div class="form-group">
                         <label for="file">Upload File</label>
-                        <span class="text-danger" style="font-size: 12px">*Max file 50MB & Format dokumen harus berformat PDF</span>
+                        <span class="text-danger" style="font-size: 12px">*Max file 50MB & Format dokumen harus
+                            berformat PDF</span>
                         <div class="form-group">
                             <div class="">
                                 <input type="file" name="file" id="file">
@@ -156,4 +173,107 @@
 @enderror
 @endforeach
 
+<script>
+    window.onload = function() {
+        // Select Ruang
+        $('#ruangTambahDokumen').on('change', function() {
+            var ruangID = $(this).val();
+            if (ruangID) {
+                $.ajax({
+                    url: '/getRak/' + ruangID,
+                    type: "GET",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        if (data) {
+                            $('#rakTambahDokumen').empty();
+                            $('#boxTambahDokumen').empty();
+                            $('#mapTambahDokumen').empty();
+                            $('#rakTambahDokumen').append(
+                                '<option hidden>-Pilih Rak-</option>');
+                            $.each(data, function(key, value) {
+                                $('select[name="rakTambahDokumen"]').append(
+                                    '<option value="' +
+                                    value.id_rak + '">' + value.nama_rak +
+                                    '</option>');
+                            });
+                        } else {
+                            $('#rakTambahDokumen').empty();
+                        }
+                    }
+                });
+            } else {
+                $('#rakTambahDokumen').empty();
+                $('#boxTambahDokumen').empty();
+                $('#mapTambahDokumen').empty();
+            }
+        });
+        // Select Rak
+        $('#rakTambahDokumen').on('change', function() {
+            var boxID = $(this).val();
+            if (boxID) {
+                $.ajax({
+                    url: '/getBox/' + boxID,
+                    type: "GET",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        if (data) {
+                            $('#boxTambahDokumen').empty();
+                            $('#mapTambahDokumen').empty();
+                            $('#boxTambahDokumen').append(
+                                '<option hidden>-Pilih Box-</option>');
+                            $.each(data, function(key, value) {
+                                $('select[name="boxTambahDokumen"]').append(
+                                    '<option value="' +
+                                    value.id_box + '">' + value.nama_box +
+                                    '</option>');
+                            });
+                        } else {
+                            $('#boxTambahDokumen').empty();
+                        }
+                    }
+                });
+            } else {
+                $('#boxTambahDokumen').empty();
+                $('#mapTambahDokumen').empty();
+            }
+        });
 
+        // Select Box
+        $('#boxTambahDokumen').on('change', function() {
+            var mapID = $(this).val();
+            if (mapID) {
+                $.ajax({
+                    url: '/getMap/' + mapID,
+                    type: "GET",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        if (data) {
+                            $('#mapTambahDokumen').empty();
+                            $('#mapTambahDokumen').append(
+                                '<option hidden>-Pilih Map-</option>');
+                            $.each(data, function(key, value) {
+                                $('select[name="mapTambahDokumen"]').append(
+                                    '<option value="' +
+                                    value.id_map + '">' + value.nama_map +
+                                    '</option>');
+                            });
+                        } else {
+                            $('#mapTambahDokumen').empty();
+                        }
+                    }
+                });
+            } else {
+                $('#mapTambahDokumen').empty();
+            }
+        });
+    };
+</script>
