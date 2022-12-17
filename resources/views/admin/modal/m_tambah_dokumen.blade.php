@@ -52,6 +52,12 @@
                     </div>
 
                     <div class="form-group">
+                            <label for="nama_dokumen">Jenis Dokumen</label>
+                            <input type="text" class="form-control" id="jenis_dokumen" name="jenis_dokumen"
+                                aria-describedby="emailHelp" value="Terbatas" readonly>
+                    </div>
+
+                    <div class="form-group">
                         <label for="kelengkapan_dokumen">Kelengkapan Dokumen</label>
                         @foreach ($kelengkapan_dokumen as $item)
                             <div class="form-check">

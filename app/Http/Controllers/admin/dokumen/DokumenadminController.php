@@ -46,11 +46,17 @@ class DokumenadminController extends Controller
             'dokumen' => $this->DokumenModel->getDokumenByDivisi(Auth::user()->id_departemen),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData()
         ];
-        return view('admin.menu_dokumen.dokumen', $data);
+        return view('admin.menu_dokumen.dokumen_admin_terbatas', $data);
+    }
 
-        // $data = $this->DokumenModel->getDokumenAdminByDivisi(Auth::user()->id_departemen);
-        // $data2 = $this->DokumenModel->kelData();
-        // dd($data, $data2);
+    public function dokumen_terbuka_admin()
+    {
+        $data = [
+            'dokumen' => $this->DokumenModel->allDataTerbuka(),
+            'kelengkapan_dokumen' => $this->DokumenModel->kelData()
+        ];
+        return view('admin.menu_dokumen.dokumen_admin_terbuka', $data);
+
     }
 
     public function store(Request $request)
@@ -111,6 +117,7 @@ class DokumenadminController extends Controller
                 'id_departemen' => Auth::user()->id_departemen,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Retensi',
+                'jenis_dokumen'     => 'Terbatas',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
@@ -143,6 +150,7 @@ class DokumenadminController extends Controller
                 'id_departemen' => Auth::user()->id_departemen,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Pengarsipan',
+                'jenis_dokumen'     => $request->input('jenis_dokumen'),
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
@@ -187,9 +195,9 @@ class DokumenadminController extends Controller
                 ];
                 $this->DokumenModel->insert_peminjaman($insert_peminjaman);
             }
-            return redirect('/dokumen_admin')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+            return redirect('/riwayat/riwayat_peminjaman')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
         } else {
-            return redirect('/dokumen_admin');
+            return redirect('/riwayat/riwayat_peminjaman');
         }
     }
 

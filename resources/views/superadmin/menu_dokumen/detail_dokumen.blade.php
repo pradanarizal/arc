@@ -34,16 +34,35 @@
 
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
-
                     @foreach ($peminjaman as $data)
                         @if ($item->id_dokumen == $data->id_dokumen)
                             @if ($item->status_dokumen == 'Dipinjam')
+                            
                                 <div class="col-sm-6">
                                     <label class=" col-form-label">{{ $data->name }}</label>
                                 </div>
                             @else
                                 <div class="col-sm-6">
-                                    <label class=" col-form-label">-</label>
+                                    <label class=" col-form-label"> - </label>
+                                </div>
+                            @endif
+                        @endif
+                    @endforeach
+                </div>
+                <hr>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Kembali</label>
+                    @foreach ($peminjaman as $data)
+                        @if ($item->id_dokumen == $data->id_dokumen)
+                            @if ($item->status_dokumen == 'Dipinjam')
+                            
+                                <div class="col-sm-6">
+                                    <label class=" col-form-label">{{ $data->tgl_kembali }}</label>
+                                </div>
+                            @else
+                                <div class="col-sm-6">
+                                    <label class=" col-form-label"> - </label>
                                 </div>
                             @endif
                         @endif
@@ -64,18 +83,6 @@
                         <label class=" col-form-label">{{ $item->nama_kel_dokumen }}</label>
                     </div>
                 </div>
-                {{--<div class="form-group row">
-                    <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
-                    @if($item->status_peminjaman == 'Dipinjam')
-                        <div class="col-sm-6">
-                            <label class=" col-form-label">{{ auth()->user()->name }}</label>
-                        </div>
-                    @else
-                        <div class="col-sm-6">
-                            <label class=" col-form-label"> - </label>
-                        </div>
-                    @endif
-                </div>--}}
                 <hr>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Upload</label>

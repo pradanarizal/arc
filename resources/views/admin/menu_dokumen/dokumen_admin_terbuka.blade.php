@@ -2,7 +2,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-3">
         <div class="d-flex align-items-center">
             <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Dokumen</p>
-            <p class="mb-0 text-gray-800 text-small">Table Dokumen</p>
+            <p class="mb-0 text-gray-800 text-small">Table Dokumen Terbuka</p>
         </div>
 
         <div class="d-none d-sm-inline-block justify-content-end p-2">
@@ -47,6 +47,7 @@
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
                             <th>Deskripsi</th>
+                            <th>Jenis Dokumen</th>
                             <th>Tanggal Upload</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -61,6 +62,7 @@
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
+                                <td>{{ $item->jenis_dokumen}}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td>
                                     @if ($item->status_dokumen == 'Tersedia')

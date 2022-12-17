@@ -29,6 +29,46 @@ class DokumenModel extends Model
             ->get();
     }
 
+    public function allDataTerbatas()
+    {
+        return DB::table('dokumen')
+            ->where('status_dokumen', '=', 'Tersedia')
+            ->orwhere('status_dokumen', '=', 'Menunggu Approval')
+            ->orwhere('status_dokumen', '=', 'Dipinjam')
+            ->where('jenis_dokumen', '=', 'Terbatas')
+            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
+            ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
+            ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
+            ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
+            // ->orderBy('tgl_upload','DESC')
+            ->get();
+
+        return DB::table('dokumen')
+
+            ->where('status_dokumen', '=', 'Retensi')
+            ->get();
+    }
+    
+    public function allDataTerbuka()
+    {
+        return DB::table('dokumen')
+            ->where('status_dokumen', '=', 'Tersedia')
+            ->where('status_dokumen', '=', 'Menunggu Approval')
+            ->where('status_dokumen', '=', 'Dipinjam')
+            ->orwhere('jenis_dokumen', '=', 'Terbuka')
+            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
+            ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
+            ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
+            ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
+            // ->orderBy('tgl_upload','DESC')
+            ->get();
+
+        return DB::table('dokumen')
+
+            ->where('status_dokumen', '=', 'Retensi')
+            ->get();
+    }
+    
     public function getLastIdDokumen()
     {
         return DB::table('dokumen')
@@ -41,22 +81,15 @@ class DokumenModel extends Model
     public function getDokumenByDivisi($divisi)
     {
         return DB::table('dokumen')
-            ->where('status_dokumen', '=', 'Tersedia')
-            ->orwhere('status_dokumen', '=', 'Menunggu Approval')
-            ->orwhere('status_dokumen', '=', 'Dipinjam')
+            ->where('status_dokumen', 'Tersedia' )
+            ->where('status_dokumen', '=', 'Menunggu Approval')
+            ->where('status_dokumen', '=', 'Dipinjam')
+            ->orwhere('status_dokumen', '!=', 'Pengarsipan')
             ->where('dokumen.id_departemen', '=', $divisi)
-            ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
-            ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
-            ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
-            ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             ->leftJoin('pengarsipan', 'pengarsipan.id_dokumen', '=', 'dokumen.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
             ->get();
 
-        return DB::table('dokumen')
-
-            ->where('dokumen.id_departemen', '=', $divisi)
-            ->get();
     }
 
     public function getNamaPeminjam($id)

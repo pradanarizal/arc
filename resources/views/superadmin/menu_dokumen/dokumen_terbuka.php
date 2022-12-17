@@ -2,7 +2,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-3">
         <div class="d-flex align-items-center">
             <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Dokumen</p>
-            <p class="mb-0 text-gray-800 text-small">Table Dokumen Terbatas</p>
+            <p class="mb-0 text-gray-800 text-small">Table Dokumen Terbuka</p>
         </div>
 
         <div class="d-none d-sm-inline-block justify-content-end p-2">

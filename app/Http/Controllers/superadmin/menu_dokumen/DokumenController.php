@@ -47,10 +47,20 @@ class DokumenController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->DokumenModel->allData(),
+            'dokumen' => $this->DokumenModel->allDataTerbatas(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
         ];
         return view('superadmin.menu_dokumen.dokumen', $data, $this->notif);
+    }
+
+    public function dokumen_terbuka()
+    {
+        $data = [
+            'dokumen' => $this->DokumenModel->allDataTerbuka(),
+            'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
+        ];
+        return view('superadmin.menu_dokumen.dokumen', $data, $this->notif);
+
     }
 
     /**

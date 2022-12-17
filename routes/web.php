@@ -55,7 +55,8 @@ Route::group(['middleware' => ['auth', 'cekaktif']], function () {
 //// Untuk Admin ////
 Route::group(['middleware' => ['auth', 'ceklevel:admin', 'cekaktif']], function () {
     //Menu Dokumen
-    Route::get('/dokumen_admin', [DokumenadminController::class, 'index'])->name('dokumen');
+    Route::get('/dokumen_terbatas_admin', [DokumenadminController::class, 'index'])->name('dokumen');
+    Route::get('/dokumen_terbuka_admin', [DokumenadminController::class, 'dokumen_terbuka_admin'])->name('dokumen');
     Route::get('/detail_dokumen_admin/{id}', [DokumenadminController::class, 'detail_data'])->name('dokumen');
     //Menu Riwayat
     Route::get('/riwayat/riwayat_pengarsipan', [RiwayatpengarsipanController::class, 'index']);
@@ -89,6 +90,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
     //Menu Dokumen
     // Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
     Route::resource('/dokumen', DokumenController::class);
+    Route::get('/dokumen_terbuka', [DokumenController::class, 'dokumen_terbuka']);
     Route::get('/detail_dokumen/{id}', [DokumenController::class, 'detail_data'])->name('dokumen');
 
     //Menu Master Setup

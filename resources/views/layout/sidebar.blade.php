@@ -87,10 +87,25 @@
         {{-- END OF SIDEBAR MENU 1 SUPER ADMIN --}}
 
         {{-- SIDEBAR MENU 2 SUPER ADMIN --}}
-        <li class="nav-item {{ request()->is('dokumen') ? 'active' : '' }}">
-            <a class="nav-link" href="/dokumen">
+        <li class="nav-item {{ request()->is('dokumen_terbuka') | request()->is('dokumen') ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuperadmin" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-file-alt"></i>
-                <span>Dokumen</span></a>
+                <span>Dokumen</span>
+            </a>
+            <div id="collapseSuperadmin" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {{ request()->is('dokumen_terbuka') ? 'active' : '' }}"
+                        href="/dokumen_terbuka">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Terbuka</span>
+                    </a>
+                    <a class="collapse-item {{ request()->is('dokumen') ? 'active' : '' }}"
+                        href="/dokumen">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Terbatas</span>
+                    </a>
+                </div>
+            </div>
         </li>
         {{-- END OF SIDEBAR MENU 2 SUPER ADMIN --}}
 
@@ -162,10 +177,25 @@
 
     {{-- UNTUK TAMPILAN ADMIN --}}
     @if (auth()->user()->level == 'admin')
-        <li class="nav-item {{ request()->is('dokumen_admin') ? 'active' : '' }}">
-            <a class="nav-link" href="/dokumen_admin">
+        <li class="nav-item {{ request()->is('dokumen_terbuka_admin') | request()->is('dokumen_terbatas_admin') ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-file-alt"></i>
-                <span>Dokumen</span></a>
+                <span>Dokumen</span>
+            </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {{ request()->is('dokumen_terbuka_admin') ? 'active' : '' }}"
+                        href="/dokumen_terbuka_admin">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Terbuka</span>
+                    </a>
+                    <a class="collapse-item {{ request()->is('dokumen_terbatas_admin') ? 'active' : '' }}"
+                        href="/dokumen_terbatas_admin">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Terbatas</span>
+                    </a>
+                </div>
+            </div>
         </li>
 
         <li
