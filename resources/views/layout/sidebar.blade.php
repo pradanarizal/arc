@@ -21,11 +21,25 @@
 
     <!-- Nav Item - Pengguna -->
     @if (auth()->user()->level == 'user')
-        <li class="nav-item {{ request()->is('dokumen_user') ? 'active' : '' }}">
-            <a class="nav-link" href="/dokumen_user">
+    <li class="nav-item {{ request()->is('dokumen_terbuka_user') | request()->is('dokumen_terbatas_user') ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuperadmin" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-file-alt"></i>
                 <span>Dokumen</span>
             </a>
+            <div id="collapseSuperadmin" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item {{ request()->is('dokumen_terbuka_user') ? 'active' : '' }}"
+                        href="/dokumen_terbuka_user">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Terbuka</span>
+                    </a>
+                    <a class="collapse-item {{ request()->is('dokumen_terbatas_user') ? 'active' : '' }}"
+                        href="/dokumen_terbatas_user">
+                        <i class="fas fa-fw fa-square fa-xs"></i>
+                        <span>Terbatas</span>
+                    </a>
+                </div>
+            </div>
         </li>
     @endif
 

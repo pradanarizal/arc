@@ -20,7 +20,15 @@ class UserController extends Controller
         $data = [
             'dokumen' => $this->Model->getDokumenByDivisi(Auth::user()->id_departemen), 
         ];
-        return view('user.dokumen', $data);
+        return view('user.dokumen_terbatas_user', $data);
+    }
+
+    public function dokumen_terbuka()
+    {
+        $data = [
+            'dokumen' => $this->Model->allDataTerbuka(), 
+        ];
+        return view('user.dokumen_terbuka_user', $data);
     }
 
     public function detail_data($id)

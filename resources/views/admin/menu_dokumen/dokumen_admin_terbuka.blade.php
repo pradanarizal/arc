@@ -7,7 +7,7 @@
 
         <div class="d-none d-sm-inline-block justify-content-end p-2">
             <button class="d-none d-sm-inline-block btn btn-danger shadow-sm tombol" data-bs-toggle="modal"
-                data-bs-target="#tambah_retensi">
+                data-bs-target="#tambah_retensi_admin">
                 <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
                 Add Retensi
             </button>

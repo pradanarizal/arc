@@ -117,7 +117,6 @@ class DokumenadminController extends Controller
                 'id_departemen' => Auth::user()->id_departemen,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Retensi',
-                'jenis_dokumen'     => 'Terbatas',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),

@@ -80,7 +80,8 @@ Route::group(['middleware' => ['auth', 'ceklevel:admin', 'cekaktif']], function 
 
 //// Untuk User ////
 Route::group(['middleware' => ['auth', 'ceklevel:user', 'cekaktif']], function () {
-    Route::get('/dokumen_user', [UserController::class, 'index'])->name('dokumen');
+    Route::get('/dokumen_terbatas_user', [UserController::class, 'index'])->name('dokumen');
+    Route::get('/dokumen_terbuka_user', [UserController::class, 'dokumen_terbuka'])->name('dokumen');
     Route::get('/detail_dokumen_user/{id}', [UserController::class, 'detail_data'])->name('dokumen');
     Route::get('/showPdfUser/{nomorDokumen}', [UserController::class, 'showPdfUser'])->name('dokumen');
 });

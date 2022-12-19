@@ -19,7 +19,7 @@ return new class extends Migration
             $table->id('id_dokumen');
             $table->string('no_dokumen');
             $table->enum('status_dokumen', ['Dipinjam', 'Tersedia', 'Pengarsipan', 'Retensi', 'Rejected','softdelete', 'Menunggu Approval']);
-            $table->enum('jenis_dokumen', ['Terbuka', 'Terbatas']);
+            $table->enum('jenis_dokumen', ['Terbuka', 'Terbatas'])->nullable();
             //Fungsi value ::
             //Pengarsipan = Dokumen sedang diajukan pengarsipan dan menunggu di approve
             //Rejected = Pengarsipan yang ditolak

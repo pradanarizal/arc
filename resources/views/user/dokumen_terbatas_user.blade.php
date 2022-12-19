@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="d-flex align-items-center">
         <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Dokumen</p>
-        <p class="mb-0 text-gray-800 text-small">Table Dokumen</p>
+        <p class="mb-0 text-gray-800 text-small">Table Dokumen Terbatas</p>
     </div>
 
     <!-- Begin Page Content -->
@@ -41,7 +41,7 @@
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td>{{ $item->status_dokumen }}</td>
                                 <td>
-                                    <a class="btn btn-sm bg-success text-white"
+                                    <a class="btn btn-sm bg-primary text-white"
                                         href="/detail_dokumen_user/{{ $item->id_dokumen }}">
                                         <i class="fa fa-eye"></i>
                                     </a>

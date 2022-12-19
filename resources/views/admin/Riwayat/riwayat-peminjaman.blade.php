@@ -82,7 +82,6 @@
                                             <i class="fa fa-eye"></i>
                                         </a>
                                     @endif
-                                    @break
                                 @endif
                             @endforeach
                             </td>

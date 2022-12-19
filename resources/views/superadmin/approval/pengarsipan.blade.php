@@ -18,6 +18,7 @@
                             <th>No</th>
                             <th>No. Dok</th>
                             <th>Nama Dokumen</th>
+                            <th>Jenis Dokumen</th>
                             <th>Tahun Dokumen</th>
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
@@ -35,6 +36,7 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
+                                <td>{{ $item->jenis_dokumen }}</td>
                                 <td>{{ $item->tahun_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
@@ -53,7 +55,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($item->status_pengarsipan == 'Pending')
-                                        <button type="button" class="btn bg-primary text-white"
+                                        <button type="button" class="btn btn-sm bg-primary text-white"
                                             data-bs-toggle="dropdown">
                                             <i class="fas fa-cog"></i>
                                         </button>
@@ -73,7 +75,7 @@
                                         </ul>
                                     @else
                                         <a title="View" href="/detail_dokumen/{{ $item->id_dokumen }}"
-                                            class="btn btn-warning "> <i class=" fas fa-eye fa-warning"></i>
+                                            class="btn btn-sm btn-warning "> <i class=" fas fa-eye fa-warning"></i>
                                         </a>
                                     @endif
                                 </td>

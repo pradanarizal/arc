@@ -1,4 +1,4 @@
-<div class="modal fade" id="tambah_retensi" tabindex="-1" aria-labelledby="tambah_user" aria-hidden="true">
+<div class="modal fade" id="tambah_retensi_admin" tabindex="-1" aria-labelledby="tambah_user" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
 

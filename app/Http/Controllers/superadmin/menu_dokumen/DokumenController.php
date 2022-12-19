@@ -105,6 +105,7 @@ class DokumenController extends Controller
                 'nomor_dokumen' => 'required',
                 'tahun_dokumen' => 'required',
                 'deskripsi_dokumen' => 'required',
+                'jenis_dokumen'     => 'required',
             ],
             [
                 'file.required' => 'File dokumen wajib diupload!',
@@ -116,6 +117,7 @@ class DokumenController extends Controller
                 'nomor_dokumen.required' => 'Nomor Dokumen wajib diisi!',
                 'tahun_dokumen.required' => 'Pilih tahun dokumen!',
                 'deskripsi_dokumen.required' => 'Deskripsi wajib diisi!',
+                'jenis_dokumen.required'   => 'Jenis Dokumen Harus Diisi'
             ]
         );
 
@@ -154,10 +156,9 @@ class DokumenController extends Controller
                 'nama_dokumen' => $request->input('nama_dokumen'),
                 'tahun_dokumen' => $request->input('tahun_dokumen'),
                 'deskripsi' => $request->input('deskripsi_dokumen'),
-                'id_departemen' => $request->divisi,
+                'id_departemen' => Auth::user()->id_departemen,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Retensi',
-                'jenis_dokumen'  => $request->input('jenis_dokumen_retensi'),
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
@@ -189,6 +190,7 @@ class DokumenController extends Controller
                 'id_departemen' => $request->divisi,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Tersedia',
+                'jenis_dokumen'     => $request->input('jenis_dokumen'),
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),

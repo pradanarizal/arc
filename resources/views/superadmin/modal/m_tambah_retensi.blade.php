@@ -62,15 +62,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jenis_dokumen">Jenis_Dokumen</label>
-                        <select class="form-control" name="jenis_dokumen_retensi" id="jenis_dokumen">
-                            <option selected disabled>--Pilih Jenis Dokumen--</option>
-                            <option value="Terbuka">Terbuka</option>
-                            <option value="Terbatas">Terbatas</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
                         <label for="kelengkapan_dokumen">Kelengkapan Dokumen</label>
                         @foreach ($kelengkapan_dokumen as $item)
                             <div class="form-check">
