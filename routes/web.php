@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:user', 'cekaktif']], function (
 Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], function () {
     //Menu Dokumen
     // Route::get('/dokumen', [DokumenController::class, 'index'])->name('dokumen');
-    Route::resource('/dokumen', DokumenController::class);
+    Route::resource('/dokumen_terbatas', DokumenController::class);
     Route::get('/dokumen_terbuka', [DokumenController::class, 'dokumen_terbuka']);
     Route::get('/detail_dokumen/{id}', [DokumenController::class, 'detail_data'])->name('dokumen');
 

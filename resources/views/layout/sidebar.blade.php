@@ -87,7 +87,7 @@
         {{-- END OF SIDEBAR MENU 1 SUPER ADMIN --}}
 
         {{-- SIDEBAR MENU 2 SUPER ADMIN --}}
-        <li class="nav-item {{ request()->is('dokumen_terbuka') | request()->is('dokumen') ? 'active' : '' }}">
+        <li class="nav-item {{ request()->is('dokumen_terbuka') | request()->is('dokumen_terbatas') ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuperadmin" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-file-alt"></i>
                 <span>Dokumen</span>
@@ -99,8 +99,8 @@
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Terbuka</span>
                     </a>
-                    <a class="collapse-item {{ request()->is('dokumen') ? 'active' : '' }}"
-                        href="/dokumen">
+                    <a class="collapse-item {{ request()->is('dokumen_terbatas') ? 'active' : '' }}"
+                        href="/dokumen_terbatas">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Terbatas</span>
                     </a>

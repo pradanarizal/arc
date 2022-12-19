@@ -50,6 +50,7 @@ class DokumenController extends Controller
     {
         $data = [
             'dokumen' => $this->DokumenModel->allDataTerbatas(),
+            'divisi' => $this->DokumenModel->getDepartemen(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
             'pengarsipan' => $this->PengarsipanModel->allData(),
             'ruang' => $this->PengarsipanModel->getRuang(),
@@ -57,7 +58,7 @@ class DokumenController extends Controller
             'box' => $this->PengarsipanModel->getBox(),
             'map' => $this->PengarsipanModel->getMap()
         ];
-        return view('superadmin.menu_dokumen.dokumen', $data, $this->notif);
+        return view('superadmin.menu_dokumen.dokumen_terbatas', $data, $this->notif);
     }
 
     public function dokumen_terbuka()
@@ -65,8 +66,14 @@ class DokumenController extends Controller
         $data = [
             'dokumen' => $this->DokumenModel->allDataTerbuka(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
+            'divisi' => $this->DokumenModel->getDepartemen(),
+            'ruang' => $this->PengarsipanModel->getRuang(),
+            'rak' => $this->PengarsipanModel->getRak(),
+            'box' => $this->PengarsipanModel->getBox(),
+            'map' => $this->PengarsipanModel->getMap()
+
         ];
-        return view('superadmin.menu_dokumen.dokumen', $data, $this->notif);
+        return view('superadmin.menu_dokumen.dokumen_terbuka', $data, $this->notif);
 
     }
 
@@ -150,6 +157,7 @@ class DokumenController extends Controller
                 'id_departemen' => $request->divisi,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Retensi',
+                'jenis_dokumen'  => $request->input('jenis_dokumen_retensi'),
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
@@ -168,9 +176,9 @@ class DokumenController extends Controller
                     ];
                     $this->DokumenModel->insert_retensi($data2);
                 }
-                return redirect('/dokumen')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
+                return redirect('/approval/retensi')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
             }else {
-                return redirect('/dokumen');
+                return redirect('/approval/retensi');
             }
         } elseif ($request->input('jenis') == 'Pengarsipan') {
             $data = [
@@ -203,9 +211,9 @@ class DokumenController extends Controller
                     $this->DokumenModel->insert_pengarsipan($data2);
                 }
 
-                return redirect('/dokumen')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
+                return redirect('/approval/pengarsipan')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
             }else {
-                return redirect('/dokumen');
+                return redirect('/approval/pengarsipan');
             }
         }
     }
@@ -248,9 +256,9 @@ class DokumenController extends Controller
                 'updated_at' => \Carbon\Carbon::now(),
             ];
             if ($this->DokumenModel->softdelete_dokumen($update_dokumen, $no_dokumen)) {
-                return redirect('/dokumen')->with('toast_success', 'Dokumen telah dihapus!');
+                return redirect('/dokumen_terbuka')->with('toast_success', 'Dokumen telah dihapus!');
             } else {
-                return redirect('/dokumen');
+                return redirect('/dokumen_terbuka');
             }
         } else {
             //untuk pengajuan retensi dokumen, ubah status_dokumen - table dokumen
@@ -263,9 +271,9 @@ class DokumenController extends Controller
                 'updated_at' => \Carbon\Carbon::now(),
             ];
             if ($this->DokumenModel->pengajuan_retensi($update_dokumen, $update_retensi, $no_dokumen)) {
-                return redirect('/dokumen')->with('toast_success', 'Dokumen telah diteruskan ke menu Approval Retensi Arsip!');
+                return redirect('/dokumen_terbuka')->with('toast_success', 'Dokumen telah diteruskan ke menu Approval Retensi Arsip!');
             } else {
-                return redirect('/dokumen');
+                return redirect('/dokumen_terbuka');
             }
         }
     }

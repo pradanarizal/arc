@@ -18,6 +18,7 @@
                             <th>No</th>
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
+                            <th>Jenis Dokumen</th>
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Approval</th>
@@ -33,6 +34,7 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
+                                <td>{{ $item->jenis_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td class="text-center">
