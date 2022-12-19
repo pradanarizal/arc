@@ -5,6 +5,7 @@ namespace App\Http\Controllers\superadmin\menu_dokumen;
 use App\Http\Controllers\Controller;
 use App\Models\DokumenModel;
 use App\Models\approval\RetensiModel;
+use App\Models\approval\PengarsipanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Response;
@@ -13,7 +14,7 @@ use App\Traits\notif_sidebar;
 class DokumenController extends Controller
 {
     use notif_sidebar;
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -24,6 +25,7 @@ class DokumenController extends Controller
     {
         $this->DokumenModel = new DokumenModel();
         $this->RetensiModel = new RetensiModel();
+        $this->PengarsipanModel = new PengarsipanModel();
         $this->notif = $this->approval_pending();
     }
 
@@ -39,7 +41,7 @@ class DokumenController extends Controller
 
         $data = [
             'dokumen' => $this->DokumenModel->getDokumenById($id),
-            'peminjaman'    => $this->DokumenModel->getNamaPeminjam($id)
+            'peminjaman'    => $this->DokumenModel->getNamaPeminjam($id),
         ];
         return view('superadmin.menu_dokumen.detail_dokumen', $data, $this->notif);
     }
@@ -49,6 +51,11 @@ class DokumenController extends Controller
         $data = [
             'dokumen' => $this->DokumenModel->allDataTerbatas(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
+            'pengarsipan' => $this->PengarsipanModel->allData(),
+            'ruang' => $this->PengarsipanModel->getRuang(),
+            'rak' => $this->PengarsipanModel->getRak(),
+            'box' => $this->PengarsipanModel->getBox(),
+            'map' => $this->PengarsipanModel->getMap()
         ];
         return view('superadmin.menu_dokumen.dokumen', $data, $this->notif);
     }
@@ -84,8 +91,9 @@ class DokumenController extends Controller
     {
         $request->validate(
             [
-                'file' => 'required|unique:dokumen,file_dokumen|max:50000',
+                'file' => 'required|unique:dokumen,file_dokumen|max:50000|mimes:pdf',
                 'kelengkapan_dokumen' => 'required',
+                'divisi' => 'required',
                 'nama_dokumen' => 'required',
                 'nomor_dokumen' => 'required',
                 'tahun_dokumen' => 'required',
@@ -93,7 +101,10 @@ class DokumenController extends Controller
             ],
             [
                 'file.required' => 'File dokumen wajib diupload!',
+                'file.mimes' => 'File dokumen wajib berekstensi .pdf',
+                'file.max' => 'File dokumen tidak boleh lebih dari 50Mb',
                 'kelengkapan_dokumen.required' => 'Pilih kelengkapan dokumen!',
+                'divisi.required' => 'Pilih Divisi!',
                 'nama_dokumen.required' => 'Nama Dokumen wajib diisi!',
                 'nomor_dokumen.required' => 'Nomor Dokumen wajib diisi!',
                 'tahun_dokumen.required' => 'Pilih tahun dokumen!',
@@ -136,7 +147,7 @@ class DokumenController extends Controller
                 'nama_dokumen' => $request->input('nama_dokumen'),
                 'tahun_dokumen' => $request->input('tahun_dokumen'),
                 'deskripsi' => $request->input('deskripsi_dokumen'),
-                'id_departemen' => Auth::user()->id_departemen,
+                'id_departemen' => $request->divisi,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Retensi',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
@@ -160,19 +171,23 @@ class DokumenController extends Controller
                 return redirect('/dokumen')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
             }else {
                 return redirect('/dokumen');
-            }  
+            }
         } elseif ($request->input('jenis') == 'Pengarsipan') {
             $data = [
                 'no_dokumen' => $request->input('nomor_dokumen'),
                 'nama_dokumen' => $request->input('nama_dokumen'),
                 'tahun_dokumen' => $request->input('tahun_dokumen'),
                 'deskripsi' => $request->input('deskripsi_dokumen'),
-                'id_departemen' => Auth::user()->id_departemen,
+                'id_departemen' => $request->divisi,
                 'tgl_upload' => \Carbon\Carbon::now(),
-                'status_dokumen' => 'Pengarsipan',
+                'status_dokumen' => 'Tersedia',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
+                'id_ruang' => $request->ruangTambahDokumen,
+                'id_rak' => $request->rakTambahDokumen,
+                'id_box' => $request->boxTambahDokumen,
+                'id_map' => $request->mapTambahDokumen,
             ];
 
             if ($this->DokumenModel->addDokumen($data)) {
@@ -180,18 +195,18 @@ class DokumenController extends Controller
                 if (count($last_id_dokumen) == 1) {
                     $idDokumen = $last_id_dokumen[0]->id_dokumen;
                     $data2 = [
-                        'status_pengarsipan' => 'Pending',
+                        'status_pengarsipan' => 'Ya',
                         'created_at' => \Carbon\Carbon::now(),
                         'id_dokumen' => $idDokumen,
                         'id' => Auth::user()->id,
                     ];
                     $this->DokumenModel->insert_pengarsipan($data2);
                 }
-            
+
                 return redirect('/dokumen')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
             }else {
                 return redirect('/dokumen');
-            } 
+            }
         }
     }
 
