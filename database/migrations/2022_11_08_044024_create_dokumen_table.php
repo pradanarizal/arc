@@ -35,7 +35,6 @@ return new class extends Migration
             $table->string('tahun_dokumen');
             $table->text('deskripsi');
             $table->dateTime('tgl_upload');
-            $table->string('nama_kel_dokumen');
             $table->string('file_dokumen');
             $table->timestamps();
         });

@@ -52,7 +52,7 @@ class DokumenController extends Controller
             'dokumen' => $this->DokumenModel->allDataTerbatas(),
             'divisi' => $this->DokumenModel->getDepartemen(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
-            'pengarsipan' => $this->PengarsipanModel->allData(),
+            'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
             'ruang' => $this->PengarsipanModel->getRuang(),
             'rak' => $this->PengarsipanModel->getRak(),
             'box' => $this->PengarsipanModel->getBox(),
@@ -66,6 +66,7 @@ class DokumenController extends Controller
         $data = [
             'dokumen' => $this->DokumenModel->allDataTerbuka(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
+            'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
             'divisi' => $this->DokumenModel->getDepartemen(),
             'ruang' => $this->PengarsipanModel->getRuang(),
             'rak' => $this->PengarsipanModel->getRak(),
@@ -96,72 +97,80 @@ class DokumenController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(
-            [
-                'file' => 'required|unique:dokumen,file_dokumen|max:50000|mimes:pdf',
-                'kelengkapan_dokumen' => 'required',
-                'divisi' => 'required',
-                'nama_dokumen' => 'required',
-                'nomor_dokumen' => 'required',
-                'tahun_dokumen' => 'required',
-                'deskripsi_dokumen' => 'required',
-                'jenis_dokumen'     => 'required',
-            ],
-            [
-                'file.required' => 'File dokumen wajib diupload!',
-                'file.mimes' => 'File dokumen wajib berekstensi .pdf',
-                'file.max' => 'File dokumen tidak boleh lebih dari 50Mb',
-                'kelengkapan_dokumen.required' => 'Pilih kelengkapan dokumen!',
-                'divisi.required' => 'Pilih Divisi!',
-                'nama_dokumen.required' => 'Nama Dokumen wajib diisi!',
-                'nomor_dokumen.required' => 'Nomor Dokumen wajib diisi!',
-                'tahun_dokumen.required' => 'Pilih tahun dokumen!',
-                'deskripsi_dokumen.required' => 'Deskripsi wajib diisi!',
-                'jenis_dokumen.required'   => 'Jenis Dokumen Harus Diisi'
-            ]
-        );
-
-        $kelengkapan_dokumen = implode(", ", $request->input('kelengkapan_dokumen'));
-
+        // $kelengkapan_dokumen = "";
+        // foreach ($request->kelengkapan_dokumen as $kel) {
+        //     $kelengkapan_dokumen = $kelengkapan_dokumen.", $kel";
+        // }
+        // return redirect('/dokumen')->with('toast_success', substr($kelengkapan_dokumen, 2));
 
         // menyimpan data file yang diupload ke variabel $file
-        $file = $request->file('file');
+
 
         // nama file
-        echo 'File Name: ' . $file->hashName();
-        echo '<br>';
+        // echo 'File Name: ' . $file->hashName();
+        // echo '<br>';
 
         // ekstensi file
-        echo 'File Extension: ' . $file->getClientOriginalExtension();
-        echo '<br>';
+        // echo 'File Extension: ' . $file->getClientOriginalExtension();
+        // echo '<br>';
 
         // real path
-        echo 'File Real Path: ' . $file->getRealPath();
-        echo '<br>';
+        // echo 'File Real Path: ' . $file->getRealPath();
+        // echo '<br>';
 
         // ukuran file
-        echo 'File Size: ' . $file->getSize();
-        echo '<br>';
+        // echo 'File Size: ' . $file->getSize();
+        // echo '<br>';
         // tipe mime
-        echo 'File Mime Type: ' . $file->getMimeType();
-        $direktori_file = 'data_file';
-        $dok = $request->input('nama_dokumen');
+        // echo 'File Mime Type: ' . $file->getMimeType();
+
 
         // upload file
-        $file_dokumen = $file->move($direktori_file, "$dok" . ".pdf");
+
+        $direktori_file = 'data_file';
 
         if ($request->input('jenis') == 'Retensi') {
+            $request->validate(
+                [
+                    'file_retensi' => 'required|unique:dokumen,file_dokumen|max:50000|mimes:pdf',
+                    'kelengkapan_dokumen_retensi' => 'required',
+                    'divisi_retensi' => 'required',
+                    'nama_dokumen_retensi' => 'required',
+                    'nomor_dokumen_retensi' => 'required',
+                    'tahun_dokumen_retensi' => 'required',
+                    'deskripsi_dokumen_retensi' => 'required',
+                ],
+                [
+                    'file_retensi.required' => 'File dokumen wajib diupload!',
+                    'file_retensi.mimes' => 'File dokumen wajib berekstensi .pdf',
+                    'file_retensi.max' => 'File dokumen tidak boleh lebih dari 50Mb',
+                    'kelengkapan_dokumen_retensi.required' => 'Pilih kelengkapan dokumen!',
+                    'divisi_retensi.required' => 'Pilih Divisi!',
+                    'nama_dokumen_retensi.required' => 'Nama Dokumen wajib diisi!',
+                    'nomor_dokumen_retensi.required' => 'Nomor Dokumen wajib diisi!',
+                    'tahun_dokumen_retensi.required' => 'Pilih tahun dokumen!',
+                    'deskripsi_dokumen_retensi.required' => 'Deskripsi wajib diisi!',
+                ]
+            );
+            $file = $request->file('file_retensi');
+            $dok = $request->input('nama_dokumen_retensi');
+            $file_dokumen = $file->move($direktori_file, "$dok" . ".pdf");
+            $kelengkapan_dokumen = implode(', ', $request->kelengkapan_dokumen_retensi);
             $data = [
-                'no_dokumen' => $request->input('nomor_dokumen'),
-                'nama_dokumen' => $request->input('nama_dokumen'),
-                'tahun_dokumen' => $request->input('tahun_dokumen'),
-                'deskripsi' => $request->input('deskripsi_dokumen'),
-                'id_departemen' => Auth::user()->id_departemen,
+                'no_dokumen' => $request->nomor_dokumen_retensi,
+                'nama_dokumen' => $request->nama_dokumen_retensi,
+                'tahun_dokumen' => $request->tahun_dokumen_retensi,
+                'deskripsi' => $request->deskripsi_dokumen_retensi,
+                'id_departemen' => $request->divisi_retensi,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Retensi',
                 'nama_kel_dokumen' => $kelengkapan_dokumen,
                 'file_dokumen' => $file_dokumen,
                 'created_at' => \Carbon\Carbon::now(),
+                'id_ruang' => $request->ruangTambahDokumen,
+                'id_rak' => $request->rakTambahDokumen,
+                'id_box' => $request->boxTambahDokumen,
+                'id_map' => $request->mapTambahDokumen
             ];
 
             if ($this->DokumenModel->addDokumen($data)) {
@@ -170,24 +179,58 @@ class DokumenController extends Controller
                     $idDokumen = $last_id_dokumen[0]->id_dokumen;
                     $data2 = [
                         // 'tgl_retensi' => \Carbon\Carbon::now(),
-                        'status_retensi' => 'Pending',
+                        'status_retensi' => 'Ya',
                         'created_at' => \Carbon\Carbon::now(),
                         'id_dokumen' => $idDokumen,
                         'id' => Auth::user()->id,
                     ];
                     $this->DokumenModel->insert_retensi($data2);
                 }
-                return redirect('/approval/retensi')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
+                return redirect('/dokumen')->with('toast_success', 'Berhasil Retensi Dokumen!');
             }else {
-                return redirect('/approval/retensi');
+                return redirect('/dokumen')->with('toast_error', 'Gagal Retensi Dokumen!');
             }
         } elseif ($request->input('jenis') == 'Pengarsipan') {
+            $request->validate(
+                [
+                    'file_pengarsipan' => 'required|unique:dokumen,file_dokumen|max:50000|mimes:pdf',
+                    'kelengkapan_dokumen_pengarsipan' => 'required',
+                    'divisi_pengarsipan' => 'required',
+                    'nama_dokumen_pengarsipan' => 'required',
+                    'nomor_dokumen_pengarsipan' => 'required',
+                    'tahun_dokumen_pengarsipan' => 'required',
+                    'deskripsi_dokumen_pengarsipan' => 'required',
+                    'ruangTambahDokumen'=> 'required',
+                    'rakTambahDokumen' => 'required',
+                    'boxTambahDokumen' => 'required',
+                    'mapTambahDokumen' => 'required'
+                ],
+                [
+                    'file_pengarsipan.required' => 'File dokumen wajib diupload!',
+                    'file_pengarsipan.mimes' => 'File dokumen wajib berekstensi .pdf',
+                    'file_pengarsipan.max' => 'File dokumen tidak boleh lebih dari 50Mb',
+                    'kelengkapan_dokumen_pengarsipan.required' => 'Pilih kelengkapan dokumen!',
+                    'divisi_pengarsipan.required' => 'Divisi wajib diisi!',
+                    'nama_dokumen_pengarsipan.required' => 'Nama Dokumen wajib diisi!',
+                    'nomor_dokumen_pengarsipan.required' => 'Nomor Dokumen wajib diisi!',
+                    'tahun_dokumen_pengarsipan.required' => 'Pilih tahun dokumen!',
+                    'deskripsi_dokumen_pengarsipan.required' => 'Deskripsi wajib diisi!',
+                    'ruangTambahDokumen.required' => 'Ruang wajib diisi!',
+                    'rakTambahDokumen.required' => 'Rak wajib diisi!',
+                    'boxTambahDokumen.required' => 'Box wajib diisi!',
+                    'mapTambahDokumen.required' => 'Map wajib diisi!'
+                ]
+            );
+            $file = $request->file('file_pengarsipan');
+            $dok = $request->input('nama_dokumen_pengarsipan');
+            $file_dokumen = $file->move($direktori_file, "$dok" . ".pdf");
+            $kelengkapan_dokumen = implode(', ', $request->kelengkapan_dokumen_pengarsipan);
             $data = [
-                'no_dokumen' => $request->input('nomor_dokumen'),
-                'nama_dokumen' => $request->input('nama_dokumen'),
-                'tahun_dokumen' => $request->input('tahun_dokumen'),
-                'deskripsi' => $request->input('deskripsi_dokumen'),
-                'id_departemen' => $request->divisi,
+                'no_dokumen' => $request->nomor_dokumen_pengarsipan,
+                'nama_dokumen' => $request->nama_dokumen_pengarsipan,
+                'tahun_dokumen' => $request->tahun_dokumen_pengarsipan,
+                'deskripsi' => $request->deskripsi_dokumen_pengarsipan,
+                'id_departemen' => $request->divisi_pengarsipan,
                 'tgl_upload' => \Carbon\Carbon::now(),
                 'status_dokumen' => 'Tersedia',
                 'jenis_dokumen'     => $request->input('jenis_dokumen'),
@@ -197,7 +240,7 @@ class DokumenController extends Controller
                 'id_ruang' => $request->ruangTambahDokumen,
                 'id_rak' => $request->rakTambahDokumen,
                 'id_box' => $request->boxTambahDokumen,
-                'id_map' => $request->mapTambahDokumen,
+                'id_map' => $request->mapTambahDokumen
             ];
 
             if ($this->DokumenModel->addDokumen($data)) {
@@ -213,9 +256,9 @@ class DokumenController extends Controller
                     $this->DokumenModel->insert_pengarsipan($data2);
                 }
 
-                return redirect('/approval/pengarsipan')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
+                return redirect('/dokumen')->with('toast_success', 'Berhasil Arsip Dokumen!');
             }else {
-                return redirect('/approval/pengarsipan');
+                return redirect('/dokumen')->with('toast_error', 'Gagal Arsip Dokumen!');
             }
         }
     }
