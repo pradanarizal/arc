@@ -73,7 +73,7 @@
                                             </li>
                                         </a>
                                         <li><button class="dropdown-item text-primary" data-bs-toggle="modal"
-                                                data-bs-target="#modaledit{{ $item->id_dokumen }}">
+                                                data-bs-target="#editDokumen{{ $item->id_dokumen }}">
                                                 <i class="fas fa-file-export fa-primary"></i> Edit</button>
                                         </li>
                                         <li>
@@ -245,6 +245,7 @@
     <!-- /.container-fluid -->
     @include('superadmin.modal.m_tambah_dokumen')
     @include('superadmin.modal.m_tambah_retensi')
+    @include('superadmin.modal.m_edit_dokumen')
     @include('superadmin.modal.m_delete_dokumen')
     @include('sweetalert::alert')
 @endsection

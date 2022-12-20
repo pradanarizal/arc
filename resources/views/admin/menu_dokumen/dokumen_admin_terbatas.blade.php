@@ -12,29 +12,12 @@
                 Add Retensi
             </button>
             <button class="d-none d-sm-inline-block btn btn-success shadow-sm tombol" data-bs-toggle="modal"
-                data-bs-target="#tambah_dokumen">
+                data-bs-target="#tambah_dokumen_admin">
                 <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
                 Add Arsip
             </button>
         </div>
     </div>
-
-    <!-- Begin Page Content -->
-    {{--
-<div class="container-fluid"> --}}
-
-    {{-- <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
-        <button class="d-none d-sm-inline-block btn btn-danger shadow-sm tombol" data-bs-toggle="modal"
-            data-bs-target="#tambah_retensi">
-            <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
-            Add Retensi
-        </button>
-        <button class="d-none d-sm-inline-block btn btn-success shadow-sm tombol" data-bs-toggle="modal"
-            data-bs-target="#tambah_dokumen">
-            <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
-            Add Arsip
-        </button>
-    </div> --}}
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4 mt-2">

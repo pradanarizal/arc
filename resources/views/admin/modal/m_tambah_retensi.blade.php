@@ -15,67 +15,53 @@
                     @csrf
                     <input name="jenis" type="text" value="Retensi" hidden>
                     <div class="form-group">
-                        <label for="nomor_dokumen">Nomor Dokumen</label>
-                        <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
-                            aria-describedby="emailHelp" value="{{ old('nomor_dokumen') }}">
-                        @error('nomor_dokumen')
+                        <label for="nomor_dokumen_ret_admin">Nomor Dokumen</label>
+                        <input type="text" class="form-control" id="nomor_dokumen_ret_admin" name="nomor_dokumen_ret_admin"
+                            aria-describedby="emailHelp" value="{{ old('nomor_dokumen_ret_admin') }}">
+                        @error('nomor_dokumen_ret_admin')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="nama_dokumen">Nama Dokumen</label>
-                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
-                            aria-describedby="emailHelp" value="{{ old('nama_dokumen') }}">
-                        @error('nama_dokumen')
+                        <label for="nama_dokumen_ret_admin">Nama Dokumen</label>
+                        <input type="text" class="form-control" id="nama_dokumen_ret_admin" name="nama_dokumen_ret_admin"
+                            aria-describedby="emailHelp" value="{{ old('nama_dokumen_ret_admin') }}">
+                        @error('nama_dokumen_ret_admin')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="tahun_dokumen">Tahun Dokumen</label>
-                        <input type="tahun_dokumen" class="form-control" id="tahun_dokumen" name="tahun_dokumen"
-                            aria-describedby="emailHelp" value="{{ old('tahun_dokumen') }}">
-                        @error('tahun_dokumen')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
                     <div class="form-group">
-                        <label for="tahun_dokumen">Tahun Dokumen</label>
-                        <select class="form-control custom-select" name="tahun_dokumen" id="tahun_dokumen">
+                        <label for="tahun_dokumen_ret_admin">Tahun Dokumen</label>
+                        <select class="form-control custom-select" name="tahun_dokumen_ret_admin" id="tahun_dokumen_ret_admin">
                             <option selected disabled>--Pilih Tahun Dokumen--</option>
                             @for ($i = date('Y'); $i >= 2000; $i--)
                                 <option value="{{ $i }}">{{ $i }}</option>'
                             @endfor
                         </select>
-                        @error('tahun_dokumen')
+                        @error('tahun_dokumen_ret_admin')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="deskripsi_dokumen">Deskripsi Dokumen</label>
-                        <input type="deskripsi_dokumen" class="form-control" id="deskripsi_dokumen"
+                        <label for="deskripsi_dokumen_ret_admin">Deskripsi Dokumen</label>
+                        <input type="deskripsi_dokumen_ret_admin" class="form-control" id="deskripsi_dokumen_ret_admin"
                             name="deskripsi_dokumen" aria-describedby="emailHelp"
-                            value="{{ old('deskripsi_dokumen') }}">
-                        @error('deskripsi_dokumen')
+                            value="{{ old('deskripsi_dokumen_ret_admin') }}">
+                        @error('deskripsi_dokumen_ret_admin')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="kelengkapan_dokumen">Kelengkapan Dokumen</label>
-                        @foreach ($kelengkapan_dokumen as $item)
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $item->nama_kel_dokumen }}"
-                                    id="kelengkapan_dokumen{{ $item->nama_kel_dokumen }}" name="kelengkapan_dokumen[]">
-                                <label class="form-check-label" for="kelengkapan_dokumen{{ $item->nama_kel_dokumen }}">
-                                    {{ $item->nama_kel_dokumen }}
-                                </label>
-                            </div>
-                        @endforeach
-                        @error('kelengkapan_dokumen')
+                        <label for="retensi">Kelengkapan Dokumen*</label>
+                        <select class="form-control" id="retensi" name="kelengkapan_dokumen_ret_admin[]" multiple>
+                        </select>
+                        @error('kelengkapan_dokumen_retensi')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
 
                     <label for="file">Upload File</label>
                     <span class="text-danger" style="font-size: 12px">*Max file 50MB</span>
@@ -91,26 +77,8 @@
                     <button class="btn btn-danger tombol-aksi float-right" type="button"
                         data-bs-dismiss="modal">Batal</button>
                 </form>
-                <!--END FORM TAMBAH BARANG-->
             </div>
 
         </div>
     </div>
 </div>
-
-{{-- Perulangan untuk cek error --}}
-<?php $listError = ['nomor_dokumen', 'nama_dokumen', 'tahun_dokumen', 'deskripsi_dokumen', 'kelengkapan_dokumen', 'file']; ?>
-@foreach ($listError as $err)
-    @error($err)
-        <script type="text/javascript">
-            window.onload = function() {
-                OpenBootstrapPopup();
-            };
-
-            function OpenBootstrapPopup() {
-                $("#tambah_retensi").modal('show');
-            }
-        </script>
-    @break
-@enderror
-@endforeach
