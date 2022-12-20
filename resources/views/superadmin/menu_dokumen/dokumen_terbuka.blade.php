@@ -96,6 +96,7 @@
     <?php
     $listErrorPengarsipan = ['nomor_dokumen_pengarsipan', 'nama_dokumen_pengarsipan', 'tahun_dokumen_pengarsipan', 'deskripsi_dokumen_pengarsipan', 'kelengkapan_dokumen_pengarsipan', 'divisi_pengarsipan', 'file_pengarsipan', 'ruangTambahDokumen', 'rakTambahDokumen', 'boxTambahDokumen', 'mapTambahDokumen'];
     $listErrorRetensi = ['nomor_dokumen_retensi', 'nama_dokumen_retensi', 'tahun_dokumen_retensi', 'deskripsi_dokumen_retensi', 'kelengkapan_dokumen_retensi', 'divisi_retensi', 'file_retensi'];
+    $listErrorEdit = ['nomor_dokumen_edit', 'nama_dokumen_edit', 'tahun_dokumen_edit', 'deskripsi_dokumen_edit', 'kelengkapan_dokumen_edit', 'divisi_edit', 'file_edit'];
     ?>
     <script>
         window.onload = function() {
@@ -116,6 +117,28 @@
                     function OpenBootstrapPopup() {
                         $("#tambah_retensi").modal('show');
                     }
+                    @break
+                @enderror
+            @endforeach
+            @foreach ($listErrorEdit as $err)
+                @error($err)
+                    Swal.fire({
+                        toast: true,
+                        icon: 'error',
+                        title: 'Edit Gagal!',
+                        text: '{{ $message }}',
+
+                        animation: true,
+                        position: 'top-right',
+                        showConfirmButton: false,
+                        showCloseButton: true,
+                        timer: 6000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    });
                     @break
                 @enderror
             @endforeach

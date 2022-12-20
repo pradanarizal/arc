@@ -22,17 +22,17 @@
                             <label for="nomor_dokumen_edit"><b>Nomor Dokumen</b></label>
                             <input type="text" class="form-control" id="nomor_dokumen_edit" name="nomor_dokumen_edit"
                                 value="{{ $item->no_dokumen }}">
-                            @error('nomor_dokumen_edit')
+                            {{-- @error('nomor_dokumen_edit')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
                         <div class="form-group">
                             <label for="nama_dokumen_edit"><b>Nama Dokumen</b></label>
                             <input type="text" class="form-control" id="nama_dokumen_edit" name="nama_dokumen_edit"
                                 value="{{ $item->nama_dokumen }}">
-                            @error('nama_dokumen_edit')
+                            {{-- @error('nama_dokumen_edit')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
                         <div class="form-group">
                             <label for="tahun_dokumen_edit"><b>Tahun Dokumen</b></label>
@@ -45,9 +45,9 @@
                                         {{ $i }}</option>
                                 @endfor
                             </select>
-                            @error('tahun_dokumen_edit')
+                            {{-- @error('tahun_dokumen_edit')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
                         <div class="form-group">
                             <label for="divisi_edit"><b>Divisi</b></label>
@@ -59,17 +59,17 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('divisi_edit')
+                            {{-- @error('divisi_edit')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
                         <div class="form-group">
                             <label for="deskripsi_dokumen_edit"><b>Deskripsi Dokumen</b></label>
                             <input type="text" class="form-control" id="deskripsi_dokumen_edit"
                                 name="deskripsi_dokumen_edit" value="{{ $item->deskripsi }}">
-                            @error('deskripsi_dokumen_edit')
+                            {{-- @error('deskripsi_dokumen_edit')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
 
                         <div class="form-group">
@@ -80,9 +80,9 @@
                                     <option value="{{ $kel }}" selected>{{ $kel }}</option>
                                 @endforeach
                             </select>
-                            @error('kelengkapan_dokumen_pengarsipan')
+                            {{-- @error('kelengkapan_dokumen_pengarsipan')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
                         <div class="form-group">
                             <label for="ruangEditDokumen"><b>Ruang*</b></label>
@@ -95,9 +95,9 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('ruangEditDokumen')
+                            {{-- @error('ruangEditDokumen')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
 
                         <div class="form-group ">
@@ -107,9 +107,9 @@
                                 <option value="{{ $item->id_rak }}">{{ $item->nama_rak }}</option>
                             </select>
 
-                            @error('rakEditDokumen')
+                            {{-- @error('rakEditDokumen')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
 
                         <div class="form-group ">
@@ -119,9 +119,9 @@
                                 <option value="{{ $item->id_box }}">{{ $item->nama_box }}</option>
                             </select>
 
-                            @error('boxEditDokumen')
+                            {{-- @error('boxEditDokumen')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
 
                         <div class="form-group ">
@@ -131,9 +131,9 @@
                                 <option value="{{ $item->id_map }}">{{ $item->nama_map }}</option>
                             </select>
 
-                            @error('mapEditDokumen')
+                            {{-- @error('mapEditDokumen')
                                 <div class="text-danger">{{ $message }}</div>
-                            @enderror
+                            @enderror --}}
                         </div>
 
                         <div class="form-group">
@@ -145,9 +145,9 @@
                                     {{-- <label for="file_edit"></label> --}}
                                     <input type="file" name="file_edit" id="file_edit"
                                         value="{{ $item->file_dokumen }}">
-                                    @error('file_edit')
+                                    {{-- @error('file_edit')
                                         <div class="text-danger">{{ $message }}</div>
-                                    @enderror
+                                    @enderror --}}
                                 </div>
                             </div>
                         </div>
