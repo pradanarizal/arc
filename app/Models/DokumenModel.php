@@ -20,7 +20,7 @@ class DokumenModel extends Model
             ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
-            // ->orderBy('tgl_upload','DESC')
+            // ->orderBy('id_dokumen','DESC')
             ->get();
 
         return DB::table('dokumen')
@@ -36,6 +36,16 @@ class DokumenModel extends Model
             ->orderBy('id_dokumen', 'DESC')
             ->limit(1)
             ->get();
+    }
+    public function getKelengkapanMultiple()
+    {
+        return DB::table('kelengkapan_dokumen')
+            ->select('nama_kel_dokumen as id', 'nama_kel_dokumen as text')
+            ->get();
+    }
+    public function insertKelengkapan($data)
+    {
+        return DB::table('kelengkapan')->insert($data);
     }
     public function getDepartemen()
     {

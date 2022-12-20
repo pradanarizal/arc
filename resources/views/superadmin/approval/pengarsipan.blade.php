@@ -53,8 +53,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($item->status_pengarsipan == 'Pending')
-                                        <button type="button" class="btn bg-primary text-white"
-                                            data-bs-toggle="dropdown">
+                                        <button type="button" class="btn bg-primary text-white" data-bs-toggle="dropdown">
                                             <i class="fas fa-cog"></i>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -73,7 +72,7 @@
                                         </ul>
                                     @else
                                         <a title="View" href="/detail_dokumen/{{ $item->id_dokumen }}"
-                                            class="btn btn-warning "> <i class=" fas fa-eye fa-warning"></i>
+                                            class="btn btn-warning btn-sm"> <i class=" fas fa-eye fa-warning"></i>
                                         </a>
                                     @endif
                                 </td>

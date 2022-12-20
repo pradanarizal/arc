@@ -15,74 +15,82 @@
                     @csrf
                     <input name="jenis" type="text" value="Retensi" hidden>
                     <div class="form-group">
-                        <label for="nomor_dokumen">Nomor Dokumen</label>
-                        <input type="text" class="form-control" id="nomor_dokumen" name="nomor_dokumen"
-                            aria-describedby="emailHelp" value="{{ old('nomor_dokumen') }}">
-                        @error('nomor_dokumen')
+                        <label for="nomor_dokumen_retensi">Nomor Dokumen</label>
+                        <input type="text" class="form-control" id="nomor_dokumen_retensi"
+                            name="nomor_dokumen_retensi" aria-describedby="emailHelp"
+                            value="{{ old('nomor_dokumen_retensi') }}">
+                        @error('nomor_dokumen_retensi')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="nama_dokumen">Nama Dokumen</label>
-                        <input type="text" class="form-control" id="nama_dokumen" name="nama_dokumen"
-                            aria-describedby="emailHelp" value="{{ old('nama_dokumen') }}">
-                        @error('nama_dokumen')
+                        <label for="nama_dokumen_retensi">Nama Dokumen</label>
+                        <input type="text" class="form-control" id="nama_dokumen_retensi" name="nama_dokumen_retensi"
+                            aria-describedby="emailHelp" value="{{ old('nama_dokumen_retensi') }}">
+                        @error('nama_dokumen_retensi')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     {{-- <div class="form-group">
-                        <label for="tahun_dokumen">Tahun Dokumen</label>
-                        <input type="tahun_dokumen" class="form-control" id="tahun_dokumen" name="tahun_dokumen"
-                            aria-describedby="emailHelp" value="{{ old('tahun_dokumen') }}">
-                        @error('tahun_dokumen')
+                        <label for="tahun_dokumen_retensi">Tahun Dokumen</label>
+                        <input type="tahun_dokumen_retensi" class="form-control" id="tahun_dokumen_retensi" name="tahun_dokumen_retensi"
+                            aria-describedby="emailHelp" value="{{ old('tahun_dokumen_retensi') }}">
+                        @error('tahun_dokumen_retensi')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div> --}}
                     <div class="form-group">
-                        <label for="tahun_dokumen">Tahun Dokumen</label>
-                        <select class="form-control custom-select" name="tahun_dokumen" id="tahun_dokumen">
+                        <label for="tahun_dokumen_retensi">Tahun Dokumen</label>
+                        <select class="form-control custom-select" name="tahun_dokumen_retensi"
+                            id="tahun_dokumen_retensi">
                             <option selected disabled>--Pilih Tahun Dokumen--</option>
                             @for ($i = date('Y'); $i >= 2000; $i--)
                                 <option value="{{ $i }}">{{ $i }}</option>'
                             @endfor
                         </select>
-                        @error('tahun_dokumen')
+                        @error('tahun_dokumen_retensi')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="deskripsi_dokumen">Deskripsi Dokumen</label>
-                        <input type="deskripsi_dokumen" class="form-control" id="deskripsi_dokumen"
-                            name="deskripsi_dokumen" aria-describedby="emailHelp"
-                            value="{{ old('deskripsi_dokumen') }}">
-                        @error('deskripsi_dokumen')
+                        <label for="deskripsi_dokumen_retensi">Deskripsi Dokumen</label>
+                        <input type="deskripsi_dokumen_retensi" class="form-control" id="deskripsi_dokumen_retensi"
+                            name="deskripsi_dokumen_retensi" value="{{ old('deskripsi_dokumen_retensi') }}">
+                        @error('deskripsi_dokumen_retensi')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="kelengkapan_dokumen">Kelengkapan Dokumen</label>
-                        @foreach ($kelengkapan_dokumen as $item)
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="{{ $item->nama_kel_dokumen }}"
-                                    id="kelengkapan_dokumen{{ $item->nama_kel_dokumen }}" name="kelengkapan_dokumen[]">
-                                <label class="form-check-label" for="kelengkapan_dokumen{{ $item->nama_kel_dokumen }}">
-                                    {{ $item->nama_kel_dokumen }}
-                                </label>
-                            </div>
-                        @endforeach
-                        @error('kelengkapan_dokumen')
+                        <label for="divisi_retensi"><b>Divisi</b></label>
+                        <select class="form-control" name="divisi_retensi" id="divisi_retensi">
+                            <option selected disabled>--Pilih Divisi--</option>
+                            @foreach ($divisi as $div)
+                                <option value="{{ $div->id_departemen }}">{{ $div->kode_departemen }}</option>
+                            @endforeach
+                        </select>
+                        @error('divisi_retensi')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <label for="file">Upload File</label>
-                    <span class="text-danger" style="font-size: 12px">*Max file 50MB</span>
+                    <div class="form-group">
+                        <label for="retensi">Kelengkapan Dokumen*</label>
+                        <select class="form-control" id="retensi" name="kelengkapan_dokumen_retensi[]" multiple>
+                        </select>
+                        @error('kelengkapan_dokumen_retensi')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <label for="file_retensi">Upload File</label>
+                    <span class="text-danger" style="font-size: 12px">*Max file 50MB & Format dokumen harus
+                        berformat PDF</span>
                     <div class="form-group">
                         <div class="">
-                            <input type="file" name="file" id="file">
-                            @error('file')
+                            <input type="file" name="file_retensi" id="file">
+                            @error('file_retensi')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -97,20 +105,3 @@
         </div>
     </div>
 </div>
-
-{{-- Perulangan untuk cek error --}}
-<?php $listError = ['nomor_dokumen', 'nama_dokumen', 'tahun_dokumen', 'deskripsi_dokumen', 'kelengkapan_dokumen', 'file']; ?>
-@foreach ($listError as $err)
-    @error($err)
-        <script type="text/javascript">
-            window.onload = function() {
-                OpenBootstrapPopup();
-            };
-
-            function OpenBootstrapPopup() {
-                $("#tambah_retensi").modal('show');
-            }
-        </script>
-    @break
-@enderror
-@endforeach
