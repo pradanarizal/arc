@@ -28,9 +28,9 @@
                             <th>No</th>
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
-                            <th>Deskripsi</th>
+                            {{-- <th>Deskripsi</th>
                             <th>Kelengkapan Dokumen</th>
-                            <th>Jenis Dokumen</th>
+                            <th>Jenis Dokumen</th> --}}
                             <th>Tanggal Upload</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -44,9 +44,9 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
-                                <td>{{ $item->deskripsi }}</td>
+                                {{-- <td>{{ $item->deskripsi }}</td>
                                 <td>{{ $item->nama_kel_dokumen }}</td>
-                                <th>{{ $item->jenis_dokumen }}</th>
+                                <th>{{ $item->jenis_dokumen }}</th> --}}
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td>
                                     @if ($item->status_dokumen == 'Tersedia')
@@ -245,6 +245,112 @@
                     $('#mapTambahDokumen').empty();
                 }
             });
+
+            @foreach ($dokumen as $item)
+                $('#ruangEditDokumen{{ $item->id_dokumen }}').on('change', function() {
+                    var ruangID = $(this).val();
+                    if (ruangID) {
+                        $.ajax({
+                            url: '/getRak/' + ruangID,
+                            type: "GET",
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data) {
+                                    $('#rakEditDokumen{{ $item->id_dokumen }}').empty();
+                                    $('#boxEditDokumen{{ $item->id_dokumen }}').empty();
+                                    $('#mapEditDokumen{{ $item->id_dokumen }}').empty();
+                                    $('#rakEditDokumen{{ $item->id_dokumen }}').append(
+                                        '<option hidden>-Pilih Rak-</option>');
+                                    $.each(data, function(key, value) {
+                                        $('select[id="rakEditDokumen{{ $item->id_dokumen }}"]')
+                                            .append(
+                                                '<option value="' +
+                                                value.id_rak + '">' + value.nama_rak +
+                                                '</option>');
+                                    });
+                                } else {
+                                    $('#rakEditDokumen{{ $item->id_dokumen }}').empty();
+                                }
+                            }
+                        });
+                    } else {
+                        $('#rakEditDokumen{{ $item->id_dokumen }}').empty();
+                        $('#boxEditDokumen{{ $item->id_dokumen }}').empty();
+                        $('#mapEditDokumen{{ $item->id_dokumen }}').empty();
+                    }
+                });
+                // Select Rak
+                $('#rakEditDokumen{{ $item->id_dokumen }}').on('change', function() {
+                    var boxID = $(this).val();
+                    if (boxID) {
+                        $.ajax({
+                            url: '/getBox/' + boxID,
+                            type: "GET",
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data) {
+                                    $('#boxEditDokumen{{ $item->id_dokumen }}').empty();
+                                    $('#mapEditDokumen{{ $item->id_dokumen }}').empty();
+                                    $('#boxEditDokumen{{ $item->id_dokumen }}').append(
+                                        '<option hidden>-Pilih Box-</option>');
+                                    $.each(data, function(key, value) {
+                                        $('select[id="boxEditDokumen{{ $item->id_dokumen }}"]')
+                                            .append(
+                                                '<option value="' +
+                                                value.id_box + '">' + value.nama_box +
+                                                '</option>');
+                                    });
+                                } else {
+                                    $('#boxEditDokumen{{ $item->id_dokumen }}').empty();
+                                }
+                            }
+                        });
+                    } else {
+                        $('#boxEditDokumen{{ $item->id_dokumen }}').empty();
+                        $('#mapEditDokumen{{ $item->id_dokumen }}').empty();
+                    }
+                });
+
+                // Select Box
+                $('#boxEditDokumen{{ $item->id_dokumen }}').on('change', function() {
+                    var mapID = $(this).val();
+                    if (mapID) {
+                        $.ajax({
+                            url: '/getMap/' + mapID,
+                            type: "GET",
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data) {
+                                    $('#mapEditDokumen{{ $item->id_dokumen }}').empty();
+                                    $('#mapEditDokumen{{ $item->id_dokumen }}').append(
+                                        '<option hidden>-Pilih Map-</option>');
+                                    $.each(data, function(key, value) {
+                                        $('select[id="mapEditDokumen{{ $item->id_dokumen }}"]')
+                                            .append(
+                                                '<option value="' +
+                                                value.id_map + '">' + value.nama_map +
+                                                '</option>');
+                                    });
+                                } else {
+                                    $('#mapEditDokumen{{ $item->id_dokumen }}').empty();
+                                }
+                            }
+                        });
+                    } else {
+                        $('#mapEditDokumen{{ $item->id_dokumen }}').empty();
+                    }
+                });
+            @endforeach
+
         };
     </script>
     <!-- /.container-fluid -->

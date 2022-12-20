@@ -13,11 +13,11 @@
 
                 <div class="modal-body">
                     <!--FORM TAMBAH-->
-                    <form action="/input_pengarsipan/edit/{{ $item->id_dokumen }}" method="post"
-                        enctype="multipart/form-data">
+                    <form action="/dokumen/edit/{{ $item->id_dokumen }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        {{-- <input name="jenis" type="text" value="Pengarsipan" hidden> --}}
+                        <input name="jenisDokumen" type="text" value="{{ $item->jenis_dokumen }}" hidden>
+                        <input name="oldNamaDokumen" type="text" value="{{ $item->nama_dokumen }}" hidden>
                         <div class="form-group">
                             <label for="nomor_dokumen_edit"><b>Nomor Dokumen</b></label>
                             <input type="text" class="form-control" id="nomor_dokumen_edit" name="nomor_dokumen_edit"
@@ -75,7 +75,7 @@
                         <div class="form-group">
                             <label for="pengarsipan"><b>Kelengkapan Dokumen</b></label>
                             <select class="form-control" id="editKelengkapan{{ $item->id_dokumen }}"
-                                name="kelengkapan_dokumen_pengarsipan[]" multiple>
+                                name="kelengkapan_dokumen_edit[]" multiple>
                                 @foreach (explode(', ', $item->nama_kel_dokumen) as $kel)
                                     <option value="{{ $kel }}" selected>{{ $kel }}</option>
                                 @endforeach
@@ -86,7 +86,8 @@
                         </div>
                         <div class="form-group">
                             <label for="ruangEditDokumen"><b>Ruang*</b></label>
-                            <select class="form-control" name="ruangEditDokumen" id="ruangEditDokumen">
+                            <select class="form-control" name="ruangEditDokumen"
+                                id="ruangEditDokumen{{ $item->id_dokumen }}">
                                 <option selected disabled>-Pilih Ruang-</option>
                                 @foreach ($ruang as $item1)
                                     <option value="{{ $item1->id_ruang }}"
@@ -99,32 +100,41 @@
                             @enderror
                         </div>
 
-                        {{-- <div class="form-group ">
+                        <div class="form-group ">
                             <label><b>Rak*</b></label>
-                            <select class="form-control" name="rakTambahDokumen" id="rakTambahDokumen"></select>
+                            <select class="form-control" name="rakEditDokumen"
+                                id="rakEditDokumen{{ $item->id_dokumen }}">
+                                <option value="{{ $item->id_rak }}">{{ $item->nama_rak }}</option>
+                            </select>
 
-                            @error('rakTambahDokumen')
+                            @error('rakEditDokumen')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group ">
                             <label><b>Box*</b></label>
-                            <select class="form-control" name="boxTambahDokumen" id="boxTambahDokumen"></select>
+                            <select class="form-control" name="boxEditDokumen"
+                                id="boxEditDokumen{{ $item->id_dokumen }}">
+                                <option value="{{ $item->id_box }}">{{ $item->nama_box }}</option>
+                            </select>
 
-                            @error('boxTambahDokumen')
+                            @error('boxEditDokumen')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="form-group ">
                             <label><b>Map*</b></label>
-                            <select class="form-control" name="mapTambahDokumen" id="mapTambahDokumen"></select>
+                            <select class="form-control" name="mapEditDokumen"
+                                id="mapEditDokumen{{ $item->id_dokumen }}">
+                                <option value="{{ $item->id_map }}">{{ $item->nama_map }}</option>
+                            </select>
 
-                            @error('mapTambahDokumen')
+                            @error('mapEditDokumen')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                        </div> --}}
+                        </div>
 
                         <div class="form-group">
                             <label for="file_edit">Upload File</label>
@@ -132,14 +142,16 @@
                                 berformat PDF</span>
                             <div class="form-group">
                                 <div class="">
-                                    <input type="file" name="file_edit" id="file_edit">
+                                    {{-- <label for="file_edit"></label> --}}
+                                    <input type="file" name="file_edit" id="file_edit"
+                                        value="{{ $item->file_dokumen }}">
                                     @error('file_edit')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
                         </div>
-                        {{-- <button type="submit" class="btn btn-primary tombol-aksi float-right">Ajukan</button> --}}
+                        <button type="submit" class="btn btn-primary tombol-aksi float-right">Ajukan</button>
                         <button class="btn btn-danger tombol-aksi float-right" type="button"
                             data-bs-dismiss="modal">Batal</button>
                     </form>
