@@ -84,20 +84,22 @@
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="ruangapp"><b>Ruang*</b></label>
-                            <select class="form-control" name="ruangTambahDokumen" id="ruangTambahDokumen">
+                        <div class="form-group">
+                            <label for="ruangEditDokumen"><b>Ruang*</b></label>
+                            <select class="form-control" name="ruangEditDokumen" id="ruangEditDokumen">
                                 <option selected disabled>-Pilih Ruang-</option>
                                 @foreach ($ruang as $item1)
-                                    <option value="{{ $item1->id_ruang }}">{{ $item1->nama_ruang }}</option>
+                                    <option value="{{ $item1->id_ruang }}"
+                                        @if ($item->id_ruang == $item1->id_ruang) selected @endif>{{ $item1->nama_ruang }}
+                                    </option>
                                 @endforeach
                             </select>
-                            @error('ruangTambahDokumen')
+                            @error('ruangEditDokumen')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
-                        <div class="form-group ">
+                        {{-- <div class="form-group ">
                             <label><b>Rak*</b></label>
                             <select class="form-control" name="rakTambahDokumen" id="rakTambahDokumen"></select>
 
