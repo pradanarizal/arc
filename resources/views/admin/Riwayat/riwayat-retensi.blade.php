@@ -25,7 +25,6 @@
                             <th>No</th>
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
-                            <th>Jenis Dokumen</th>
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Approval</th>

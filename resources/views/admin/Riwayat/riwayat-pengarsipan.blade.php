@@ -65,7 +65,7 @@
             </div>
         </div>
     </div>
-
+    @include('sweetalert::alert')
     {{-- @include('superadmin.modal.m_tambah_ruang')
     @include('superadmin.modal.m_edit_ruang') --}}
 @endsection

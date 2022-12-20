@@ -36,51 +36,46 @@
                             id="tahun_dokumen_pengarsipan_admin">
                             <option selected disabled>--Pilih Tahun Dokumen--</option>
                             @for ($i = date('Y'); $i >= 2000; $i--)
-                                <option value="{{ $i }}" @if (old('tahun_dokumen_pengarsipan') == $i) selected @endif>
+                                <option value="{{ $i }}" @if (old('tahun_dokumen_pengarsipan_admin') == $i) selected @endif>
                                     {{ $i }}</option>
                             @endfor
                         </select>
-                        @error('tahun_dokumen_pengarsipan')
+                        @error('tahun_dokumen_pengarsipan_admin')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="deskripsi_dokumen_pengarsipan_admin"><b>Deskripsi Dokumen</b></label>
                         <input type="text" class="form-control" id="deskripsi_dokumen_pengarsipan_admin"
-                            name="deskripsi_dokumen_pengarsipan" value="{{ old('deskripsi_dokumen_pengarsipan_admin') }}">
+                            name="deskripsi_dokumen_pengarsipan_admin" value="{{ old('deskripsi_dokumen_pengarsipan_admin') }}">
                         @error('deskripsi_dokumen_pengarsipan_admin')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                            <label for="nama_dokumen_admin">Jenis Dokumen</label>
-                            <input type="text" class="form-control" id="jenis_dokumen" name="jenis_dokumen_admin"
+                            <label for="jenis_dokumen_admin">Jenis Dokumen</label>
+                            <input type="text" class="form-control" id="jenis_dokumen_admin" name="jenis_dokumen_admin"
                                 aria-describedby="emailHelp" value="Terbatas" readonly>
                     </div>
                     
-                    <div class="row mt 3">
-                        <div class="col-lg-8">
                             <div class="form-group">
                                 <label for="pengarsipan_admin"><b>Kelengkapan Dokumen</b></label>
-                                <select class="form-control" id="pengarsipan_admin" name="kelengkapan_dokumen_pengarsipan_admin[]" multiple>
+                                <select class="form-control" id="pengarsipan_admin" name="kelengkapan_dokumen_pengarsipan[]" multiple>
                                 </select>
-                                @error('kelengkapan_dokumen')
+                                @error('kelengkapan_dokumen_pengarsipan')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
-                       
-                    </div>
 
                     <div class="form-group">
-                        <label for="file_pengarsipan">Upload File</label>
+                        <label for="file_pengarsipan_admin">Upload File</label>
                         <span class="text-danger" style="font-size: 12px">*Max file 50MB & Format dokumen harus
                             berformat PDF</span>
                         <div class="form-group">
                             <div class="">
-                                <input type="file" name="file_pengarsipan" id="file_pengarsipan">
-                                @error('file_pengarsipan')
+                                <input type="file" name="file_pengarsipan_admin" id="file_pengarsipan_admin">
+                                @error('file_pengarsipan_admin')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

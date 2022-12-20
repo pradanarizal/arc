@@ -92,7 +92,47 @@
     </div>
     {{--
 </div> --}}
-    <!-- /.container-fluid -->
+
+<script>
+    <?php $listErrorPengarsipanAdmin = ['nomor_dokumen_pengarsipan_admin', 'nama_dokumen_pengarsipan_admin', 'tahun_dokumen_pengarsipan_admin', 'deskripsi_dokumen_pengarsipan_admin', 'kelengkapan_dokumen_pengarsipan', 'file_pengarsipan_admin'];
+          $listErrorRetensiAdmin = ['nomor_dokumen_ret_admin', 'nama_dokumen_ret_admin', 'tahun_dokumen_ret_admin', 'deskripsi_dokumen_ret_admin', 'kelengkapan_dokumen_retensi', 'file_ret_admin'];
+    ?>  
+          window.onload = function() {
+                @foreach ($listErrorPengarsipanAdmin as $err)
+                    @error($err)
+                        OpenBootstrapPopup();
+
+                        function OpenBootstrapPopup() {
+                            $("#tambah_dokumen_admin").modal('show');
+                        }
+                        @break
+                    @enderror
+                @endforeach
+                @foreach ($listErrorRetensiAdmin as $err)
+                    @error($err)
+                        OpenBootstrapPopup();
+
+                        function OpenBootstrapPopup() {
+                            $("#tambah_retensi_admin").modal('show');
+                        }
+                        @break
+                    @enderror
+                @endforeach
+                $('#retensi_admin').select2({
+                    data: <?= json_encode($kelengkapan) ?>,
+                    theme: "bootstrap-5",
+                    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                        'style'
+                });
+                $('#pengarsipan_admin').select2({
+                    data: <?= json_encode($kelengkapan) ?>,
+                    theme: "bootstrap-5",
+                    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                        'style'
+                });
+            };
+    </script>
+    
     @include('admin.modal.m_tambah_dokumen')
     @include('admin.modal.m_tambah_retensi')
     @include('admin.modal.m_pinjam_dokumen')

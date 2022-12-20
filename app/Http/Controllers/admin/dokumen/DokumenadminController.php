@@ -44,7 +44,9 @@ class DokumenadminController extends Controller
     {
         $data = [
             'dokumen' => $this->DokumenModel->getDokumenByDivisi(Auth::user()->id_departemen),
-            'kelengkapan_dokumen' => $this->DokumenModel->kelData()
+            'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
+            'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
+
         ];
         return view('admin.menu_dokumen.dokumen_admin_terbatas', $data);
     }
@@ -53,7 +55,8 @@ class DokumenadminController extends Controller
     {
         $data = [
             'dokumen' => $this->DokumenModel->allDataTerbuka(),
-            'kelengkapan_dokumen' => $this->DokumenModel->kelData()
+            'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
+            'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
         ];
         return view('admin.menu_dokumen.dokumen_admin_terbuka', $data);
 
@@ -61,65 +64,64 @@ class DokumenadminController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(
-            [
-                'file' => 'required|unique:dokumen,file_dokumen|max:50000',
-                'kelengkapan_dokumen' => 'required',
-                'nama_dokumen' => 'required',
-                'nomor_dokumen' => 'required',
-                'tahun_dokumen' => 'required',
-                'deskripsi_dokumen' => 'required',
-            ],
-            [
-                'file.required' => 'File dokumen wajib diupload!',
-                'kelengkapan_dokumen.required' => 'Pilih kelengkapan dokumen!',
-                'nama_dokumen.required' => 'Nama Dokumen wajib diisi!',
-                'nomor_dokumen.required' => 'Nomor Dokumen wajib diisi!',
-                'tahun_dokumen.required' => 'Pilih tahun dokumen!',
-                'deskripsi_dokumen.required' => 'Deskripsi wajib diisi!',
-            ]
-        );
-
-        $kelengkapan_dokumen = implode(", ", $request->input('kelengkapan_dokumen'));
-
-
-        // menyimpan data file yang diupload ke variabel $file
-        $file = $request->file('file');
-
         // nama file
-        echo 'File Name: ' . $file->hashName();
-        echo '<br>';
+        // echo 'File Name: ' . $file->hashName();
+        // echo '<br>';
 
         // ekstensi file
-        echo 'File Extension: ' . $file->getClientOriginalExtension();
-        echo '<br>';
+        // echo 'File Extension: ' . $file->getClientOriginalExtension();
+        // echo '<br>';
 
         // real path
-        echo 'File Real Path: ' . $file->getRealPath();
-        echo '<br>';
+        // echo 'File Real Path: ' . $file->getRealPath();
+        // echo '<br>';
 
         // ukuran file
-        echo 'File Size: ' . $file->getSize();
-        echo '<br>';
+        // echo 'File Size: ' . $file->getSize();
+        // echo '<br>';
         // tipe mime
-        echo 'File Mime Type: ' . $file->getMimeType();
+        // echo 'File Mime Type: ' . $file->getMimeType();
+        
         $direktori_file = 'data_file';
-        $dok = $request->input('nama_dokumen');
-
-        $file_dokumen = $file->move($direktori_file, "$dok" . ".pdf");
 
         if ($request->input('jenis') == 'Retensi') {
+            $request->validate(
+                [
+                    'file_ret_admin' => 'required|unique:dokumen,file_dokumen|max:50000|mimes:pdf',
+                    'kelengkapan_dokumen_retensi' => 'required',
+                    'nama_dokumen_ret_admin' => 'required',
+                    'nomor_dokumen_ret_admin' => 'required',
+                    'tahun_dokumen_ret_admin' => 'required',
+                    'deskripsi_dokumen_ret_admin' => 'required',
+                ],
+                [
+                    'file_ret_admin.required' => 'File dokumen wajib diupload!',
+                    'file_ret_admin.mimes'    => 'File dokumen wajib berekstensi .pdf',
+                    'file_ret_admin.max'      => 'File dokumen tidak boleh lebih dari 50Mb',
+                    'kelengkapan_dokumen_retensi.required' => 'Pilih kelengkapan dokumen!',
+                    'nama_dokumen_ret_admin.required' => 'Nama Dokumen wajib diisi!',
+                    'nomor_dokumen_ret_admin.required' => 'Nomor Dokumen wajib diisi!',
+                    'tahun_dokumen_ret_admin.required' => 'Pilih tahun dokumen!',
+                    'deskripsi_dokumen_ret_admin.required' => 'Deskripsi wajib diisi!',
+                ]
+            );
+
+            $file = $request->file('file_ret_admin');
+            $dok = $request->input('nama_dokumen_ret_admin');
+            $file_dokumen = $file->move($direktori_file, "$dok" . ".pdf");
+            $kelengkapan_dokumen = implode(', ', $request->kelengkapan_dokumen_retensi);
+
             $data = [
-                'no_dokumen' => $request->input('nomor_dokumen'),
-                'nama_dokumen' => $request->input('nama_dokumen'),
-                'tahun_dokumen' => $request->input('tahun_dokumen'),
-                'deskripsi' => $request->input('deskripsi_dokumen'),
-                'id_departemen' => Auth::user()->id_departemen,
-                'tgl_upload' => \Carbon\Carbon::now(),
-                'status_dokumen' => 'Retensi',
-                'nama_kel_dokumen' => $kelengkapan_dokumen,
-                'file_dokumen' => $file_dokumen,
-                'created_at' => \Carbon\Carbon::now(),
+                'no_dokumen'        => $request->nomor_dokumen_ret_admin,
+                'nama_dokumen'      => $request->nama_dokumen_ret_admin,
+                'tahun_dokumen'     => $request->tahun_dokumen_ret_admin,
+                'deskripsi'         => $request->deskripsi_dokumen_ret_admin,
+                'id_departemen'     => Auth::user()->id_departemen,
+                'tgl_upload'        => \Carbon\Carbon::now(),
+                'status_dokumen'    => 'Retensi',
+                'nama_kel_dokumen'  => $kelengkapan_dokumen,
+                'file_dokumen'      => $file_dokumen,
+                'created_at'        => \Carbon\Carbon::now(),
             ];
 
             if ($this->DokumenModel->addDokumen($data)) {
@@ -127,7 +129,6 @@ class DokumenadminController extends Controller
                 if (count($last_id_dokumen) == 1) {
                     $idDokumen = $last_id_dokumen[0]->id_dokumen;
                     $data2 = [
-                        // 'tgl_retensi' => \Carbon\Carbon::now(),
                         'status_retensi' => 'Pending',
                         'created_at' => \Carbon\Carbon::now(),
                         'id_dokumen' => $idDokumen,
@@ -138,21 +139,48 @@ class DokumenadminController extends Controller
             
                 return redirect('/riwayat/riwayat_retensi')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
             }else {
-                return redirect('/riwayat/riwayat_retensi');
+                return redirect('/riwayat/riwayat_retensi')->with('toast_success', 'Gagal Retensi Dokumen');
             }  
         } elseif ($request->input('jenis') == 'Pengarsipan') {
+            $request->validate(
+                [
+                    'file_pengarsipan_admin' => 'required|unique:dokumen,file_dokumen|max:50000|mimes:pdf',
+                    'kelengkapan_dokumen_pengarsipan' => 'required',
+                    'nama_dokumen_pengarsipan_admin' => 'required',
+                    'nomor_dokumen_pengarsipan_admin' => 'required',
+                    'tahun_dokumen_pengarsipan_admin' => 'required',
+                    'deskripsi_dokumen_pengarsipan_admin' => 'required',
+
+                ],
+                [
+                    'file_pengarsipan_admin.required' => 'File dokumen wajib diupload!',
+                    'file_pengarsipan_admin.mimes' => 'File dokumen wajib berekstensi .pdf',
+                    'file_pengarsipan_admin.max' => 'File dokumen tidak boleh lebih dari 50Mb',
+                    'kelengkapan_dokumen_pengarsipan.required' => 'Pilih kelengkapan dokumen!',
+                    'nama_dokumen_pengarsipan_admin.required' => 'Nama Dokumen wajib diisi!',
+                    'nomor_dokumen_pengarsipan_admin.required' => 'Nomor Dokumen wajib diisi!',
+                    'tahun_dokumen_pengarsipan_admin.required' => 'Pilih tahun dokumen!',
+                    'deskripsi_dokumen_pengarsipan_admin.required' => 'Deskripsi wajib diisi!',
+                ]
+            );
+
+            $file = $request->file('file_pengarsipan_admin');
+            $dok = $request->nama_dokumen_pengarsipan_admin;
+            $file_dokumen = $file->move($direktori_file, "$dok" . ".pdf");
+            $kelengkapan_dokumen = implode(', ', $request->kelengkapan_dokumen_pengarsipan);
+
             $data = [
-                'no_dokumen' => $request->input('nomor_dokumen'),
-                'nama_dokumen' => $request->input('nama_dokumen'),
-                'tahun_dokumen' => $request->input('tahun_dokumen'),
-                'deskripsi' => $request->input('deskripsi_dokumen'),
-                'id_departemen' => Auth::user()->id_departemen,
-                'tgl_upload' => \Carbon\Carbon::now(),
-                'status_dokumen' => 'Pengarsipan',
-                'jenis_dokumen'     => $request->input('jenis_dokumen'),
-                'nama_kel_dokumen' => $kelengkapan_dokumen,
-                'file_dokumen' => $file_dokumen,
-                'created_at' => \Carbon\Carbon::now(),
+                'no_dokumen'        => $request->nomor_dokumen_pengarsipan_admin,
+                'nama_dokumen'      => $request->nama_dokumen_pengarsipan_admin,
+                'tahun_dokumen'     => $request->tahun_dokumen_pengarsipan_admin,
+                'deskripsi'         => $request->deskripsi_dokumen_pengarsipan_admin,
+                'id_departemen'     => Auth::user()->id_departemen,
+                'tgl_upload'        => \Carbon\Carbon::now(),
+                'status_dokumen'    => 'Pengarsipan',
+                'jenis_dokumen'     => $request->input('jenis_dokumen_admin'),
+                'nama_kel_dokumen'  => $kelengkapan_dokumen,
+                'file_dokumen'      => $file_dokumen,
+                'created_at'        => \Carbon\Carbon::now(),
             ];
 
             if ($this->DokumenModel->addDokumen($data)) {
@@ -170,7 +198,7 @@ class DokumenadminController extends Controller
             
                 return redirect('/riwayat/riwayat_pengarsipan')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Approval Arsip superadmin!');
             }else {
-                return redirect('/riwayat/riwayat_pengarsipan');
+                return redirect('/riwayat/riwayat_pengarsipan')->with('toast_error', 'Gagal Arsip Dokumen');
             } 
         }
     }

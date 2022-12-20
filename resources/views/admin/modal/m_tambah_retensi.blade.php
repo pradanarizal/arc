@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label for="deskripsi_dokumen_ret_admin">Deskripsi Dokumen</label>
                         <input type="deskripsi_dokumen_ret_admin" class="form-control" id="deskripsi_dokumen_ret_admin"
-                            name="deskripsi_dokumen" aria-describedby="emailHelp"
+                            name="deskripsi_dokumen_ret_admin" aria-describedby="emailHelp"
                             value="{{ old('deskripsi_dokumen_ret_admin') }}">
                         @error('deskripsi_dokumen_ret_admin')
                             <div class="text-danger">{{ $message }}</div>
@@ -54,8 +54,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="retensi">Kelengkapan Dokumen*</label>
-                        <select class="form-control" id="retensi" name="kelengkapan_dokumen_ret_admin[]" multiple>
+                        <label for="retensi_admin">Kelengkapan Dokumen*</label>
+                        <select class="form-control" id="retensi_admin" name="kelengkapan_dokumen_retensi[]" multiple>
                         </select>
                         @error('kelengkapan_dokumen_retensi')
                             <div class="text-danger">{{ $message }}</div>
@@ -63,12 +63,12 @@
                     </div>
 
 
-                    <label for="file">Upload File</label>
+                    <label for="file_ret_admin">Upload File</label>
                     <span class="text-danger" style="font-size: 12px">*Max file 50MB</span>
                     <div class="form-group">
                         <div class="">
-                            <input type="file" name="file" id="file">
-                            @error('file')
+                            <input type="file" name="file_ret_admin" id="file_ret_admin">
+                            @error('file_red_admin')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
@@ -82,3 +82,4 @@
         </div>
     </div>
 </div>
+
