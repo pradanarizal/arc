@@ -93,6 +93,155 @@
     </div>
     {{--
 </div> --}}
+
+    <?php
+        $listErrorPengarsipan = ['nomor_dokumen_pengarsipan', 'nama_dokumen_pengarsipan', 'tahun_dokumen_pengarsipan', 'deskripsi_dokumen_pengarsipan', 'kelengkapan_dokumen_pengarsipan', 'divisi_pengarsipan', 'file_pengarsipan', 'ruangTambahDokumen', 'rakTambahDokumen', 'boxTambahDokumen', 'mapTambahDokumen'];
+        $listErrorRetensi = ['nomor_dokumen_retensi', 'nama_dokumen_retensi', 'tahun_dokumen_retensi', 'deskripsi_dokumen_retensi', 'kelengkapan_dokumen_retensi', 'divisi_retensi', 'file_retensi'];
+        ?>
+        <script>
+            window.onload = function() {
+                @foreach ($listErrorPengarsipan as $err)
+                    @error($err)
+                        OpenBootstrapPopup();
+
+                        function OpenBootstrapPopup() {
+                            $("#tambah_dokumen").modal('show');
+                        }
+                        @break
+                    @enderror
+                @endforeach
+                @foreach ($listErrorRetensi as $err)
+                    @error($err)
+                        OpenBootstrapPopup();
+
+                        function OpenBootstrapPopup() {
+                            $("#tambah_retensi").modal('show');
+                        }
+                        @break
+                    @enderror
+                @endforeach
+                @foreach ($dokumen as $dok)
+                    $('#editKelengkapan{{ $dok->id_dokumen }}').select2({
+                        data: <?= json_encode($kelengkapan) ?>,
+                        theme: "bootstrap-5",
+                        width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                            'style'
+                    });
+                @endforeach
+                $('#retensi').select2({
+                    data: <?= json_encode($kelengkapan) ?>,
+                    theme: "bootstrap-5",
+                    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                        'style'
+                });
+                $('#pengarsipan').select2({
+                    data: <?= json_encode($kelengkapan) ?>,
+                    theme: "bootstrap-5",
+                    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                        'style'
+                });
+                // Select Ruang
+                $('#ruangTambahDokumen').on('change', function() {
+                    var ruangID = $(this).val();
+                    if (ruangID) {
+                        $.ajax({
+                            url: '/getRak/' + ruangID,
+                            type: "GET",
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data) {
+                                    $('#rakTambahDokumen').empty();
+                                    $('#boxTambahDokumen').empty();
+                                    $('#mapTambahDokumen').empty();
+                                    $('#rakTambahDokumen').append(
+                                        '<option hidden>-Pilih Rak-</option>');
+                                    $.each(data, function(key, value) {
+                                        $('select[name="rakTambahDokumen"]').append(
+                                            '<option value="' +
+                                            value.id_rak + '">' + value.nama_rak +
+                                            '</option>');
+                                    });
+                                } else {
+                                    $('#rakTambahDokumen').empty();
+                                }
+                            }
+                        });
+                    } else {
+                        $('#rakTambahDokumen').empty();
+                        $('#boxTambahDokumen').empty();
+                        $('#mapTambahDokumen').empty();
+                    }
+                });
+                // Select Rak
+                $('#rakTambahDokumen').on('change', function() {
+                    var boxID = $(this).val();
+                    if (boxID) {
+                        $.ajax({
+                            url: '/getBox/' + boxID,
+                            type: "GET",
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data) {
+                                    $('#boxTambahDokumen').empty();
+                                    $('#mapTambahDokumen').empty();
+                                    $('#boxTambahDokumen').append(
+                                        '<option hidden>-Pilih Box-</option>');
+                                    $.each(data, function(key, value) {
+                                        $('select[name="boxTambahDokumen"]').append(
+                                            '<option value="' +
+                                            value.id_box + '">' + value.nama_box +
+                                            '</option>');
+                                    });
+                                } else {
+                                    $('#boxTambahDokumen').empty();
+                                }
+                            }
+                        });
+                    } else {
+                        $('#boxTambahDokumen').empty();
+                        $('#mapTambahDokumen').empty();
+                    }
+                });
+
+                // Select Box
+                $('#boxTambahDokumen').on('change', function() {
+                    var mapID = $(this).val();
+                    if (mapID) {
+                        $.ajax({
+                            url: '/getMap/' + mapID,
+                            type: "GET",
+                            data: {
+                                "_token": "{{ csrf_token() }}"
+                            },
+                            dataType: "json",
+                            success: function(data) {
+                                if (data) {
+                                    $('#mapTambahDokumen').empty();
+                                    $('#mapTambahDokumen').append(
+                                        '<option hidden>-Pilih Map-</option>');
+                                    $.each(data, function(key, value) {
+                                        $('select[name="mapTambahDokumen"]').append(
+                                            '<option value="' +
+                                            value.id_map + '">' + value.nama_map +
+                                            '</option>');
+                                    });
+                                } else {
+                                    $('#mapTambahDokumen').empty();
+                                }
+                            }
+                        });
+                    } else {
+                        $('#mapTambahDokumen').empty();
+                    }
+                });
+            };
+        </script>
     <!-- /.container-fluid -->
     @include('superadmin.modal.m_tambah_dokumen')
     @include('superadmin.modal.m_tambah_retensi')

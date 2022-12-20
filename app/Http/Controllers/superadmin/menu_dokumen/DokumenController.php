@@ -186,9 +186,9 @@ class DokumenController extends Controller
                     ];
                     $this->DokumenModel->insert_retensi($data2);
                 }
-                return redirect('/dokumen')->with('toast_success', 'Berhasil Retensi Dokumen!');
+                return redirect('/approval/retensi')->with('toast_success', 'Berhasil Retensi Dokumen!');
             }else {
-                return redirect('/dokumen')->with('toast_error', 'Gagal Retensi Dokumen!');
+                return redirect('/approval/retensi')->with('toast_error', 'Gagal Retensi Dokumen!');
             }
         } elseif ($request->input('jenis') == 'Pengarsipan') {
             $request->validate(
@@ -256,9 +256,9 @@ class DokumenController extends Controller
                     $this->DokumenModel->insert_pengarsipan($data2);
                 }
 
-                return redirect('/dokumen')->with('toast_success', 'Berhasil Arsip Dokumen!');
+                return redirect('/approval/pengarsipan')->with('toast_success', 'Berhasil Arsip Dokumen!');
             }else {
-                return redirect('/dokumen')->with('toast_error', 'Gagal Arsip Dokumen!');
+                return redirect('/approval/pengarsipan')->with('toast_error', 'Gagal Arsip Dokumen!');
             }
         }
     }
