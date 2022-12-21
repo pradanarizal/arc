@@ -16,7 +16,7 @@
                         @csrf
                         @method('PUT')
                         {{-- Mengambil value id_rak untuk fungsi unique --}}
-                        <input type="text" name="box" id="box" value="{{ $item->id_box }}" >
+                        <input hidden type="text" name="box" id="box" value="{{ $item->id_box }}" >
 
                         <div class="form-group">
                             <label for="nama_map">Nama Map</label>

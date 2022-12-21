@@ -48,7 +48,7 @@
                                 <td>{{ $item->nama_kel_dokumen }}</td>
                                 <th>{{ $item->jenis_dokumen }}</th>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
-                                <td>
+                                <td class="text-center">
                                     @if ($item->status_dokumen == 'Tersedia')
                                         <span title="Dokumen Tersedia"
                                             class="badge badge-success p-2">{{ $item->status_dokumen }}</span>
@@ -60,7 +60,7 @@
                                             class="badge badge-primary p-2">{{ $item->status_dokumen }}</span>
                                     @endif
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
                                         <i class="fas fa-cog"></i>
                                     </button>
@@ -128,7 +128,7 @@
                         'style'
                 });
             @endforeach
-           
+
             $('#retensi').select2({
                 data: <?= json_encode($kelengkapan) ?>,
                 theme: "bootstrap-5",
@@ -154,6 +154,7 @@
                         dataType: "json",
                         success: function(data) {
                             if (data) {
+                                $('#fgRak').removeClass('d-none');
                                 $('#rakTambahDokumen').empty();
                                 $('#boxTambahDokumen').empty();
                                 $('#mapTambahDokumen').empty();
@@ -189,6 +190,7 @@
                         dataType: "json",
                         success: function(data) {
                             if (data) {
+                                $('#fgBox').removeClass('d-none');
                                 $('#boxTambahDokumen').empty();
                                 $('#mapTambahDokumen').empty();
                                 $('#boxTambahDokumen').append(
@@ -223,6 +225,7 @@
                         dataType: "json",
                         success: function(data) {
                             if (data) {
+                                $('#fgMap').removeClass('d-none');
                                 $('#mapTambahDokumen').empty();
                                 $('#mapTambahDokumen').append(
                                     '<option hidden>-Pilih Map-</option>');

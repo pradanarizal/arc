@@ -32,16 +32,8 @@
                     </div>
                     <div class="form-group">
                         <label for="tahun_dokumen_pengarsipan"><b>Tahun Dokumen</b></label>
-                        {{-- <select class="form-control custom-select" name="tahun_dokumen_pengarsipan"
-                            id="tahun_dokumen_pengarsipan">
-                            <option selected disabled>--Pilih Tahun Dokumen--</option>
-                            @for ($i = date('Y'); $i >= 2000; $i--)
-                                <option value="{{ $i }}" @if (old('tahun_dokumen_pengarsipan') == $i) selected @endif>
-                                    {{ $i }}</option>
-                            @endfor
-                        </select> --}}
-                        <input class="date-own custom-select" name="tahun_dokumen_pengarsipan" type="text"
-                            value="{{ old('tahun_dokumen_pengarsipan') }}">
+                        <input type="text" id="tahun-dokumen" placeholder="--Tahun Dokumen--" class="form-control"
+                            name="tahun_dokumen_pengarsipan" value="{{ old('tahun_dokumen_pengarsipan') }}">
                         @error('tahun_dokumen_pengarsipan')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -89,7 +81,8 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group" id="fgRuang">
                         <label for="ruangapp"><b>Ruang*</b></label>
                         <select class="form-control" name="ruangTambahDokumen" id="ruangTambahDokumen">
                             <option selected disabled>-Pilih Ruang-</option>
@@ -102,7 +95,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group ">
+                    <div class="form-group d-none" id="fgRak">
                         <label><b>Rak*</b></label>
                         <select class="form-control" name="rakTambahDokumen" id="rakTambahDokumen"></select>
 
@@ -111,7 +104,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group ">
+                    <div class="form-group d-none" id="fgBox">
                         <label><b>Box*</b></label>
                         <select class="form-control" name="boxTambahDokumen" id="boxTambahDokumen"></select>
 
@@ -120,7 +113,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group ">
+                    <div class="form-group d-none" id="fgMap">
                         <label><b>Map*</b></label>
                         <select class="form-control" name="mapTambahDokumen" id="mapTambahDokumen"></select>
 
