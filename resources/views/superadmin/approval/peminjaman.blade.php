@@ -72,4 +72,6 @@
 
     @include('superadmin.modal.m_approve_peminjaman')
     @include('superadmin.modal.m_approve_tolak_peminjaman')
+    @include('sweetalert::alert')
+
 @endsection

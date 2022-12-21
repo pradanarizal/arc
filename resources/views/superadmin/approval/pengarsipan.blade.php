@@ -55,7 +55,7 @@
                                 </td>
                                 <td class="text-center">
                                     @if ($item->status_pengarsipan == 'Pending')
-                                        <button type="button" class="btn bg-primary text-white" data-bs-toggle="dropdown">
+                                        <button type="button" class="btn btn-sm bg-primary text-white" data-bs-toggle="dropdown">
                                             <i class="fas fa-cog"></i>
                                         </button>
                                         <ul class="dropdown-menu">
@@ -86,6 +86,6 @@
         </div>
     </div>
     @include('superadmin.modal.m_approve_arsip')
-    @include('superadmin.modal.m_approve_tolak-arsip')
+    @include('superadmin.modal.m_approve_tolak_arsip')
     @include('sweetalert::alert')
 @endsection

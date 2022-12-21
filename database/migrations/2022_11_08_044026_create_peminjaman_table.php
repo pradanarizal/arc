@@ -18,6 +18,7 @@ return new class extends Migration
             $table->enum('status_peminjaman', ['Pending', 'Ya','Tidak']);
             $table->date('tgl_ambil');
             $table->date('tgl_kembali');
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
         Schema::table('peminjaman', function (Blueprint $table) {

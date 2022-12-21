@@ -28,7 +28,7 @@
                             <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Approval</th>
-                            <th class="">Aksi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
 
@@ -41,7 +41,6 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
-                                <td>{{ $item->jenis_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td class="text-center">
@@ -73,6 +72,6 @@
         </div>
     </div>
 
-    {{-- @include('superadmin.modal.m_tambah_ruang')
-    @include('superadmin.modal.m_edit_ruang') --}}
+    @include('sweetalert::alert')
+
 @endsection

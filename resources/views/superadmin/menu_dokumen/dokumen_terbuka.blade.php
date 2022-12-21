@@ -127,12 +127,6 @@
                         'style'
                 });
             @endforeach
-            $('#editKelengkapan{{ $item->id_dokumen }}').select2({
-                data: <?= json_encode($kelengkapan) ?>,
-                theme: "bootstrap-5",
-                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                    'style'
-            });
             $('#retensi').select2({
                 data: <?= json_encode($kelengkapan) ?>,
                 theme: "bootstrap-5",

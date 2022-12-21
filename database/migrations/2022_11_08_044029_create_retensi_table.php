@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_retensi');
             $table->dateTime('tgl_retensi')->nullable();
             $table->enum('status_retensi', ['Pending', 'Ya', 'Tidak']);
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
         Schema::table('retensi', function (Blueprint $table) {

@@ -74,19 +74,15 @@
                         </select>
                     </div>
                     
-                    <div class="row mt 3">
-                        <div class="col-lg-8">
-                            <div class="form-group">
-                                <label for="pengarsipan"><b>Kelengkapan Dokumen</b></label>
-                                <select class="form-control" id="pengarsipan" name="kelengkapan_dokumen_pengarsipan[]" multiple>
-                                </select>
-                                @error('kelengkapan_dokumen')
-                                    <div class="text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                       
+                    <div class="form-group">
+                        <label for="pengarsipan"><b>Kelengkapan Dokumen</b></label>
+                        <select class="form-control" id="pengarsipan" name="kelengkapan_dokumen_pengarsipan[]" multiple>
+                        </select>
+                        @error('kelengkapan_dokumen')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+                    
                     <div class="form-group">
                         <label for="ruangapp"><b>Ruang*</b></label>
                         <select class="form-control" name="ruangTambahDokumen" id="ruangTambahDokumen">

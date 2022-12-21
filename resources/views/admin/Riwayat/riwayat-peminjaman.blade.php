@@ -94,4 +94,5 @@
     </div>
 
     @include('admin.modal.m_pengembalian_dokumen')
+    @include('sweetalert::alert')
 @endsection
