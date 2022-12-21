@@ -66,19 +66,22 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="jenis_dokumen">Jenis_Dokumen</label>
+                        <label for="jenis_dokumen"><b>Jenis Dokumen</b></label>
                         <select class="form-control" name="jenis_dokumen" id="jenis_dokumen">
                             <option selected disabled>--Pilih Jenis Dokumen--</option>
                             <option value="Terbuka">Terbuka</option>
                             <option value="Terbatas">Terbatas</option>
                         </select>
+                        @error('jenis_dokumen')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="form-group">
                         <label for="pengarsipan"><b>Kelengkapan Dokumen</b></label>
                         <select class="form-control" id="pengarsipan" name="kelengkapan_dokumen_pengarsipan[]" multiple>
                         </select>
-                        @error('kelengkapan_dokumen')
+                        @error('kelengkapan_dokumen_pengarsipan')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>

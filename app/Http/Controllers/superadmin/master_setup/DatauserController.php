@@ -65,6 +65,7 @@ class DatauserController extends Controller
             'id_departemen' => $request->input('id_departemen'),
             'aktif' => $request->input('status_user'),
             'level' => $request->input('role'),
+            'created_at' => \Carbon\Carbon::now(),
         ];
 
         if ($this->User->insert_datauser($data)) {
@@ -119,9 +120,9 @@ class DatauserController extends Controller
         }
     }
 
-    public function update_password(Request $request, $id) 
+    public function update_password(Request $request, $id)
     {
-        $this->validate( $request, 
+        $this->validate( $request,
             [
                 'new_password'   => 'required|confirmed'
             ],

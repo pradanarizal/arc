@@ -196,6 +196,7 @@ class DokumenController extends Controller
                     'file_pengarsipan' => 'required|unique:dokumen,file_dokumen|max:50000|mimes:pdf',
                     'kelengkapan_dokumen_pengarsipan' => 'required',
                     'divisi_pengarsipan' => 'required',
+                    'jenis_dokumen' => 'required',
                     'nama_dokumen_pengarsipan' => 'required',
                     'nomor_dokumen_pengarsipan' => 'required',
                     'tahun_dokumen_pengarsipan' => 'required',
@@ -211,6 +212,7 @@ class DokumenController extends Controller
                     'file_pengarsipan.max' => 'File dokumen tidak boleh lebih dari 50Mb',
                     'kelengkapan_dokumen_pengarsipan.required' => 'Pilih kelengkapan dokumen!',
                     'divisi_pengarsipan.required' => 'Divisi wajib diisi!',
+                    'jenis_dokumen.required' => 'Pilih Jenis Dokumen!',
                     'nama_dokumen_pengarsipan.required' => 'Nama Dokumen wajib diisi!',
                     'nomor_dokumen_pengarsipan.required' => 'Nomor Dokumen wajib diisi!',
                     'tahun_dokumen_pengarsipan.required' => 'Pilih tahun dokumen!',
@@ -321,6 +323,195 @@ class DokumenController extends Controller
                 return redirect('/dokumen_terbuka');
             }
         }
+    }
+
+    public function edit_dokumen(Request $request, $id_dokumen)
+    {
+        $jenis = strtolower($request->jenisDokumen);
+        if ($request->file('file_edit') != null) {
+            if ($request->oldNamaDokumen != $request->nama_dokumen_edit) {
+                $request->validate([
+                    'file_edit' => 'required',
+                    'nomor_dokumen_edit' => 'required',
+                    'nama_dokumen_edit' => 'required|unique:dokumen,nama_dokumen',
+                    'tahun_dokumen_edit' => 'required',
+                    'divisi_edit' => 'required',
+                    'deskripsi_dokumen_edit' => 'required',
+                    'kelengkapan_dokumen_edit' => 'required',
+                    'ruangEditDokumen' => 'required',
+                    'rakEditDokumen' => 'required',
+                    'boxEditDokumen' => 'required',
+                    'mapEditDokumen' => 'required',
+                ],[
+                    'file_edit.required' => 'Dokumen Tidak Boleh Kosong!',
+                    'nomor_dokumen_edit.required' => 'Nomor Dokumen Tidak Boleh Kosong!',
+                    'nama_dokumen_edit.required' => 'Nama Dokumen Tidak Boleh Kosong!',
+                    'nama_dokumen_edit.unique' => 'Nama Dokumen Tidak Boleh Sama Dengan Dokumen Lain!',
+                    'tahun_dokumen_edit.required' => 'Tahun Dokumen Tidak Boleh Kosong!',
+                    'divisi_edit.required' => 'Divisi Tidak Boleh Kosong!',
+                    'deskripsi_dokumen_edit.required' => 'Deskripsi Dokumen Tidak Boleh Kosong!',
+                    'kelengkapan_dokumen_edit.required' => 'Kelengkapan Dokumen Tidak Boleh Kosong!',
+                    'ruangEditDokumen.required' => 'Ruang Tidak Boleh Kosong!',
+                    'rakEditDokumen.required' => 'Rak Tidak Boleh Kosong!',
+                    'boxEditDokumen.required' => 'Box Tidak Boleh Kosong!',
+                    'mapEditDokumen.required' => 'Map Tidak Boleh Kosong!',
+                ]);
+                $file = $request->file('file_edit');
+                $dok = $request->input('nama_dokumen_edit');
+                $file_dokumen = $file->move('data_file', "$dok" . ".pdf");
+                unlink("data_file/".$request->oldNamaDokumen.".pdf");
+                $kelengkapan_dokumen = implode(', ', $request->kelengkapan_dokumen_edit);
+                $data = [
+                    'no_dokumen' => $request->nomor_dokumen_edit,
+                    'nama_dokumen' => $request->nama_dokumen_edit,
+                    'tahun_dokumen' => $request->tahun_dokumen_edit,
+                    'deskripsi' => $request->deskripsi_dokumen_edit,
+                    'id_departemen' => $request->divisi_edit,
+                    'nama_kel_dokumen' => $kelengkapan_dokumen,
+                    'file_dokumen' => $file_dokumen,
+                    'updated_at' => \Carbon\Carbon::now(),
+                    'id_ruang' => $request->ruangEditDokumen,
+                    'id_rak' => $request->rakEditDokumen,
+                    'id_box' => $request->boxEditDokumen,
+                    'id_map' => $request->mapEditDokumen
+                ];
+            } else {
+                $request->validate([
+                    'file_edit' => 'required',
+                    'nomor_dokumen_edit' => 'required',
+                    'tahun_dokumen_edit' => 'required',
+                    'divisi_edit' => 'required',
+                    'deskripsi_dokumen_edit' => 'required',
+                    'kelengkapan_dokumen_edit' => 'required',
+                    'ruangEditDokumen' => 'required',
+                    'rakEditDokumen' => 'required',
+                    'boxEditDokumen' => 'required',
+                    'mapEditDokumen' => 'required',
+                ],[
+                    'file_edit.required' => 'Dokumen Tidak Boleh Kosong!',
+                    'nomor_dokumen_edit.required' => 'Nomor Dokumen Tidak Boleh Kosong!',
+                    'tahun_dokumen_edit.required' => 'Tahun Dokumen Tidak Boleh Kosong!',
+                    'divisi_edit.required' => 'Divisi Tidak Boleh Kosong!',
+                    'deskripsi_dokumen_edit.required' => 'Deskripsi Dokumen Tidak Boleh Kosong!',
+                    'kelengkapan_dokumen_edit.required' => 'Kelengkapan Dokumen Tidak Boleh Kosong!',
+                    'ruangEditDokumen.required' => 'Ruang Tidak Boleh Kosong!',
+                    'rakEditDokumen.required' => 'Rak Tidak Boleh Kosong!',
+                    'boxEditDokumen.required' => 'Box Tidak Boleh Kosong!',
+                    'mapEditDokumen.required' => 'Map Tidak Boleh Kosong!',
+                ]);
+                $file = $request->file('file_edit');
+                $dok = $request->input('nama_dokumen_edit');
+                $file_dokumen = $file->move('data_file', "$dok" . ".pdf");
+                $kelengkapan_dokumen = implode(', ', $request->kelengkapan_dokumen_edit);
+                $data = [
+                    'no_dokumen' => $request->nomor_dokumen_edit,
+                    'nama_dokumen' => $request->nama_dokumen_edit,
+                    'tahun_dokumen' => $request->tahun_dokumen_edit,
+                    'deskripsi' => $request->deskripsi_dokumen_edit,
+                    'id_departemen' => $request->divisi_edit,
+                    'nama_kel_dokumen' => $kelengkapan_dokumen,
+                    'file_dokumen' => $file_dokumen,
+                    'updated_at' => \Carbon\Carbon::now(),
+                    'id_ruang' => $request->ruangEditDokumen,
+                    'id_rak' => $request->rakEditDokumen,
+                    'id_box' => $request->boxEditDokumen,
+                    'id_map' => $request->mapEditDokumen
+                ];
+            }
+
+
+            if ($this->DokumenModel->update_dokumen($data, $id_dokumen)) {
+                return redirect('/dokumen_'.$jenis)->with('toast_success', 'Berhasil Edit Dokumen!');
+            } else {
+                return redirect('/dokumen_'.$jenis)->with('toast_success', 'Gagal Edit Dokumen!');
+            }
+
+        } else {
+            if ($request->oldNamaDokumen != $request->nama_dokumen_edit) {
+                $request->validate([
+                    'nomor_dokumen_edit' => 'required',
+                    'nama_dokumen_edit' => 'required|unique:dokumen,nama_dokumen',
+                    'tahun_dokumen_edit' => 'required',
+                    'divisi_edit' => 'required',
+                    'deskripsi_dokumen_edit' => 'required',
+                    'kelengkapan_dokumen_edit' => 'required',
+                    'ruangEditDokumen' => 'required',
+                    'rakEditDokumen' => 'required',
+                    'boxEditDokumen' => 'required',
+                    'mapEditDokumen' => 'required',
+                ],[
+                    'nomor_dokumen_edit.required' => 'Nomor Dokumen Tidak Boleh Kosong!',
+                    'nama_dokumen_edit.required' => 'Nama Dokumen Tidak Boleh Kosong!',
+                    'nama_dokumen_edit.unique' => 'Nama Dokumen Tidak Boleh Sama Dengan Dokumen Lain!',
+                    'tahun_dokumen_edit.required' => 'Tahun Dokumen Tidak Boleh Kosong!',
+                    'divisi_edit.required' => 'Divisi Tidak Boleh Kosong!',
+                    'deskripsi_dokumen_edit.required' => 'Deskripsi Dokumen Tidak Boleh Kosong!',
+                    'kelengkapan_dokumen_edit.required' => 'Kelengkapan Dokumen Tidak Boleh Kosong!',
+                    'ruangEditDokumen.required' => 'Ruang Tidak Boleh Kosong!',
+                    'rakEditDokumen.required' => 'Rak Tidak Boleh Kosong!',
+                    'boxEditDokumen.required' => 'Box Tidak Boleh Kosong!',
+                    'mapEditDokumen.required' => 'Map Tidak Boleh Kosong!',
+                ]);
+                $kelengkapan_dokumen = implode(', ', $request->kelengkapan_dokumen_edit);
+                $alamat_file = "data_file\\".$request->nama_dokumen_edit.".pdf";
+                rename("data_file/".$request->oldNamaDokumen.".pdf", "data_file/".$request->nama_dokumen_edit.".pdf");
+                $data = [
+                    'no_dokumen' => $request->nomor_dokumen_edit,
+                    'nama_dokumen' => $request->nama_dokumen_edit,
+                    'tahun_dokumen' => $request->tahun_dokumen_edit,
+                    'deskripsi' => $request->deskripsi_dokumen_edit,
+                    'id_departemen' => $request->divisi_edit,
+                    'nama_kel_dokumen' => $kelengkapan_dokumen,
+                    'file_dokumen' => $alamat_file,
+                    'updated_at' => \Carbon\Carbon::now(),
+                    'id_ruang' => $request->ruangEditDokumen,
+                    'id_rak' => $request->rakEditDokumen,
+                    'id_box' => $request->boxEditDokumen,
+                    'id_map' => $request->mapEditDokumen
+                ];
+            } else {
+                $request->validate([
+                    'nomor_dokumen_edit' => 'required',
+                    'tahun_dokumen_edit' => 'required',
+                    'divisi_edit' => 'required',
+                    'deskripsi_dokumen_edit' => 'required',
+                    'kelengkapan_dokumen_edit' => 'required',
+                    'ruangEditDokumen' => 'required',
+                    'rakEditDokumen' => 'required',
+                    'boxEditDokumen' => 'required',
+                    'mapEditDokumen' => 'required',
+                ],[
+                    'nomor_dokumen_edit.required' => 'Nomor Dokumen Tidak Boleh Kosong!',
+                    'tahun_dokumen_edit.required' => 'Tahun Dokumen Tidak Boleh Kosong!',
+                    'divisi_edit.required' => 'Divisi Tidak Boleh Kosong!',
+                    'deskripsi_dokumen_edit.required' => 'Deskripsi Dokumen Tidak Boleh Kosong!',
+                    'kelengkapan_dokumen_edit.required' => 'Kelengkapan Dokumen Tidak Boleh Kosong!',
+                    'ruangEditDokumen.required' => 'Ruang Tidak Boleh Kosong!',
+                    'rakEditDokumen.required' => 'Rak Tidak Boleh Kosong!',
+                    'boxEditDokumen.required' => 'Box Tidak Boleh Kosong!',
+                    'mapEditDokumen.required' => 'Map Tidak Boleh Kosong!',
+                ]);
+                $kelengkapan_dokumen = implode(', ', $request->kelengkapan_dokumen_edit);
+                $data = [
+                    'no_dokumen' => $request->nomor_dokumen_edit,
+                    'tahun_dokumen' => $request->tahun_dokumen_edit,
+                    'deskripsi' => $request->deskripsi_dokumen_edit,
+                    'id_departemen' => $request->divisi_edit,
+                    'nama_kel_dokumen' => $kelengkapan_dokumen,
+                    'updated_at' => \Carbon\Carbon::now(),
+                    'id_ruang' => $request->ruangEditDokumen,
+                    'id_rak' => $request->rakEditDokumen,
+                    'id_box' => $request->boxEditDokumen,
+                    'id_map' => $request->mapEditDokumen
+                ];
+            }
+            if ($this->DokumenModel->update_dokumen($data, $id_dokumen)) {
+                return redirect('/dokumen_'.$jenis)->with('toast_success', 'Berhasil Edit Dokumen!');
+            } else {
+                return redirect('/dokumen_'.$jenis)->with('toast_success', 'Gagal Edit Dokumen!');
+            }
+        }
+
     }
 
     /**

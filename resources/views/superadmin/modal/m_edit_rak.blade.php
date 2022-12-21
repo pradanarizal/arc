@@ -16,9 +16,9 @@
                     <form action="{{ '/rak/' . $item->id_rak }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label for=""><b>Ruang*</b></label>
-                            <select class="select2searchEdit{{ $item->id_rak }} form-control" name="edit_id_ruang">
+                            <select disabled class="select2searchEdit{{ $item->id_rak }} form-control" name="edit_id_ruang">
                                 <option disabled>-Pilih Ruang-</option>
                                 @foreach ($ruang as $item3)
                                     <option value="<?= $item3->id_ruang ?>" <?php if ($item->nama_ruang == $item3->nama_ruang) {
@@ -27,17 +27,19 @@
                                         <?= $item3->nama_ruang ?></option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
+                        <input type="text" name="ruang" id="ruang" value="{{ $item->id_ruang }}" hidden>
+
                         <div class="form-group">
                             <label for="nama_rak">Nama Rak</label>
-                            <input type="text" value="{{ $item->nama_rak }}" class="form-control" id="edit_nama_rak"
-                                name="edit_nama_rak">
-                            <input type="text" value="{{ $item->nama_rak }}" class="form-control"
-                                name="old_edit_nama_rak" hidden>
+                            <input type="text" value="{{ $item->nama_rak }}" class="form-control" id="nama_rak"
+                                name="nama_rak">
                         </div>
+
                         <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
                         <button class="btn btn-danger tombol-aksi float-right" type="button"
                             data-bs-dismiss="modal">Batal</button>
+
                     </form>
                     <!--END FORM TAMBAH Rak-->
                 </div>
@@ -46,7 +48,7 @@
         </div>
     </div>
 @endforeach
-<?php $listError = ['old_nama_rak', 'old_id_ruang']; ?>
+<?php $listError = ['nama_rak']; ?>
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">

@@ -62,14 +62,14 @@ use notif_sidebar;
                 'ruang_2' =>'required',
                 'rak_2' =>'required',
                 'box_select' =>'required',
-                'map' => 'required|unique:map,nama_map',
+                'map' => "required|unique:map,nama_map,NULL,box,id_box,{$request->input('box_select')}",
             ],
             [
                 'ruang_2' => 'Map wajib diisi!',
                 'rak_2' => 'Rak wajib diisi!',
                 'box_select' => 'Box wajib diisi!',
-                'nama_map.required' => 'Nama Map wajib diisi!',
-                'nama_map.unique' => 'Nama Map sudah ada!',
+                'map.required' => 'Nama Map wajib diisi!',
+                'map.unique' => 'Nama Map sudah ada di box ini!',
             ]
         );
 
@@ -77,7 +77,8 @@ use notif_sidebar;
             'nama_map' => $request->input('map'),
             'id_box' => $request->input('box_select'),
             'id_rak' => $request->input('rak_2'),
-            'id_ruang' => $request->input('ruang_2')
+            'id_ruang' => $request->input('ruang_2'),
+            'created_at' => \Carbon\Carbon::now()
         ];
         if ($this->MapModel->insert_map($data)) {
             return redirect('/master_setup/map')->with('toast_success', 'Berhasil Tambah map!');
@@ -120,16 +121,17 @@ use notif_sidebar;
         $this->validate(
             $request,
             [
-                'nama_map' => 'required|unique:map,nama_map'
+                'nama_map' => "required|unique:map,nama_map,NULL,box,id_box,{$request->input('box')}",
             ],
             [
                 'nama_map.required' => 'Nama Map wajib diisi!',
-                'nama_map.unique' => 'Nama Map sudah ada!'
+                'nama_map.unique' => 'Nama Map di box ini sudah ada!'
             ]
         );
 
         $data = [
-            'nama_map' => $request->input('nama_map')
+            'nama_map' => $request->input('nama_map'),
+            'updated_at' => \Carbon\Carbon::now()
         ];
         if ($this->MapModel->update_map($data, $id)) {
             return redirect('/master_setup/map')->with('toast_success', 'Berhasil Edit Map!');
