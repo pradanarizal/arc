@@ -95,6 +95,7 @@ class PengarsipanController extends Controller
             'tgl_pengarsipan' => \Carbon\Carbon::now(),
             'status_pengarsipan' =>  $request->input('pengarsipan'),
             'updated_at' => \Carbon\Carbon::now(),
+            'catatan'    =>$request->input('catatan_tolak'),
         ];
 
         if ($request->input('jenis') == 'approve') {
@@ -127,6 +128,7 @@ class PengarsipanController extends Controller
                 'status_dokumen' => $request->input('status_dok'),
                 'updated_at' => \Carbon\Carbon::now()
             ];
+
             if ($this->PengarsipanModel->approval_arsip($update_dokumen, $update_pengarsipan, $no_dokumen)) {
                 return redirect('/approval/pengarsipan')->with('toast_success', 'Pengarsipan di-Reject!');
             } else {

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_pengarsipan');
             $table->dateTime('tgl_pengarsipan')->nullable();
             $table->enum('status_pengarsipan', ['Pending', 'Ya','Tidak']);
+            $table->string('catatan')->nullable();
             $table->timestamps();
         });
         Schema::table('pengarsipan', function (Blueprint $table) {

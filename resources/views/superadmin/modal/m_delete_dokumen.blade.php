@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     Hapus dokumen {{ $item->nama_dokumen }} ?
                 </div>
-                <form action="/softdelete/{{ $item->no_dokumen }}" method="POST">
+                <form action="/softdelete/{{ $item->id_dokumen }}" method="POST">
                     @csrf
                     @method('PUT')
                     {{-- Jenis input untuk memisahkan jenis update berdasarkan jenis --}}

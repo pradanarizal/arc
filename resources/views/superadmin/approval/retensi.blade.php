@@ -93,6 +93,6 @@
     </div>
 
     @include('superadmin.modal.m_approve_retensi')
-    @include('superadmin.modal.m_approve_tolak-retensi')
+    @include('superadmin.modal.m_approve_tolak_retensi')
     @include('sweetalert::alert')
 @endsection
