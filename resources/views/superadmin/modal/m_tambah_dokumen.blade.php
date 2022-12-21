@@ -32,14 +32,16 @@
                     </div>
                     <div class="form-group">
                         <label for="tahun_dokumen_pengarsipan"><b>Tahun Dokumen</b></label>
-                        <select class="form-control custom-select" name="tahun_dokumen_pengarsipan"
+                        {{-- <select class="form-control custom-select" name="tahun_dokumen_pengarsipan"
                             id="tahun_dokumen_pengarsipan">
                             <option selected disabled>--Pilih Tahun Dokumen--</option>
                             @for ($i = date('Y'); $i >= 2000; $i--)
                                 <option value="{{ $i }}" @if (old('tahun_dokumen_pengarsipan') == $i) selected @endif>
                                     {{ $i }}</option>
                             @endfor
-                        </select>
+                        </select> --}}
+                        <input class="date-own custom-select" name="tahun_dokumen_pengarsipan" type="text"
+                            value="{{ old('tahun_dokumen_pengarsipan') }}">
                         @error('tahun_dokumen_pengarsipan')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -49,7 +51,9 @@
                         <select class="form-control" name="divisi_pengarsipan" id="divisi_pengarsipan">
                             <option selected disabled>--Pilih Divisi--</option>
                             @foreach ($divisi as $div)
-                                <option value="{{ $div->id_departemen }}">{{ $div->kode_departemen }}</option>
+                                <option
+                                    value="{{ $div->id_departemen }}"@if (old('divisi_pengarsipan') == $div->id_departemen) selected @endif>
+                                    {{ $div->kode_departemen }}</option>
                             @endforeach
                         </select>
                         @error('divisi_pengarsipan')
@@ -69,8 +73,8 @@
                         <label for="jenis_dokumen"><b>Jenis Dokumen</b></label>
                         <select class="form-control" name="jenis_dokumen" id="jenis_dokumen">
                             <option selected disabled>--Pilih Jenis Dokumen--</option>
-                            <option value="Terbuka">Terbuka</option>
-                            <option value="Terbatas">Terbatas</option>
+                            <option value="Terbuka" @if (old('jenis_dokumen') == 'Terbuka') selected @endif>Terbuka</option>
+                            <option value="Terbatas" @if (old('jenis_dokumen') == 'Terbatas') selected @endif>Terbatas</option>
                         </select>
                         @error('jenis_dokumen')
                             <div class="text-danger">{{ $message }}</div>

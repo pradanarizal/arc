@@ -1,5 +1,6 @@
 <!-- Bootstrap core JavaScript-->
-<script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script>
+{{-- <script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script> --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="{{ asset('templates/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Core plugin JavaScript-->
@@ -38,6 +39,8 @@
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 <?php if (isset($ruang)) { ?>
 <script type="text/javascript">
     Highcharts.chart('container', {

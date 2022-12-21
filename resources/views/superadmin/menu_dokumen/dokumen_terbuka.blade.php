@@ -100,6 +100,10 @@
     ?>
     <script>
         window.onload = function() {
+            $('.date-own').datepicker({
+                minViewMode: 2,
+                format: 'yyyy'
+            });
             @foreach ($listErrorPengarsipan as $err)
                 @error($err)
                     OpenBootstrapPopup();
