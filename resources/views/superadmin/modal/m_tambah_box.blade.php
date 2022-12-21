@@ -13,6 +13,7 @@
                 <!--FORM TAMBAH BARANG-->
                 <form action="/box" method="post" enctype="multipart/form-data">
                     @csrf
+                    
                     <div class="form-group">
                         <label for="ruang"><b>Ruang*</b></label>
                         <select class="form-control select2search" name="ruang" id="ruang">
@@ -37,14 +38,16 @@
                     </div>
 
                     <div class="form-group d-none" id="form-box">
-                        <label for="box">Nama Box*</label>
-                        <input type="text" class="form-control" id="box" name="box"
-                            value="{{ old('box') }}" disabled>
-                        @error('box')
+                        <label for="nama_box">Nama Box*</label>
+                        <input type="text" class="form-control" id="nama_box" name="nama_box"
+                            value="{{ old('nama_box') }}" disabled>
+                        @error('nama_box')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <button disabled id="btn-simpan" type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
+
+                    <button disabled id="btn-simpan" type="submit"
+                        class="btn btn-primary tombol-aksi float-right">Simpan</button>
                     <button class="btn btn-danger tombol-aksi float-right" type="button"
                         data-bs-dismiss="modal">Batal</button>
                 </form>
@@ -56,17 +59,27 @@
 </div>
 
 {{-- Perulangan untuk cek error --}}
-<?php $listError = ['box', 'rak', 'ruang']; ?>
+<?php $listError = ['nama_box', 'rak', 'ruang']; ?>
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">
-            window.onload = function() {
-                OpenBootstrapPopup();
-            };
+            Swal.fire({
+                toast: true,
+                icon: 'error',
+                title: 'Input Gagal!',
+                text: '{{ $message }}',
 
-            function OpenBootstrapPopup() {
-                $("#tambah_box").modal('show');
-            }
+                animation: true,
+                position: 'top-right',
+                showConfirmButton: false,
+                showCloseButton: true,
+                timer: 6000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
         </script>
     @break
 @enderror

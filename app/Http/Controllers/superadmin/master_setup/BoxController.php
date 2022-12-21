@@ -55,25 +55,28 @@ class BoxController extends Controller
      */
     public function store(Request $request)
     {
+        // $type = $this->get('id_rak');
+
         $this->validate(
             $request,
             [
                 'ruang' => 'required',
                 'rak' => 'required',
-                'box' => 'required|unique:box,nama_box'
+                'nama_box' => "required|unique:box,nama_box,NULL,rak,id_rak,{$request->input('rak')}"
             ],
             [
                 'ruang.required' => 'Ruang wajib diisi!',
                 'rak.required' => 'Rak wajib diisi!',
-                'box.required' => 'Nama Box wajib diisi!',
-                'box.unique' => 'Nama Box sudah ada!'
+                'nama_box.required' => 'Nama Box wajib diisi!',
+                'nama_box.unique' => 'Nama Box di rak ini sudah ada!'
             ]
         );
 
         $data = [
             'id_ruang' => $request->input('ruang'),
             'id_rak' => $request->input('rak'),
-            'nama_box' => $request->input('box'),
+            'nama_box' => $request->input('nama_box'),
+            'created_at' => \Carbon\Carbon::now(),
         ];
         if ($this->BoxModel->insert_box($data)) {
             return redirect('/master_setup/box')->with('toast_success', 'Berhasil Tambah box!');
@@ -116,16 +119,17 @@ class BoxController extends Controller
         $this->validate(
             $request,
             [
-                'nama_box' => 'required|unique:box,nama_box'
+                'nama_box' => "required|unique:box,nama_box,NULL,rak,id_rak,{$request->input('rak')}"
             ],
             [
                 'nama_box.required' => 'Nama Box wajib diisi!',
-                'nama_box.unique' => 'Nama Box sudah ada!',
+                'nama_box.unique' => 'Nama Box di rak ini sudah ada!',
             ]
         );
 
         $data = [
-            'nama_box' => $request->input('nama_box')
+            'nama_box' => $request->input('nama_box'),
+            'updated_at' => \Carbon\Carbon::now(),
         ];
         if ($this->BoxModel->update_box($data, $id)) {
             return redirect('/master_setup/box')->with('toast_success', 'Berhasil Edit Box!');
