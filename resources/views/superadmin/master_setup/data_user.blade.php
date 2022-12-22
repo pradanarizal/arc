@@ -23,7 +23,7 @@
                             <th>No</th>
                             <th>ID</th>
                             <th>Nama User</th>
-                            <th>Email</th>
+                            <th>Username</th>
                             <th>Divisi</th>
                             <th>Status</th>
                             <th>Roles</th>
@@ -39,7 +39,7 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->email }}</td>
+                                <td>{{ $item->username }}</td>
                                 <td>{{ $item->kode_departemen }}</td>
                                 <td> <?php if ($item->aktif == 1 ) {
                                     echo '<span class="badge badge-success">Aktif</span>';

@@ -16,19 +16,33 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="nama_user">Nama User</label>
-                            <input type="text" value="{{ $item->name }}" class="form-control" id="nama_user"
-                                name="nama_user" aria-describedby="emailHelp">
+                            <label for="nik_user">Nik User</label>
+                            <input type="text" value="{{ $item->nik }}" class="form-control" id="nik_user" name="nik_user_edit"
+                                 aria-describedby="emailHelp" disabled>
                         </div>
+
                         <div class="form-group">
-                            <label for="email_user">Email</label>
-                            <input type="email" value="{{ $item->email }}" class="form-control" id="email_user"
-                                name="email_user" aria-describedby="emailHelp">
+                            <label for="nama_user_edit">Nama User</label>
+                            <input type="text" value="{{ $item->name }}" class="form-control" id="nama_user_edit"
+                                name="nama_user_edit" aria-describedby="emailHelp">
+                            @error('nama_user_edit')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="id_departemen">Departemen</label>
-                            <select class="form-control" name="id_departemen"
-                                id="id_departemen">
+                            <label for="username_user_edit">Username</label>
+                            <input type="username" value="{{ $item->username }}" class="form-control" id="username_user_edit"
+                                name="username_user_edit" aria-describedby="emailHelp">
+                            @error('username_user_edit')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="id_departemen_edit">Departemen</label>
+                            <select class="form-control" name="id_departemen_edit"
+                                id="id_departemen_edit">
                                 <option selected disabled>-Pilih Departemen-</option>
                                 @foreach ($departemen as $data)
                                     <option value="{{ $data->id_departemen }}" <?php if ($item->id_departemen == $data->id_departemen) {
@@ -38,10 +52,14 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @error('id_departemen_edit')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="status_user">Status</label>
-                            <select class="form-control" name="status_user" id="status_user" value="{{ $item->aktif }}">
+                            <label for="status_user_edit">Status</label>
+                            <select class="form-control" name="status_user_edit" id="status_user_edit" value="{{ $item->aktif }}">
                                 <option value="1" <?php if($item->aktif == 1 ) {
                                     echo 'selected';
                                 } ?> > Aktif</option>
@@ -49,10 +67,14 @@
                                     echo 'selected';
                                 } ?> > Tidak Aktif</option>
                             </select>
+                            @error('status_user_edit')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="role">Roles</label>
-                            <select class="form-control" name="role" id="role" value="{{ $item->level }}">
+                            <label for="role_user_edit">Roles</label>
+                            <select class="form-control" name="role_user_edit" id="role_user_edit" value="{{ $item->level }}">
                                 <option value="user" <?php if($item->level == 'user') {
                                     echo 'selected';
                                 } ?> >User</option>
@@ -63,6 +85,9 @@
                                     echo 'selected';
                                 } ?> >Super Admin</option>
                             </select>
+                            @error('role_user_edit')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
@@ -75,4 +100,20 @@
             </div>
         </div>
     </div>
+@endforeach
+
+<?php $listError = ['nama_user_edit', 'username_user_edit','id_departemen_edit', 'status_user_edit', 'role_user_edit']; ?>
+@foreach ($listError as $err)
+    @error($err)
+        <script type="text/javascript">
+             window.onload = function() {
+                OpenBootstrapPopup();
+            };
+
+            function OpenBootstrapPopup() {
+                $("#edit_user").modal('show');
+            }
+        </script>
+    @break
+    @enderror
 @endforeach

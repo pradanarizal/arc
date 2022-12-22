@@ -51,16 +51,33 @@ class DatauserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_user' => 'required',
-            'email_user' => 'required|unique:users,email',
-            'password' =>'required',
-            'id_departemen' => 'required',
-        ]);
+        $request->validate(
+            [
+                'nik_user'  => 'required|unique:users,nik|numeric|digits_between:4,16',
+                'nama_user' => 'required',
+                'username_user' => 'required',
+                'password' =>'required',
+                'id_departemen' => 'required',
+                'role'  => 'required',
+                'status_user'  => 'required',
+            ],
+            [
+                'nik_user.required'         => 'NIK tidak boleh kosong',
+                'nik_user.numeric'          => 'NIK harus angka',
+                'nik_user.digits_between'   => 'Jumlah NIK minimal 4 dan maksimal 16 digit',
+                'nama_user.required'        => 'Nama tidak boleh kosong',
+                'username_user.required'    => 'Username tidak boleh kosong',
+                'password.required'         => 'Password tidak boleh kosong',
+                'id_departemen.required'    => 'Divisi tidak boleh kosong',
+                'role.required'             => 'Role tidak boleh kosong',
+                'status_user.required'      => 'Status user tidak boleh kosong',
+            ]
+        );
 
         $data = [
             'name' => $request->input('nama_user'),
-            'email' => $request->input('email_user'),
+            'nik'  => $request->input('nik_user'),
+            'username' => $request->input('username_user'),
             'password' => Hash::make($request->input('password')),
             'id_departemen' => $request->input('id_departemen'),
             'aktif' => $request->input('status_user'),
@@ -106,12 +123,30 @@ class DatauserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate(
+            [
+                'nama_user_edit' => 'required',
+                'username_user_edit' => 'required',
+                'id_departemen_edit' => 'required',
+                'role_user_edit'  => 'required',
+                'status_user_edit'  => 'required',
+            ],
+            [
+                'nama_user_edit.required'        => 'Nama tidak boleh kosong',
+                'username_user_edit.required'    => 'Username tidak boleh kosong',
+                'password_edit.required'         => 'Password tidak boleh kosong',
+                'id_departemen_edit.required'    => 'Divisi tidak boleh kosong',
+                'role_user_edit.required'        => 'Role tidak boleh kosong',
+                'status_user_edit.required'      => 'Status user tidak boleh kosong',
+            ]
+        );
+
         $data = [
-            'name' => $request->input('nama_user'),
-            'email' => $request->input('email_user'),
-            'id_departemen' => $request->input('id_departemen'),
-            'aktif' => $request->input('status_user'),
-            'level' => $request->input('role'),
+            'name' => $request->input('nama_user_edit'),
+            'username' => $request->input('username_user_edit'),
+            'id_departemen' => $request->input('id_departemen_edit'),
+            'aktif' => $request->input('status_user_edit'),
+            'level' => $request->input('role_user_edit'),
         ];
         if ($this->User->update_user($data, $id)) {
             return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Edit User');

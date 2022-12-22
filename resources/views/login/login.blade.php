@@ -44,10 +44,10 @@
                                     <form action="{{ route('postlogin') }}" method="POST">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" name="email" value="{{ old('email') }}"
-                                                class="form-control @error('email') is-invalid @enderror"
-                                                placeholder="Masukkan Email">
-                                            @error('email')
+                                            <input type="username" name="username" value="{{ old('username') }}"
+                                                class="form-control @error('username') is-invalid @enderror"
+                                                placeholder="Masukkan username">
+                                            @error('username')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>

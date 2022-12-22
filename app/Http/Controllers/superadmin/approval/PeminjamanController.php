@@ -84,6 +84,7 @@ class PeminjamanController extends Controller
     public function update(Request $request, $no_dokumen)
     {
 
+
         if($request->input('jenis') == 'approve'){
             
             $update_dokumen = [

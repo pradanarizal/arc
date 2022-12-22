@@ -18,12 +18,12 @@ class LoginController extends Controller
     {
         $request->validate(
             [
-                'email' => 'required',
+                'username' => 'required',
                 'password' => 'required',
                 'captcha' => 'required|captcha',
             ],
             [
-                'email.required' => 'Email wajib diisi',
+                'username.required' => 'Username wajib diisi',
                 'password.required' => 'Password wajib diisi',
                 'captcha.required' => 'Captcha wajib diisi',
             ]
@@ -31,10 +31,10 @@ class LoginController extends Controller
         // captcha_check($value);
 
         if (captcha_check($request->captcha) == true) {
-            if (Auth::attempt($request->only('email', 'password'))) {
+            if (Auth::attempt($request->only('username', 'password'))) {
                 return redirect('/dashboard');
             }
-            return redirect('/login')->with('toast_error', 'Password yang Anda masukkan salah');
+            return redirect('/login')->with('toast_error', 'Username atau Password yang Anda masukkan salah');
         } else {
             return redirect('/login')->with('toast_error', 'Captcha yang Anda masukkan salah');
         }

@@ -23,6 +23,10 @@
                     <div class="modal-body">
                         <label for="catatan_tolak">Catatan</label>
                         <input type="text" cols="30" class="form-control" id="catatan_tolak" name="catatan_tolak_pengembalian">
+                        @error('catatan_tolak_pengembalian')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                        
                         <input name="tgl_pengembalian" type="text" value="{{$item->tgl_kembali}}" hidden>
                         <input name="pengembalian" type="text" value="Tidak" hidden>
                     </div>
@@ -35,4 +39,21 @@
             </div>
         </div>
     </div>
+@endforeach
+
+{{-- Perulangan untuk cek error --}}
+<?php $listError = ['catatan_tolak_pengembalian']; ?>
+@foreach ($listError as $err)
+    @error($err)
+        <script type="text/javascript">
+             window.onload = function() {
+                OpenBootstrapPopup();
+            };
+
+            function OpenBootstrapPopup() {
+                $("#tolak_pengembalian").modal('show');
+            }
+        </script>
+    @break
+    @enderror
 @endforeach

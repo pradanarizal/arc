@@ -60,30 +60,33 @@
                             </td>
 
                             <td class="text-center">
-                            @foreach ($pengembalian as $data)
+                                <div class="btn-group btn-group-sm">
 
-                                @if ($item->id_dokumen == $data->id_dokumen)
-                                    @if ($item->status_peminjaman == 'Ya' && $data->status_pengembalian == '')
-                                        <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        <button title="Kembali" class="btn btn-sm btn-primary text-white"
-                                            data-bs-toggle="modal" data-bs-target="#pengembalian_dokumen{{ $item ->id_dokumen }}">
-                                            <i class="fa fa-undo"></i>
-                                        </button>
-                                    @elseif ($data->status_pengembalian == 'Pending')
+                                @foreach ($pengembalian as $data)
+
+                                    @if ($item->id_dokumen == $data->id_dokumen)
+                                        @if ($item->status_peminjaman == 'Ya' && $data->status_pengembalian == '')
+                                            <a class="btn btn-sm bg-warning text-white" href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <button title="Kembali" class="btn btn-sm btn-primary text-white"
+                                                data-bs-toggle="modal" data-bs-target="#pengembalian_dokumen{{ $item ->id_dokumen }}">
+                                                <i class="fa fa-undo"></i>
+                                            </button>
+                                        @elseif ($data->status_pengembalian == 'Pending')
                                         <a class="btn btn-sm bg-warning text-white"
                                             href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                    @else 
-                                        <a class="btn btn-sm bg-warning text-white"
-                                            href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
+                                        @else 
+                                            <a class="btn btn-sm bg-warning text-white"
+                                                href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        @endif
                                     @endif
-                                @endif
-                            @endforeach
+                                @endforeach
+                                </div>
                             </td>
                         </tr>
                         @endforeach

@@ -14,6 +14,14 @@
                 <form action="/data_user" method="post" enctype="multipart/form-data">
                 @csrf
                     <div class="form-group">
+                        <label for="nik_user">NIK</label>
+                        <input type="nik" class="form-control" id="nik_user" name="nik_user"
+                            aria-describedby="nikHelp" value="{{ old('nik_user') }}">
+                            @error('nik_user')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="nama_user">Nama User</label>
                         <input type="text" class="form-control" id="nama_user" name="nama_user"
                             aria-describedby="emailHelp" value="{{ old('nama_user') }}">
@@ -22,10 +30,10 @@
                             @enderror
                     </div>
                     <div class="form-group">
-                        <label for="email_user">Email</label>
-                        <input type="email" class="form-control" id="email_user" name="email_user"
-                            aria-describedby="emailHelp" value="{{ old('email_user') }}">
-                            @error('email_user')
+                        <label for="username_user">Username</label>
+                        <input type="username" class="form-control" id="username_user" name="username_user"
+                            aria-describedby="usernameHelp" value="{{ old('username_user') }}">
+                            @error('username_user')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                     </div>
@@ -40,34 +48,44 @@
                     <div class="form-group">
                         <label for="id_departemen">Divisi</label>
 
-                        <select class="form-control select2search" name="id_departemen"
-                            id="id_departemen">
+                        <select class="form-control select2search" name="id_departemen" id="id_departemen">
 
                             <option selected disabled>-Pilih Divisi-</option>
                             @foreach ($departemen as $item)
+                            
                                 <option value="{{ $item->id_departemen }}"
-                                @error('departemen')
                                     <?php
-                                        if(old('departemen') == $item->id_departemen ) {echo "selected" ; } ?>
-                                @enderror > {{ $item->kode_departemen }}
+                                        if(old('id_departemen') == $item->id_departemen ) {echo "selected" ; } ?>
+                                > {{ $item->kode_departemen }}
                                 </option>
                             @endforeach
                         </select>
+                        @error('id_departemen')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="status_user">Status</label>
                         <select class="form-control" name="status_user" id="status_user">
+                            <option selected disabled>--Pilih Status--</option>
                             <option value="1">Aktif</option>
                             <option value="0">Tidak Aktif</option>
                         </select>
+                        @error('status_user')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="role">Roles</label>
                         <select class="form-control" name="role" id="role">
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                            <option value="superadmin">Super Admin</option>
+                            <option selected disabled>--Pilih Role--</option>
+                                <option value="user" @if (old('role') == 'Terbuka') selected @endif>User</option>
+                                <option value="admin" @if (old('role') == 'admin') selected @endif>Admin</option>
+                                <option value="superadmin" @if (old('role') == 'superadmin') selected @endif>Super Admin</option>
                         </select>
+                        @error('role')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-primary tombol-aksi float-right">Simpan</button>
@@ -81,7 +99,7 @@
 </div>
 
 {{-- Perulangan untuk cek error --}}
-<?php $listError = ['nama_user', 'email_user','password','id_departemen']; ?>
+<?php $listError = ['nik_user', 'nama_user', 'username_user','password','id_departemen']; ?>
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">

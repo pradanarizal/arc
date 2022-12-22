@@ -21,6 +21,9 @@
                         <label for="catatan_tolak">Catatan</label>
                         <input type="text" cols="30" class="form-control" id="catatan_tolak" name="catatan_tolak_peminjaman">
                     </div>
+                    @error('catatan_tolak_pengembalian')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
 
                     {{-- value untuk tolak peminjaman. - Update ke table peminjaman --}}
                     <input name="peminjaman" type="text" value="Tidak" hidden>
@@ -34,4 +37,21 @@
             </div>
         </div>
     </div>
+@endforeach
+
+{{-- Perulangan untuk cek error --}}
+<?php $listError = ['catatan_tolak_peminjaman']; ?>
+@foreach ($listError as $err)
+    @error($err)
+        <script type="text/javascript">
+             window.onload = function() {
+                OpenBootstrapPopup();
+            };
+
+            function OpenBootstrapPopup() {
+                $("#catatan_tolak_peminjaman").modal('show');
+            }
+        </script>
+    @break
+    @enderror
 @endforeach

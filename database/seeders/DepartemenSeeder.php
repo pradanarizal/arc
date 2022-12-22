@@ -16,10 +16,11 @@ class DepartemenSeeder extends Seeder
     public function run()
     {
         DB::table('departemen')->insert([
+            ['kode_departemen' => 'All', 'nama_departemen' => ' Semua Divisi'],
             ['kode_departemen' => 'CFA', 'nama_departemen' => ' Budgeting and Accounting '],
             ['kode_departemen' => 'CUL', 'nama_departemen' => ' GRC and Legal '],
-            ['kode_departemen' => 'CFF', 'nama_departemen' => ' Finance '],
-            ['kode_departemen' => 'CFP', 'nama_departemen' => ' PSO and TAC '],
+            ['kode_departemen' => 'CFF', 'nama_departemen' => ' FINANCIAL ADMINISTRATION TEAM '],
+            ['kode_departemen' => 'CFP', 'nama_departemen' => ' PSO & TAC PLANNING & MANAGEMENT DEPT '],
             ['kode_departemen' => 'CUG', 'nama_departemen' => ' Logistic '],
             ['kode_departemen' => 'CUP', 'nama_departemen' => ' Strategic Planning '],
             ['kode_departemen' => 'COC', 'nama_departemen' => ' Commercial '],
@@ -31,7 +32,6 @@ class DepartemenSeeder extends Seeder
             ['kode_departemen' => 'CTS', 'nama_departemen' => ' Infrastructure '],
             ['kode_departemen' => 'CUS', 'nama_departemen' => ' Corporate Secretary '],
             ['kode_departemen' => 'CTI', 'nama_departemen' => ' Information Technology '],
-
         ]);
     }
 }

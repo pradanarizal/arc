@@ -47,19 +47,21 @@
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_pengembalian)) }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td class="text-center">
-                                    @if ($item->status_pengembalian == 'Pending')
-                                        <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
-                                            data-bs-target="#approve_pengembalian{{ $item->id_dokumen }}">
-                                            <i class="fa fa-check"></i>
-                                        </button>
-                                        <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                            data-bs-target="#tolak_pengembalian{{ $item->id_dokumen }}">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    @else
-                                    <span title="Dokumen Tersedia"
-                                            class="badge badge-success p-2">Selesai</span>
-                                    @endif
+                                    <div class="btn-group btn-group-sm">
+                                        @if ($item->status_pengembalian == 'Pending')
+                                            <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
+                                                data-bs-target="#approve_pengembalian{{ $item->id_dokumen }}">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                            <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
+                                                data-bs-target="#tolak_pengembalian{{ $item->id_dokumen }}">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        @else
+                                        <span title="Dokumen Tersedia"
+                                                class="badge badge-success p-2">Selesai</span>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
