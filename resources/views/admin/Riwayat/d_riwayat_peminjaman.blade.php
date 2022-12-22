@@ -44,6 +44,14 @@
                     </div>
                 </div>
                 <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Catatan</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ $item->catatan }}</label>
+                    </div>
+                </div>
+
+                <hr>
             </div>
             <div class="col-lg-6">
                 {{-- <iframe src="http://docs.google.com/gview?url={{ URL::to('/') }}/data_file/retensi/pIeUUMHjMNiLzoKz4PF25TKQqL0eq41SBluTv6zl.pdf&embedded=true"

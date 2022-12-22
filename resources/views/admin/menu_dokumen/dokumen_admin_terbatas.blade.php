@@ -96,6 +96,7 @@
 <script>
     <?php $listErrorPengarsipanAdmin = ['nomor_dokumen_pengarsipan_admin', 'nama_dokumen_pengarsipan_admin', 'tahun_dokumen_pengarsipan_admin', 'deskripsi_dokumen_pengarsipan_admin', 'kelengkapan_dokumen_pengarsipan', 'file_pengarsipan_admin'];
           $listErrorRetensiAdmin = ['nomor_dokumen_ret_admin', 'nama_dokumen_ret_admin', 'tahun_dokumen_ret_admin', 'deskripsi_dokumen_ret_admin', 'kelengkapan_dokumen_retensi', 'file_ret_admin'];
+          $listErrorPeminjamanAdmin = ['tgl_ambil', 'tgl_kembali'];
     ?>  
           window.onload = function() {
                 @foreach ($listErrorPengarsipanAdmin as $err)
@@ -114,6 +115,16 @@
 
                         function OpenBootstrapPopup() {
                             $("#tambah_retensi_admin").modal('show');
+                        }
+                        @break
+                    @enderror
+                @endforeach
+                @foreach ($listErrorPeminjamanAdmin as $err)
+                    @error($err)
+                        OpenBootstrapPopup();
+
+                        function OpenBootstrapPopup() {
+                            $("#pinjam_dokumen").modal('show');
                         }
                         @break
                     @enderror

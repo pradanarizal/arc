@@ -53,7 +53,7 @@
                                             <i class="fa fa-check"></i>
                                         </button>
                                         <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                            data-bs-target="#">
+                                            data-bs-target="#tolak_pengembalian{{ $item->id_dokumen }}">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     @else
@@ -73,6 +73,7 @@
     @include('superadmin.modal.m_edit_ruang') --}}
 
     @include('superadmin.modal.m_approve_pengembalian')
+    @include('superadmin.modal.m_approve_tolak_pengembalian')
     @include('sweetalert::alert')
 
 @endsection

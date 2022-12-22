@@ -26,8 +26,8 @@
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
                             <th>Jenis Dokumen</th>
-                            <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
+                            <th>Tanggal Kembali</th>
                             <th>Approval</th>
                             <th>Aksi</th>
                         </tr>
@@ -54,7 +54,7 @@
                                     </span>
                                 @else
                                     <span class="badge badge-danger p-2" title="Rejected">
-                                        {{ $item->status_peminjaman }}
+                                        {{ $item->status_peminjaman }} 
                                     </span>
                                 @endif
                             </td>

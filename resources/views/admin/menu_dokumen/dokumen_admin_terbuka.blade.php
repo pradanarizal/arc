@@ -19,23 +19,6 @@
         </div>
     </div>
 
-    <!-- Begin Page Content -->
-    {{--
-<div class="container-fluid"> --}}
-
-    {{-- <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
-        <button class="d-none d-sm-inline-block btn btn-danger shadow-sm tombol" data-bs-toggle="modal"
-            data-bs-target="#tambah_retensi">
-            <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
-            Add Retensi
-        </button>
-        <button class="d-none d-sm-inline-block btn btn-success shadow-sm tombol" data-bs-toggle="modal"
-            data-bs-target="#tambah_dokumen">
-            <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
-            Add Arsip
-        </button>
-    </div> --}}
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4 mt-2">
         <div class="card-body">
@@ -112,6 +95,7 @@
 <script>
     <?php $listErrorPengarsipanAdmin = ['nomor_dokumen_pengarsipan_admin', 'nama_dokumen_pengarsipan_admin', 'tahun_dokumen_pengarsipan_admin', 'deskripsi_dokumen_pengarsipan_admin', 'kelengkapan_dokumen_pengarsipan', 'file_pengarsipan_admin'];
           $listErrorRetensiAdmin = ['nomor_dokumen_ret_admin', 'nama_dokumen_ret_admin', 'tahun_dokumen_ret_admin', 'deskripsi_dokumen_ret_admin', 'kelengkapan_dokumen_retensi', 'file_ret_admin'];
+          $listErrorPeminjamanAdmin = ['tgl_ambil', 'tgl_kembali'];
     ?>  
           window.onload = function() {
                 @foreach ($listErrorPengarsipanAdmin as $err)

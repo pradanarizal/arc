@@ -19,7 +19,7 @@
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
                             <th>Jenis Dokumen</th>
-                            <th>Catatan</th>
+                            <th>Deskripsi</th>
                             <th>Tanggal Upload</th>
                             <th>Approval</th>
                             <th>Aksi</th>
@@ -35,7 +35,7 @@
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ $item->jenis_dokumen }}</td>
-                                <td>{{ $item->catatan }}</td>
+                                <td>{{ $item->deskripsi }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td class="text-center">
                                     @if ($item->status_pengarsipan == 'Pending')

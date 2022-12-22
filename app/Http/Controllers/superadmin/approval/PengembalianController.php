@@ -101,13 +101,14 @@ class PengembalianController extends Controller
             }    
         } elseif ($request->input('jenis') == 'tolak') {
             $update_dokumen = [
-                'status_dokumen'    => 'Tersedia'
+                'status_dokumen'    => 'Rejected'
             ];
 
             if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
                 $update_pengembalian = [
                     'tgl_pengembalian' => $request->input('tgl_pengembalian'),
                     'status_pengembalian' =>  $request->input('pengembalian'),
+                    'catatan'             => $request->input('catatan_tolak_pengembalian'),
                     'updated_at' => \Carbon\Carbon::now()
                 ];
                 $this->PengembalianModel->approval_pengembalian($update_pengembalian, $no_dokumen);

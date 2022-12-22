@@ -205,6 +205,17 @@ class DokumenadminController extends Controller
 
     public function pinjam_dokumenById(Request $request, $no_dokumen)
     {
+        $request->validate(
+            [
+                'tgl_ambil'     => 'required',
+                'tgl_kembali'   => 'required',
+            ],
+            [
+                'tgl_ambil.required'    => 'Tanggal Peminjaman Tidak Boleh Kosong',
+                'tgl_kembali.required'  => 'Tanggal Pengembalian Harus diisi',
+            ]
+        );
+
         $update_dokumen = [
             'status_dokumen'    => 'Menunggu Approval'
         ];

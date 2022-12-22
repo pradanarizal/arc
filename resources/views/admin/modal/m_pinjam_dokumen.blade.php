@@ -63,7 +63,7 @@
 @endforeach
 
 {{-- Perulangan untuk cek error --}}
-<?php $listError = ['nama_user', 'email_user', 'password', 'divisi']; ?>
+<?php $listError = ['tgl_ambil', 'tgl_kembali']; ?>
 @foreach ($listError as $err)
     @error($err)
         <script type="text/javascript">
@@ -72,9 +72,8 @@
             };
 
             function OpenBootstrapPopup() {
-                $("#tambah_user").modal('show');
+                $("#pinjam_dokumen").modal('show');
             }
         </script>
-    @break
-@enderror
+    @enderror
 @endforeach
