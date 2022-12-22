@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DashboardModel;
-use App\Traits\notif_sidebar;
 
 class DashboardController extends Controller
 {
-    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -50,7 +48,7 @@ class DashboardController extends Controller
             'ruang' => $dataChart,
             // 'dokumen' => $this->model->getDokumen()
         ];
-        return view('dashboard', $data, $this->approval_pending());
+        return view('dashboard', $data, $this->notif_pending());
     }
 
     /**

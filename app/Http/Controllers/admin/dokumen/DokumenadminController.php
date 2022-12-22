@@ -7,7 +7,7 @@ use App\Models\DokumenModel;
 use App\Models\approval\PeminjamanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Response;
+use Illuminate\Http\Response;
 
 class DokumenadminController extends Controller
 {
@@ -36,7 +36,7 @@ class DokumenadminController extends Controller
             'dokumen' => $this->DokumenModel->getDokumenById($id),
             'peminjaman'    => $this->DokumenModel->getNamaPeminjam($id)
         ];
-        return view('admin.menu_dokumen.detail_dokumen_admin', $data);
+        return view('admin.menu_dokumen.detail_dokumen_admin', $data, $this->notif_pending());
     }
 
 
@@ -48,7 +48,7 @@ class DokumenadminController extends Controller
             'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
 
         ];
-        return view('admin.menu_dokumen.dokumen_admin_terbatas', $data);
+        return view('admin.menu_dokumen.dokumen_admin_terbatas', $data, $this->notif_pending());
     }
 
     public function dokumen_terbuka_admin()
@@ -58,7 +58,7 @@ class DokumenadminController extends Controller
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
             'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
         ];
-        return view('admin.menu_dokumen.dokumen_admin_terbuka', $data);
+        return view('admin.menu_dokumen.dokumen_admin_terbuka', $data, $this->notif_pending());
 
     }
 
@@ -81,7 +81,7 @@ class DokumenadminController extends Controller
         // echo '<br>';
         // tipe mime
         // echo 'File Mime Type: ' . $file->getMimeType();
-        
+
         $direktori_file = 'data_file';
 
         if ($request->input('jenis') == 'Retensi') {
@@ -136,11 +136,11 @@ class DokumenadminController extends Controller
                     ];
                     $this->DokumenModel->insert_retensi($data2);
                 }
-            
+
                 return redirect('/riwayat/riwayat_retensi')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
             }else {
                 return redirect('/riwayat/riwayat_retensi')->with('toast_success', 'Gagal Retensi Dokumen');
-            }  
+            }
         } elseif ($request->input('jenis') == 'Pengarsipan') {
             $request->validate(
                 [
@@ -195,11 +195,11 @@ class DokumenadminController extends Controller
                     ];
                     $this->DokumenModel->insert_pengarsipan($data2);
                 }
-            
+
                 return redirect('/riwayat/riwayat_pengarsipan')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Approval Arsip superadmin!');
             }else {
                 return redirect('/riwayat/riwayat_pengarsipan')->with('toast_error', 'Gagal Arsip Dokumen');
-            } 
+            }
         }
     }
 

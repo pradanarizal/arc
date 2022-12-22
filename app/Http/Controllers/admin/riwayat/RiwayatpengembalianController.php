@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin\riwayat;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PengembalianModel;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class RiwayatpengembalianController extends Controller
 {
@@ -20,7 +20,7 @@ class RiwayatpengembalianController extends Controller
             'dokumen' => $this->Model->getPengembalianByDivisi(Auth::user()->id_departemen)
         ];
 
-        return view('admin.riwayat.riwayat-pengembalian', $data);
+        return view('admin.riwayat.riwayat-pengembalian', $data, $this->notif_pending());
     }
 
     /**
@@ -56,7 +56,7 @@ class RiwayatpengembalianController extends Controller
             'pengembalian' => $this->Model->getDataById($id)
         ];
 
-        return view('admin.riwayat.d_riwayat_pengembalian', $data);
+        return view('admin.riwayat.d_riwayat_pengembalian', $data, $this->notif_pending());
     }
 
     /**

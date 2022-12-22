@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\admin\riwayat;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\approval\PengarsipanModel;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class RiwayatpengarsipanController extends Controller
 {
+
     public function __construct()
     {
         $this->Model = new PengarsipanModel();
@@ -20,7 +20,7 @@ class RiwayatpengarsipanController extends Controller
             'dokumen' => $this->Model->getDataByDivisi(Auth::user()->id_departemen),
         ];
 
-        return view('admin.riwayat.riwayat-pengarsipan', $data);
+        return view('admin.riwayat.riwayat-pengarsipan', $data, $this->notif_pending());
     }
 
     public function show_detail($id)
@@ -29,7 +29,7 @@ class RiwayatpengarsipanController extends Controller
             'pengarsipan' => $this->Model->getDataById($id),
         ];
 
-        return view('admin.riwayat.d_riwayat_pengarsipan', $data);
+        return view('admin.riwayat.d_riwayat_pengarsipan', $data, $this->notif_pending());
     }
-    
+
 }

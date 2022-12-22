@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\user;
 
 use App\Models\DokumenModel;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Response;
-use Auth;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->getDokumenByDivisi(Auth::user()->id_departemen), 
+            'dokumen' => $this->Model->getDokumenByDivisi(Auth::user()->id_departemen),
         ];
         return view('user.dokumen_terbatas_user', $data);
     }
@@ -26,7 +25,7 @@ class UserController extends Controller
     public function dokumen_terbuka()
     {
         $data = [
-            'dokumen' => $this->Model->allDataTerbuka(), 
+            'dokumen' => $this->Model->allDataTerbuka(),
         ];
         return view('user.dokumen_terbuka_user', $data);
     }
