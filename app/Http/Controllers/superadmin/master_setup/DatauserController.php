@@ -127,7 +127,8 @@ class DatauserController extends Controller
         $request->validate(
             [
                 'nama_user_edit' => 'required',
-                'username_user_edit' => 'required|unique:users,username',
+                // 'username_user_edit' => 'required|unique:users,username',
+                'username_user_edit' => 'required',
                 'id_departemen_edit' => 'required',
                 'role_user_edit'  => 'required',
                 'status_user_edit'  => 'required',
@@ -135,7 +136,7 @@ class DatauserController extends Controller
             [
                 'nama_user_edit.required' => 'Nama tidak boleh kosong',
                 'username_user_edit.required' => 'Username tidak boleh kosong',
-                'username_user_edit.unique' => 'Username sudah ada!',
+                // 'username_user_edit.unique' => 'Username sudah ada!',
                 'password_edit.required' => 'Password tidak boleh kosong',
                 'id_departemen_edit.required' => 'Divisi tidak boleh kosong',
                 'role_user_edit.required' => 'Role tidak boleh kosong',
