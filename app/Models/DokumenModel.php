@@ -51,7 +51,7 @@ class DokumenModel extends Model
             ->where('status_dokumen', '=', 'Retensi')
             ->get();
     }
-    
+
     public function allDataTerbuka()
     {
         return DB::table('dokumen')
@@ -71,7 +71,7 @@ class DokumenModel extends Model
             ->where('status_dokumen', '=', 'Retensi')
             ->get();
     }
-    
+
     public function getLastIdDokumen()
     {
         return DB::table('dokumen')
@@ -215,5 +215,17 @@ class DokumenModel extends Model
         } else {
             return false;
         }
+    }
+    public function update_pengembalian($pengembalian, $id_peminjaman)
+    {
+        if (DB::table('pengembalian')->where('id_peminjaman', $id_peminjaman)->update($pengembalian)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public function cekPengembalian($id_peminjaman)
+    {
+        return DB::table('pengembalian')->where('id_peminjaman', $id_peminjaman)->get();
     }
 }

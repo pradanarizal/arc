@@ -1,6 +1,6 @@
 <!-- Modal Hapus -->
 @foreach ($pengembalian as $item)
-    <div class="modal fade" id="tolak_pengembalian{{ $item->id_dokumen }}" tabindex="-1" role="dialog"
+    <div class="modal fade" id="tolak_pengembalian{{ $item->id_pengembalian }}" tabindex="-1" role="dialog"
         aria-labelledby="delete_box" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -12,22 +12,24 @@
                 <div class="modal-body">
                     Reject pengajuan pengembalian dokumen {{ $item->nama_dokumen }} ?
                 </div>
-                <form action="/pengembalian/{{ $item->id_dokumen }}" method="POST">
+                <form action="/pengembalian/{{ $item->id_pengembalian }}" method="POST">
                     @csrf
                     @method('PUT')
                     {{-- Jenis input untuk memisahkan jenis update berdasarkan jenis --}}
                     <input name="jenis" type="text" value="tolak" hidden>
 
                     {{-- Value untuk Reject pengembalian - update ke table pengembalian --}}
-                    
+
                     <div class="modal-body">
                         <label for="catatan_tolak">Catatan</label>
-                        <input type="text" cols="30" class="form-control" id="catatan_tolak" name="catatan_tolak_pengembalian">
+                        <input type="text" cols="30" class="form-control" id="catatan_tolak"
+                            name="catatan_tolak_pengembalian">
                         @error('catatan_tolak_pengembalian')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
-                        
-                        <input name="tgl_pengembalian" type="text" value="{{$item->tgl_kembali}}" hidden>
+
+                        <input name="tgl_pengembalian" type="text" value="{{ $item->tgl_kembali }}" hidden>
+                        <input name="id_dokumen" type="text" value="{{ $item->id_dokumen }}" hidden>
                         <input name="pengembalian" type="text" value="Tidak" hidden>
                     </div>
 
@@ -39,21 +41,4 @@
             </div>
         </div>
     </div>
-@endforeach
-
-{{-- Perulangan untuk cek error --}}
-<?php $listError = ['catatan_tolak_pengembalian']; ?>
-@foreach ($listError as $err)
-    @error($err)
-        <script type="text/javascript">
-             window.onload = function() {
-                OpenBootstrapPopup();
-            };
-
-            function OpenBootstrapPopup() {
-                $("#tolak_pengembalian").modal('show');
-            }
-        </script>
-    @break
-    @enderror
 @endforeach

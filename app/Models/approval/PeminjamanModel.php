@@ -34,21 +34,23 @@ class PeminjamanModel extends Model
             ->get();
     }
 
-    public function getPeminjamanByDivisi($divisi)
+    public function getPeminjamanByDivisi($id_user)
     {
-        return DB::table('Peminjaman')
-            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'peminjaman.id_dokumen')
-            ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
-            ->where('dokumen.id_departemen', '=', $divisi)
-            ->get();
+        // return DB::table('Peminjaman')
+        //     ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'peminjaman.id_dokumen')
+        //     ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
+        //     ->where('dokumen.id_departemen', '=', $divisi)
+        //     ->get();
+        return DB::table('peminjaman')
+        ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'peminjaman.id_dokumen')
+        ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
+        ->where('users.id', '=', $id_user)
+        ->get();
     }
 
     public function getPengembalian()
-    {       
-        return DB::table('dokumen')
-            ->leftJoin('pengembalian', 'pengembalian.id_dokumen', '=', 'dokumen.id_dokumen')
-            ->leftJoin('peminjaman', 'peminjaman.id_dokumen', '=', 'dokumen.id_dokumen')
-            ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
+    {
+        return DB::table('pengembalian')
             ->get();
     }
 }

@@ -81,7 +81,7 @@ class DokumenadminController extends Controller
         // echo '<br>';
         // tipe mime
         // echo 'File Mime Type: ' . $file->getMimeType();
-        
+
         $direktori_file = 'data_file';
 
         if ($request->input('jenis') == 'Retensi') {
@@ -136,11 +136,11 @@ class DokumenadminController extends Controller
                     ];
                     $this->DokumenModel->insert_retensi($data2);
                 }
-            
+
                 return redirect('/riwayat/riwayat_retensi')->with('toast_success', 'Pengajuan Retensi diteruskan ke Approval Retensi Arsip!');
             }else {
                 return redirect('/riwayat/riwayat_retensi')->with('toast_success', 'Gagal Retensi Dokumen');
-            }  
+            }
         } elseif ($request->input('jenis') == 'Pengarsipan') {
             $request->validate(
                 [
@@ -195,11 +195,11 @@ class DokumenadminController extends Controller
                     ];
                     $this->DokumenModel->insert_pengarsipan($data2);
                 }
-            
+
                 return redirect('/riwayat/riwayat_pengarsipan')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Approval Arsip superadmin!');
             }else {
                 return redirect('/riwayat/riwayat_pengarsipan')->with('toast_error', 'Gagal Arsip Dokumen');
-            } 
+            }
         }
     }
 
@@ -239,20 +239,34 @@ class DokumenadminController extends Controller
         }
     }
 
-    public function pengembalian_dokumenById(Request $request, $no_dokumen)
+    public function pengembalian_dokumenById(Request $request)
     {
-        $insert_pengembalian = [
-            'id_dokumen'        => $request->input('id_dokumen'),
-            'tgl_pengembalian'  => $request->input('tgl_kembali'),
-            'status_pengembalian' => 'Pending',
-            'id_peminjaman'       => $request->input('id_peminjaman'),
-            'id'                  => Auth::user()->id,
-        ];
+        if (count($this->DokumenModel->cekPengembalian($request->input('id_peminjaman'))) == 0) {
+            $pengembalian = [
+                'id_dokumen'        => $request->input('id_dokumen'),
+                'tgl_pengembalian'  => $request->input('tgl_kembali'),
+                'status_pengembalian' => 'Pending',
+                'id_peminjaman'       => $request->input('id_peminjaman'),
+                'id'                  => Auth::user()->id,
+            ];
 
-        if ($this->DokumenModel->insert_pengembalian($insert_pengembalian, $no_dokumen)) {
-            return redirect('/riwayat/riwayat_peminjaman')->with('toast_success', 'Pengembalian Dokumen diteruskan ke Super Admin!');
+            if ($this->DokumenModel->insert_pengembalian($pengembalian)) {
+                return redirect('/riwayat/riwayat_peminjaman')->with('toast_success', 'Pengembalian Dokumen diteruskan ke Super Admin!');
+            } else {
+                return redirect('/riwayat/riwayat_peminjaman')->with('toast_error', 'Pengembalian Dokumen Gagal diteruskan ke Super Admin!');
+            }
         } else {
-            return redirect('/riwayat/riwayat_peminjaman');
+            $pengembalian = [
+                'tgl_pengembalian'  => $request->input('tgl_kembali'),
+                'status_pengembalian' => 'Pending',
+            ];
+
+            if ($this->DokumenModel->update_pengembalian($pengembalian, $request->input('id_peminjaman'))) {
+                return redirect('/riwayat/riwayat_peminjaman')->with('toast_success', 'Pengembalian Dokumen diteruskan ke Super Admin!');
+            } else {
+                return redirect('/riwayat/riwayat_peminjaman')->with('toast_error', 'Pengembalian Dokumen Gagal diteruskan ke Super Admin!');
+            }
         }
+
     }
 }

@@ -17,7 +17,7 @@ class RiwayatpengembalianController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->getPengembalianByDivisi(Auth::user()->id_departemen)
+            'dokumen' => $this->Model->getPengembalianByDivisi(Auth::user()->id)
         ];
 
         return view('admin.riwayat.riwayat-pengembalian', $data);

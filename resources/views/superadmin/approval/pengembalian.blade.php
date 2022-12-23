@@ -50,16 +50,15 @@
                                     <div class="btn-group btn-group-sm">
                                         @if ($item->status_pengembalian == 'Pending')
                                             <button class="btn btn-sm bg-success text-white" data-bs-toggle="modal"
-                                                data-bs-target="#approve_pengembalian{{ $item->id_dokumen }}">
+                                                data-bs-target="#approve_pengembalian{{ $item->id_pengembalian }}">
                                                 <i class="fa fa-check"></i>
                                             </button>
                                             <button class="btn btn-sm bg-danger text-white" data-bs-toggle="modal"
-                                                data-bs-target="#tolak_pengembalian{{ $item->id_dokumen }}">
+                                                data-bs-target="#tolak_pengembalian{{ $item->id_pengembalian }}">
                                                 <i class="fa fa-times"></i>
                                             </button>
                                         @else
-                                        <span title="Dokumen Tersedia"
-                                                class="badge badge-success p-2">Selesai</span>
+                                            <span title="Dokumen Tersedia" class="badge badge-success p-2">Selesai</span>
                                         @endif
                                     </div>
                                 </td>
@@ -77,5 +76,33 @@
     @include('superadmin.modal.m_approve_pengembalian')
     @include('superadmin.modal.m_approve_tolak_pengembalian')
     @include('sweetalert::alert')
-
 @endsection
+<?php
+$listErrorEdit = ['catatan_tolak_pengembalian'];
+?>
+<script>
+    window.onload = function() {
+        @foreach ($listErrorEdit as $err)
+            @error($err)
+                Swal.fire({
+                    toast: true,
+                    icon: 'error',
+                    title: 'Tolak Pengembalian Gagal!',
+                    text: '{{ $message }}',
+
+                    animation: true,
+                    position: 'top-right',
+                    showConfirmButton: false,
+                    showCloseButton: true,
+                    timer: 6000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+                @break
+            @enderror
+        @endforeach
+    };
+</script>

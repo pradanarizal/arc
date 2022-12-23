@@ -80,46 +80,64 @@ class PengembalianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $no_dokumen)
+    public function update(Request $request, $id_pengembalian)
     {
-        
-        if($request->input('jenis') == 'approve'){
-            
-           
 
+        if($request->input('jenis') == 'approve'){
             $update_dokumen = [
                 'status_dokumen'    => 'Tersedia'
             ];
 
-            if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
+            if($this->DokumenModel->update_dokumen($update_dokumen, $request->input('id_dokumen'))) {
                 $update_pengembalian = [
                     'tgl_pengembalian' => $request->input('tgl_pengembalian'),
                     'status_pengembalian' =>  $request->input('pengembalian'),
                     'updated_at' => \Carbon\Carbon::now()
                 ];
-                $this->PengembalianModel->approval_pengembalian($update_pengembalian, $no_dokumen);
-                return redirect('/approval/pengembalian')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+                $this->PengembalianModel->approval_pengembalian($update_pengembalian, $id_pengembalian);
+                return redirect('/approval/pengembalian')->with('toast_success', 'Pengembalian Diterima, Riwayat Pengembalian Admin sudah di Update!');
             }else {
-                return redirect('/approval/pengembalian');
-            }    
+                return redirect('/approval/pengembalian')->with('toast_error', 'Update Dokumen Error');
+            }
         } elseif ($request->input('jenis') == 'tolak') {
-            $update_dokumen = [
-                'status_dokumen'    => 'Rejected'
-            ];
 
-            if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
+            $request->validate(
+                [
+                    'catatan_tolak_pengembalian' => 'required'
+                ],
+                [
+                    'catatan_tolak_pengembalian.required' => 'Catatan Wajib Diisi!'
+                ]
+            );
+
+            // $update_dokumen = [
+            //     'status_dokumen'    => 'Dipinjam'
+            // ];
+
+            // if($this->DokumenModel->update_dokumen($update_dokumen, $request->id_dokumen)) {
+            //     $update_pengembalian = [
+            //         'tgl_pengembalian' => $request->input('tgl_pengembalian'),
+            //         'status_pengembalian' =>  $request->input('pengembalian'),
+            //         'catatan'             => $request->input('catatan_tolak_pengembalian'),
+            //         'updated_at' => \Carbon\Carbon::now()
+            //     ];
+            //     $this->PengembalianModel->approval_pengembalian($update_pengembalian, $id_pengembalian);
+            //     return redirect('/approval/pengembalian')->with('toast_success', 'Pengembalian Ditolak, Riwayat Pengembalian Admin sudah di Update!');
+            // } else {
+            //     return redirect('/approval/pengembalian')->with('toast_error', 'Gagal Tolak Pengembalian!'.$request->input('id_dokumen'));
+            // }
                 $update_pengembalian = [
                     'tgl_pengembalian' => $request->input('tgl_pengembalian'),
                     'status_pengembalian' =>  $request->input('pengembalian'),
                     'catatan'             => $request->input('catatan_tolak_pengembalian'),
                     'updated_at' => \Carbon\Carbon::now()
                 ];
-                $this->PengembalianModel->approval_pengembalian($update_pengembalian, $no_dokumen);
-                return redirect('/approval/pengembalian')->with('toast_success', 'Pengajuan Pengarsipan diteruskan ke Super Admin!');
+            if ($this->PengembalianModel->approval_pengembalian($update_pengembalian, $id_pengembalian)) {
+                return redirect('/approval/pengembalian')->with('toast_success', 'Pengembalian Ditolak, Riwayat Pengembalian Admin sudah di Update!');
             } else {
-                return redirect('/approval/pengembalian');
-            } 
-        } 
+                return redirect('/approval/pengembalian')->with('toast_error', 'Gagal Tolak Pengembalian!'.$request->input('id_dokumen'));
+            }
+        }
     }
 
     /**

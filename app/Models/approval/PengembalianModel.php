@@ -17,9 +17,9 @@ class PengembalianModel extends Model
         ->get();
     }
 
-    public function approval_pengembalian($update_pengembalian, $no_dokumen)
+    public function approval_pengembalian($update_pengembalian, $id_pengembalian)
     {
-        if(DB::table('pengembalian')->where('id_dokumen', $no_dokumen)->update($update_pengembalian)) {
+        if(DB::table('pengembalian')->where('id_pengembalian', $id_pengembalian)->update($update_pengembalian)) {
             return true;
         } else {
             return false;
@@ -34,12 +34,13 @@ class PengembalianModel extends Model
             ->get();
     }
 
-    public function getPengembalianByDivisi($divisi)
+    public function getPengembalianByDivisi($id_user)
     {
         return DB::table('pengembalian')
             ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'pengembalian.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
-            ->where('dokumen.id_departemen', '=', $divisi)
+            // ->where('dokumen.id_departemen', '=', $divisi)
+            ->where('users.id', '=', $id_user)
             ->get();
     }
 }

@@ -17,7 +17,7 @@ class RiwayatpeminjamanController extends Controller
     public function index()
     {
         $data = [
-            'dokumen' => $this->Model->getPeminjamanByDivisi(Auth::user()->id_departemen),
+            'dokumen' => $this->Model->getPeminjamanByDivisi(Auth::user()->id),
             'pengembalian' => $this->Model->getPengembalian()
         ];
         return view('admin.riwayat.riwayat-peminjaman', $data);
