@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PeminjamanModel;
 use App\Models\DokumenModel;
-use App\Traits\notif_sidebar;
 
 class PeminjamanController extends Controller
 {
-    use notif_sidebar;
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +26,7 @@ class PeminjamanController extends Controller
         $data = [
             'peminjaman' => $this->PeminjamanModel->allData()
         ];
-        return view('superadmin.approval.peminjaman', $data, $this->approval_pending());
+        return view('superadmin.approval.peminjaman', $data, $this->notif_pending());
     }
 
     /**
@@ -86,7 +84,7 @@ class PeminjamanController extends Controller
 
 
         if($request->input('jenis') == 'approve'){
-            
+
             $update_dokumen = [
                 'status_dokumen'    => 'Dipinjam'
             ];
@@ -101,7 +99,7 @@ class PeminjamanController extends Controller
                 return redirect('/approval/peminjaman')->with('toast_success', 'Peminjaman berhasil di Approval!');
             }else {
                 return redirect('/approval/peminjaman');
-            }    
+            }
         } elseif ($request->input('jenis') == 'tolak') {
             $update_dokumen = [
                 'status_dokumen'    => 'Tersedia'
@@ -117,8 +115,8 @@ class PeminjamanController extends Controller
                 return redirect('/approval/peminjaman')->with('toast_success', 'Peminjaman gagal di approve!');
             } else {
                 return redirect('/approval/peminjaman');
-            } 
-        } 
+            }
+        }
     }
     /**
      * Remove the specified resource from storage.

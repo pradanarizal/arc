@@ -32,12 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label for="tahun_dokumen_ret_admin">Tahun Dokumen</label>
-                        <select class="form-control custom-select" name="tahun_dokumen_ret_admin" id="tahun_dokumen_ret_admin">
-                            <option selected disabled>--Pilih Tahun Dokumen--</option>
-                            @for ($i = date('Y'); $i >= 2000; $i--)
-                                <option value="{{ $i }}">{{ $i }}</option>'
-                            @endfor
-                        </select>
+                        <input type="text" id="tahun-dokumen" placeholder="--Tahun Dokumen--" class="form-control" name="tahun_dokumen_ret_admin">
                         @error('tahun_dokumen_ret_admin')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror

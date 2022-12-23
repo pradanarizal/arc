@@ -1,6 +1,7 @@
 <!-- Bootstrap core JavaScript-->
 {{-- <script src="{{ asset('templates/vendor/jquery/jquery.min.js') }}"></script> --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
 <script src="{{ asset('templates/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Core plugin JavaScript-->
@@ -22,6 +23,7 @@
 <script src="{{ asset('templates/js/pilih_rak.js') }}"></script>
 <script src="{{ asset('templates/js/pilih_box.js') }}"></script>
 <script src="{{ asset('templates/js/lokasi_arsip.js') }}"></script>
+<script src="{{ asset('templates/js/tahun_dokumen.js') }}"></script>
 
 {{-- End Of Custom Script --}}
 
@@ -35,6 +37,7 @@
     href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
 {{-- KHUSUS SCRIPT BARU TARO DI BAWAH INI --}}
+
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/modules/export-data.js"></script>

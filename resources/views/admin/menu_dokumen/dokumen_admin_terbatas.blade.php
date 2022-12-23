@@ -45,14 +45,14 @@
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->jenis_dokumen}}</td>
+                                <td>{{ $item->jenis_dokumen }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
-                                <td>
+                                <td class="text-center">
                                     @if ($item->status_dokumen == 'Tersedia')
                                         <span title="Dokumen Tersedia"
                                             class="badge badge-success p-2">{{ $item->status_dokumen }}</span>
                                     @elseif ($item->status_dokumen == 'Menunggu Approval')
-                                    <span title="Menunggu Approval Superadmin"
+                                        <span title="Menunggu Approval Superadmin"
                                             class="badge badge-warning p-2">{{ $item->status_dokumen }}</span>
                                     @else
                                         <span title="Dokumen sedang Dipinjam"
@@ -60,18 +60,16 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    @if($item->status_dokumen == 'Dipinjam')
+                                    @if ($item->status_dokumen == 'Dipinjam')
                                         <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
                                             href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
                                             <i class="fas fa-eye"></i>
                                         </a>
-                                    
                                     @elseif($item->status_dokumen == 'Menunggu Approval')
                                         <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
                                             href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
                                             <i class="fas fa-eye"></i>
                                         </a>
-
                                     @else
                                         <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
                                             href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
@@ -93,57 +91,57 @@
     {{--
 </div> --}}
 
-<script>
-    <?php $listErrorPengarsipanAdmin = ['nomor_dokumen_pengarsipan_admin', 'nama_dokumen_pengarsipan_admin', 'tahun_dokumen_pengarsipan_admin', 'deskripsi_dokumen_pengarsipan_admin', 'kelengkapan_dokumen_pengarsipan', 'file_pengarsipan_admin'];
-          $listErrorRetensiAdmin = ['nomor_dokumen_ret_admin', 'nama_dokumen_ret_admin', 'tahun_dokumen_ret_admin', 'deskripsi_dokumen_ret_admin', 'kelengkapan_dokumen_retensi', 'file_ret_admin'];
-          $listErrorPeminjamanAdmin = ['tgl_ambil', 'tgl_kembali'];
-    ?>  
-          window.onload = function() {
-                @foreach ($listErrorPengarsipanAdmin as $err)
-                    @error($err)
-                        OpenBootstrapPopup();
+    <script>
+        <?php $listErrorPengarsipanAdmin = ['nomor_dokumen_pengarsipan_admin', 'nama_dokumen_pengarsipan_admin', 'tahun_dokumen_pengarsipan_admin', 'deskripsi_dokumen_pengarsipan_admin', 'kelengkapan_dokumen_pengarsipan', 'file_pengarsipan_admin'];
+        $listErrorRetensiAdmin = ['nomor_dokumen_ret_admin', 'nama_dokumen_ret_admin', 'tahun_dokumen_ret_admin', 'deskripsi_dokumen_ret_admin', 'kelengkapan_dokumen_retensi', 'file_ret_admin'];
+        $listErrorPeminjamanAdmin = ['tgl_ambil', 'tgl_kembali'];
+        ?>
+        window.onload = function() {
+            @foreach ($listErrorPengarsipanAdmin as $err)
+                @error($err)
+                    OpenBootstrapPopup();
 
-                        function OpenBootstrapPopup() {
-                            $("#tambah_dokumen_admin").modal('show');
-                        }
-                        @break
-                    @enderror
-                @endforeach
-                @foreach ($listErrorRetensiAdmin as $err)
-                    @error($err)
-                        OpenBootstrapPopup();
+                    function OpenBootstrapPopup() {
+                        $("#tambah_dokumen_admin").modal('show');
+                    }
+                    @break
+                @enderror
+            @endforeach
+            @foreach ($listErrorRetensiAdmin as $err)
+                @error($err)
+                    OpenBootstrapPopup();
 
-                        function OpenBootstrapPopup() {
-                            $("#tambah_retensi_admin").modal('show');
-                        }
-                        @break
-                    @enderror
-                @endforeach
-                @foreach ($listErrorPeminjamanAdmin as $err)
-                    @error($err)
-                        OpenBootstrapPopup();
+                    function OpenBootstrapPopup() {
+                        $("#tambah_retensi_admin").modal('show');
+                    }
+                    @break
+                @enderror
+            @endforeach
+            @foreach ($listErrorPeminjamanAdmin as $err)
+                @error($err)
+                    OpenBootstrapPopup();
 
-                        function OpenBootstrapPopup() {
-                            $("#pinjam_dokumen").modal('show');
-                        }
-                        @break
-                    @enderror
-                @endforeach
-                $('#retensi_admin').select2({
-                    data: <?= json_encode($kelengkapan) ?>,
-                    theme: "bootstrap-5",
-                    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                        'style'
-                });
-                $('#pengarsipan_admin').select2({
-                    data: <?= json_encode($kelengkapan) ?>,
-                    theme: "bootstrap-5",
-                    width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                        'style'
-                });
-            };
+                    function OpenBootstrapPopup() {
+                        $("#pinjam_dokumen").modal('show');
+                    }
+                    @break
+                @enderror
+            @endforeach
+            $('#retensi_admin').select2({
+                data: <?= json_encode($kelengkapan) ?>,
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                    'style'
+            });
+            $('#pengarsipan_admin').select2({
+                data: <?= json_encode($kelengkapan) ?>,
+                theme: "bootstrap-5",
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
+                    'style'
+            });
+        };
     </script>
-    
+
     @include('admin.modal.m_tambah_dokumen')
     @include('admin.modal.m_tambah_retensi')
     @include('admin.modal.m_pinjam_dokumen')

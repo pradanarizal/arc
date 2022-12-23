@@ -21,8 +21,10 @@
 
     <!-- Nav Item - Pengguna -->
     @if (auth()->user()->level == 'user')
-    <li class="nav-item {{ request()->is('dokumen_terbuka_user') | request()->is('dokumen_terbatas_user') ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuperadmin" aria-controls="collapseTwo">
+        <li
+            class="nav-item {{ request()->is('dokumen_terbuka_user') | request()->is('dokumen_terbatas_user') ? 'active' : '' }}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuperadmin"
+                aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-file-alt"></i>
                 <span>Dokumen</span>
             </a>
@@ -101,8 +103,10 @@
         {{-- END OF SIDEBAR MENU 1 SUPER ADMIN --}}
 
         {{-- SIDEBAR MENU 2 SUPER ADMIN --}}
-        <li class="nav-item {{ request()->is('dokumen_terbuka') | request()->is('dokumen_terbatas') ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuperadmin" aria-controls="collapseTwo">
+        <li
+            class="nav-item {{ request()->is('dokumen_terbuka') | request()->is('dokumen_terbatas') ? 'active' : '' }}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSuperadmin"
+                aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-file-alt"></i>
                 <span>Dokumen</span>
             </a>
@@ -191,8 +195,10 @@
 
     {{-- UNTUK TAMPILAN ADMIN --}}
     @if (auth()->user()->level == 'admin')
-        <li class="nav-item {{ request()->is('dokumen_terbuka_admin') | request()->is('dokumen_terbatas_admin') ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseTwo">
+        <li
+            class="nav-item {{ request()->is('dokumen_terbuka_admin') | request()->is('dokumen_terbatas_admin') ? 'active' : '' }}">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne"
+                aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-file-alt"></i>
                 <span>Dokumen</span>
             </a>
@@ -217,7 +223,16 @@
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-history"></i>
-                <span>Riwayat</span>
+                <span  class="mr-5">Riwayat</span>
+                {{-- Untuk count all pengajuan pending --}}
+                <p class="d-none">
+                    {{ $a = $count_pengarsipan_pending_admin + $count_retensi_pending_admin + $count_peminjaman_pending_admin + $count_pengembalian_pending_admin }}
+                </p>
+                {{-- end of count all --}}
+                @if ($a == 0)
+                @else
+                    <i class="float-center badge badge-danger ">{{ $a }}</i>
+                @endif
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
@@ -225,21 +240,39 @@
                         href="/riwayat/riwayat_pengarsipan">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Pengarsipan</span>
+                        @if ($count_pengarsipan_pending_admin == 0)
+                        @else
+                            <i class="badge badge-danger float-right">
+                                {{ $count_pengarsipan_pending_admin }}
+                            </i>
+                        @endif
                     </a>
                     <a class="collapse-item {{ request()->is('riwayat/riwayat_retensi') ? 'active' : '' }}"
                         href="/riwayat/riwayat_retensi">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Retensi Arsip</span>
+                        @if ($count_retensi_pending_admin == 0)
+                        @else
+                            <i class="float-right badge badge-danger ">{{ $count_retensi_pending_admin }}</i>
+                        @endif
                     </a>
                     <a class="collapse-item {{ request()->is('riwayat/riwayat_peminjaman') ? 'active' : '' }}"
                         href="/riwayat/riwayat_peminjaman">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Peminjaman</span>
+                        @if ($count_peminjaman_pending_admin == 0)
+                        @else
+                            <i class="float-right badge badge-danger ">{{ $count_peminjaman_pending_admin }}</i>
+                        @endif
                     </a>
                     <a class="collapse-item {{ request()->is('riwayat/riwayat_pengembalian') ? 'active' : '' }}"
                         href="/riwayat/riwayat_pengembalian">
                         <i class="fas fa-fw fa-square fa-xs"></i>
                         <span>Pengembalian</span>
+                        @if ($count_pengembalian_pending_admin == 0)
+                        @else
+                            <i class="float-right badge badge-danger ">{{ $count_pengembalian_pending_admin }}</i>
+                        @endif
                     </a>
                 </div>
             </div>

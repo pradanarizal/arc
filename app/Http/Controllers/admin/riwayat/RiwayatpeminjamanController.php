@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin\riwayat;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\approval\PeminjamanModel;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class RiwayatpeminjamanController extends Controller
 {
@@ -20,7 +20,7 @@ class RiwayatpeminjamanController extends Controller
             'dokumen' => $this->Model->getPeminjamanByDivisi(Auth::user()->id),
             'pengembalian' => $this->Model->getPengembalian()
         ];
-        return view('admin.riwayat.riwayat-peminjaman', $data);
+        return view('admin.riwayat.riwayat-peminjaman', $data, $this->notif_pending());
     }
 
     /**
@@ -35,7 +35,7 @@ class RiwayatpeminjamanController extends Controller
             'peminjaman' => $this->Model->getDataById($id)
         ];
 
-        return view('admin.riwayat.d_riwayat_peminjaman', $data);
+        return view('admin.riwayat.d_riwayat_peminjaman', $data, $this->notif_pending());
     }
 
     /**

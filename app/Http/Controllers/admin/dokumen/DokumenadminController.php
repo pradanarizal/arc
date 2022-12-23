@@ -7,7 +7,7 @@ use App\Models\DokumenModel;
 use App\Models\approval\PeminjamanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Response;
+use Illuminate\Http\Response;
 
 class DokumenadminController extends Controller
 {
@@ -36,7 +36,7 @@ class DokumenadminController extends Controller
             'dokumen' => $this->DokumenModel->getDokumenById($id),
             'peminjaman'    => $this->DokumenModel->getNamaPeminjam($id)
         ];
-        return view('admin.menu_dokumen.detail_dokumen_admin', $data);
+        return view('admin.menu_dokumen.detail_dokumen_admin', $data, $this->notif_pending());
     }
 
 
@@ -48,7 +48,7 @@ class DokumenadminController extends Controller
             'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
 
         ];
-        return view('admin.menu_dokumen.dokumen_admin_terbatas', $data);
+        return view('admin.menu_dokumen.dokumen_admin_terbatas', $data, $this->notif_pending());
     }
 
     public function dokumen_terbuka_admin()
@@ -58,7 +58,7 @@ class DokumenadminController extends Controller
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
             'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
         ];
-        return view('admin.menu_dokumen.dokumen_admin_terbuka', $data);
+        return view('admin.menu_dokumen.dokumen_admin_terbuka', $data, $this->notif_pending());
 
     }
 

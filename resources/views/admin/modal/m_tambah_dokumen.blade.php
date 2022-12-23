@@ -32,14 +32,8 @@
                     </div>
                     <div class="form-group">
                         <label for="tahun_dokumen_pengarsipan_admin"><b>Tahun Dokumen</b></label>
-                        <select class="form-control custom-select" name="tahun_dokumen_pengarsipan_admin"
-                            id="tahun_dokumen_pengarsipan_admin">
-                            <option selected disabled>--Pilih Tahun Dokumen--</option>
-                            @for ($i = date('Y'); $i >= 2000; $i--)
-                                <option value="{{ $i }}" @if (old('tahun_dokumen_pengarsipan_admin') == $i) selected @endif>
-                                    {{ $i }}</option>
-                            @endfor
-                        </select>
+                        <input type="text" id="tahun-dokumen" placeholder="--Tahun Dokumen--" class="form-control" name="tahun_dokumen_pengarsipan_admin"
+                            id="tahun-dokumen">
                         @error('tahun_dokumen_pengarsipan_admin')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -58,7 +52,7 @@
                             <input type="text" class="form-control" id="jenis_dokumen_admin" name="jenis_dokumen_admin"
                                 aria-describedby="emailHelp" value="Terbatas" readonly>
                     </div>
-                    
+
                             <div class="form-group">
                                 <label for="pengarsipan_admin"><b>Kelengkapan Dokumen</b></label>
                                 <select class="form-control" id="pengarsipan_admin" name="kelengkapan_dokumen_pengarsipan[]" multiple>
