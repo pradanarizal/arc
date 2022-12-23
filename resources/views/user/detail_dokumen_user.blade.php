@@ -44,6 +44,45 @@
                     </div>
                 </div>
                 <hr>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
+                    @foreach ($peminjaman as $data)
+                        @if ($item->id_dokumen == $data->id_peminjaman)
+                            @if ($item->status_dokumen == 'Dipinjam')
+                            
+                                <div class="col-sm-6">
+                                    <label class=" col-form-label">{{ $data->name }}</label>
+                                </div>
+                            @else
+                                <div class="col-sm-6">
+                                    <label class=" col-form-label"> - </label>
+                                </div>
+                            @endif
+                        @endif
+                    @endforeach
+                </div>
+                <hr>
+
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Kembali</label>
+                    @foreach ($peminjaman as $data)
+                        @if ($item->id_dokumen == $data->id_peminjaman)
+                            @if ($item->status_dokumen == 'Dipinjam')
+                            
+                                <div class="col-sm-6">
+                                    <label class=" col-form-label">{{ $data->tgl_kembali }}</label>
+                                </div>
+                            @else
+                                <div class="col-sm-6">
+                                    <label class=" col-form-label"> - </label>
+                                </div>
+                            @endif
+                        @endif
+                    @endforeach
+                </div>
+                <hr>
+                
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Upload</label>
                     <div class="col-sm-6">

@@ -123,6 +123,7 @@ class DokumenModel extends Model
             ->leftJoin('peminjaman', 'peminjaman.id_dokumen', '=', 'dokumen.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->get();
+
     }
 
     public function dataRetensi()
