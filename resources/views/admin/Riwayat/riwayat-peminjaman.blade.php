@@ -8,13 +8,6 @@
 
     <!-- Begin Page Content -->
 
-    {{-- <div class="d-grid gap-2 d-md-flex justify-content-end p-2">
-        <button class="d-none d-sm-inline-block btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#">
-            <i class="fas fa-plus fa-sm text-white-80 mr-2"></i>
-            Add Ruang
-        </button>
-    </div> --}}
-
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-body">
