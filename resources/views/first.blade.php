@@ -3,6 +3,7 @@
 
 <head>
     <title>Commuter Document Archive</title>
+    <link rel="icon" href="{!! asset('templates/img/Logo_KAI_Commuter_kecil.png') !!}" />
     @include('layout.head')
 </head>
 

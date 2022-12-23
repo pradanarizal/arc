@@ -7,7 +7,7 @@ use App\Models\DokumenModel;
 use App\Models\approval\PeminjamanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Response;
+use Response;
 
 class DokumenadminController extends Controller
 {

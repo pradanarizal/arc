@@ -59,7 +59,8 @@
 
 
                     <label for="file_ret_admin">Upload File</label>
-                    <span class="text-danger" style="font-size: 12px">*Max file 50MB</span>
+                    <span class="text-danger" style="font-size: 12px">*Max file 50MB & Format dokumen harus
+                        berformat PDF</span>
                     <div class="form-group">
                         <div class="">
                             <input type="file" name="file_ret_admin" id="file_ret_admin">

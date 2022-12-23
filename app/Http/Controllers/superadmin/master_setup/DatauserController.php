@@ -55,22 +55,23 @@ class DatauserController extends Controller
             [
                 'nik_user'  => 'required|unique:users,nik|numeric|digits_between:4,16',
                 'nama_user' => 'required',
-                'username_user' => 'required',
+                'username_user' => 'required|unique:users,username',
                 'password' =>'required',
                 'id_departemen' => 'required',
                 'role'  => 'required',
                 'status_user'  => 'required',
             ],
             [
-                'nik_user.required'         => 'NIK tidak boleh kosong',
-                'nik_user.numeric'          => 'NIK harus angka',
-                'nik_user.digits_between'   => 'Jumlah NIK minimal 4 dan maksimal 16 digit',
-                'nama_user.required'        => 'Nama tidak boleh kosong',
-                'username_user.required'    => 'Username tidak boleh kosong',
-                'password.required'         => 'Password tidak boleh kosong',
-                'id_departemen.required'    => 'Divisi tidak boleh kosong',
-                'role.required'             => 'Role tidak boleh kosong',
-                'status_user.required'      => 'Status user tidak boleh kosong',
+                'nik_user.required'         => 'NIK tidak boleh kosong!',
+                'nik_user.numeric'          => 'NIK harus angka!',
+                'nik_user.digits_between'   => 'Jumlah NIK minimal 4 dan maksimal 16 digit!',
+                'nama_user.required'        => 'Nama tidak boleh kosong!',
+                'username_user.required'    => 'Username tidak boleh kosong!',
+                'username_user.unique'    => 'Username sudah ada!',
+                'password.required'         => 'Password tidak boleh kosong!',
+                'id_departemen.required'    => 'Divisi tidak boleh kosong!',
+                'role.required'             => 'Role tidak boleh kosong!',
+                'status_user.required'      => 'Status user tidak boleh kosong!',
             ]
         );
 
@@ -126,18 +127,19 @@ class DatauserController extends Controller
         $request->validate(
             [
                 'nama_user_edit' => 'required',
-                'username_user_edit' => 'required',
+                'username_user_edit' => 'required|unique:users,username',
                 'id_departemen_edit' => 'required',
                 'role_user_edit'  => 'required',
                 'status_user_edit'  => 'required',
             ],
             [
-                'nama_user_edit.required'        => 'Nama tidak boleh kosong',
-                'username_user_edit.required'    => 'Username tidak boleh kosong',
-                'password_edit.required'         => 'Password tidak boleh kosong',
-                'id_departemen_edit.required'    => 'Divisi tidak boleh kosong',
-                'role_user_edit.required'        => 'Role tidak boleh kosong',
-                'status_user_edit.required'      => 'Status user tidak boleh kosong',
+                'nama_user_edit.required' => 'Nama tidak boleh kosong',
+                'username_user_edit.required' => 'Username tidak boleh kosong',
+                'username_user_edit.unique' => 'Username sudah ada!',
+                'password_edit.required' => 'Password tidak boleh kosong',
+                'id_departemen_edit.required' => 'Divisi tidak boleh kosong',
+                'role_user_edit.required' => 'Role tidak boleh kosong',
+                'status_user_edit.required' => 'Status user tidak boleh kosong',
             ]
         );
 
