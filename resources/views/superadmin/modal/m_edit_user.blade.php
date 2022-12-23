@@ -34,6 +34,9 @@
                             <label for="username_user_edit">Username</label>
                             <input type="username" value="{{ $item->username }}" class="form-control" id="username_user_edit"
                                 name="username_user_edit" aria-describedby="emailHelp">
+                            <input type="text" name="old_username_edit" class="form-control"
+                                value="{{ $item->username }}" hidden>
+
                             @error('username_user_edit')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
