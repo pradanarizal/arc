@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
     <title>CDA - Login</title>
-
+    <link rel="icon" href="{!! asset('templates/img/Logo_KAI_Commuter_kecil.png') !!}" />
     <!-- Custom fonts for this template-->
     <link href="{{ asset('templates/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
