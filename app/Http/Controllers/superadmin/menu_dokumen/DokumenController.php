@@ -8,7 +8,7 @@ use App\Models\approval\RetensiModel;
 use App\Models\approval\PengarsipanModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Response;
+use Response;
 use App\Traits\notif_sidebar;
 
 class DokumenController extends Controller

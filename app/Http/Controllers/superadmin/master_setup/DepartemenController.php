@@ -77,17 +77,21 @@ class DepartemenController extends Controller
         $this->validate(
             $request,
             [
-                'kode_departemen' => 'required',
-                'nama_departemen' => 'required'
+                'kode_departemen' => 'required|unique:departemen,kode_departemen',
+                'nama_departemen' => 'required|unique:departemen,nama_departemen'
             ],
             [
                 'kode_departemen.required' => 'Kode Departemen wajib diisi!',
-                'nama_departemen.required' => 'Nama Departemen wajib diisi!'
+                'kode_departemen.unique' => 'Kode Departemen sudah ada!',
+                'nama_departemen.required' => 'Nama Departemen wajib diisi!',
+                'nama_departemen.unique' => 'Nama Departemen sudah ada!'
             ]
         );
 
         $data = [
             'kode_departemen' => $request->input('kode_departemen'),
+            'kode_departemen.unique' => 'Kode Departemen sudah ada!',
+
             'nama_departemen' => $request->input('nama_departemen')
         ];
 

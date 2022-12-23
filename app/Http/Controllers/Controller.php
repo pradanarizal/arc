@@ -49,10 +49,10 @@ class Controller extends BaseController
             'count_pengembalian_pending' => $this->model->get_pengembalian_pending(),
 
             //notif sidebar - admin
-            'count_pengarsipan_pending_admin' => $this->model->get_pengarsipan_pending_admin(Auth::user()->id_departemen),
-            'count_retensi_pending_admin' => $this->model->get_retensi_pending_admin(Auth::user()->id_departemen),
-            'count_peminjaman_pending_admin' => $this->model->get_peminjaman_pending_admin(Auth::user()->id_departemen),
-            'count_pengembalian_pending_admin' => $this->model->get_pengembalian_pending_admin(Auth::user()->id_departemen),
+            'count_pengarsipan_pending_admin' => $this->model->get_pengarsipan_pending_admin(Auth::user()->id),
+            'count_retensi_pending_admin' => $this->model->get_retensi_pending_admin(Auth::user()->id),
+            'count_peminjaman_pending_admin' => $this->model->get_peminjaman_pending_admin(Auth::user()->id),
+            'count_pengembalian_pending_admin' => $this->model->get_pengembalian_pending_admin(Auth::user()->id),
         ];
         return $data;
     }

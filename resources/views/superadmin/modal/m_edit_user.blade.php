@@ -11,7 +11,7 @@
                 </div>
 
                 <div class="modal-body">
-                    <!--FORM TAMBAH BARANG-->
+                    <!--FORM TAMBAH USER-->
                     <form action="{{ '/data_user/' . $item->id }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -47,7 +47,7 @@
                                 @foreach ($departemen as $data)
                                     <option value="{{ $data->id_departemen }}" <?php if ($item->id_departemen == $data->id_departemen) {
                                         echo "selected";
-                                    } ?> > 
+                                    } ?> >
                                          {{ $data->kode_departemen }}
                                     </option>
                                 @endforeach
@@ -111,7 +111,7 @@
             };
 
             function OpenBootstrapPopup() {
-                $("#edit_user").modal('show');
+                $("#edit_user{{ $item->id }}").modal('show');
             }
         </script>
     @break

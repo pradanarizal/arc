@@ -59,39 +59,39 @@ class GeneralModel extends Model
     }
 
 
-    public function get_pengarsipan_pending_admin($id_departemen)
+    public function get_pengarsipan_pending_admin($id)
     {
         return DB::table('pengarsipan')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
             ->where('status_pengarsipan', '=', 'Pending')
-            ->where('id_departemen', '=', $id_departemen)
+            ->where('users.id', '=', $id)
             ->count();
     }
 
-    public function get_retensi_pending_admin($id_departemen)
+    public function get_retensi_pending_admin($id)
     {
         return DB::table('retensi')
             ->leftJoin('users', 'users.id', '=', 'retensi.id')
             ->where('status_retensi', '=', 'Pending')
-            ->where('id_departemen', '=', $id_departemen)
+            ->where('users.id', '=', $id)
             ->count();
     }
 
-    public function get_peminjaman_pending_admin($id_departemen)
+    public function get_peminjaman_pending_admin($id)
     {
         return DB::table('peminjaman')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
             ->where('status_peminjaman', '=', 'Pending')
-            ->where('id_departemen', '=', $id_departemen)
+            ->where('users.id', '=', $id)
             ->count();
     }
 
-    public function get_pengembalian_pending_admin($id_departemen)
+    public function get_pengembalian_pending_admin($id)
     {
         return DB::table('pengembalian')
             ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
             ->where('status_pengembalian', '=', 'Pending')
-            ->where('id_departemen', '=', $id_departemen)
+            ->where('users.id', '=', $id)
             ->count();
     }
 }
