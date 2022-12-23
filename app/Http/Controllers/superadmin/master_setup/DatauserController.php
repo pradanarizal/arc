@@ -126,7 +126,7 @@ class DatauserController extends Controller
     {
         $data = [];
             if($request->input('username_user_edit') != $request->input('old_username_edit')){
-                $request->validate(
+                $this->validate($request, 
                     [
                         'nama_user_edit' => 'required',
                         'username_user_edit' => 'required|unique:users,username',
@@ -144,14 +144,41 @@ class DatauserController extends Controller
                         'status_user_edit.required' => 'Status user tidak boleh kosong',
                     ]
                 );
+
+                $data = [
+                    'name' => $request->input('nama_user_edit'),
+                    'username' => $request->input('username_user_edit'),
+                    'id_departemen' => $request->input('id_departemen_edit'),
+                    'aktif' => $request->input('status_user_edit'),
+                    'level' => $request->input('role_user_edit'),
+                ];
+
+            } else {
+                $this->validate($request, 
+                    [
+                        'nama_user_edit' => 'required',
+                        'id_departemen_edit' => 'required',
+                        'role_user_edit'  => 'required',
+                        'status_user_edit'  => 'required',
+                    ],
+                    [
+                        'nama_user_edit.required' => 'Nama tidak boleh kosong',
+                        'username_user_edit.required' => 'Username tidak boleh kosong',
+                        'username_user_edit.unique' => 'Username sudah ada!',
+                        'password_edit.required' => 'Password tidak boleh kosong',
+                        'id_departemen_edit.required' => 'Divisi tidak boleh kosong',
+                        'role_user_edit.required' => 'Role tidak boleh kosong',
+                        'status_user_edit.required' => 'Status user tidak boleh kosong',
+                    ]
+                );
+
+                $data = [
+                    'name' => $request->input('nama_user_edit'),
+                    'id_departemen' => $request->input('id_departemen_edit'),
+                    'aktif' => $request->input('status_user_edit'),
+                    'level' => $request->input('role_user_edit'),
+                ];
             }
-        $data = [
-            'name' => $request->input('nama_user_edit'),
-            'username' => $request->input('username_user_edit'),
-            'id_departemen' => $request->input('id_departemen_edit'),
-            'aktif' => $request->input('status_user_edit'),
-            'level' => $request->input('role_user_edit'),
-        ];
         if ($this->User->update_user($data, $id)) {
             return redirect('/master_setup/data_user')->with('toast_success', 'Berhasil Edit User');
         } else {
