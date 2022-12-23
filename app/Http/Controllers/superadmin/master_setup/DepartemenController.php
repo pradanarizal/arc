@@ -92,8 +92,6 @@ class DepartemenController extends Controller
 
         $data = [
             'kode_departemen' => $request->input('kode_departemen'),
-            'kode_departemen.unique' => 'Kode Departemen sudah ada!',
-
             'nama_departemen' => $request->input('nama_departemen')
         ];
 
