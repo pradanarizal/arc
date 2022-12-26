@@ -4,7 +4,7 @@ namespace App\Http\Controllers\user;
 
 use App\Models\DokumenModel;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Response;
+use Response;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
