@@ -40,6 +40,7 @@
                                 <div class="p-5">
                                     <div class="text-center mb-4">
                                         <img src="{{ asset('templates/img/logo.webp') }}" width="150px">
+                                        <p style="letter-spacing: 2px" class="text-muted mt-4 font-italic">Commuter Document Archive</p>
                                     </div>
                                     <form action="{{ route('postlogin') }}" method="POST">
                                         @csrf
