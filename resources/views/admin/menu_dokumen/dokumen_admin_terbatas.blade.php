@@ -60,26 +60,28 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    @if ($item->status_dokumen == 'Dipinjam')
-                                        <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
-                                            href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                    @elseif($item->status_dokumen == 'Menunggu Approval')
-                                        <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
-                                            href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                    @else
-                                        <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
-                                            href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
-                                            <i class="fas fa-eye"></i>
-                                        </a>
-                                        <button title="Pinjam Dokumen" class="btn btn-sm bg-success text-white"
-                                            data-bs-toggle="modal" data-bs-target="#pinjam_dokumen{{ $item->id_dokumen }}">
-                                            <i class="fas fa-file-export"></i>
-                                        </button>
-                                    @endif
+                                    <div class="btn-group btn-group-sm">
+                                        @if ($item->status_dokumen == 'Dipinjam')
+                                            <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
+                                                href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        @elseif($item->status_dokumen == 'Menunggu Approval')
+                                            <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
+                                                href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                        @else
+                                            <a title="Lihat Dokumen" class="btn btn-sm bg-primary text-white"
+                                                href="/detail_dokumen_admin/{{ $item->id_dokumen }}">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            <button title="Pinjam Dokumen" class="btn btn-sm bg-success text-white"
+                                                data-bs-toggle="modal" data-bs-target="#pinjam_dokumen{{ $item->id_dokumen }}">
+                                                <i class="fas fa-file-export"></i>
+                                            </button>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach

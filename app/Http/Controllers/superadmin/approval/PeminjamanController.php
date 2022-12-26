@@ -79,9 +79,8 @@ class PeminjamanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $no_dokumen)
+    public function update(Request $request, $id_peminjaman)
     {
-
 
         if($request->input('jenis') == 'approve'){
 
@@ -89,13 +88,13 @@ class PeminjamanController extends Controller
                 'status_dokumen'    => 'Dipinjam'
             ];
 
-            if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
+            if($this->DokumenModel->update_dokumen($update_dokumen, $request->input('id_dokumen'))) {
                 $update_peminjaman = [
                     'tgl_ambil' => $request->input('tgl_peminjaman'),
                     'status_peminjaman' =>  $request->input('peminjaman'),
                     'updated_at' => \Carbon\Carbon::now()
                 ];
-                $this->PeminjamanModel->approval_peminjaman($update_peminjaman, $no_dokumen);
+                $this->PeminjamanModel->approval_peminjaman($update_peminjaman, $id_peminjaman);
                 return redirect('/approval/peminjaman')->with('toast_success', 'Peminjaman berhasil di Approval!');
             }else {
                 return redirect('/approval/peminjaman');
@@ -105,13 +104,13 @@ class PeminjamanController extends Controller
                 'status_dokumen'    => 'Tersedia'
             ];
 
-            if($this->DokumenModel->update_dokumen($update_dokumen, $no_dokumen)) {
+            if($this->DokumenModel->update_dokumen($update_dokumen, $request->input('id_dokumen'))) {
                 $update_peminjaman = [
                     'status_peminjaman' =>  $request->input('peminjaman'),
                     'updated_at' => \Carbon\Carbon::now(),
                     'catatan'    =>$request->input('catatan_tolak_peminjaman'),
                 ];
-                $this->PeminjamanModel->approval_peminjaman($update_peminjaman, $no_dokumen);
+                $this->PeminjamanModel->approval_peminjaman($update_peminjaman, $id_peminjaman);
                 return redirect('/approval/peminjaman')->with('toast_success', 'Peminjaman gagal di approve!');
             } else {
                 return redirect('/approval/peminjaman');

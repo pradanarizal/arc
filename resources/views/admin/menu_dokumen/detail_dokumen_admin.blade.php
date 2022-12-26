@@ -2,11 +2,12 @@
 
 @section('content')
     <!-- Page Heading -->
+    @foreach ($dokumen as $item)
+
     <div class="d-flex align-items-center">
         <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Dokumen</p>
-        <p class="mb-0 text-gray-800 text-small">Detail Data</p>
+        <p class="mb-0 text-gray-800 text-small">Detail Dokumen {{ $item->jenis_dokumen }}</p>
     </div>
-    @foreach ($dokumen as $item)
         <div class="container row mt-3">
             <div class="col-lg-6 bg-white p-4 mb-2 rounded">
                 <div class="form-group row">
@@ -27,9 +28,8 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
                     @foreach ($peminjaman as $data)
-                        @if ($item->id_dokumen == $data->id_peminjaman)
+                        @if ($item->id_dokumen == $data->id_dokumen)
                             @if ($item->status_dokumen == 'Dipinjam')
-                            
                                 <div class="col-sm-6">
                                     <label class=" col-form-label">{{ $data->name }}</label>
                                 </div>
@@ -46,7 +46,7 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Kembali</label>
                     @foreach ($peminjaman as $data)
-                        @if ($item->id_dokumen == $data->id_peminjaman)
+                        @if ($item->id_dokumen == $data->id_dokumen)
                             @if ($item->status_dokumen == 'Dipinjam')
                             
                                 <div class="col-sm-6">

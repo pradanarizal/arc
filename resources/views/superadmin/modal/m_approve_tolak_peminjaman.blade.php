@@ -1,6 +1,6 @@
 <!-- Modal Hapus -->
 @foreach ($peminjaman as $item)
-    <div class="modal fade" id="tolak_peminjaman{{ $item->id_dokumen }}" tabindex="-1" role="dialog"
+    <div class="modal fade" id="tolak_peminjaman{{ $item->id_peminjaman }}" tabindex="-1" role="dialog"
         aria-labelledby="delete_box" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     Reject pengajuan peminjaman dokumen {{ $item->nama_dokumen }} ?
                 </div>
-                <form action="/peminjaman/{{ $item->id_dokumen }}" method="POST">
+                <form action="/peminjaman/{{ $item->id_peminjaman }}" method="POST">
                     @csrf
                     @method('PUT')
                     <input name="jenis" type="text" value="tolak" hidden>
@@ -26,8 +26,9 @@
                     @enderror
 
                     {{-- value untuk tolak peminjaman. - Update ke table peminjaman --}}
-                    <input name="peminjaman" type="text" value="Tidak" hidden>
-                    <input name="tgl_pinjam" type="text" value="{{ $item->tgl_ambil }}" hidden>
+                    <input name="id_dokumen" type="text" value="{{ $item->id_dokumen }}" >
+                    <input name="peminjaman" type="text" value="Tidak" >
+                    <input name="tgl_pinjam" type="text" value="{{ $item->tgl_ambil }}" >
 
                     <div class="modal-footer">
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Batal</button>

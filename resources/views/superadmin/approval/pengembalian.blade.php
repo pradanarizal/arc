@@ -26,8 +26,8 @@
                             <th>No</th>
                             <th>No. Dok</th>
                             <th>Nama Dokumen</th>
-                            <th>Tanggal Ambil</th>
-                            <th>Tanggal Kembali</th>
+                            <th>Tanggal Peminjaman</th>
+                            <!-- <th>Tanggal Kembali</th> -->
                             <th>Tanggal Pengembalian</th>
                             <th>Peminjam</th>
                             <th>Aksi</th>
@@ -43,7 +43,7 @@
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_ambil)) }}</td>
-                                <td>{{ date('d-m-Y', strtotime($item->tgl_kembali)) }}</td>
+                                {{--<td>{{ date('d-m-Y', strtotime($item->tgl_kembali)) }}</td>--}}
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_pengembalian)) }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td class="text-center">

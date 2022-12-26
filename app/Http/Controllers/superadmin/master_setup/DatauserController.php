@@ -24,12 +24,20 @@ class DatauserController extends Controller
         $this->User = new User();
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        // $data = [
+        //     'users' => $this->User->userData(),
+        //     'departemen'    => $this->User->getDepartemen(),
+        // ];
+
+        $keyword = $request->keyword;
+        
         $data = [
-            'users' => $this->User->userData(),
+            'users' => $this->User->getPaginateUser($keyword),
             'departemen'    => $this->User->getDepartemen(),
         ];
+
         return view('superadmin.master_setup.data_user', $data, $this->approval_pending());
     }
 

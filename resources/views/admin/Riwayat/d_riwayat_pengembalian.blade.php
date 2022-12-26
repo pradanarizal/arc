@@ -44,6 +44,12 @@
                     </div>
                 </div>
                 <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Catatan</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ $item->catatan }}</label>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-6">
                 <iframe src="{{ URL::to('/') }}/showPdfAdmin/{{ $item->nama_dokumen }}" width="100%" height="500"

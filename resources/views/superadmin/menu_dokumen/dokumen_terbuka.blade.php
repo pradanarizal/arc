@@ -61,7 +61,7 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="dropdown">
+                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="dropdown">
                                         <i class="fas fa-cog"></i>
                                     </button>
                                     <ul class="dropdown-menu">

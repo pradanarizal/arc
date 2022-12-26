@@ -12,11 +12,23 @@ use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
-    public function userData()
+    // public function userData()
+    // {
+    //     return DB::table('users')
+    //         ->leftJoin('departemen', 'departemen.id_departemen', '=', 'users.id_departemen')
+    //         ->get();
+    // }
+
+    public function getPaginateUser($keyword)
     {
         return DB::table('users')
             ->leftJoin('departemen', 'departemen.id_departemen', '=', 'users.id_departemen')
-            ->get();
+            ->where('departemen.kode_departemen', 'like', '%'.$keyword.'%')
+            ->orwhere('users.name', 'like', '%'.$keyword.'%')
+            ->orwhere('users.nik', 'like', '%'.$keyword.'%')
+            ->orwhere('users.username', 'like', '%'.$keyword.'%')
+            ->orwhere('users.level', 'like', '%'.$keyword.'%')
+            ->paginate(10);
     }
 
     public function profilUser()

@@ -16,9 +16,9 @@ class PeminjamanModel extends Model
             ->get();
     }
 
-    public function approval_peminjaman($update_peminjaman, $no_dokumen)
+    public function approval_peminjaman($update_peminjaman, $id_peminjaman)
     {
-        if (DB::table('peminjaman')->where('id_dokumen', $no_dokumen)->update($update_peminjaman)) {
+        if (DB::table('peminjaman')->where('id_peminjaman', $id_peminjaman)->update($update_peminjaman)) {
             return true;
         } else {
             return false;

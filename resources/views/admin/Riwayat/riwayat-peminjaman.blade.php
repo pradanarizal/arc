@@ -19,7 +19,7 @@
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
                             <th>Jenis Dokumen</th>
-                            <th>Tanggal Upload</th>
+                            <th>Tanggal Peminjaman</th>
                             <th>Tanggal Kembali</th>
                             <th>Approval</th>
                             <th>Aksi</th>
@@ -78,7 +78,7 @@
                                             @endif
                                         @endforeach
                                         @if ($counter == 0)
-                                            @if ($item->status_peminjaman != 'Pending')
+                                            @if ($item->status_peminjaman != 'Pending' || $item->status_peminjaman == 'Tidak')
                                                 <a class="btn btn-sm bg-warning text-white"
                                                     href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
                                                     <i class="fa fa-eye"></i>
@@ -87,6 +87,11 @@
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#pengembalian_dokumen{{ $item->id_peminjaman }}">
                                                     <i class="fa fa-undo"></i>
+                                            @else
+                                                <a class="btn btn-sm bg-warning text-white"
+                                                    href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
                                             @endif
                                         @endif
                                     @else
@@ -95,7 +100,7 @@
                                             href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        @if ($item->status_peminjaman != 'Pending')
+                                        @if ($item->status_peminjaman != 'Pending' )
                                             <button title="Kembali" class="btn btn-sm btn-primary text-white"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#pengembalian_dokumen{{ $item->id_peminjaman }}">

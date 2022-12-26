@@ -1,6 +1,6 @@
 <!-- Modal Hapus -->
 @foreach ($peminjaman as $item)
-    <div class="modal fade" id="approve_peminjaman{{ $item->id_dokumen }}" tabindex="-1" role="dialog"
+    <div class="modal fade" id="approve_peminjaman{{ $item->id_peminjaman }}" tabindex="-1" role="dialog"
         aria-labelledby="delete_box" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
@@ -12,13 +12,13 @@
                 <div class="modal-body">
                     Approve pengajuan peminjaman dokumen {{ $item->nama_dokumen }} ?
                 </div>
-                <form action="/peminjaman/{{ $item->id_dokumen }}" method="POST">
+                <form action="/peminjaman/{{ $item->id_peminjaman }}" method="POST">
                     @csrf
                     @method('PUT')
                      {{-- Jenis input untuk memisahkan jenis update berdasarkan jenis --}}
                     <input name="jenis" type="text" value="approve" hidden>
                     <input name="tgl_peminjaman" type="text" value="{{ $item->tgl_ambil }}" hidden>
-
+                    <input name="id_dokumen" type="text" value="{{ $item->id_dokumen }}" hidden>
                     {{-- value untuk ubah status peminjaman. update ke table peminjaman --}}
                     <input name="peminjaman" type="text" value="Ya" hidden>
 
