@@ -28,7 +28,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-    $('#ruang_2').on('change', function() {
+    $('#rak_2').on('change', function() {
         var rakID = $(this).val();
         if (rakID) {
             $.ajax({
