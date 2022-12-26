@@ -127,7 +127,7 @@ class DokumenModel extends Model
         return DB::table('kelengkapan_dokumen')
             ->get();
     }
-    
+
     //modal add retensi
     public function insert_retensi($data2)
     {
@@ -178,7 +178,7 @@ class DokumenModel extends Model
             ->get();
     }
 
-    
+
     public function getNamaPeminjam($id)
     {
         // return DB::table('dokumen')
@@ -197,22 +197,37 @@ class DokumenModel extends Model
             ->where('id_dokumen', $id)
             ->get();
     }
-
-    public function getPeminjamanId($id)
+    public function dokumenDipinjam($id)
     {
         return DB::table('peminjaman')
-            ->join('users', 'users.id', '=', 'peminjaman.id')
-            ->where('id_dokumen', $id)
+            ->select('peminjaman.id_peminjaman', 'peminjaman.status_peminjaman', 'peminjaman.tgl_kembali', 'pengembalian.status_pengembalian', 'users.name')
+            ->leftJoin('pengembalian', 'pengembalian.id_peminjaman', '=', 'peminjaman.id_peminjaman')
+            ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
+            ->where('peminjaman.id_dokumen', $id)
+            ->orderBy('peminjaman.id_peminjaman', 'DESC')
+            ->limit(1)
             ->get();
     }
 
-    public function getPengembalianId($id)
-    {
-        return DB::table('pengembalian')
-            ->where('id_dokumen', $id)
-            ->get();
-    }
-    
+    // public function getPeminjamanId($id)
+    // {
+    //     return DB::table('peminjaman')
+    //         ->select('peminjaman.status_peminjaman as tgl_kembali', 'peminjaman.id_peminjaman', 'users.name')
+    //         ->join('users', 'users.id', '=', 'peminjaman.id')
+    //         ->join('pengembalian', 'users.id', '=', 'peminjaman.id')
+    //         ->where('id_dokumen', $id)
+    //         ->orderBy('id_peminjaman', 'DESC')
+    //         ->limit(1)
+    //         ->get();
+    // }
+
+    // public function getPengembalianId($id)
+    // {
+    //     return DB::table('pengembalian')
+    //         ->where('id_dokumen', $id)
+    //         ->get();
+    // }
+
     //untuk mengirimkan dokumen ke menu approval retensi
     public function softdelete_dokumen($update_dokumen, $no_dokumen)
     {

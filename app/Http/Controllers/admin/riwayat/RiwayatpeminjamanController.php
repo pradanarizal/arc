@@ -18,7 +18,7 @@ class RiwayatpeminjamanController extends Controller
     {
         $data = [
             'dokumen' => $this->Model->getPeminjamanByDivisi(Auth::user()->id),
-            'pengembalian' => $this->Model->getPengembalian()
+            'pengembalian' => $this->Model->getPengembalian(Auth::user()->id)
         ];
         return view('admin.riwayat.riwayat-peminjaman', $data, $this->notif_pending());
     }

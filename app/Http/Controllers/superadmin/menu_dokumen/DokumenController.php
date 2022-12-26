@@ -40,34 +40,34 @@ class DokumenController extends Controller
     {
         $data = [
             'dokumen' => $this->DokumenModel->getDokumenById($id),
-            'peminjaman'    => $this->compare_peminjaman_pengembalian($id),
+            'dipinjam'    => $this->DokumenModel->dokumenDipinjam($id),
         ];
         return view('superadmin.menu_dokumen.detail_dokumen', $data, $this->notif);
     }
 
-    public function compare_peminjaman_pengembalian($id)
-    {
-        $peminjaman = $this->DokumenModel->getPeminjamanId($id);
-        $pengembalian = $this->DokumenModel->getPengembalianId($id);
+    // public function compare_peminjaman_pengembalian($id)
+    // {
+    //     $peminjaman = $this->DokumenModel->getPeminjamanId($id);
+    //     $pengembalian = $this->DokumenModel->getPengembalianId($id);
 
-        $data = array();
+    //     $data = array();
 
-        foreach($pengembalian as $value){
-            foreach($peminjaman as $item){
-                if($value->id_peminjaman == $item->id_peminjaman){
-                    if($value->status_pengembalian == 'Tidak' || $value->status_pengembalian == 'Pending'){
-                        array_push($data, array( $item->id_peminjaman, "$item->name", $item->tgl_kembali));
-                    }
-                } else {
-                    array_push($data, array($item->id_peminjaman, "$item->name", $item->tgl_kembali));
-                }
+    //     foreach($pengembalian as $value){
+    //         foreach($peminjaman as $item){
+    //             if($value->id_peminjaman == $item->id_peminjaman){
+    //                 if($value->status_pengembalian == 'Tidak' || $value->status_pengembalian == 'Pending'){
+    //                     array_push($data, array( $item->id_peminjaman, "$item->name", $item->tgl_kembali));
+    //                 }
+    //             } else {
+    //                 array_push($data, array($item->id_peminjaman, "$item->name", $item->tgl_kembali));
+    //             }
 
-            }            
-        }
+    //         }
+    //     }
 
-        return $data;
+    //     return $peminjaman;
 
-    }
+    // }
 
 
     public function index()

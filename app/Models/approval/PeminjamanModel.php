@@ -43,14 +43,14 @@ class PeminjamanModel extends Model
         //     ->get();
         return DB::table('peminjaman')
         ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'peminjaman.id_dokumen')
-        ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
-        ->where('users.id', '=', $id_user)
+        ->where('peminjaman.id', '=', $id_user)
         ->get();
     }
 
-    public function getPengembalian()
+    public function getPengembalian($id_user)
     {
         return DB::table('pengembalian')
+        ->where('id', '=', $id_user)
             ->get();
     }
 }

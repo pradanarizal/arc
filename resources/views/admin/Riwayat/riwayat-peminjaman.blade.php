@@ -16,11 +16,10 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
-                            <th>Jenis Dokumen</th>
                             <th>Tanggal Peminjaman</th>
                             <th>Tanggal Kembali</th>
+                            <th>Catatan</th>
                             <th>Approval</th>
                             <th>Aksi</th>
                         </tr>
@@ -31,11 +30,16 @@
                         @foreach ($dokumen as $item)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
-                                <td>{{ $item->jenis_dokumen }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_ambil)) }} </td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_kembali)) }}</td>
+                                <td>
+                                    @if ($item->catatan != '')
+                                        {{ $item->catatan }}
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                                </td>
                                 <td class="text-center">
                                     @if ($item->status_peminjaman == 'Pending')
                                         <span class="badge badge-warning p-2" title="menunggu_approval">
@@ -54,13 +58,19 @@
 
                                 <td class="text-center">
                                     <div class="btn-group btn-group-sm">
-                                        @if (count($pengembalian) != 0)
-                                            <?php $counter = 0; ?>
-                                            @foreach ($pengembalian as $item1)
-                                                @if ($item1->id_peminjaman == $item->id_peminjaman)
-                                                    @if ($item1->status_pengembalian == 'Pending' || $item1->status_pengembalian == 'Ya')
+                                        @if ($item->status_peminjaman == 'Pending' || $item->status_peminjaman == 'Tidak')
+                                            <a class="btn btn-sm bg-warning text-white"
+                                                href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                        @elseif ($item->status_peminjaman == 'Ya')
+                                            <?php $contain = false; ?>
+                                            @foreach ($pengembalian as $balik)
+                                                @if ($item->id_peminjaman == $balik->id_peminjaman)
+                                                    <?php $contain = true; ?>
+                                                    @if ($balik->status_pengembalian == 'Ya' || $balik->status_pengembalian == 'Pending')
                                                         <a class="btn btn-sm bg-warning text-white"
-                                                            href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                                            href="/d_riwayat_peminjaman/">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
                                                     @else
@@ -72,35 +82,16 @@
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#pengembalian_dokumen{{ $item->id_peminjaman }}">
                                                             <i class="fa fa-undo"></i>
+                                                        </button>
                                                     @endif
-                                                    <?php $counter++; ?>
                                                 @break
                                             @endif
                                         @endforeach
-                                        @if ($counter == 0)
-                                            @if ($item->status_peminjaman != 'Pending' || $item->status_peminjaman == 'Tidak')
-                                                <a class="btn btn-sm bg-warning text-white"
-                                                    href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                                <button title="Kembali" class="btn btn-sm btn-primary text-white"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#pengembalian_dokumen{{ $item->id_peminjaman }}">
-                                                    <i class="fa fa-undo"></i>
-                                            @else
-                                                <a class="btn btn-sm bg-warning text-white"
-                                                    href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
-                                                    <i class="fa fa-eye"></i>
-                                                </a>
-                                            @endif
-                                        @endif
-                                    @else
-                                        <!-- Kosong -->
-                                        <a class="btn btn-sm bg-warning text-white"
-                                            href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
-                                            <i class="fa fa-eye"></i>
-                                        </a>
-                                        @if ($item->status_peminjaman != 'Pending' )
+                                        @if ($contain == false)
+                                            <a class="btn btn-sm bg-warning text-white"
+                                                href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
                                             <button title="Kembali" class="btn btn-sm btn-primary text-white"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#pengembalian_dokumen{{ $item->id_peminjaman }}">
@@ -114,9 +105,9 @@
                     @endforeach
                 </tbody>
             </table>
-            {{-- {{ json_encode($dokumen) }}
+            {{-- {{ json_encode($dokumen) }} --}}
             <hr>
-            {{ json_encode($pengembalian) }} --}}
+            {{-- {{json_encode($pengembalian) }} --}}
         </div>
     </div>
 </div>
