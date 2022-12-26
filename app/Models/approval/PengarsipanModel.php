@@ -8,13 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class PengarsipanModel extends Model
 {
-    public function allData()
+    public function allData($keyword)
     {
         return DB::table('pengarsipan')
             ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'pengarsipan.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
             // ->where('status_dokumen', '=', 'Pengarsipan')
-            ->get();
+            ->where('dokumen.no_dokumen', 'like', '%'.$keyword.'%')
+            ->orwhere('dokumen.nama_dokumen', 'like', '%'.$keyword.'%')
+            ->orwhere('dokumen.tahun_dokumen', 'like', '%'.$keyword.'%')
+            ->orwhere('dokumen.deskripsi', 'like', '%'.$keyword.'%')
+            ->orwhere('dokumen.nama_kel_dokumen', 'like', '%'.$keyword.'%')
+            ->paginate(20);
     }
 
     public function get_lokasi_dokumen($id_ruang)
@@ -56,7 +61,7 @@ class PengarsipanModel extends Model
             ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'pengarsipan.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
             ->where('dokumen.id_departemen', '=', $divisi)
-            ->get();
+            ->paginate(20);
     }
 
     public function getRuang()

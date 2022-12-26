@@ -8,13 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class PengembalianModel extends Model
 {
-    public function allData()
+    public function allData($keyword)
     {
         return DB::table('pengembalian')
         ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'pengembalian.id_dokumen')
         ->leftJoin('peminjaman', 'peminjaman.id_peminjaman', '=', 'pengembalian.id_peminjaman')
         ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
-        ->get();
+        ->where('dokumen.no_dokumen', 'like', '%'.$keyword.'%')
+        ->orwhere('dokumen.nama_dokumen', 'like', '%'.$keyword.'%')
+        ->orwhere('dokumen.tahun_dokumen', 'like', '%'.$keyword.'%')
+        ->orwhere('dokumen.deskripsi', 'like', '%'.$keyword.'%')
+        ->orwhere('dokumen.nama_kel_dokumen', 'like', '%'.$keyword.'%')
+        ->paginate(1);
     }
 
     public function approval_pengembalian($update_pengembalian, $id_pengembalian)
@@ -41,6 +46,6 @@ class PengembalianModel extends Model
             ->leftJoin('users', 'users.id', '=', 'pengembalian.id')
             // ->where('dokumen.id_departemen', '=', $divisi)
             ->where('users.id', '=', $id_user)
-            ->get();
+            ->paginate(20);
     }
 }

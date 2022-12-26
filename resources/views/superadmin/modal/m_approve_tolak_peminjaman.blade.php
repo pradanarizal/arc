@@ -26,9 +26,9 @@
                     @enderror
 
                     {{-- value untuk tolak peminjaman. - Update ke table peminjaman --}}
-                    <input name="id_dokumen" type="text" value="{{ $item->id_dokumen }}" >
-                    <input name="peminjaman" type="text" value="Tidak" >
-                    <input name="tgl_pinjam" type="text" value="{{ $item->tgl_ambil }}" >
+                    <input name="id_dokumen" type="text" value="{{ $item->id_dokumen }}" hidden>
+                    <input name="peminjaman" type="text" value="Tidak" hidden>
+                    <input name="tgl_pinjam" type="text" value="{{ $item->tgl_ambil }}" hidden>
 
                     <div class="modal-footer">
                         <button class="btn btn-danger" type="button" data-bs-dismiss="modal">Batal</button>

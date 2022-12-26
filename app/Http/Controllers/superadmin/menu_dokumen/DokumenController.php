@@ -70,10 +70,12 @@ class DokumenController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
+        $keyword = $request->keyword;
+
         $data = [
-            'dokumen' => $this->DokumenModel->allDataTerbatas(),
+            'dokumen' => $this->DokumenModel->allDataTerbatas($keyword),
             'divisi' => $this->DokumenModel->getDepartemen(),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
             'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
@@ -85,10 +87,12 @@ class DokumenController extends Controller
         return view('superadmin.menu_dokumen.dokumen_terbatas', $data, $this->notif);
     }
 
-    public function dokumen_terbuka()
+    public function dokumen_terbuka(Request $request)
     {
+        $keyword = $request->keyword;
+
         $data = [
-            'dokumen' => $this->DokumenModel->allDataTerbuka(),
+            'dokumen' => $this->DokumenModel->allDataTerbuka($keyword),
             'kelengkapan_dokumen' => $this->DokumenModel->kelData(),
             'kelengkapan' => $this->DokumenModel->getKelengkapanMultiple(),
             'divisi' => $this->DokumenModel->getDepartemen(),

@@ -22,10 +22,11 @@ class PengembalianController extends Controller
         $this->PengembalianModel = new PengembalianModel();
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $keyword = $request->keyword;
         $data = [
-            'pengembalian' => $this->PengembalianModel->allData()
+            'pengembalian' => $this->PengembalianModel->allData($keyword)
         ];
         return view('superadmin.approval.pengembalian', $data, $this->approval_pending());
     }

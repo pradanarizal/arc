@@ -21,10 +21,11 @@ class PeminjamanController extends Controller
         $this->DokumenModel = new DokumenModel();
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $keyword = $request->keyword;
         $data = [
-            'peminjaman' => $this->PeminjamanModel->allData()
+            'peminjaman' => $this->PeminjamanModel->allData($keyword)
         ];
         return view('superadmin.approval.peminjaman', $data, $this->notif_pending());
     }

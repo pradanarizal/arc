@@ -43,6 +43,6 @@ class RetensiModel extends Model
             ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'retensi.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'retensi.id')
             ->where('dokumen.id_departemen', '=', $divisi)
-            ->get();
+            ->paginate(20);
     }
 }

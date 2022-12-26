@@ -8,12 +8,17 @@ use Illuminate\Support\Facades\DB;
 
 class PeminjamanModel extends Model
 {
-    public function allData()
+    public function allData($keyword)
     {
         return DB::table('Peminjaman')
             ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'peminjaman.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
-            ->get();
+            ->where('dokumen.no_dokumen', 'like', '%'.$keyword.'%')
+            ->orwhere('dokumen.nama_dokumen', 'like', '%'.$keyword.'%')
+            ->orwhere('dokumen.tahun_dokumen', 'like', '%'.$keyword.'%')
+            ->orwhere('dokumen.deskripsi', 'like', '%'.$keyword.'%')
+            ->orwhere('dokumen.nama_kel_dokumen', 'like', '%'.$keyword.'%')
+            ->paginate(20);
     }
 
     public function approval_peminjaman($update_peminjaman, $id_peminjaman)
@@ -45,7 +50,7 @@ class PeminjamanModel extends Model
         ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'peminjaman.id_dokumen')
         ->leftJoin('users', 'users.id', '=', 'peminjaman.id')
         ->where('users.id', '=', $id_user)
-        ->get();
+        ->paginate(20);
     }
 
     public function getPengembalian()

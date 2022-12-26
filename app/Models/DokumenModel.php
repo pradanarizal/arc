@@ -29,8 +29,9 @@ class DokumenModel extends Model
             ->get();
     }
 
-    public function allDataTerbatas()
+    public function allDataTerbatas($keyword)
     {
+
         return DB::table('dokumen')
             ->where('status_dokumen', '=', 'Tersedia')
             ->where('status_dokumen', '=', 'Menunggu Approval')
@@ -39,12 +40,13 @@ class DokumenModel extends Model
             ->where('status_dokumen', '!=', 'Rejected')
             ->where('status_dokumen', '!=', 'softdelete')
             ->where('jenis_dokumen', '=', 'Terbatas')
+            ->where('dokumen.no_dokumen', 'like', '%'.$keyword.'%')
             ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
             ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             // ->orderBy('tgl_upload','DESC')
-            ->get();
+            ->paginate(20);
 
         return DB::table('dokumen')
 
@@ -55,6 +57,7 @@ class DokumenModel extends Model
     public function allDataTerbuka()
     {
         return DB::table('dokumen')
+            
             ->where('status_dokumen', '=', 'Tersedia')
             ->where('status_dokumen', '=', 'Menunggu Approval')
             ->where('status_dokumen', '=', 'Dipinjam')
@@ -64,7 +67,7 @@ class DokumenModel extends Model
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             // ->orderBy('tgl_upload','DESC')
-            ->get();
+            ->paginate(20);
 
         return DB::table('dokumen')
 
@@ -80,6 +83,16 @@ class DokumenModel extends Model
             ->limit(1)
             ->get();
     }
+
+    public function getLastIdPeminjaman()
+    {
+        return DB::table('peminjaman')
+            ->select('id_peminjaman')
+            ->orderBy('id_peminjaman', 'DESC')
+            ->limit(1)
+            ->get();
+    }
+
     public function getKelengkapanMultiple()
     {
         return DB::table('kelengkapan_dokumen')
@@ -110,7 +123,7 @@ class DokumenModel extends Model
             ->where('dokumen.id_departemen', '=', $divisi)
             ->leftJoin('pengarsipan', 'pengarsipan.id_dokumen', '=', 'dokumen.id_dokumen')
             ->leftJoin('users', 'users.id', '=', 'pengarsipan.id')
-            ->get();
+            ->paginate(20);
 
     }
 

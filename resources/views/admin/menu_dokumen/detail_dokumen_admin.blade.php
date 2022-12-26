@@ -27,6 +27,14 @@
 
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
+                    <div class="col-sm-6">
+                        <label class=" col-form-label">{{ json_encode($peminjaman) }}</label>
+                    </div>
+                </div>
+                <hr>
+
+                {{--<div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
                     @foreach ($peminjaman as $data)
                         @if ($item->id_dokumen == $data->id_dokumen)
                             @if ($item->status_dokumen == 'Dipinjam')
@@ -60,7 +68,7 @@
                         @endif
                     @endforeach
                 </div>
-                <hr>
+                <hr>--}}
                 
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tahun Dokumen</label>

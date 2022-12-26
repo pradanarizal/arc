@@ -37,6 +37,7 @@ return new class extends Migration
             $table->text('nama_kel_dokumen');
             $table->dateTime('tgl_upload');
             $table->string('file_dokumen');
+            $table->string('id_peminjaman')->nullable();
             $table->timestamps();
         });
 

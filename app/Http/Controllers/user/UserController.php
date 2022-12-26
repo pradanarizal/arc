@@ -6,7 +6,6 @@ use App\Models\DokumenModel;
 use App\Http\Controllers\Controller;
 use Response;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
