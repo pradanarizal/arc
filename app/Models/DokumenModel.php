@@ -33,7 +33,7 @@ class DokumenModel extends Model
     {
         return DB::table('dokumen')
             ->where('status_dokumen', '=', 'Tersedia')
-            ->where('status_dokumen', '=', 'Menunggu Approval')
+            ->orwhere('status_dokumen', '=', 'Menunggu Approval')
             ->where('status_dokumen', '=', 'Dipinjam')
             ->orwhere('status_dokumen', '!=', 'Pengarsipan')
             ->where('status_dokumen', '!=', 'Rejected')
@@ -46,10 +46,10 @@ class DokumenModel extends Model
             // ->orderBy('tgl_upload','DESC')
             ->get();
 
-        return DB::table('dokumen')
+        // return DB::table('dokumen')
 
-            ->where('status_dokumen', '=', 'Retensi')
-            ->get();
+        //     ->where('status_dokumen', '=', 'Retensi')
+        //     ->get();
     }
 
     public function allDataTerbuka()
@@ -59,6 +59,7 @@ class DokumenModel extends Model
             ->where('status_dokumen', '=', 'Menunggu Approval')
             ->where('status_dokumen', '=', 'Dipinjam')
             ->orwhere('jenis_dokumen', '=', 'Terbuka')
+            ->where('status_dokumen', '!=', 'softdelete')
             ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
             ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
@@ -228,10 +229,9 @@ class DokumenModel extends Model
     //         ->get();
     // }
 
-    //untuk mengirimkan dokumen ke menu approval retensi
-    public function softdelete_dokumen($update_dokumen, $no_dokumen)
+    public function softdelete_dokumen($update_dokumen, $id_dokumen)
     {
-        if (DB::table('dokumen')->where('no_dokumen', $no_dokumen)->update($update_dokumen)) {
+        if (DB::table('dokumen')->where('id_dokumen', $id_dokumen)->update($update_dokumen)) {
             return true;
         } else {
             return false;

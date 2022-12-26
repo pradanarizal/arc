@@ -29,8 +29,8 @@
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
                             {{-- <th>Deskripsi</th>
-                            <th>Kelengkapan Dokumen</th>--}}
-                            <th>Jenis Dokumen</th> 
+                            <th>Kelengkapan Dokumen</th> --}}
+                            <th>Jenis Dokumen</th>
                             <th>Tanggal Upload</th>
                             <th>Status</th>
                             <th>Aksi</th>
@@ -61,28 +61,37 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="dropdown">
-                                        <i class="fas fa-cog"></i>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <a href="/detail_dokumen/{{ $item->id_dokumen }}" style="text-decoration: none;">
+                                    @if ($item->status_dokumen == 'Tersedia')
+                                        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="dropdown">
+                                            <i class="fas fa-cog"></i>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <a href="/detail_dokumen/{{ $item->id_dokumen }}"
+                                                style="text-decoration: none;">
+                                                <li>
+                                                    <button class="dropdown-item text-warning">
+                                                        <i class="fas fa-eye fa-warning"></i> Lihat
+                                                    </button>
+                                                </li>
+                                            </a>
+                                            <li><button class="dropdown-item text-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#editDokumen{{ $item->id_dokumen }}">
+                                                    <i class="fas fa-edit fa-primary"></i> Edit</button>
+                                            </li>
                                             <li>
-                                                <button class="dropdown-item text-warning">
-                                                    <i class="fas fa-eye fa-warning"></i> Lihat
+                                                <button class="dropdown-item text-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#softdelete_dokumen{{ $item->id_dokumen }}">
+                                                    <i class="fas fa-trash fa-danger"></i> Hapus
                                                 </button>
                                             </li>
-                                        </a>
-                                        <li><button class="dropdown-item text-primary" data-bs-toggle="modal"
-                                                data-bs-target="#editDokumen{{ $item->id_dokumen }}">
-                                                <i class="fas fa-edit fa-primary"></i> Edit</button>
-                                        </li>
-                                        <li>
-                                            <button class="dropdown-item text-danger" data-bs-toggle="modal"
-                                                data-bs-target="#softdelete_dokumen{{ $item->id_dokumen }}">
-                                                <i class="fas fa-trash fa-danger"></i> Hapus
+                                        </ul>
+                                    @else
+                                        <a href="/detail_dokumen/{{ $item->id_dokumen }}">
+                                            <button type="button" class="btn btn-sm btn-primary">
+                                                <i class="fas fa-eye"></i>
                                             </button>
-                                        </li>
-                                    </ul>
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
