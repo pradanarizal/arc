@@ -33,7 +33,7 @@ class DokumenModel extends Model
     {
         return DB::table('dokumen')
             ->where('status_dokumen', '=', 'Tersedia')
-            ->orwhere('status_dokumen', '=', 'Menunggu Approval')
+            ->where('status_dokumen', '=', 'Menunggu Approval')
             ->where('status_dokumen', '=', 'Dipinjam')
             ->orwhere('status_dokumen', '!=', 'Pengarsipan')
             ->where('status_dokumen', '!=', 'Rejected')
@@ -45,6 +45,8 @@ class DokumenModel extends Model
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             // ->orderBy('tgl_upload','DESC')
             ->paginate(20);
+
+            
 
         // return DB::table('dokumen')
 
