@@ -27,10 +27,12 @@ class PengarsipanController extends Controller
         return response()->json($lokasi);
     }
 
-    public function index()
+    public function index(Request $request)
     {
+
+        $keyword = $request->keyword;
         $data = [
-            'pengarsipan' => $this->PengarsipanModel->allData(),
+            'pengarsipan' => $this->PengarsipanModel->allData($keyword),
             'ruang' => $this->PengarsipanModel->getRuang(),
             'rak' => $this->PengarsipanModel->getRak(),
             'box' => $this->PengarsipanModel->getBox(),

@@ -36,7 +36,7 @@ class UserController extends Controller
 
         $data = [
             'dokumen' => $this->Model->getDokumenById($id),
-            'peminjaman'    => $this->Model->getNamaPeminjam($id)
+            'dipinjam'    => $this->Model->dokumenDipinjam($id)
 
         ];
         return view('user.detail_dokumen_user', $data);

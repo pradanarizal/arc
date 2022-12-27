@@ -72,7 +72,7 @@
             };
 
             function OpenBootstrapPopup() {
-                $("#pinjam_dokumen").modal('show');
+                $("#pinjam_dokumen{{$item->id_dokumen}}").modal('show');
             }
         </script>
     @enderror

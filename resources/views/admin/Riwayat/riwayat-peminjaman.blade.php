@@ -16,10 +16,11 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>No Dokumen</th>
                             <th>Nama Dokumen</th>
                             <th>Tanggal Peminjaman</th>
                             <th>Tanggal Kembali</th>
-                            <th>Catatan</th>
+                            <!-- <th>Catatan</th> -->
                             <th>Approval</th>
                             <th>Aksi</th>
                         </tr>
@@ -30,16 +31,17 @@
                         @foreach ($dokumen as $item)
                             <tr>
                                 <td>{{ $no++ }}</td>
+                                <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_ambil)) }} </td>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_kembali)) }}</td>
-                                <td>
+                                {{--<td>
                                     @if ($item->catatan != '')
                                         {{ $item->catatan }}
                                     @else
                                         {{ '-' }}
                                     @endif
-                                </td>
+                                </td>--}}
                                 <td class="text-center">
                                     @if ($item->status_peminjaman == 'Pending')
                                         <span class="badge badge-warning p-2" title="menunggu_approval">
@@ -70,7 +72,7 @@
                                                     <?php $contain = true; ?>
                                                     @if ($balik->status_pengembalian == 'Ya' || $balik->status_pengembalian == 'Pending')
                                                         <a class="btn btn-sm bg-warning text-white"
-                                                            href="/d_riwayat_peminjaman/">
+                                                            href="/d_riwayat_peminjaman/{{ $item->id_peminjaman }}">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
                                                     @else

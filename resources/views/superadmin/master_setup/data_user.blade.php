@@ -17,7 +17,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
-            <div class="d-flex align-items-center justify-content-between mb-1 p-1">
+                <div class="d-flex align-items-center justify-content-between mb-1 p-1">
                     <div></div>
                     <div></div>
                     <div class="d-flex align-items-center justify-content-between">

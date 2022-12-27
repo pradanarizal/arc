@@ -28,8 +28,6 @@
                             <th>No</th>
                             <th>No. Dokumen</th>
                             <th>Nama Dokumen</th>
-                            <th>Deskripsi</th>
-                            <th>Kelengkapan Dokumen</th>
                             <th>Jenis Dokumen</th>
                             <th>Tanggal Upload</th>
                             <th>Status</th>
@@ -44,8 +42,6 @@
                                 <td>{{ $no++ }}</td>
                                 <td>{{ $item->no_dokumen }}</td>
                                 <td>{{ $item->nama_dokumen }}</td>
-                                <td>{{ $item->deskripsi }}</td>
-                                <td>{{ $item->nama_kel_dokumen }}</td>
                                 <th>{{ $item->jenis_dokumen }}</th>
                                 <td>{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</td>
                                 <td class="text-center">
@@ -97,6 +93,8 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div>{{ $dokumen->links('pagination::bootstrap-4') }}</div>
+
             </div>
         </div>
     </div>

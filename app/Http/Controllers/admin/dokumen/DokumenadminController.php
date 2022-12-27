@@ -34,7 +34,7 @@ class DokumenadminController extends Controller
     {
         $data = [
             'dokumen' => $this->DokumenModel->getDokumenById($id),
-            'peminjaman'    => $this->DokumenModel->getNamaPeminjam($id)
+            'dipinjam'    => $this->DokumenModel->dokumenDipinjam($id),
         ];
         return view('admin.menu_dokumen.detail_dokumen_admin', $data, $this->notif_pending());
     }

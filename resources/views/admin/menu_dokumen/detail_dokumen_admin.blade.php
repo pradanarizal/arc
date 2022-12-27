@@ -9,7 +9,8 @@
         <p class="mb-0 text-gray-800 text-small">Detail Dokumen {{ $item->jenis_dokumen }}</p>
     </div>
         <div class="container row mt-3">
-            <div class="col-lg-6 bg-white p-4 mb-2 rounded">
+            <div class="col-lg-6 bg-white p-4 mb-2">
+                <h4 class="bg-light p-2">Informasi Dokumen</h4>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">No Dokumen</label>
                     <div class="col-sm-6">
@@ -24,44 +25,6 @@
                     </div>
                 </div>
                 <hr>
-
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
-                    @foreach ($peminjaman as $data)
-                        @if ($item->id_dokumen == $data->id_dokumen)
-                            @if ($item->status_dokumen == 'Dipinjam')
-                                <div class="col-sm-6">
-                                    <label class=" col-form-label">{{ $data->name }}</label>
-                                </div>
-                            @else
-                                <div class="col-sm-6">
-                                    <label class=" col-form-label"> - </label>
-                                </div>
-                            @endif
-                        @endif
-                    @endforeach
-                </div>
-                <hr>
-
-                <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Kembali</label>
-                    @foreach ($peminjaman as $data)
-                        @if ($item->id_dokumen == $data->id_dokumen)
-                            @if ($item->status_dokumen == 'Dipinjam')
-                            
-                                <div class="col-sm-6">
-                                    <label class=" col-form-label">{{ $data->tgl_kembali }}</label>
-                                </div>
-                            @else
-                                <div class="col-sm-6">
-                                    <label class=" col-form-label"> - </label>
-                                </div>
-                            @endif
-                        @endif
-                    @endforeach
-                </div>
-                <hr>
-                
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tahun Dokumen</label>
                     <div class="col-sm-6">
@@ -85,18 +48,42 @@
                 <hr>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Tanggal Upload</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-6 bg-white p-4 mb-2">
                         <label class=" col-form-label">{{ date('d-m-Y', strtotime($item->tgl_upload)) }}</label>
                     </div>
                 </div>
                 <hr>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 bg-white p-4 mb-2">
+                @if (count($dipinjam) != 0)
+                    @if ($dipinjam[0]->status_peminjaman != 'Tidak')
+                        @if ($dipinjam[0]->status_pengembalian != 'Ya')
+                            <h4 class="bg-light p-2">Status Peminjaman</h4>
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-sm-5 col-form-label">Nama Peminjam</label>
+                                {{-- {{ json_encode($dipinjam) }} --}}
+                                <div class="col-sm-6">
+                                    <label class=" col-form-label">{{ $dipinjam[0]->name }}</label>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Tanggal Kembali</label>
+                                <div class="col-sm-6">
+                                    <label
+                                        class=" col-form-label">{{ date('d-m-Y', strtotime($dipinjam[0]->tgl_kembali)) }}</label>
+                                </div>
+                            </div>
+                        @endif
+                    @endif
+                @endif
+                <h4 class="bg-light p-2">Preview Dokumen</h4>
                 @if ($item->file_dokumen == '')
                     <div class="row justify-content-md-center w-100">- File Dokumen Tidak Ada -</div>
                 @else
                     <iframe src="{{ URL::to('/') }}/showPdfAdmin/{{ $item->nama_dokumen }}" width="100%" height="500"
-                        frameborder="0">
+                        frameborder="0" style="border: 1px black solid;">
                     </iframe>
                 @endif
             </div>

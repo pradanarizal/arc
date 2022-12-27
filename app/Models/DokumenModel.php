@@ -44,7 +44,7 @@ class DokumenModel extends Model
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             // ->orderBy('tgl_upload','DESC')
-            ->get();
+            ->paginate(20);
 
         // return DB::table('dokumen')
 
@@ -65,7 +65,7 @@ class DokumenModel extends Model
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
             // ->orderBy('tgl_upload','DESC')
-            ->get();
+            ->paginate(20);
 
         return DB::table('dokumen')
 

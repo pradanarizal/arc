@@ -47,7 +47,13 @@
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Catatan</label>
                     <div class="col-sm-6">
-                        <label class=" col-form-label">{{ $item->catatan }}</label>
+                        <label class=" col-form-label">
+                                    @if ($item->catatan != '')
+                                        {{ $item->catatan }}
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                        </label>
                     </div>
                 </div>
 
