@@ -33,7 +33,7 @@
                         <tr>
                             <th>No</th>
                             <th>ID</th>
-                            <th>Nama Surat</th>
+                            <th>Nama Dokumen</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>

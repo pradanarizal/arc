@@ -90,7 +90,7 @@ class DokumenadminController extends Controller
                     'file_ret_admin' => 'required|unique:dokumen,file_dokumen|max:50000|mimes:pdf',
                     'kelengkapan_dokumen_retensi' => 'required',
                     'nama_dokumen_ret_admin' => 'required',
-                    'nomor_dokumen_ret_admin' => 'required',
+                    'nomor_dokumen_ret_admin' => 'required|unique:dokumen,no_dokumen',
                     'tahun_dokumen_ret_admin' => 'required',
                     'deskripsi_dokumen_ret_admin' => 'required',
                 ],
@@ -101,6 +101,7 @@ class DokumenadminController extends Controller
                     'kelengkapan_dokumen_retensi.required' => 'Pilih kelengkapan dokumen!',
                     'nama_dokumen_ret_admin.required' => 'Nama Dokumen wajib diisi!',
                     'nomor_dokumen_ret_admin.required' => 'Nomor Dokumen wajib diisi!',
+                    'nomor_dokumen_ret_admin.unique' => 'Nomor Dokumen sudah ada!',
                     'tahun_dokumen_ret_admin.required' => 'Pilih tahun dokumen!',
                     'deskripsi_dokumen_ret_admin.required' => 'Deskripsi wajib diisi!',
                 ]
@@ -147,7 +148,7 @@ class DokumenadminController extends Controller
                     'file_pengarsipan_admin' => 'required|unique:dokumen,file_dokumen|max:50000|mimes:pdf',
                     'kelengkapan_dokumen_pengarsipan' => 'required',
                     'nama_dokumen_pengarsipan_admin' => 'required',
-                    'nomor_dokumen_pengarsipan_admin' => 'required',
+                    'nomor_dokumen_pengarsipan_admin' => 'required|unique:dokumen,no_dokumen',
                     'tahun_dokumen_pengarsipan_admin' => 'required',
                     'deskripsi_dokumen_pengarsipan_admin' => 'required',
 
@@ -159,6 +160,7 @@ class DokumenadminController extends Controller
                     'kelengkapan_dokumen_pengarsipan.required' => 'Pilih kelengkapan dokumen!',
                     'nama_dokumen_pengarsipan_admin.required' => 'Nama Dokumen wajib diisi!',
                     'nomor_dokumen_pengarsipan_admin.required' => 'Nomor Dokumen wajib diisi!',
+                    'nomor_dokumen_pengarsipan_admin.unique' => 'Nomor Dokumen sudah ada!',
                     'tahun_dokumen_pengarsipan_admin.required' => 'Pilih tahun dokumen!',
                     'deskripsi_dokumen_pengarsipan_admin.required' => 'Deskripsi wajib diisi!',
                 ]

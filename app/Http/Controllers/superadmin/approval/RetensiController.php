@@ -93,6 +93,22 @@ class RetensiController extends Controller
                 return redirect('/approval/retensi');
             }
         } elseif ($request->input('jenis') == 'tolak') {
+            $request->validate(
+                [
+                    'catatan_retensi_tolak'     => 'required',
+                ],
+                [
+                    'catatan_retensi_tolak.required'  => 'Catatan tidak boleh kosong!'
+                ]
+            );
+    
+            $update_retensi = [
+                'tgl_retensi' => \Carbon\Carbon::now(),
+                'status_retensi' =>  $request->input('retensi'),
+                'updated_at' => \Carbon\Carbon::now(),
+                'catatan'   => $request->input('catatan_retensi_tolak')
+            ];
+            
             if ($this->RetensiModel->approval_retensi($update_retensi,  $no_dokumen)) {
                 return redirect('/approval/retensi')->with('toast_success', 'Retensi di-Reject!');
             } else {

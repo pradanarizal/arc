@@ -40,7 +40,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>ID</th>
+                            <th>NIK</th>
                             <th>Nama User</th>
                             <th>Username</th>
                             <th>Divisi</th>
@@ -56,7 +56,7 @@
                         @foreach ($users as $item)
                             <tr>
                                 <td>{{ $no++ }}</td>
-                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->nik }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->username }}</td>
                                 <td>{{ $item->kode_departemen }}</td>
