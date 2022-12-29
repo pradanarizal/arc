@@ -54,7 +54,19 @@
                     </div>
                 </div>
                 <hr>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label">Catatan</label>
+                    <div class="col-sm-6">
+                        @if ($item->catatan == '')
+                            <label class="col-form-label">-</label>
+                        @else
+                            <label class="col-form-label">{{ $item->catatan }}</label>
+                        @endif
+                    </div>
 
+                </div>
+                <hr>
+                
                 <h4 class="bg-light p-2">Lokasi Dokumen</h4>
                 <div class="form-group row">
                     <label for="staticEmail" class="col-sm-5 col-form-label">Ruang</label>

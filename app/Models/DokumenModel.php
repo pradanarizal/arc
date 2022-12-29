@@ -46,7 +46,7 @@ class DokumenModel extends Model
             // ->orderBy('tgl_upload','DESC')
             ->paginate(20);
 
-            
+
 
         // return DB::table('dokumen')
 
@@ -173,11 +173,12 @@ class DokumenModel extends Model
     {
         return DB::table('dokumen')
             ->select('*')
+            ->leftJoin('pengarsipan', 'pengarsipan.id_dokumen', '=', 'dokumen.id_dokumen')
             ->leftJoin('ruang', 'ruang.id_ruang', '=', 'dokumen.id_ruang')
             ->leftJoin('rak', 'rak.id_rak', '=', 'dokumen.id_rak')
             ->leftJoin('box', 'box.id_box', '=', 'dokumen.id_box')
             ->leftJoin('map', 'map.id_map', '=', 'dokumen.id_map')
-            ->where('id_dokumen', $id)
+            ->where('dokumen.id_dokumen', $id)
             ->get();
     }
 
