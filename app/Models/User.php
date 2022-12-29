@@ -28,6 +28,7 @@ class User extends Authenticatable
             ->orwhere('users.nik', 'like', '%'.$keyword.'%')
             ->orwhere('users.username', 'like', '%'.$keyword.'%')
             ->orwhere('users.level', 'like', '%'.$keyword.'%')
+            ->orderBy('nik', 'ASC')
             ->paginate(10);
     }
 
