@@ -45,6 +45,15 @@ class DokumenController extends Controller
         return view('superadmin.menu_dokumen.detail_dokumen', $data, $this->notif);
     }
 
+    public function detail_data_retensi($id)
+    {
+        $data = [
+            'dokumen' => $this->DokumenModel->getDokumenRetensiById($id),
+            'dipinjam'    => $this->DokumenModel->dokumenDipinjam($id),
+        ];
+        return view('superadmin.menu_dokumen.detail_dokumen_retensi', $data, $this->notif);
+    }
+
     // public function compare_peminjaman_pengembalian($id)
     // {
     //     $peminjaman = $this->DokumenModel->getPeminjamanId($id);

@@ -66,8 +66,8 @@
                                             <i class="fas fa-cog"></i>
                                         </button>
                                         <ul class="dropdown-menu">
-                                            <li><a type="button" class="dropdown-item text-warning"
-                                                    href="/detail_dokumen/{{ $item->id_dokumen }}"><i
+                                            <li><a type="button" class="dropdown-item text-warning btn-sm"
+                                                    href="/detail_dokumen_retensi/{{ $item->id_dokumen }}"><i
                                                         class="fas fa-eye fa-warning"></i> View</a>
                                             </li>
                                             <li><a type="button" class="dropdown-item text-success" data-bs-toggle="modal"
@@ -80,8 +80,8 @@
                                             </li>
                                         </ul>
                                     @else
-                                        <a type="button" class="btn btn-warning"
-                                            href="/detail_dokumen/{{ $item->id_dokumen }}"><i class="fas fa-eye"></i></a>
+                                        <a type="button" class="btn btn-warning btn-sm"
+                                            href="/detail_dokumen_retensi/{{ $item->id_dokumen }}"><i class="fas fa-eye"></i></a>
                                     @endif
                                 </td>
                             </tr>

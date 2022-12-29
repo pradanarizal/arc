@@ -181,6 +181,14 @@ class DokumenModel extends Model
             ->get();
     }
 
+    public function getDokumenRetensiById($id)
+    {
+        return DB::table('retensi')
+            ->leftJoin('dokumen', 'dokumen.id_dokumen', '=', 'retensi.id_dokumen')
+            ->leftJoin('users', 'users.id', '=', 'retensi.id')
+            ->where('id_retensi', '=', $id)
+            ->get();
+    }
 
     public function getNamaPeminjam($id)
     {

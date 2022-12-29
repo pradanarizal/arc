@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="d-flex align-items-center">
         <p class="h3 mb-0 text-gray-800 mr-1 font-weight-bold">Dokumen</p>
-        <p class="mb-0 text-gray-800 text-small">Detail Data Pengarsipan</p>
+        <p class="mb-0 text-gray-800 text-small">Detail Data Pengembalian</p>
     </div>
     @foreach ($pengembalian as $item)
         <div class="container row mt-3">

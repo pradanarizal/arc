@@ -94,6 +94,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:superadmin', 'cekaktif']], func
     Route::get('/dokumen_terbuka', [DokumenController::class, 'dokumen_terbuka']);
     Route::put('/dokumen/edit/{id}', [DokumenController::class, 'edit_dokumen']);
     Route::get('/detail_dokumen/{id}', [DokumenController::class, 'detail_data'])->name('dokumen');
+    Route::get('/detail_dokumen_retensi/{id}', [DokumenController::class, 'detail_data_retensi'])->name('dokumen');
 
     //Menu Master Setup
     Route::get('/master_setup/ruang', [RuangController::class, 'index'])->name('ruang');
